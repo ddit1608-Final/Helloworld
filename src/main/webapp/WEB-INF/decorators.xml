@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+
+<decorators defaultdir="/decorators">	
+	<decorator name="main" page="page_decorator.jsp">
+		<pattern>/</pattern>
+	</decorator>
+	
+	<!-- 제외할 페이지는 아래에 추가 -->
+	<excludes>
+	<!--아래 findZipNum.did*는 임의로 넣어놓은 코드 이므로 필 수정 해야함.  -->
+		<pattern>/findZipNum.did*</pattern>
+	</excludes>
+	
+</decorators>
