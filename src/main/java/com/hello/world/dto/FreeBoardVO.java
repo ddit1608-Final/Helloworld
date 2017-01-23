@@ -1,6 +1,7 @@
 package com.hello.world.dto;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 public class FreeBoardVO {
 
@@ -8,7 +9,7 @@ public class FreeBoardVO {
 	private String mem_mail;				// 멤버 테이블 아이디 -> 닉네임가져올것
 	private String freeboard_title; 		// 자유게시판 제목
 	private String freeboard_cont;			// 자유게시판 내용
-	private Date freeboard_wridate;			// 자유게시판 작성일자 
+	private Timestamp freeboard_wridate;			// 자유게시판 작성일자 
 	private int freeboard_hits;				// 자유게시판 조휘수
 	private String freeboard_pwd;			// 자유게시판 게시글 비밀번호
 	
@@ -36,12 +37,19 @@ public class FreeBoardVO {
 	public void setFreeboard_cont(String freeboard_cont) {
 		this.freeboard_cont = freeboard_cont;
 	}
-	public Date getFreeboard_wridate() {
+	
+public Timestamp getFreeboard_wridate() {
 		return freeboard_wridate;
 	}
-	public void setFreeboard_wridate(Date freeboard_wridate) {
+	public void setFreeboard_wridate(Timestamp freeboard_wridate) {
 		this.freeboard_wridate = freeboard_wridate;
 	}
+	/*	public Date getFreeboard_wridate() {
+		return freeboard_wridate;
+	}*/
+/*	public void setFreeboard_wridate(Date freeboard_wridate) {
+		this.freeboard_wridate = freeboard_wridate;
+	}*/
 	public int getFreeboard_hits() {
 		return freeboard_hits;
 	}
@@ -55,17 +63,8 @@ public class FreeBoardVO {
 		this.freeboard_pwd = freeboard_pwd;
 	}
 	
-	// 에러잡
-	public void setSubject(String subject) {
-		// TODO Auto-generated method stub
-		
-	}
-	public void setContent(String content) {
-		// TODO Auto-generated method stub
-		
-	}
 	
-	public FreeBoardVO(String freeboard_posting_no, String mem_mail,
+/*	public FreeBoardVO(String freeboard_posting_no, String mem_mail,
 			String freeboard_title, String freeboard_cont,
 			Date freeboard_wridate, int freeboard_hits, String freeboard_pwd) {
 		super();
@@ -76,7 +75,7 @@ public class FreeBoardVO {
 		this.freeboard_wridate = freeboard_wridate;
 		this.freeboard_hits = freeboard_hits;
 		this.freeboard_pwd = freeboard_pwd;
-	}
+	}*/
 	
 	@Override
 	public String toString() {

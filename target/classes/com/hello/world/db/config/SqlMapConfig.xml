@@ -7,4 +7,5 @@
 	<!-- 아래 수정해서 사용. -->
 	<sqlMap resource="com/hello/world/db/sqlmaps/Address.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/Mem.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/FreeBoard.xml" />
 </sqlMapConfig>
