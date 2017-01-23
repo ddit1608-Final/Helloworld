@@ -106,6 +106,7 @@
 <table>
 <tr>
 	<td><a href="#"><img id="logo" src="<%= request.getContextPath() %>/images/world.png"></a></td>
+
 	<td><input type="search" id="search"></td>
 	<td><a href="#">
           <span class="glyphicon glyphicon-search"></span>
