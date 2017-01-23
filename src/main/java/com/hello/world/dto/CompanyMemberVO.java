@@ -1,6 +1,6 @@
 package com.hello.world.dto;
 
-public class CompanyMember {
+public class CompanyMemberVO {
 
 	private String compmem_bsnss_lcse_no; // 사업자 등록번호
 	private String compmem_mail; // 이메일
