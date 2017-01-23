@@ -11,19 +11,19 @@ public class FreeBoardService {
 	
 	FreeBoardDAO freeBoardDAO;
 	
-	public void setQnaDAO(FreeBoardDAO freeBoardDAO){
+	public void setFreeBoardDAO(FreeBoardDAO freeBoardDAO){
 		this.freeBoardDAO=freeBoardDAO;
 	}
 	
 	public ArrayList<FreeBoardVO> getFreeBoardList(){
 
-		ArrayList<FreeBoardVO> qnaList = null;
+		ArrayList<FreeBoardVO> freeBoardList = null;
 		try {
-			qnaList = freeBoardDAO.listAllFreeBoard();
+			freeBoardList = freeBoardDAO.listAllFreeBoard();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return qnaList;
+		return freeBoardList;
 	}
 	
 	public FreeBoardVO getFreeBoardDetail(String qseq){
@@ -38,7 +38,7 @@ public class FreeBoardService {
 		return freeBoardVO;
 	}
 	
-	public void updateQnaVO(FreeBoardVO freeBoardVO){
+	public void updateFreeBoardVO(FreeBoardVO freeBoardVO){
 		try {
 			freeBoardDAO.updateFreeBoard(freeBoardVO);
 		} catch (SQLException e) {

@@ -15,7 +15,8 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
-
+	
+	
 	@Override
 	public ArrayList<FreeBoardVO> listFreeBoard(String id) throws SQLException {
 		ArrayList<FreeBoardVO> freeBoardList = new ArrayList<FreeBoardVO>();
@@ -32,7 +33,7 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 	@Override
 	public void insertFreeBoard(FreeBoardVO freeBoardVO, String session_id)
 			throws SQLException {
-		freeBoardVO.setMem_Mail(session_id);
+		freeBoardVO.setMem_mail(session_id);
 		client.insert("insertfreeBoard",freeBoardVO);
 	}
 	
@@ -44,12 +45,12 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 	public ArrayList<FreeBoardVO> listAllFreeBoard() throws SQLException {
 		ArrayList<FreeBoardVO> freeBoardList = new ArrayList<FreeBoardVO>();
 		// 게시판의 데이터를 가지고 오는 쿼리 rep:1:게시물 2: 답변
-		freeBoardList=(ArrayList<FreeBoardVO>)client.queryForList("listAllQna",null);
+		freeBoardList=(ArrayList<FreeBoardVO>)client.queryForList("listAllFreeBoard",null);
 		return freeBoardList;
 	}
 
 	@Override
 	public void updateFreeBoard(FreeBoardVO freeBoardVO) throws SQLException {
-		client.update("updateQna",freeBoardVO);
+		client.update("updateFreeBoard",freeBoardVO);
 	}
 }

@@ -26,10 +26,10 @@ public class FreeBoardController {
 	MemberService memberService;
 
 	@RequestMapping("/freeBoardList.do")
-	public String qnaList(HttpSession session, Model model)
+	public String freeBoardList(HttpSession session, Model model)
 			throws ServletException, IOException {
 		String url = "freeBoard/freeBoardList";
-
+		
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 		ArrayList<FreeBoardVO> freeBoardList = memberService.getFreeBoardList(loginUser.getMem_mail());
 		model.addAttribute("freeBoardList", freeBoardList);
@@ -51,7 +51,7 @@ public class FreeBoardController {
 	}
 
 	@RequestMapping("/freeBoardWriteForm.do")
-	public String qnaWriteForm(HttpSession session) throws ServletException,
+	public String freeBoardWriteForm(HttpSession session) throws ServletException,
 			IOException {
 		String url = "freeBoard/freeBoardWrite";
 
@@ -61,15 +61,15 @@ public class FreeBoardController {
 	}
 
 	@RequestMapping("/freeBoardWrite.do")
-	public String qnaWrite(@RequestParam("subject") String subject,
-			@RequestParam("content") String content, HttpSession session)
+	public String freeBoardWrite(@RequestParam("title") String subject,
+			@RequestParam("cont") String cont, HttpSession session)
 			throws ServletException, IOException {
 		String url = "redirect:freeBoardList.do";
 
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
-		FreeBoardVO freeBoardVO = new FreeBoardVO(url, url, url, url, url, null, 0, url);
+		FreeBoardVO freeBoardVO = new FreeBoardVO(url, url, url, url, null, 0, url);
 		freeBoardVO.setSubject(subject);
-		freeBoardVO.setContent(content);
+		freeBoardVO.setContent(cont);
 		memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_mail());
 
 		return url;

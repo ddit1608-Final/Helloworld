@@ -1,7 +1,25 @@
 
 # Created by https://www.gitignore.io/api/java
 
-pom.properties
+# Created by https://www.gitignore.io/api/mav,maven
+
+#!! ERROR: mav is undefined. Use list command to see defined gitignore types !!#
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# Exclude maven wrapper
+!/.mvn/wrapper/maven-wrapper.jar
+
+# End of https://www.gitignore.io/api/mav,maven
 
 
 

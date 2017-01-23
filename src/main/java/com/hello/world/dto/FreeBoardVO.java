@@ -4,91 +4,58 @@ import java.util.Date;
 
 public class FreeBoardVO {
 
-	private String postingNo;
-	private String mem_Mail;
-	private String freeBoard_Nick;
-	private String freeBoard_Title;
-	private String freeBoard_Cont;
-	private Date freeBoard_WriDate;
-	private int freeBoard_Hits;
-	private String freeBoard_Pwd;
+	private String freeboard_posting_no; 	// 자유게시판 게시글 번호
+	private String mem_mail;				// 멤버 테이블 아이디 -> 닉네임가져올것
+	private String freeboard_title; 		// 자유게시판 제목
+	private String freeboard_cont;			// 자유게시판 내용
+	private Date freeboard_wridate;			// 자유게시판 작성일자 
+	private int freeboard_hits;				// 자유게시판 조휘수
+	private String freeboard_pwd;			// 자유게시판 게시글 비밀번호
 	
-	public String getPostingNo() {
-		return postingNo;
+	public String getFreeboard_posting_no() {
+		return freeboard_posting_no;
 	}
-	public void setPostingNo(String postingNo) {
-		this.postingNo = postingNo;
+	public void setFreeboard_posting_no(String freeboard_posting_no) {
+		this.freeboard_posting_no = freeboard_posting_no;
 	}
-	public String getMem_Mail() {
-		return mem_Mail;
+	public String getMem_mail() {
+		return mem_mail;
 	}
-	public void setMem_Mail(String mem_Mail) {
-		this.mem_Mail = mem_Mail;
+	public void setMem_mail(String mem_mail) {
+		this.mem_mail = mem_mail;
 	}
-	public String getFreeBoard_Nick() {
-		return freeBoard_Nick;
+	public String getFreeboard_title() {
+		return freeboard_title;
 	}
-	public void setFreeBoard_Nick(String freeBoard_Nick) {
-		this.freeBoard_Nick = freeBoard_Nick;
+	public void setFreeboard_title(String freeboard_title) {
+		this.freeboard_title = freeboard_title;
 	}
-	public String getFreeBoard_Title() {
-		return freeBoard_Title;
+	public String getFreeboard_cont() {
+		return freeboard_cont;
 	}
-	public void setFreeBoard_Title(String freeBoard_Title) {
-		this.freeBoard_Title = freeBoard_Title;
+	public void setFreeboard_cont(String freeboard_cont) {
+		this.freeboard_cont = freeboard_cont;
 	}
-	public String getFreeBoard_Cont() {
-		return freeBoard_Cont;
+	public Date getFreeboard_wridate() {
+		return freeboard_wridate;
 	}
-	public void setFreeBoard_Cont(String freeBoard_Cont) {
-		this.freeBoard_Cont = freeBoard_Cont;
+	public void setFreeboard_wridate(Date freeboard_wridate) {
+		this.freeboard_wridate = freeboard_wridate;
 	}
-	public Date getFreeBoard_WriDate() {
-		return freeBoard_WriDate;
+	public int getFreeboard_hits() {
+		return freeboard_hits;
 	}
-	public void setFreeBoard_WriDate(Date freeBoard_WriDate) {
-		this.freeBoard_WriDate = freeBoard_WriDate;
+	public void setFreeboard_hits(int freeboard_hits) {
+		this.freeboard_hits = freeboard_hits;
 	}
-	public int getFreeBoard_Hits() {
-		return freeBoard_Hits;
+	public String getFreeboard_pwd() {
+		return freeboard_pwd;
 	}
-	public void setFreeBoard_Hits(int freeBoard_Hits) {
-		this.freeBoard_Hits = freeBoard_Hits;
-	}
-	public String getFreeBoard_Pwd() {
-		return freeBoard_Pwd;
-	}
-	public void setFreeBoard_Pwd(String freeBoard_Pwd) {
-		this.freeBoard_Pwd = freeBoard_Pwd;
+	public void setFreeboard_pwd(String freeboard_pwd) {
+		this.freeboard_pwd = freeboard_pwd;
 	}
 	
-
-	@Override
-	public String toString() {
-		return "FreeBoardVO [postingNo=" + postingNo + ", mem_Mail=" + mem_Mail
-				+ ", freeBoard_Nick=" + freeBoard_Nick + ", freeBoard_Title="
-				+ freeBoard_Title + ", freeBoard_Cont=" + freeBoard_Cont
-				+ ", freeBoard_WriDate=" + freeBoard_WriDate
-				+ ", freeBoard_Hits=" + freeBoard_Hits + ", freeBoard_Pwd="
-				+ freeBoard_Pwd + "]";
-	}
-	public FreeBoardVO(String postingNo, String mem_Mail,
-			String freeBoard_Nick, String freeBoard_Title,
-			String freeBoard_Cont, Date freeBoard_WriDate, int freeBoard_Hits,
-			String freeBoard_Pwd) {
-		super();
-		this.postingNo = postingNo;
-		this.mem_Mail = mem_Mail;
-		this.freeBoard_Nick = freeBoard_Nick;
-		this.freeBoard_Title = freeBoard_Title;
-		this.freeBoard_Cont = freeBoard_Cont;
-		this.freeBoard_WriDate = freeBoard_WriDate;
-		this.freeBoard_Hits = freeBoard_Hits;
-		this.freeBoard_Pwd = freeBoard_Pwd;
-	}
-	
-	
-	
+	// 에러잡
 	public void setSubject(String subject) {
 		// TODO Auto-generated method stub
 		
@@ -97,6 +64,32 @@ public class FreeBoardVO {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public FreeBoardVO(String freeboard_posting_no, String mem_mail,
+			String freeboard_title, String freeboard_cont,
+			Date freeboard_wridate, int freeboard_hits, String freeboard_pwd) {
+		super();
+		this.freeboard_posting_no = freeboard_posting_no;
+		this.mem_mail = mem_mail;
+		this.freeboard_title = freeboard_title;
+		this.freeboard_cont = freeboard_cont;
+		this.freeboard_wridate = freeboard_wridate;
+		this.freeboard_hits = freeboard_hits;
+		this.freeboard_pwd = freeboard_pwd;
+	}
+	
+	@Override
+	public String toString() {
+		return "FreeBoardVO [freeboard_posting_no=" + freeboard_posting_no
+				+ ", mem_mail=" + mem_mail + ", freeboard_title="
+				+ freeboard_title + ", freeboard_cont=" + freeboard_cont
+				+ ", freeboard_wridate=" + freeboard_wridate
+				+ ", freeboard_hits=" + freeboard_hits + ", freeboard_pwd="
+				+ freeboard_pwd + "]";
+	}
+	
+	
+	
 	
 	
 	
