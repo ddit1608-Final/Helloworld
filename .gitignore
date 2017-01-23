@@ -1,6 +1,8 @@
 
 # Created by https://www.gitignore.io/api/java
 
+target/m2e-wtp/web-resources/META-INF/maven/com.hello/world/pom.properties
+
 ### Java ###
 *.class
 
