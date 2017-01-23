@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.hello.world.dao.FreeBoardDAO;
 import com.hello.world.dao.MemberDAO;
 import com.hello.world.dto.FreeBoardVO;
-import com.hello.world.dto.MemberVO;
+import com.hello.world.dto.MemVO;
 
 
 
@@ -22,8 +22,8 @@ public class MemberService {
 		this.memberDAO=memberDAO;
 	}
 	
-	public ArrayList<MemberVO> getMemberList(String key){
-		ArrayList<MemberVO> memberList=null;
+	public ArrayList<MemVO> getMemberList(String key){
+		ArrayList<MemVO> memberList=null;
 		try {
 			memberList = memberDAO.listMember(key);
 		} catch (SQLException e) {
@@ -32,8 +32,8 @@ public class MemberService {
 		return memberList;
 	}
 	
-	public MemberVO getMember(String id){
-		MemberVO member=null;
+	public MemVO getMember(String id){
+		MemVO member=null;
 		try {
 			member=memberDAO.getMember(id);
 		} catch (SQLException e) {

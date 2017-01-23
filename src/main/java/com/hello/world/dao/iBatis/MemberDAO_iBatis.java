@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.MemberDAO;
-import com.hello.world.dto.MemberVO;
+import com.hello.world.dto.MemVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class MemberDAO_iBatis implements MemberDAO {
@@ -17,7 +17,7 @@ public class MemberDAO_iBatis implements MemberDAO {
 	@Override
 	public int confirmID(String userid) throws SQLException {
 		int result = -1;
-		MemberVO member = (MemberVO) client.queryForObject("confirmID", userid);
+		MemVO member = (MemVO) client.queryForObject("confirmID", userid);
 		if (member != null) {
 			result = 1;
 		} else {
@@ -27,15 +27,15 @@ public class MemberDAO_iBatis implements MemberDAO {
 	}
 
 	@Override
-	public MemberVO getMember(String id) throws SQLException {
-		MemberVO member = (MemberVO) client.queryForObject("getMember", id);
+	public MemVO getMember(String id) throws SQLException {
+		MemVO member = (MemVO) client.queryForObject("getMember", id);
 		return member;
 	}
 
 	@Override
-	public int insertMember(MemberVO memberVO) throws SQLException {
+	public int insertMember(MemVO MemVO) throws SQLException {
 		int result = -1;
-		if (client.insert("insertMember", memberVO) != null) {
+		if (client.insert("insertMember", MemVO) != null) {
 			result = -1;
 		} else {
 			result = 1;
@@ -44,19 +44,19 @@ public class MemberDAO_iBatis implements MemberDAO {
 	}
 
 	@Override
-	public int insertAuthority(MemberVO memberVO) throws SQLException {
+	public int insertAuthority(MemVO MemVO) throws SQLException {
 		int result = 0;
-		result = client.update("insertAuthority", memberVO);
+		result = client.update("insertAuthority", MemVO);
 		return result;
 	}
 
 	@Override
-	public ArrayList<MemberVO> listMember(String member_name)
+	public ArrayList<MemVO> listMember(String member_name)
 			throws SQLException {
 		if (member_name == "") {
 			member_name = "%";
 		}
-		ArrayList<MemberVO> memberList = (ArrayList<MemberVO>) client
+		ArrayList<MemVO> memberList = (ArrayList<MemVO>) client
 				.queryForList("listMember", member_name);
 		return memberList;
 	}

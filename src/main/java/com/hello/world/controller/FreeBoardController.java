@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hello.world.dto.FreeBoardVO;
-import com.hello.world.dto.MemberVO;
+import com.hello.world.dto.MemVO;
 import com.hello.world.service.MemberService;
 
-//import com.nonage.dto.MemberVO;
+//import com.nonage.dto.MemVO;
 
 @Controller
 @RequestMapping("/free")
@@ -30,8 +30,8 @@ public class FreeBoardController {
 			throws ServletException, IOException {
 		String url = "freeBoard/freeBoardList";
 
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
-		ArrayList<FreeBoardVO> freeBoardList = memberService.getFreeBoardList(loginUser.getMem_Mail());
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+		ArrayList<FreeBoardVO> freeBoardList = memberService.getFreeBoardList(loginUser.getMem_mail());
 		model.addAttribute("freeBoardList", freeBoardList);
 
 		return url;
@@ -42,7 +42,7 @@ public class FreeBoardController {
 			Model model) throws ServletException, IOException {
 
 		String url = "freeBoard/freeBoardView";
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 
 		FreeBoardVO freeBoardVO = memberService.getFreeBoardVO(qseq);
 		model.addAttribute("freeBoardVO", freeBoardVO);
@@ -55,7 +55,7 @@ public class FreeBoardController {
 			IOException {
 		String url = "freeBoard/freeBoardWrite";
 
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 
 		return url;
 	}
@@ -66,11 +66,11 @@ public class FreeBoardController {
 			throws ServletException, IOException {
 		String url = "redirect:freeBoardList.do";
 
-		MemberVO loginUser = (MemberVO) session.getAttribute("loginUser");
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 		FreeBoardVO freeBoardVO = new FreeBoardVO(url, url, url, url, url, null, 0, url);
 		freeBoardVO.setSubject(subject);
 		freeBoardVO.setContent(content);
-		memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_Mail());
+		memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_mail());
 
 		return url;
 	}

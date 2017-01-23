@@ -3,6 +3,7 @@
 
 pom.properties
 target/
+.classpath
 
 ### Java ###
 *.class
