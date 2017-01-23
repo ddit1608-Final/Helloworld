@@ -13,6 +13,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
+  @font-face{font-family: "한나";
+   			 src:url(fonts/BM-HANNA.ttf) format("truetype");
+   	}
+  
+  
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -45,7 +50,7 @@
       .row.content {height:auto;} 
     }
     .navbar-inverse{
-    	width:67%;
+    	width:65%;
     	margin:auto;
     	background-color: #003300;
     }
@@ -69,18 +74,25 @@
    	.navbar-nav{
    	width:100%;
    	}
-    .navbar-nav li{
-    font-family: 배달의민족 한나;
-    font-size:17pt;
-    width:12%;
-    text-align:center;
-    margin:0 auto;
+   	
+ 
+   	
+   	.nav-pills li a{
+   	font-family:한나;
+    color:white;
+    font-size: 15pt;
    
+   	}
+   	.nav-pills li{
+   	margin:auto auto auto 13%;
+   	}
+   	.nav-pills li a:HOVER{
+   	background-color: #006f00;
+   	}
+   	.nav li a:focus{
+    background-color: #006f00;
     }
-    .navbar-nav li:hover{
-    background-color:#006633;
-    
-    }
+   
     
     #login{
     width:100%;
@@ -97,6 +109,7 @@
     background-color: #d9d9d9;
     }
     
+    
   </style>
 </head>
 <body>
@@ -106,7 +119,6 @@
 <table>
 <tr>
 	<td><a href="#"><img id="logo" src="<%= request.getContextPath() %>/images/world.png"></a></td>
-
 	<td><input type="search" id="search"></td>
 	<td><a href="#">
           <span class="glyphicon glyphicon-search"></span>
@@ -128,8 +140,11 @@
       <!-- <a class="navbar-brand" href="#">Logo</a> -->
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
+      <ul class="nav nav-pills">
         
+        <li><a href="#">
+          <span class="glyphicon glyphicon-home"></span>
+        </a></li>
         <li><a href="#">구인구직</a></li>
         <li><a href="#">IT소식</a></li>
         <li><a href="#">자유게시판</a></li>
@@ -145,20 +160,23 @@
     </div>
     
     </div>
+    
 	<div class="collapse navbar-collapse" id="myNavbar" style="background-color: #d9d9d9; border:1px solid #101010;">
       <ul class="nav navbar-nav">
         
         <li style="background-color: #d9d9d9;"><input id="login" type="text" placeholder=" 이메일"></li>
 		<li style="background-color: #d9d9d9;"><input id="login" type="password" placeholder=" 비밀번호"></li>
-        <li style="background-color: #d9d9d9; width:9%;"><a href="#" id=login2><span class="glyphicon glyphicon-log-in"></span><font style="color:black;">&nbsp;Login</font></a></li>
+        <li style="background-color: #d9d9d9; width:7%;"><a href="#" id=login2><span class="glyphicon glyphicon-log-in"></span><font style="color:black;">&nbsp;Login</font></a></li>
       	
       
-    	<li id="check" style="margin:1% auto; width:5%;"><input type="checkbox"> 자동</li>
+		<li id="check" style="margin:1% auto; width:5%;"><input type="checkbox"><label>자동</label></li>
+    	
     </ul>
+    
+    </div>
      <!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
-    </div>
      <!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
