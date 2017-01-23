@@ -14,28 +14,29 @@ public class MemberDAO_iBatis implements MemberDAO {
 		this.client = client;
 	}
 
+	/* 아래 메소드 확인 필요. 2017-01-23 jihyun.Park */
 	@Override
 	public int confirmID(String userid) throws SQLException {
 		int result = -1;
-		MemVO member = (MemVO) client.queryForObject("confirmID", userid);
+		/*MemVO member = (MemVO) client.queryForObject("confirmID", userid);
 		if (member != null) {
 			result = 1;
 		} else {
 			result = -1;
-		}
+		}*/
 		return result;
 	}
 
 	@Override
 	public MemVO getMember(String id) throws SQLException {
-		MemVO member = (MemVO) client.queryForObject("getMember", id);
+		MemVO member = (MemVO) client.queryForObject("getMem", id);
 		return member;
 	}
 
 	@Override
 	public int insertMember(MemVO MemVO) throws SQLException {
 		int result = -1;
-		if (client.insert("insertMember", MemVO) != null) {
+		if (client.insert("insertMem", MemVO) != null) {
 			result = -1;
 		} else {
 			result = 1;
@@ -43,22 +44,28 @@ public class MemberDAO_iBatis implements MemberDAO {
 		return result;
 	}
 
+	/* 아래 메소드 확인 필요. 2017-01-23 jihyun.Park */
 	@Override
 	public int insertAuthority(MemVO MemVO) throws SQLException {
 		int result = 0;
-		result = client.update("insertAuthority", MemVO);
+		// result = client.update("insertAuthority", MemVO);
 		return result;
 	}
 
 	@Override
-	public ArrayList<MemVO> listMember(String member_name)
-			throws SQLException {
+	public ArrayList<MemVO> listMember(String member_name) throws SQLException {
 		if (member_name == "") {
 			member_name = "%";
 		}
-		ArrayList<MemVO> memberList = (ArrayList<MemVO>) client
-				.queryForList("listMember", member_name);
+		ArrayList<MemVO> memberList = (ArrayList<MemVO>) client.queryForList(
+				"listMem", member_name);
 		return memberList;
+	}
+
+	@Override
+	public int updateMember(MemVO memVO) throws SQLException {
+		int res = client.update("updateMem", memVO);
+		return res;
 	}
 
 }
