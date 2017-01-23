@@ -2,7 +2,7 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
-public class JobthBoardVO {
+public class JobhtBoardVO {
 	
 	private String mem_mail; // 회원 메일
 	private String jobhtboard_homep; 
