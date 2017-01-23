@@ -9,11 +9,11 @@
 	<typeAlias alias="freeBoard" type="com.hello.world.dto.FreeBoardVO" />
 	
 	<select id="listFreeBoard" parameterClass="str" resultClass="freeBoard">
-		select * from freeBoard where id=#mem_mail# order by qseq desc
+		<!-- select * from freeBoard where id=#mem_mail# order by qseq desc -->
 	</select>
 	
 	<select id="getFreeBoard" parameterClass="int" resultClass="freeBoard">
-		select * from freeBoard where qseq=#seq#
+		<!-- select * from freeBoard where qseq=#seq# -->
 	</select>
 	
 	<insert id="insertFreeBoard" parameterClass="freeBoard">
@@ -24,10 +24,10 @@
 	</insert>
 	
 	<select id="listAllFreeBoard" resultClass="freeBoard">
-		select * from freeBoard order by indate desc
+		select * from freeBoard order by freeBoard_wridate desc
 	</select>
 	
 	<update id="updateFreeBoard" parameterClass="freeBoard" >
-		update freeBoard set reply=#reply#, rep='2' where qseq=#qseq#
+		<!-- update freeBoard set reply=#reply#, rep='2' where qseq=#qseq# -->
 	</update>
 </sqlMap>
