@@ -25,8 +25,6 @@ import com.hello.world.service.MemberService;
 public class FreeBoardController {
 
    @Autowired
-   MemberService memberService;
-   @Autowired
    FreeBoardService freeService;
 
    @RequestMapping("/freeBoardList.do")
