@@ -10,14 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link href="<%=request.getContextPath()%>/resources/css/hw.css" rel="stylesheet">
+
 
 </head>
 
@@ -243,40 +236,57 @@ footer {
 					<!-- <li><a href="#">
           <span class="glyphicon glyphicon-home"></span>
         </a></li><br> -->
-					<li><a href="#">구인구직</a></li>
-					<li><a href="#">IT소식</a></li>
-					<li><a href="#">자유게시판</a></li>
-					<li><a href="#">QnA게시판</a></li>
-					<li><a href="#">모임게시판</a></li>
-					<li><a href="#">정보공유</a></li>
-					<li><a href="#">컨설팅게시판</a></li>
-					<li><a href="#">개소리</a></li>
 
+        <li><a href="#">구인구직</a></li>
+        <li><a href="#">IT소식</a></li>
+        <li><a href="<%=request.getContextPath()%>/free/freeBoardList.do">자유게시판</a></li>
+        <li><a href="#">QnA게시판</a></li>
+        <li><a href="#">모임게시판</a></li>
+        <li><a href="#">정보공유</a></li>
+        <li><a href="#">컨설팅게시판</a></li>
+        <li><a href="#">개소리</a></li>
+        
+    
+    	
+    </ul>
+    </div>
+    
+    </div>
+    
+	<div class="collapse navbar-collapse" id="myNavbar" style="background-color: #d9d9d9;">
+	<form method="post" id="login" name="login" style="margin: 0;" 
+			action="<%=request.getContextPath()%>/member/login">
+      <ul class="nav navbar-nav">
+      	<c:choose>
+      		<c:when test="${loginUser eq null }">
+      			<li><input id="mem_mail" name="mem_mail" type="text" placeholder=" 이메일"></li>
+				<li><input id="mem_pw" name="mem_pw" type="password" placeholder=" 비밀번호"></li>
+		        <li style="margin:auto auto auto -10px;"><a href="#" onclick="javascript:login.submit();" id="login2">
+		        <span class="glyphicon glyphicon-log-in"></span>
+		        <font style="color:black;">&nbsp;Login</font></a></li>
+				<li id="check" style="margin:1% auto; width:5%;"><label style="vertical-align: text-top;" for="check2"><input id="check2" type="checkbox" style="vertical-align: text-top;">자동</label></li>
+		    	<li><a href="<%=request.getContextPath()%>/member/join" id=join>회원가입</a></li>
+      		</c:when>
+      		<c:otherwise>
+      			<li><span id="mem_mail" name="mem_mail">이것은 닉네임 : ${loginUser.mem_nick }</span></li>
+				<li><a href="<%=request.getContextPath()%>/member/logout" id=logout>로그아웃</a></li>
+      		</c:otherwise>
+      	</c:choose>
+    	<li><a href="#">아이디/비밀번호 찾기</a></li>
+    	<li><a href="#">접속자수</a></li>
+    </ul>
+    </form>
+    
+    </div>
+     <!--  <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul> -->
+     <!--  <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul> -->
+   
+   
 
-
-				</ul>
-			</div>
-
-		</div>
-
-		<div class="collapse navbar-collapse" id="myNavbar"
-			style="background-color: #d9d9d9;">
-			<ul class="nav navbar-nav">
-				<li><input id="login" type="text" placeholder=" 이메일"></li>
-				<li><input id="login" type="password" placeholder=" 비밀번호"></li>
-				<!-- <li style="margin-left:-15px;"><a href="#" id="aa">로그인</a></li> -->
-				<li><input type="submit" value="로그인" id="loginbtn"></li>
-				<li id="check" style="margin: 13px auto; width: 5%;"><label
-					style="vertical-align: text-botom;" for="check2" id="auto">
-						<input id="check2" type="checkbox"
-						style="vertical-align: text-top;"> 자동
-				</label></li>
-				<li><a href="#" id="aa">회원가입</a></li>
-				<li><a href="#" id="aa">아이디/비밀번호 찾기</a></li>
-				<li><a href="#" id="aa">접속자수</a></li>
-			</ul>
-
-		</div>
 		<!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->

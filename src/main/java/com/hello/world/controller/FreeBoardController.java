@@ -1,6 +1,7 @@
 package com.hello.world.controller;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -25,8 +26,6 @@ import com.hello.world.service.MemberService;
 public class FreeBoardController {
 
    @Autowired
-   MemberService memberService;
-   @Autowired
    FreeBoardService freeService;
 
    @RequestMapping("/freeBoardList.do")
@@ -39,6 +38,8 @@ public class FreeBoardController {
       ArrayList<FreeBoardVO> freeBoardList=null;
       try {
          freeBoardList = freeService.listAllFreeBoard();
+         //System.out.println("테스트용 컨트롤러");
+         //System.out.println(freeBoardList);
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
@@ -49,16 +50,17 @@ public class FreeBoardController {
       return url;
    }
 
-   @RequestMapping("/freeBoardView.do")
-   public String freeBoardView(@RequestParam("freeboard_posting_no") String freeboard_posting_no, HttpSession session,
+   @RequestMapping("/freeBoardDetail.do")
+   public String freeBoardDetail(@RequestParam String freeboard_posting_no, HttpSession session,
          Model model) throws ServletException, IOException {
 
-      String url = "freeBoard/freeBoardView";
+      String url = "freeBoard/freeBoardDetail";
       /*MemVO loginUser = (MemVO) session.getAttribute("loginUser");*/
-
-      FreeBoardVO freeBoardVO = memberService.getFreeBoardVO(freeboard_posting_no);
+      FreeBoardVO freeBoardVO = freeService.getFreeDetail(freeboard_posting_no);
+      System.out.println("들어옴1");
       model.addAttribute("freeBoardVO", freeBoardVO);
-
+      System.out.println(freeBoardVO);
+      System.out.println("들어옴2");
       return url;
    }
 
@@ -72,18 +74,23 @@ public class FreeBoardController {
       return url;
    }
 
-   @RequestMapping("/freeBoardWrite.do")
-   public String freeBoardWrite(@RequestParam("title") String title,
-         @RequestParam("cont") String cont, HttpSession session)
-         throws ServletException, IOException {
-      String url = "redirect:freeBoardList.do";
+	@RequestMapping("/freeBoardWrite.do")
+	public String freeBoardWrite(FreeBoardVO freeBoardVO,
+			HttpSession session)
+			throws ServletException, IOException {
+		String url = "redirect:freeBoardList.do";
 
-      MemVO loginUser = (MemVO) session.getAttribute("loginUser");
-      FreeBoardVO freeBoardVO = new FreeBoardVO();
-      freeBoardVO.setFreeboard_title(title);
-      freeBoardVO.setFreeboard_cont(cont);
-      memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_mail());
-
-      return url;
-   }
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+	/*	FreeBoardVO freeBoardVO = new FreeBoardVO();
+		freeBoardVO.setFreeboard_title(title);
+		freeBoardVO.setFreeboard_cont(cont);*/
+		System.out.println("테스트용 컨트롤러");
+		System.out.println(freeBoardVO);
+		/*memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_mail());*/
+		//memberService.insertFreeBoard(freeBoardVO,"shm@naver.com");
+		freeService.insertFreeBoard(freeBoardVO);
+		
+		
+		return url;
+	}
 }

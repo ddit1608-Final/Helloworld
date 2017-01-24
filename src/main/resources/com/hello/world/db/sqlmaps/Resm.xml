@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="FreeBoard">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />	
+	<typeAlias alias="resm" type="com.hello.world.dto.ResmVO"/>
+	
+	
+	<insert id="insertResm" parameterClass="resm">
+		insert into resm(mem_mail, resm_regno, milt_code, resm_hob, resm_like, resm_id,idpic_code, acdmcr_code, lcse_code, sidn_code)
+         values(#mem_mail#, #resm_regno#, #milt_code#, #resm_hob#, #resm_like#, #resm_id#, #idpic_code#, #acdmcr_code#, #lcse_code#, #sidn_code#); 
+	</insert>
+	
+</sqlMap>

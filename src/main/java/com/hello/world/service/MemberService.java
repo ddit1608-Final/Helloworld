@@ -16,8 +16,6 @@ import com.hello.world.dto.MemVO;
 public class MemberService {
 	@Autowired
 	private FreeBoardDAO freeBoardDAO;
-	@Autowired
-	private MemberDAO memberDAO;
 
 	@Autowired
 	private MemberDAO_iBatis memDao;
@@ -35,14 +33,11 @@ public class MemberService {
 	public void setFreeBoardDAO(FreeBoardDAO freeBoardDAO) {
 		this.freeBoardDAO = freeBoardDAO;
 	}
-	public void setMemberDAO(MemberDAO memberDAO){
-		this.memberDAO=memberDAO;
-	}
 	
 	public ArrayList<MemVO> getMemberList(String key){
 		ArrayList<MemVO> memberList=null;
 		try {
-			memberList = memberDAO.listMember(key);
+			memberList = memDao.listMember(key);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,14 +47,14 @@ public class MemberService {
 	public MemVO getMember(String id){
 		MemVO member=null;
 		try {
-			member=memberDAO.getMember(id);
+			member=memDao.getMember(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return member;
 	}
 		
-	public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
+	/*public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
 		ArrayList<FreeBoardVO> freeBoardList=null;
 		try {
 			freeBoardList = freeBoardDAO.listFreeBoard(loginID);
@@ -79,18 +74,18 @@ public class MemberService {
 		return freeBoardVO;
 	}
 	
-	public void insertFreeBoard(FreeBoardVO freeBoardVO,String id){		
+	public void insertFreeBoard(FreeBoardVO freeBoardVO){		
 		try {
-			freeBoardDAO.insertFreeBoard(freeBoardVO, id);
+			freeBoardDAO.insertFreeBoard(freeBoardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public int confirmID(String userid) throws SQLException {
 		int result = -1;
 
-		result = memberDAO.confirmID(userid);
+		result = memDao.confirmID(userid);
 
 		return result;
 	}
