@@ -14,8 +14,9 @@ import com.hello.world.dto.MemVO;
 
 @Service
 public class MemberService {
-	
+	@Autowired
 	private FreeBoardDAO freeBoardDAO;
+	@Autowired
 	private MemberDAO memberDAO;
 
 	@Autowired
@@ -85,11 +86,12 @@ public class MemberService {
 			e.printStackTrace();
 		}
 	}
+
+	public int confirmID(String userid) throws SQLException {
+		int result = -1;
+
+		result = memberDAO.confirmID(userid);
+
+		return result;
+	}
 }
-
-
-
-
-
-
-

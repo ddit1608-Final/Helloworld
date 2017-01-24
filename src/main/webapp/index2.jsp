@@ -203,7 +203,7 @@
         <span class="glyphicon glyphicon-log-in"></span>
         <font style="color:black;">&nbsp;Login</font></a></li>
 		<li id="check" style="margin:1% auto; width:5%;"><label style="vertical-align: text-top;" for="check2"><input id="check2" type="checkbox" style="vertical-align: text-top;">자동</label></li>
-    	<li><a href="#">회원가입</a></li>
+    	<li><a href="<%=request.getContextPath()%>/member/join" id=join>회원가입</a></li>
     	<li><a href="#">아이디/비밀번호 찾기</a></li>
     	<li><a href="#">접속자수</a></li>
     </ul>
@@ -284,3 +284,4 @@
   
 </body>
 </html>
+>>>>>>> branch 'master' of https://github.com/ddit1608-Final/Helloworld.git
