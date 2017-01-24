@@ -256,7 +256,7 @@
 </div>
 
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+  <p>Footer Textdddddddddd</p>
 </footer>
 
 </body>
