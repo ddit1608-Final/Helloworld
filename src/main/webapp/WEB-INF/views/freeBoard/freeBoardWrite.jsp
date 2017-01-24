@@ -4,7 +4,7 @@
 <article>
 	<h2>자유게시판</h2>
 	<h3>자유롭게...머문자리는 아름답게</h3>
-	<form name="formm" method="post" action="freeBoardWrite.do">
+	<form name="form" method="post" action="freeBoardWrite.do">
 			<!-- freeboard_posting_no,mem_mail,freeboard_title,freeboard_cont -->
 		<table style="boader: 1px solid black;">
 		<tr>
