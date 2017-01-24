@@ -1,6 +1,17 @@
+<<<<<<< HEAD
 @CHARSET "UTF-8";
 
 #bbb{
 	color:red;
 	
 }
+=======
+@CHARSET "UTF-8";
+
+#title{
+	color:black;
+	font-family:한나;
+	text-align:center;
+	cursor: pointer;
+}
+>>>>>>> branch 'master' of https://github.com/ddit1608-Final/Helloworld.git

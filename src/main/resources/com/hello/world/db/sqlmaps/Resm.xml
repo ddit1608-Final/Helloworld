@@ -12,5 +12,9 @@
 		values(#resm_id#,#mem_mail#,#sidn_code#,#lcse_code#,#acdmcr_code#,#idpic_code#,#resm_regno#,#milt_code#,#resm_hob#,#resm_like#) 
 	</insert>
 	
+	<select id="listResm" parameterClass="str" resultClass="resm">
+		select * from resm where mem_mail =#mem_mail#
+	</select>
+	
 
 </sqlMap>
