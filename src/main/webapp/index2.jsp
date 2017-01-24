@@ -271,13 +271,9 @@
     
     </div>
     <!-- 컨텐트내용 END -->
+     
     <div class="col-sm-2 sidenav" style="background-color: white;">
-      <!-- <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
-      </div> -->
+   
     </div>
   </div>
 </div>

@@ -25,8 +25,14 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
-<style>@font-face{font-family: "한나";
-   			 src:url(../resources/fonts/BM-HANNA.ttf) format("truetype");
+<style>
+
+::selection{
+background: #68e234;
+}
+@font-face{
+	font-family: "한나";
+	src:url(../resources/fonts/BM-HANNA.ttf) format("truetype");
    	}
   
   
@@ -64,20 +70,20 @@
     .navbar-inverse{
     	width:65%;
     	margin:auto;
-    	background-color: #003300;
+    	background-color: #3EAF0E;
     }
     #logo{
     width:60%;
     }
     #search{
     float:right;
-    border:4px solid #003300;
+    border:4px solid #3EAF0E;
     margin:3% auto auto auto;
     }
     .glyphicon-search{
     color:white;
     font-size: 15pt;
-    background-color: #003300;
+    background-color: #3EAF0E;
     margin:3% auto auto auto;
     padding:16%;
     padding-bottom:16%;
@@ -116,6 +122,7 @@
    	}
    	.nav-pills li{
    	margin:auto auto auto 13%;
+   	
    	}
    	.nav-pills li a:HOVER{
    	background-color: #006f00;
@@ -149,12 +156,13 @@
     }
     
    
-    .text-center{
+    .text-center2{
     width:65%;
     margin:0 auto;
     background-color: #d9d9d9;
     color:black;
     font-family: 한나;
+    
     }
   </style>
 <title></title>
@@ -167,7 +175,7 @@
 <div style="background-color: white;">
 <table>
 <tr>
-	<td><a href="#"><img id="logo" src="<%= request.getContextPath() %>/images/world.png"></a></td>
+	<td><a href="#"><img id="logo" src="<%= request.getContextPath() %>/images/world2.png"></a></td>
 	<td><input type="search" id="search"></td>
 	<td><a href="#">
           <span class="glyphicon glyphicon-search"></span>
@@ -179,7 +187,7 @@
 <!-- 최상단 로고 및 검색바END -->
 <!-- 탑메뉴 -->
 
-<nav class="navbar navbar-inverse" style="border:1px solid #003300;">
+<nav class="navbar navbar-inverse" style="border-left:1px solid #3EAF0E;border-bottom:1px solid #3EAF0E;border-right:1px solid #3EAF0E;border-top:none;">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -238,11 +246,11 @@
 </nav>
 </header>
   <!-- 탑메뉴END -->
-    <decorator:body/>
+   
+     <decorator:body/>
     
     
-    
-  <footer class="container-fluid text-center">
+  <footer class="container-fluid text-center2">
   <p>Footer Text</p>
 </footer>
     
