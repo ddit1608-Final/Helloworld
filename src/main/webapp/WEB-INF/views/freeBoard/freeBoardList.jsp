@@ -20,8 +20,7 @@
 			<c:forEach items="${freeBoardList}" var="freeBoardVO">
 				<tr>
 					<td>${freeBoardVO.freeboard_posting_no}</td>
-					<td><a href="#"
-						onclick="free_go_detail(this.form)">${freeBoardVO.freeboard_title}</a>
+					<td><a href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">${freeBoardVO.freeboard_title}</a>
 					</td>
 					<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
 					<td>${freeBoardVO.mem_nick}</td>
