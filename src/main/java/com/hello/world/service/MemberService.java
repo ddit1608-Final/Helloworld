@@ -16,8 +16,6 @@ import com.hello.world.dto.MemVO;
 public class MemberService {
 	@Autowired
 	private FreeBoardDAO freeBoardDAO;
-	@Autowired
-	private MemberDAO memberDAO;
 
 	@Autowired
 	private MemberDAO_iBatis memDao;
@@ -35,14 +33,11 @@ public class MemberService {
 	public void setFreeBoardDAO(FreeBoardDAO freeBoardDAO) {
 		this.freeBoardDAO = freeBoardDAO;
 	}
-	public void setMemberDAO(MemberDAO memberDAO){
-		this.memberDAO=memberDAO;
-	}
 	
 	public ArrayList<MemVO> getMemberList(String key){
 		ArrayList<MemVO> memberList=null;
 		try {
-			memberList = memberDAO.listMember(key);
+			memberList = memDao.listMember(key);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -52,7 +47,7 @@ public class MemberService {
 	public MemVO getMember(String id){
 		MemVO member=null;
 		try {
-			member=memberDAO.getMember(id);
+			member=memDao.getMember(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +85,7 @@ public class MemberService {
 	public int confirmID(String userid) throws SQLException {
 		int result = -1;
 
-		result = memberDAO.confirmID(userid);
+		result = memDao.confirmID(userid);
 
 		return result;
 	}

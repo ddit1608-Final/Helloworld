@@ -3,6 +3,8 @@ package com.hello.world.controller;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,5 +80,35 @@ public class MemberController {
 		}
 
 		return result;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(String mem_mail, String mem_pw, Model model, HttpSession session) {
+		String url = "redirect:/index2.jsp";
+		
+		MemVO mem = new MemVO();
+		mem = memService.getMember(mem_mail);
+		
+		if(mem == null) {
+			url = url + "?loginResult:notexist";
+		} else {
+			
+			if(mem_pw.equals(mem.getMem_pw())) {
+				session.setAttribute("loginUser", mem);
+			} else {
+				url = url + "?loginResult:pwdMismatch";
+			}
+		}
+
+		return url;
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		String url = "redirect:/index2.jsp";
+		
+		session.removeAttribute("loginUser");
+
+		return url;
 	}
 }
