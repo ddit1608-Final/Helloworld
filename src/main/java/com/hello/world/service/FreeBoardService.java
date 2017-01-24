@@ -15,6 +15,7 @@ public class FreeBoardService {
 		this.freeBoardDAO=freeBoardDAO;
 	}
 	
+
 	public ArrayList<FreeBoardVO> listAllFreeBoard() throws SQLException{
 		ArrayList<FreeBoardVO> list = freeBoardDAO.listAllFreeBoard();
 		return list;
@@ -22,8 +23,11 @@ public class FreeBoardService {
 	
 	public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
 		ArrayList<FreeBoardVO> freeBoardList=null;
+
 		try {
+
 			freeBoardList = freeBoardDAO.listFreeBoard(loginID);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -40,7 +44,9 @@ public class FreeBoardService {
 		return freeBoardVO;
 	}
 	
+
 	public void insertFreeBoard(FreeBoardVO freeBoardVO,String id){		
+
 		try {
 			freeBoardDAO.insertFreeBoard(freeBoardVO, id);
 		} catch (SQLException e) {

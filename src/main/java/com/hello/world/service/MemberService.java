@@ -12,7 +12,6 @@ import com.hello.world.dao.iBatis.MemberDAO_iBatis;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
 
-
 @Service
 public class MemberService {
 	
