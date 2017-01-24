@@ -63,7 +63,25 @@ public class FreeBoardService {
 		
 		return freeBoardVO;
 	}
+	public void updateFreeBoard(FreeBoardVO freeBoardVO){		
+		try {
+			freeBoardDAO.updateFreeBoard(freeBoardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
+	public FreeBoardVO deleteFreeBoard(String freeboard_posting_no){
+		FreeBoardVO freeBoardVO = null;
+		
+		try {
+			freeBoardVO = freeBoardDAO.deleteFreeBoard(freeboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return freeBoardVO;
+	}
 }
 
 

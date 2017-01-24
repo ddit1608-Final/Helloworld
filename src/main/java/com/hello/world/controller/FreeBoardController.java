@@ -1,7 +1,6 @@
 package com.hello.world.controller;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hello.world.dto.FreeBoardVO;
@@ -89,6 +89,51 @@ public class FreeBoardController {
 		/*memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_mail());*/
 		//memberService.insertFreeBoard(freeBoardVO,"shm@naver.com");
 		freeService.insertFreeBoard(freeBoardVO);
+		
+		
+		return url;
+	}
+	@RequestMapping("/freeBoardUpdateForm.do")
+	public String freeBoardUpdateForm(@RequestParam String freeboard_posting_no, HttpSession session,
+	         Model model) throws ServletException, IOException {
+
+	      String url = "freeBoard/freeBoardUpdate";
+	      /*MemVO loginUser = (MemVO) session.getAttribute("loginUser");*/
+	      FreeBoardVO freeBoardVO = freeService.getFreeDetail(freeboard_posting_no);
+	      System.out.println("들어옴1");
+	      model.addAttribute("freeBoardVO", freeBoardVO);
+	      System.out.println(freeBoardVO);
+	      System.out.println("들어옴2");
+	      return url;
+	   }
+	
+	@RequestMapping(value="/freeBoardUpdate.do",method=RequestMethod.POST)
+	public String freeBoardUpate(FreeBoardVO freeBoardVO,
+			HttpSession session)
+			throws ServletException, IOException {
+		String url = "redirect:freeBoardList.do";
+		
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+	
+		System.out.println("테스트용 위치는 컨트롤러 업데이트");
+		System.out.println(freeBoardVO);
+	
+		freeService.updateFreeBoard(freeBoardVO);
+		
+		
+		return url;
+	}
+	@RequestMapping(value="/freeBoardDelete.do")
+	public String deleteFreeBoard(@RequestParam String freeBoardVO,
+			HttpSession session)
+			throws ServletException, IOException {
+		String url = "redirect:freeBoardList.do";
+		
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+	
+		System.out.println("테스트용 위치는 컨트롤러 삭제");
+	
+		freeService.deleteFreeBoard(freeBoardVO);
 		
 		
 		return url;
