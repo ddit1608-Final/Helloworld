@@ -79,9 +79,9 @@ public class MemberService {
 		return freeBoardVO;
 	}
 	
-	public void insertFreeBoard(FreeBoardVO freeBoardVO,String id){		
+	public void insertFreeBoard(FreeBoardVO freeBoardVO){		
 		try {
-			freeBoardDAO.insertFreeBoard(freeBoardVO, id);
+			freeBoardDAO.insertFreeBoard(freeBoardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

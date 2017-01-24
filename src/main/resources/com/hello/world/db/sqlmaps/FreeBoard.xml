@@ -4,23 +4,23 @@
 <sqlMap namespace="FreeBoard">
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />	
-	<typeAlias alias="freeBoard" type="com.hello.world.dto.FreeBoardVO"/>
+	<typeAlias alias="freeboard" type="com.hello.world.dto.FreeBoardVO"/>
 	
-	<select id="listFreeBoard" parameterClass="str" resultClass="freeBoard">
-		select * from freeBoard where mem_mail =#mem_mail#
+	<select id="listFreeBoard" parameterClass="str" resultClass="freeboard">
+		select * from freeboard where mem_mail =#mem_mail#
 	</select>
 	
-	<select id="getFreeBoard" parameterClass="str" resultClass="freeBoard">
+	<select id="getFreeBoard" parameterClass="str" resultClass="freeboard">
 		select * from freeBoard where freeboard_posting_no=#freeboard_posting_no#
 	</select>
 	
-	<select id="insertFreeBoard" parameterClass="freeBoard">
-		insert into freeBoard(freeboard_posting_no,mem_mail,freeboard_title,freeboard_cont)
-			values(freeboard_posting_no.nextval,#mem_mail#,#freeboard_title#,#freeboard_cont#)
-	</select>
+	<insert id="insertFreeBoard" parameterClass="freeboard">
+		insert into freeboard(freeboard_posting_no,mem_mail,freeboard_title,freeboard_cont,freeboard_pwd)
+			values(freeboard_posting_no.nextval,#mem_mail#,#freeboard_title#,#freeboard_cont#,#freeboard_pwd#)
+	</insert>
 	
-	<select id="listAllFreeBoard" resultClass="freeBoard" >
-		select * from freeBoard
+	<select id="listAllFreeBoard" resultClass="freeboard" >
+		select * from freeboard
 	</select>
 	
 	<!-- comm 추가 -->

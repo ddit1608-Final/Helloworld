@@ -72,18 +72,22 @@ public class FreeBoardController {
       return url;
    }
 
-   @RequestMapping("/freeBoardWrite.do")
-   public String freeBoardWrite(@RequestParam("title") String title,
-         @RequestParam("cont") String cont, HttpSession session)
-         throws ServletException, IOException {
-      String url = "redirect:freeBoardList.do";
+	@RequestMapping("/freeBoardWrite.do")
+	public String freeBoardWrite(FreeBoardVO freeBoardVO,
+			HttpSession session)
+			throws ServletException, IOException {
+		String url = "redirect:freeBoardList.do";
 
-      MemVO loginUser = (MemVO) session.getAttribute("loginUser");
-      FreeBoardVO freeBoardVO = new FreeBoardVO();
-      freeBoardVO.setFreeboard_title(title);
-      freeBoardVO.setFreeboard_cont(cont);
-      memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_mail());
-
-      return url;
-   }
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+	/*	FreeBoardVO freeBoardVO = new FreeBoardVO();
+		freeBoardVO.setFreeboard_title(title);
+		freeBoardVO.setFreeboard_cont(cont);*/
+		System.out.println(freeBoardVO);
+		/*memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_mail());*/
+		//memberService.insertFreeBoard(freeBoardVO,"shm@naver.com");
+		freeService.insertFreeBoard(freeBoardVO);
+		
+		
+		return url;
+	}
 }

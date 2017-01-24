@@ -44,11 +44,10 @@ public class FreeBoardService {
 		return freeBoardVO;
 	}
 	
-
-	public void insertFreeBoard(FreeBoardVO freeBoardVO,String id){		
-
+	public void insertFreeBoard(FreeBoardVO freeBoardVO){		
 		try {
-			freeBoardDAO.insertFreeBoard(freeBoardVO, id);
+			System.out.println("서비스 들어왔다");
+			freeBoardDAO.insertFreeBoard(freeBoardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
