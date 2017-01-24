@@ -20,6 +20,13 @@
 			values(freeboard_posting_no.nextval,#mem_mail#,#freeboard_title#,#freeboard_cont#,#freeboard_pwd#)
 	</insert>
 	
+	<update id="updateFreeBoard" parameterClass="freeboard">
+		UPDATE freeBoard
+		SET
+			FREEBOARD_CONT = #freeboard_cont#
+		WHERE FREEBOARD_POSTING_NO=#freeboard_posting_no#
+	</update>
+	
 	<select id="listAllFreeBoard" resultClass="freeboard" >
 		<!-- select * from freeboard order by freeboard_posting_no desc -->
 		select * from memfree order by freeboard_posting_no desc
@@ -27,6 +34,15 @@
 	<select id="freeDetail" parameterClass="str" resultClass="freeboard">
 		select * from memfree where freeboard_posting_no=#freeboard_posting_no#
 	</select>
+	
+	<delete id="">
+		delete
+		from freeBoard
+		where freeboard_posting_no=#freeboard_posting_no#
+	</delete>
+	
+	
+	
 	<!-- comm 추가 -->
 	<!-- <select id="updateFreeBoard" parameterClass="freeBoard" >
 		update freeBoard set 

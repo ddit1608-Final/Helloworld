@@ -58,5 +58,11 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 
 		client.update("updateFreeBoard",freeBoardVO);
 	}
+	@Override
+	public FreeBoardVO deleteFreeBoard(String freeboard_posting_no)
+			throws SQLException {
+		FreeBoardVO freeBoardVO = (FreeBoardVO)client.queryForObject("deleteFreeBoard",freeboard_posting_no);
+		return freeBoardVO;
+	}
 	
 }
