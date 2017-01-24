@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+  <script type="text/javascript" src="/js/member.js"></script>
 <style>
 
 ::selection{
@@ -196,7 +196,7 @@ background: #68e234;
         </a></li><br> -->
         <li><a href="#">구인구직</a></li>
         <li><a href="#">IT소식</a></li>
-        <li><a href="#">자유게시판</a></li>
+        <li><a href="<%=request.getContextPath()%>/free/freeBoardList.do">자유게시판</a></li>
         <li><a href="#">QnA게시판</a></li>
         <li><a href="#">모임게시판</a></li>
         <li><a href="#">정보공유</a></li>

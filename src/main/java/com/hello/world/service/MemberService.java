@@ -54,7 +54,7 @@ public class MemberService {
 		return member;
 	}
 		
-	public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
+	/*public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
 		ArrayList<FreeBoardVO> freeBoardList=null;
 		try {
 			freeBoardList = freeBoardDAO.listFreeBoard(loginID);
@@ -80,7 +80,7 @@ public class MemberService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public int confirmID(String userid) throws SQLException {
 		int result = -1;

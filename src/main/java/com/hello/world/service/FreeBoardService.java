@@ -46,7 +46,6 @@ public class FreeBoardService {
 	
 	public void insertFreeBoard(FreeBoardVO freeBoardVO){		
 		try {
-			System.out.println("서비스 들어왔다");
 			freeBoardDAO.insertFreeBoard(freeBoardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();

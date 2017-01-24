@@ -30,3 +30,10 @@ function go_certification() {
 	alert("55");
 	location.href = "../mail/sendMail?mem_mail="+$("#mem_mail").val();
 }
+function free_go_detail(freeboard_posting_no){
+	alert("testDA");
+	var free = document.form;
+	free.action="/freeBoard/freeBoardDetail.do?"+freeboard_posting_no;
+	free.submit();
+}
+
