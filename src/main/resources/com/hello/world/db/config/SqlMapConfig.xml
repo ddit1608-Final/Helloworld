@@ -9,4 +9,5 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/Mem.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/FreeBoard.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/Lang.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/Resm.xml" />
 </sqlMapConfig>

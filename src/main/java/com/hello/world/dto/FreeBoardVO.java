@@ -5,13 +5,23 @@ import java.sql.Timestamp;
 
 public class FreeBoardVO {
 
-   private String freeboard_posting_no;    // 자유게시판 게시글 번호
-   private String mem_mail;            // 멤버 테이블 아이디 -> 닉네임가져올것
-   private String freeboard_title;       // 자유게시판 제목
-   private String freeboard_cont;         // 자유게시판 내용
-   private Timestamp freeboard_wridate;   // 자유게시판 작성일자 
-   private int freeboard_hits;            // 자유게시판 조휘수
-   private String freeboard_pwd;         // 자유게시판 게시글 비밀번호
+   private String freeboard_posting_no;     // 자유게시판 게시글 번호
+   private String mem_mail;            		// 멤버 테이블 아이디 -> 닉네임가져올것
+   private String mem_nick;					// 가져 왔다 시부랄 닉네임
+   private String freeboard_title;       	// 자유게시판 제목
+   private String freeboard_cont;         	// 자유게시판 내용
+   private Timestamp freeboard_wridate;   	// 자유게시판 작성일자 
+   private int freeboard_hits;            	// 자유게시판 조휘수
+   private String freeboard_pwd;         	// 자유게시판 게시글 비밀번호
+   
+   
+   
+   public String getMem_nick() {
+	   return mem_nick;
+   }
+   public void setMem_nick(String mem_nick) {
+	   this.mem_nick = mem_nick;
+   }
    
    public String getFreeboard_posting_no() {
       return freeboard_posting_no;
