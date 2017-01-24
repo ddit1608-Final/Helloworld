@@ -10,7 +10,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="<%=request.getContextPath()%>/resources/css/hw.css" rel="stylesheet">
 
 </head>
 
@@ -133,7 +140,7 @@ footer {
 	background-color: #1e440e;
 }
 
-#login {
+.login {
 	width: 95%;
 	float: inherit;
 }
@@ -187,7 +194,7 @@ footer {
 #loginbtn {
 	color: black;
 	font-family: 한나;
-	margin: 12px 10px auto -5px;
+	margin: 11px 10px auto -5px;
 	font-size: 12pt;
 	height: 55%;
 }
@@ -259,21 +266,23 @@ footer {
       <ul class="nav navbar-nav">
       	<c:choose>
       		<c:when test="${loginUser eq null }">
-      			<li><input id="mem_mail" name="mem_mail" type="text" placeholder=" 이메일"></li>
-				<li><input id="mem_pw" name="mem_pw" type="password" placeholder=" 비밀번호"></li>
-		        <li style="margin:auto auto auto -10px;"><a href="#" onclick="javascript:login.submit();" id="login2">
-		        <span class="glyphicon glyphicon-log-in"></span>
-		        <font style="color:black;">&nbsp;Login</font></a></li>
-				<li id="check" style="margin:1% auto; width:5%;"><label style="vertical-align: text-top;" for="check2"><input id="check2" type="checkbox" style="vertical-align: text-top;">자동</label></li>
-		    	<li><a href="<%=request.getContextPath()%>/member/join" id=join>회원가입</a></li>
+      			<li><input class="login" id="mem_mail" name="mem_mail" type="text" placeholder=" 이메일"></li>
+				<li><input class="login" id="mem_pw" name="mem_pw" type="password" placeholder=" 비밀번호"></li>
+		        <li><input type="submit" value="로그인" id="loginbtn"></li>
+				<li id="check" style="margin: 13px auto; width: 5%;"><label
+					style="vertical-align: text-botom;" for="check2" id="auto">
+						<input id="check2" type="checkbox"
+						style="vertical-align: text-top;"> 자동
+				</label></li>
+		    	<li><a href="<%=request.getContextPath()%>/member/join" id="aa">회원가입</a></li>
       		</c:when>
       		<c:otherwise>
       			<li><span id="mem_mail" name="mem_mail">이것은 닉네임 : ${loginUser.mem_nick }</span></li>
 				<li><a href="<%=request.getContextPath()%>/member/logout" id=logout>로그아웃</a></li>
       		</c:otherwise>
       	</c:choose>
-    	<li><a href="#">아이디/비밀번호 찾기</a></li>
-    	<li><a href="#">접속자수</a></li>
+    	<li><a href="#" id="aa">아이디/비밀번호 찾기</a></li>
+    	<li><a href="#" id="aa">접속자수</a></li>
     </ul>
     </form>
     
