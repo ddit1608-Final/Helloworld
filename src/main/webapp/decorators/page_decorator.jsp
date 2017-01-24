@@ -208,6 +208,13 @@ footer {
 	color: #3EAF0E;
 }
 
+#mem_mail{
+padding-top:13px;
+
+font-family:한나;
+font-size:12pt;
+color:#a31313;
+}
 
 </style>
 
@@ -220,7 +227,7 @@ footer {
 			<table>
 				<tr>
 					<td><a href="#"><img id="logo"
-							src="<%=request.getContextPath()%>/images/world2.png"></a></td>
+							src="<%=request.getContextPath()%>/images/world2.png" onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"></a></td>
 					<td><input type="search" id="search"></td>
 					<td><a href="#"> <span class="glyphicon glyphicon-search"></span>
 					</a></td>
@@ -282,8 +289,11 @@ footer {
 		    	<li><a href="<%=request.getContextPath()%>/member/join" id="aa">회원가입</a></li>
       		</c:when>
       		<c:otherwise>
-      			<li><span id="mem_mail" name="mem_mail">이것은 닉네임 : ${loginUser.mem_nick }</span></li>
-				<li><a href="<%=request.getContextPath()%>/member/logout" id=logout>로그아웃</a></li>
+      			<li id="mem_mail" name="mem_mail">(Level) ${loginUser.mem_nick } (POINT) </li>
+				<li><a href="#" id="aa">접속자수</a></li>
+				<li><a href="#" id="aa">반응 ()</a></li>
+				<li><a href="#" id="aa">마이페이지</a></li>
+				<li><a href="<%=request.getContextPath()%>/member/logout" id="aa">로그아웃</a></li>
       		</c:otherwise>
       	</c:choose>
     	<li><a href="#" id="aa">아이디/비밀번호 찾기</a></li>

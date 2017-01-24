@@ -2,14 +2,15 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
 <article>
-	<div style="background-color:black; width:50%; margin:0 auto; color:white;">
-		<h2> 자유게시판 </h2>
-		<h3> 자유롭게...머문자리는 아름답게</h3>
+	<div>
+		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard.png">
 	</div> 
 	<form name="form" method="post">
-		<table style="background-color:black; width:50%; margin:0 auto; color:white;">
-			<tr>
+		<table class="table table-condensed">
+			<tr style="background-color: gray; font-size:15pt; color:white; font-family:;">
 				<th>번호</th>
 				<th>제목</th>
 				<!-- <th>내용</th> -->

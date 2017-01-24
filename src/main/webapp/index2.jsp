@@ -13,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
@@ -115,7 +116,7 @@
 
 				<!-- hot -->
 				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 auto 0; float:left;">
-					<h2 style="font-family: 한나; text-align: center;"><a herf="#">HOT CONTENTS</a></h2>
+					<h2 id="title">HOT CONTENTS</h2>
 
 					<table class="table table-striped">
 						
@@ -149,7 +150,7 @@
 				<!-- hot end -->
 				<!-- hit  -->
 				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 style="font-family: 한나; text-align: center;"><a herf="#">HIT CONTENTS</a></h2>
+					<h2 id="title">HIT CONTENTS</h2>
 
 					<table class="table table-striped">
 						
@@ -186,7 +187,7 @@
 
 				<!-- new -->
 				<div style="width:33.1%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 style="font-family: 한나; text-align: center;"><a herf="#">NEW CONTENTS</a></h2>
+					<h2 id="title">NEW CONTENTS</h2>
 
 					<table class="table table-striped">
 						
@@ -222,7 +223,7 @@
 				
 				<!-- news -->
 				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 3% 0%; float:left;">
-					<h2 style="font-family: 한나; text-align: center;"><a herf="#">NEWS</a></h2>
+					<h2 id="title">NEWS</h2>
 
 					<table class="table table-striped">
 						
@@ -257,7 +258,7 @@
 				
 				<!-- 구인 -->
 				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 style="font-family: 한나; text-align: center;"><a herf="#">구인</a></h2>
+					<h2 id="title">구인</h2>
 
 					<table class="table table-striped">
 						
@@ -291,7 +292,7 @@
 				<!-- 구인end -->
 				<!-- 구직 -->
 				<div style="width:33.1%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 style="font-family: 한나; text-align: center;"><a herf="#">구직</a></h2>
+					<h2 id="title">구직</h2>
 
 					<table class="table table-striped">
 						
