@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:p="http://www.springframework.org/schema/p"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="memberDao" class="com.hello.world.dao.iBatis.MemberDAO_iBatis"
-		p:client-ref="sqlMapClient" />
-
-	<bean id="memberService" class="com.hello.world.service.MemberService"
-		p:memberDAO-ref="memberDao" />
-	<!-- DAO -->
-	<bean id="memberDAO" class="com.hello.world.dao.iBatis.MemberDAO_iBatis" >
-		<property name="client" ref="sqlMapClient"/>
-	</bean>
-	<bean id="freeBoardDAO" class="com.hello.world.dao.iBatis.FreeBoardDAO_iBatis" >
-		<property name="client" ref="sqlMapClient"/>
-	</bean>	
-		
-		
-	<!-- Service -->	
-	<bean id="FreeBoardService" class="com.hello.world.service.FreeBoardService" >
-		<property name="freeBoardDAO" ref="freeBoardDAO" />		
-	</bean>	
-
+   <!-- Root Context: defines shared resources visible to all other web components -->
+   <!-- DAO  -->
+   <bean id="memDAO" class="com.hello.world.dao.iBatis.MemberDAO_iBatis">
+      <property name="client" ref="sqlMapClient"/>
+   </bean>
+   <bean id="freeBoardDAO" class="com.hello.world.dao.iBatis.FreeBoardDAO_iBatis">
+      <property name="client" ref="sqlMapClient"/>
+   </bean>
+      
+   <!-- Service -->   
+   <bean id="FreeBoardService" class="com.hello.world.service.FreeBoardService" >
+      <property name="freeBoardDAO" ref="freeBoardDAO" />      
+   </bean>
+   <bean id="memberService" class="com.hello.world.service.MemberService" >
+      <property name="memberDAO" ref="memDAO" />
+      <property name="freeBoardDAO" ref="freeBoardDAO" />
+   </bean>
+   
 </beans>

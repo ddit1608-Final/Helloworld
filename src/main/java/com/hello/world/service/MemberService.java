@@ -68,10 +68,10 @@ public class MemberService {
 		return freeBoardList;
 	}
 	
-	public FreeBoardVO getFreeBoardVO(int qseq){
+	public FreeBoardVO getFreeBoardVO(String freeboard_posting_no){
 		FreeBoardVO freeBoardVO = null;
 		try {
-			freeBoardVO = freeBoardDAO.getFreeBoard(qseq);
+			freeBoardVO = freeBoardDAO.getFreeBoard(freeboard_posting_no);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
