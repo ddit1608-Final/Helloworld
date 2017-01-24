@@ -8,6 +8,7 @@ import com.hello.world.dto.MemVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class MemberDAO_iBatis implements MemberDAO {
+	
 	private SqlMapClient client;
 
 	public void setClient(SqlMapClient client) {
@@ -18,12 +19,12 @@ public class MemberDAO_iBatis implements MemberDAO {
 	@Override
 	public int confirmID(String userid) throws SQLException {
 		int result = -1;
-		/*MemVO member = (MemVO) client.queryForObject("confirmID", userid);
+		MemVO member = (MemVO) client.queryForObject("confirmID", userid);
 		if (member != null) {
 			result = 1;
 		} else {
 			result = -1;
-		}*/
+		}
 		return result;
 	}
 

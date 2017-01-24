@@ -10,7 +10,7 @@ public class MemVO {
 	private String mem_addr; // 주소
 	private int mem_sex; // 성별
 	private int mem_lang; // 사용언어
-	private int mem_nick; // 닉네임
+	private String mem_nick; // 닉네임
 	private Timestamp mem_join_date; // 가입날짜
 	private String addr_zipnum; // 우편번호
 	private String mem_grade_code; // 회원등급
@@ -73,11 +73,11 @@ public class MemVO {
 		this.mem_lang = mem_lang;
 	}
 
-	public int getMem_nick() {
+	public String getMem_nick() {
 		return mem_nick;
 	}
 
-	public void setMem_nick(int mem_nick) {
+	public void setMem_nick(String mem_nick) {
 		this.mem_nick = mem_nick;
 	}
 
