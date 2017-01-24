@@ -15,36 +15,39 @@ public class FreeBoardService {
 		this.freeBoardDAO=freeBoardDAO;
 	}
 	
-	public ArrayList<FreeBoardVO> getFreeBoardList(){
-
-		ArrayList<FreeBoardVO> freeBoardList = null;
+	public ArrayList<FreeBoardVO> listAllFreeBoard() throws SQLException{
+		ArrayList<FreeBoardVO> list = freeBoardDAO.listAllFreeBoard();
+		return list;
+	}
+	
+	public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
+		ArrayList<FreeBoardVO> freeBoardList=null;
 		try {
-			freeBoardList = freeBoardDAO.listAllFreeBoard();
+			freeBoardList = freeBoardDAO.listFreeBoard(loginID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return freeBoardList;
 	}
 	
-	public FreeBoardVO getFreeBoardDetail(String qseq){
+	public FreeBoardVO getFreeBoardVO(String freeboard_posting_no){
 		FreeBoardVO freeBoardVO = null;
 		try {
-			freeBoardVO = freeBoardDAO.getFreeBoard(Integer.parseInt(qseq));
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
+			freeBoardVO = freeBoardDAO.getFreeBoard(freeboard_posting_no);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return freeBoardVO;
 	}
 	
-	public void updateFreeBoardVO(FreeBoardVO freeBoardVO){
+	public void insertFreeBoard(FreeBoardVO freeBoardVO,String id){		
 		try {
-			freeBoardDAO.updateFreeBoard(freeBoardVO);
+			freeBoardDAO.insertFreeBoard(freeBoardVO, id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
+	
 }
 
 

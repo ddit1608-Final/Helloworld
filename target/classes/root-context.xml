@@ -6,7 +6,6 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<!-- DAO  -->
 	<bean id="memDAO" class="com.hello.world.dao.iBatis.MemberDAO_iBatis">
 		<property name="client" ref="sqlMapClient"/>
 	</bean>
@@ -22,5 +21,5 @@
 		<property name="memberDAO" ref="memDAO" />
 		<property name="freeBoardDAO" ref="freeBoardDAO" />
 	</bean>
-	
+
 </beans>
