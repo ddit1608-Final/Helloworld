@@ -1,5 +1,6 @@
 package com.hello.world.controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -50,8 +51,35 @@ public class MailController {
 
 		MimeMessage message = mailSender.createMimeMessage();
 		System.out.println("token : " + token);
+		
+		// properties
+		// 수정해야함.. 2016-01-24 jihyun.Park
+		/*Properties prop = new Properties();
+		
+		try {
+			FileInputStream fis = new FileInputStream("");
+			prop.load(fis);
+		} catch (FileNotFoundException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		prop.setProperty(mem_mail, token);
 
-		// DB에 넣기.
+		try {
+			FileOutputStream fos = new FileOutputStream("");
+			prop.store(fos, "test");
+			fos.close();
+		} catch (FileNotFoundException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}*/
 
 		// SimpleMailMessage message = new SimpleMailMessage();
 		String htmlContent = "<a href=\"http://192.168.202.120:8181/world/mail/certification?certifi="

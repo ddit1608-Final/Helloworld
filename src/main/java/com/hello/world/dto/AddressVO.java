@@ -1,62 +1,59 @@
 package com.hello.world.dto;
 
-
-/*
- * 2017-01-20 jihyun.Park
- * 프로젝트 생성을 위해 임의로 넣어놓은 vo클래스 입니다. 우리 DB에 맞게 수정 해야함.
- * vo 클래스 수정 후 com.hello.world.db.sqlmaps에 sqlmap도 필 수정 할것.
- * */
 public class AddressVO {
-	private String zipNum;  //우편번호
-	private String sido;  // 시
-	private String gugun; // 구
-	private String dong;  // 동
-	private String zipCode; //우편코드
-	private String bunji; //번지
-	
-	public String getZipNum() {
-		return zipNum;
+	private String addr_zipNum; // 우편번호
+	private String addr_sido; // 시
+	private String addr_gugun; // 구
+	private String addr_dong; // 동
+	private String addr_zip_code; // 우편코드
+	private String addr_bunji; // 번지
+
+	public String getAddr_zipNum() {
+		return addr_zipNum;
 	}
-	public void setZipNum(String zipNum) {
-		this.zipNum = zipNum;
+
+	public void setAddr_zipNum(String addr_zipNum) {
+		this.addr_zipNum = addr_zipNum;
 	}
-	public String getSido() {
-		return sido;
+
+	public String getAddr_sido() {
+		return addr_sido;
 	}
-	public void setSido(String sido) {
-		this.sido = sido;
+
+	public void setAddr_sido(String addr_sido) {
+		this.addr_sido = addr_sido;
 	}
-	public String getGugun() {
-		return gugun;
+
+	public String getAddr_gugun() {
+		return addr_gugun;
 	}
-	public void setGugun(String gugun) {
-		this.gugun = gugun;
+
+	public void setAddr_gugun(String addr_gugun) {
+		this.addr_gugun = addr_gugun;
 	}
-	public String getDong() {
-		return dong;
+
+	public String getAddr_dong() {
+		return addr_dong;
 	}
-	public void setDong(String dong) {
-		this.dong = dong;
+
+	public void setAddr_dong(String addr_dong) {
+		this.addr_dong = addr_dong;
 	}
-	public String getZipCode() {
-		return zipCode;
+
+	public String getAddr_zip_code() {
+		return addr_zip_code;
 	}
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
+
+	public void setAddr_zip_code(String addr_zip_code) {
+		this.addr_zip_code = addr_zip_code;
 	}
-	public String getBunji() {
-		return bunji;
+
+	public String getAddr_bunji() {
+		return addr_bunji;
 	}
-	public void setBunji(String bunji) {
-		this.bunji = bunji;
+
+	public void setAddr_bunji(String addr_bunji) {
+		this.addr_bunji = addr_bunji;
 	}
-	@Override
-	public String toString() {
-		return "AddressVO [zipNum=" + zipNum + ", sido=" + sido + ", gugun="
-				+ gugun + ", dong=" + dong + ", zipCode=" + zipCode
-				+ ", bunji=" + bunji + "]";
-	}
-	
-	
-	
+
 }

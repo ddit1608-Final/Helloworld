@@ -9,7 +9,7 @@
 	<typeAlias alias="address" type="com.hello.world.dto.AddressVO" />
 	
 	<select id="selectAddressByDong" parameterClass="str" resultClass="address">
-		select * from address where dong like '%'||#dong#||'%'
+		select * from addr where addr_dong like '%'||#addr_dong#||'%'
 	</select>	
 	
 </sqlMap>
