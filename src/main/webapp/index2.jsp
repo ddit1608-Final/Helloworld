@@ -148,6 +148,8 @@
   </style>
 </head>
 <body>
+
+
 <!-- 최상단 로고 및 검색바 -->
 <header>
 <nav class="navbar navbar-inverse" style="border:none;">
@@ -223,7 +225,7 @@
 
 </nav>
 </header>
-  <!-- 탑메뉴END -->
+  <!-- 탑메뉴END --> 
 
 <div class="container-fluid text-center">    
   <div class="row content">
