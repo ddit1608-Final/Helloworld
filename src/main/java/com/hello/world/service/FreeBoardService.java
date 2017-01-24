@@ -51,6 +51,18 @@ public class FreeBoardService {
 			e.printStackTrace();
 		}
 	}
+	public FreeBoardVO getFreeDetail(String freeboard_posting_no){
+		FreeBoardVO freeBoardVO = null;
+		
+		try {
+			freeBoardVO = freeBoardDAO.getFreeDetail(freeboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return freeBoardVO;
+	}
 	
 }
 

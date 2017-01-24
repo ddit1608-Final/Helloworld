@@ -20,12 +20,7 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 		freeBoardList = (ArrayList<FreeBoardVO>)client.queryForList("listFreeBoard",mem_mail);
 		return freeBoardList;
 	}
-	@Override
-	public FreeBoardVO getFreeBoard(String freeboard_posting_no)
-			throws SQLException {
-		FreeBoardVO freeBoardVO = (FreeBoardVO)client.queryForObject("getFreeBoard",freeboard_posting_no);
-		return freeBoardVO;
-	}
+	
 	@Override
 	public void insertFreeBoard(FreeBoardVO freeBoardVO)
 			throws SQLException {
@@ -43,11 +38,25 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 		
 		return freeBoardList;
 	}
+	
+	@Override
+	public FreeBoardVO getFreeDetail(String freeboard_posting_no)
+			throws SQLException {
+		FreeBoardVO freeBoardVO = (FreeBoardVO) client.queryForObject("freeDetail",freeboard_posting_no);
+		return freeBoardVO;
+	}
+	
+	////////////////////////////////////////////////////////////미구현
+	@Override
+	public FreeBoardVO getFreeBoard(String freeboard_posting_no)
+			throws SQLException {
+		FreeBoardVO freeBoardVO = (FreeBoardVO)client.queryForObject("getFreeBoard",freeboard_posting_no);
+		return freeBoardVO;
+	}
 	@Override
 	public void updateFreeBoard(FreeBoardVO freeBoardVO) throws SQLException {
 
 		client.update("updateFreeBoard",freeBoardVO);
 	}
-	
 	
 }
