@@ -23,7 +23,7 @@ import com.hello.world.service.MemberService;
 @Controller
 @RequestMapping("/free")
 public class FreeBoardController {
-
+	
    @Autowired
    FreeBoardService freeService;
 
