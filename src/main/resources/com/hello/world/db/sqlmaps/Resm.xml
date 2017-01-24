@@ -8,8 +8,8 @@
 	
 	
 	<insert id="insertResm" parameterClass="resm">
-		insert into resm(mem_mail, resm_regno, milt_code, resm_hob, resm_like, resm_id,idpic_code, acdmcr_code, lcse_code, sidn_code)
-         values(#mem_mail#, #resm_regno#, #milt_code#, #resm_hob#, #resm_like#, #resm_id#, #idpic_code#, #acdmcr_code#, #lcse_code#, #sidn_code#); 
+		insert into resm(resm_id, mem_mail, sidn_code, lcse_code, acdmcr_code, idpic_code, resm_regno, milt_code, resm_hob, resm_like)
+		values(#resm_id#,#mem_mail#,#sidn_code#,#lcse_code#,#acdmcr_code#,#idpic_code#,#resm_regno#,#milt_code#,#resm_hob#,#resm_like#) 
 	</insert>
 	
 </sqlMap>
