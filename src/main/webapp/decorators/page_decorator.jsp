@@ -211,17 +211,28 @@ background: #68e234;
     </div>
     
 	<div class="collapse navbar-collapse" id="myNavbar" style="background-color: #d9d9d9;">
+	<form method="post" id="login" name="login" style="margin: 0;" 
+			action="<%=request.getContextPath()%>/member/login">
       <ul class="nav navbar-nav">
-        <li><input id="login" type="text" placeholder=" 이메일"></li>
-		<li><input id="login" type="password" placeholder=" 비밀번호"></li>
-        <li style="margin:auto auto auto -10px;"><a href="#" id="login2">
-        <span class="glyphicon glyphicon-log-in"></span>
-        <font style="color:black;">&nbsp;Login</font></a></li>
-		<li id="check" style="margin:1% auto; width:5%;"><label style="vertical-align: text-top;" for="check2"><input id="check2" type="checkbox" style="vertical-align: text-top;">자동</label></li>
-    	<li><a href="#">회원가입</a></li>
+      	<c:choose>
+      		<c:when test="${loginUser eq null }">
+      			<li><input id="mem_mail" name="mem_mail" type="text" placeholder=" 이메일"></li>
+				<li><input id="mem_pw" name="mem_pw" type="password" placeholder=" 비밀번호"></li>
+		        <li style="margin:auto auto auto -10px;"><a href="#" onclick="javascript:login.submit();" id="login2">
+		        <span class="glyphicon glyphicon-log-in"></span>
+		        <font style="color:black;">&nbsp;Login</font></a></li>
+				<li id="check" style="margin:1% auto; width:5%;"><label style="vertical-align: text-top;" for="check2"><input id="check2" type="checkbox" style="vertical-align: text-top;">자동</label></li>
+		    	<li><a href="<%=request.getContextPath()%>/member/join" id=join>회원가입</a></li>
+      		</c:when>
+      		<c:otherwise>
+      			<li><span id="mem_mail" name="mem_mail">이것은 닉네임 : ${loginUser.mem_nick }</span></li>
+				<li><a href="<%=request.getContextPath()%>/member/logout" id=logout>로그아웃</a></li>
+      		</c:otherwise>
+      	</c:choose>
     	<li><a href="#">아이디/비밀번호 찾기</a></li>
     	<li><a href="#">접속자수</a></li>
     </ul>
+    </form>
     
     </div>
      <!--  <ul class="nav navbar-nav navbar-right">

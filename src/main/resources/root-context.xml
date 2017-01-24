@@ -30,7 +30,7 @@
       <property name="freeBoardDAO" ref="freeBoardDAO" />      
    </bean>
    <bean id="memberService" class="com.hello.world.service.MemberService" >
-      <property name="memberDAO" ref="memDAO" />
+      <property name="memDao" ref="memDAO" />
       <property name="freeBoardDAO" ref="freeBoardDAO" />
    </bean>
    
