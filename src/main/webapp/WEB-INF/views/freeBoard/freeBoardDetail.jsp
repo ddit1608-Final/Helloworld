@@ -9,11 +9,20 @@
 <table id="list">
   <tr>
    <th>제목</th>
-   <td>${freeboard_title }</td>
-   <th>내용</th>
-   <td>${freeboard_cont }</td>
+   <td>${freeBoardVO.freeboard_title }</td>
+  </tr>
+  
+  <tr> 
    <th>작성날짜</th>
-   <td>${freeboard_wridate }</td>
+   <td>${freeBoardVO.freeboard_wridate }</td>
+   <th>작성자</th>
+   <td>${freeBoardVO.mem_nick }</td>
+  </tr>
+  
+  <tr>
+  <th>내용</th>
+   <td>${freeBoardVO.freeboard_cont }</td>
+  </tr>
    
    
 </table>

@@ -38,8 +38,8 @@ public class FreeBoardController {
       ArrayList<FreeBoardVO> freeBoardList=null;
       try {
          freeBoardList = freeService.listAllFreeBoard();
-         System.out.println("테스트용 컨트롤러");
-         System.out.println(freeBoardList);
+         //System.out.println("테스트용 컨트롤러");
+         //System.out.println(freeBoardList);
       } catch (SQLException e) {
          // TODO Auto-generated catch block
          e.printStackTrace();
@@ -51,14 +51,15 @@ public class FreeBoardController {
    }
 
    @RequestMapping("/freeBoardDetail.do")
-   public String freeBoardDetail(FreeBoardVO freeBoardVO, HttpSession session,
+   public String freeBoardDetail(@RequestParam String freeboard_posting_no, HttpSession session,
          Model model) throws ServletException, IOException {
 
       String url = "freeBoard/freeBoardDetail";
       /*MemVO loginUser = (MemVO) session.getAttribute("loginUser");*/
-      /*FreeBoardVO freeBoardVO = freeService.getFreeBoardVO(freeboard_posting_no);*/
+      FreeBoardVO freeBoardVO = freeService.getFreeDetail(freeboard_posting_no);
       System.out.println("들어옴1");
       model.addAttribute("freeBoardVO", freeBoardVO);
+      System.out.println(freeBoardVO);
       System.out.println("들어옴2");
       return url;
    }

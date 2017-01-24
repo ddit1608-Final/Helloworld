@@ -22,8 +22,10 @@
 	
 	<select id="listAllFreeBoard" resultClass="freeboard" >
 		<!-- select * from freeboard order by freeboard_posting_no desc -->
-		select freeboard_posting_no,freeboard_title,mem_nick,freeboard_wridate
-			from mem m , freeboard f where m.mem_mail=f.mem_mail order by freeboard_posting_no desc
+		select * from memfree order by freeboard_posting_no desc
+	</select>
+	<select id="freeDetail" parameterClass="str" resultClass="freeboard">
+		select * from memfree where freeboard_posting_no=#freeboard_posting_no#
 	</select>
 	<!-- comm 추가 -->
 	<!-- <select id="updateFreeBoard" parameterClass="freeBoard" >
