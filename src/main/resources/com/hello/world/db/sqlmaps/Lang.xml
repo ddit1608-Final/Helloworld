@@ -9,7 +9,7 @@
 	<typeAlias alias="lang" type="com.hello.world.dto.LangVO" />
 
 	<select id="listLang" resultClass="lang">
-		select * from lang 
+		select * from lang order by mem_lang asc
 	</select>
 
 </sqlMap>
