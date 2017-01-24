@@ -137,7 +137,7 @@
     }
   </style>
 </head>
-<body>
+<body><%-- 
 <!-- 최상단 로고 및 검색바 -->
 <nav class="navbar navbar-inverse" style="border:none;">
 <div style="background-color: white;">
@@ -210,7 +210,7 @@
    
 
 </nav>
-  <!-- 탑메뉴END -->
+  <!-- 탑메뉴END --> --%>
 <div class="container-fluid text-center">    
   <div class="row content">
     <div class="col-sm-2 sidenav" style="background-color: white;">
@@ -261,4 +261,4 @@
 
 </body>
 </html>
->>>>>>> branch 'master' of https://github.com/ddit1608-Final/Helloworld.git
+
