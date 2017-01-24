@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hello.world.dto.AddressVO;
 import com.hello.world.dto.LangVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.service.AddressService;
 import com.hello.world.service.LangService;
 import com.hello.world.service.MemberService;
 
@@ -27,6 +29,9 @@ public class MemberController {
 	private MemberService memService;
 
 	@Autowired
+	private AddressService addressService;
+
+	@Autowired
 	private LangService langService;
 
 	public void setLangService(LangService langService) {
@@ -35,6 +40,10 @@ public class MemberController {
 
 	public void setMemService(MemberService memService) {
 		this.memService = memService;
+	}
+
+	public void setAddrService(AddressService addressService) {
+		this.addressService = addressService;
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
@@ -56,8 +65,9 @@ public class MemberController {
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinMember(MemVO memVO, Model model) {
-		String url = "";
+		String url = "redirect:/index2.jsp";
 		int result = 0;
+		
 		try {
 			result = memService.joinMember(memVO);
 		} catch (SQLException e) {
@@ -81,19 +91,20 @@ public class MemberController {
 
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String mem_mail, String mem_pw, Model model, HttpSession session) {
+	public String login(String login_mem_mail, String login_mem_pw, Model model,
+			HttpSession session) {
 		String url = "redirect:/index2.jsp";
-		
+
 		MemVO mem = new MemVO();
-		mem = memService.getMember(mem_mail);
-		
-		if(mem == null) {
+		mem = memService.getMember(login_mem_mail);
+
+		if (mem == null) {
 			url = url + "?loginResult:notexist";
 		} else {
-			
-			if(mem_pw.equals(mem.getMem_pw())) {
+
+			if (login_mem_pw.equals(mem.getMem_pw())) {
 				session.setAttribute("loginUser", mem);
 			} else {
 				url = url + "?loginResult:pwdMismatch";
@@ -102,12 +113,36 @@ public class MemberController {
 
 		return url;
 	}
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		String url = "redirect:/index2.jsp";
-		
+
 		session.removeAttribute("loginUser");
+
+		return url;
+	}
+
+	@RequestMapping(value = "/findZipNum", method = RequestMethod.GET)
+	public String findZipNum() {
+		String url = "member/findZipNum";
+
+		return url;
+	}
+
+	@RequestMapping(value = "/findZipNum", method = RequestMethod.POST)
+	public String findZipNumByDong(String dong, Model model) {
+		String url = "member/findZipNum";
+
+		if (dong != null && dong.trim().equals("") == false) {
+			try {
+				ArrayList<AddressVO> addressList = addressService
+						.selectAddressByDong(dong.trim());
+				model.addAttribute("addressList", addressList);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 
 		return url;
 	}

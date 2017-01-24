@@ -222,7 +222,7 @@
 				
 				<!-- news -->
 				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 3% 0%; float:left;">
-					<h2 style="font-family: 한나; text-align: center;"><a herf="#">NEW CONTENTS</a></h2>
+					<h2 style="font-family: 한나; text-align: center;"><a herf="#">NEWS</a></h2>
 
 					<table class="table table-striped">
 						
@@ -255,9 +255,9 @@
 				</div>
 				<!-- news end -->
 				
-				<!-- 구인구직 -->
-				<div style="width:66.5%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 style="font-family: 한나; text-align: center;"><a herf="#">JOB NOTICE</a></h2>
+				<!-- 구인 -->
+				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
+					<h2 style="font-family: 한나; text-align: center;"><a herf="#">구인</a></h2>
 
 					<table class="table table-striped">
 						
@@ -288,7 +288,42 @@
 					</table>
 
 				</div>
-				<!-- 구인구직end -->
+				<!-- 구인end -->
+				<!-- 구직 -->
+				<div style="width:33.1%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
+					<h2 style="font-family: 한나; text-align: center;"><a herf="#">구직</a></h2>
+
+					<table class="table table-striped">
+						
+						<tbody>
+							<tr>
+								<td>d</td>
+
+							</tr>
+							<tr>
+								<td>z</td>
+
+							</tr>
+							<tr>
+								<td>d</td>
+
+							</tr>
+							<tr>
+								<td>z</td>
+
+							</tr>
+							<tr>
+								<td>d</td>
+
+							</tr>
+							
+							
+						</tbody>
+					</table>
+
+				</div>
+				
+				<!-- 구직end -->
 		<!-- 	</div>
 			컨텐트내용 END
 

@@ -13,14 +13,16 @@
 	<bean id="langDao" class="com.hello.world.dao.iBatis.LangDAO_iBatis"
 		p:client-ref="sqlMapClient" />
 	
-	<bean id="langService" class="com.hello.world.service.LangService"
-		p:langDao-ref="langDao" />
+
    <bean id="freeBoardDAO" class="com.hello.world.dao.iBatis.FreeBoardDAO_iBatis">
       <property name="client" ref="sqlMapClient"/>
    </bean>
    <bean id="resmDAO" class="com.hello.world.dao.iBatis.ResmDAO_iBatis">
    	 <property name="client" ref="sqlMapClient" />
    </bean>
+   
+   	<bean id="addrDao" class="com.hello.world.dao.iBatis.AddressDAO_iBatis"
+		p:client-ref="sqlMapClient" />
       
    <!-- Service -->
    <bean id="ResmService" class="com.hello.world.service.ResmService" >
@@ -34,4 +36,10 @@
       <property name="freeBoardDAO" ref="freeBoardDAO" />
    </bean>
    
+<bean id="langService" class="com.hello.world.service.LangService"
+		p:langDao-ref="langDao" />
+	
+	<bean id="arrdService" class="com.hello.world.service.AddressService"
+		p:addressDao-ref="addrDao" 
+	/>
 </beans>

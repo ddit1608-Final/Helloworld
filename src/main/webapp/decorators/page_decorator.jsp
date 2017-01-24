@@ -17,6 +17,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	crossorigin="anonymous"></script>
+  <script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/member.js"></script>
 <link href="<%=request.getContextPath()%>/resources/css/hw.css" rel="stylesheet">
 
 </head>
@@ -266,8 +271,8 @@ footer {
       <ul class="nav navbar-nav">
       	<c:choose>
       		<c:when test="${loginUser eq null }">
-      			<li><input class="login" id="mem_mail" name="mem_mail" type="text" placeholder=" 이메일"></li>
-				<li><input class="login" id="mem_pw" name="mem_pw" type="password" placeholder=" 비밀번호"></li>
+      			<li><input class="login" id="login_mem_mail" name="login_mem_mail" type="text" placeholder=" 이메일"></li>
+				<li><input class="login" id="login_mem_pw" name="login_mem_pw" type="password" placeholder=" 비밀번호"></li>
 		        <li><input type="submit" value="로그인" id="loginbtn"></li>
 				<li id="check" style="margin: 13px auto; width: 5%;"><label
 					style="vertical-align: text-botom;" for="check2" id="auto">

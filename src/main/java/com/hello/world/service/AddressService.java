@@ -6,26 +6,28 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hello.world.dao.AddressDAO;
 import com.hello.world.dao.FreeBoardDAO;
 import com.hello.world.dao.MemberDAO;
-import com.hello.world.dao.iBatis.LangDAO_iBatis;
 import com.hello.world.dao.iBatis.MemberDAO_iBatis;
+import com.hello.world.dto.AddressVO;
 import com.hello.world.dto.FreeBoardVO;
-import com.hello.world.dto.LangVO;
 import com.hello.world.dto.MemVO;
 
 @Service
-public class LangService {
+public class AddressService {
 	@Autowired
-	private LangDAO_iBatis langDao;
+	private AddressDAO addressDao;
 
-	public void setLangDao(LangDAO_iBatis langDao) {
-		this.langDao = langDao;
-	}
-	
-	public ArrayList<LangVO> listLangVO() throws SQLException {
-		ArrayList<LangVO> langList = langDao.listLangVO();
-		return langList;
+	public void setAddressDao(AddressDAO addressDao) {
+		this.addressDao = addressDao;
 	}
 
+	public ArrayList<AddressVO> selectAddressByDong(String dong)
+			throws SQLException {
+		ArrayList<AddressVO> addressList = addressDao.selectAddressByDong(dong);
+
+		return addressList;
+
+	}
 }
