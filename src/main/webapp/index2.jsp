@@ -139,16 +139,11 @@
     }
     
    
-    footer{
-    width:66%;
-    margin:0 auto;
-    background-color: #d9d9d9;
-    color:black;
-    }
+    
   </style>
 </head>
 <body>
-
+<%-- 
 
 <!-- 최상단 로고 및 검색바 -->
 <header>
@@ -225,7 +220,7 @@
 
 </nav>
 </header>
-  <!-- 탑메뉴END --> 
+  <!-- 탑메뉴END -->  --%>
 
 <div class="container-fluid text-center">    
   <div class="row content">
@@ -287,9 +282,7 @@
   </div>
 </div>
 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+
 
 
   
