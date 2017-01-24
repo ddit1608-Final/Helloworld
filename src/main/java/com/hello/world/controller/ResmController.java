@@ -1,15 +1,19 @@
 package com.hello.world.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hello.world.dto.MemVO;
 import com.hello.world.dto.ResmVO;
 import com.hello.world.service.ResmService;
 
@@ -24,11 +28,26 @@ public class ResmController {
 	public void setResmService(ResmService resmService) {
 		this.resmService = resmService;
 	}
+	
+	 @RequestMapping("/resmList.do")
+	   public String ResmList(HttpSession session, Model model)
+	         throws ServletException, IOException {
+	      String url = "resm/resmList";
+	      
+	      MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+	      
+	      ArrayList<ResmVO> resmList=null;
+	      resmList = resmService.getResmList(loginUser.getMem_mail());
+	      
+	      model.addAttribute("resmList", resmList);
+	      
+	      return url;
+	 }
 
 
 
 	@RequestMapping("/resmWriteForm.do")
-	   public String freeBoardWriteForm(HttpSession session) throws ServletException,
+	   public String ResmWriteForm(HttpSession session) throws ServletException,
 	         IOException {
 	      String url = "resm/resmForm";
 
