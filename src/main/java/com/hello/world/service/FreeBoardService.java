@@ -71,16 +71,16 @@ public class FreeBoardService {
 		}
 	}
 	
-	public FreeBoardVO deleteFreeBoard(String freeboard_posting_no){
-		FreeBoardVO freeBoardVO = null;
+	public void deleteFreeBoard(String freeboard_posting_no){
 		
 		try {
-			freeBoardVO = freeBoardDAO.deleteFreeBoard(freeboard_posting_no);
+			freeBoardDAO.deleteFreeBoard(freeboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return freeBoardVO;
+		
+		
 	}
 }
 

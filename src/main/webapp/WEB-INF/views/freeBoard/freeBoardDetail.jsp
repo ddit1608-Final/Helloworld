@@ -29,7 +29,7 @@
 <input class="btn"  type="button" value="수정" 
 	onClick="location.href='/world/free/freeBoardUpdateForm.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}'">
 <input class="btn"  type="button" value="삭제" 
-	onClick="location.href='/world/free/freeBoardDelete.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}'">
+	onClick="location.href='/world/free/deleteFreeBoard.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}'">
 <!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. --> 
 <input class="btn"  type="button" value="목록" onclick="location.href='<%=request.getContextPath()%>/free/freeBoardList.do'">         
 </form>

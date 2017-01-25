@@ -123,17 +123,17 @@ public class FreeBoardController {
 		
 		return url;
 	}
-	@RequestMapping(value="/freeBoardDelete.do")
-	public String deleteFreeBoard(@RequestParam String freeBoardVO,
+	@RequestMapping(value="/deleteFreeBoard.do")
+	public String deleteFreeBoard(@RequestParam String freeboard_posting_no,
 			HttpSession session)
 			throws ServletException, IOException {
 		String url = "redirect:freeBoardList.do";
 		
-		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+		//MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 	
 		System.out.println("테스트용 위치는 컨트롤러 삭제");
 	
-		freeService.deleteFreeBoard(freeBoardVO);
+		freeService.deleteFreeBoard(freeboard_posting_no);
 		
 		
 		return url;

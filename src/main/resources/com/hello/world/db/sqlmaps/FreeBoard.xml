@@ -35,18 +35,9 @@
 		select * from memfree where freeboard_posting_no=#freeboard_posting_no#
 	</select>
 	
-	<delete id="">
+	<delete id="deleteFreeBoard" parameterClass="str">
 		delete
-		from freeBoard
+		from freeboard
 		where freeboard_posting_no=#freeboard_posting_no#
 	</delete>
-	
-	
-	
-	<!-- comm 추가 -->
-	<!-- <select id="updateFreeBoard" parameterClass="freeBoard" >
-		update freeBoard set 
-	</select> -->
-	
-
 </sqlMap>
