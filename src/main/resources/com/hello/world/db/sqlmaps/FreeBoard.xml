@@ -27,10 +27,11 @@
 		WHERE FREEBOARD_POSTING_NO=#freeboard_posting_no#
 	</update>
 	
-	<select id="listAllFreeBoard" resultClass="freeboard" >
+	<select id="listAllFreeBoard" parameterClass="str" resultClass="freeboard" >
 		<!-- select * from freeboard order by freeboard_posting_no desc -->
-		select * from memfree order by freeboard_posting_no desc
+		select * from memfree where freeboard_title like '%'||#freeboard_title#||'%' order by freeboard_posting_no desc
 	</select>
+
 	<select id="freeDetail" parameterClass="str" resultClass="freeboard">
 		select * from memfree where freeboard_posting_no=#freeboard_posting_no#
 	</select>
@@ -40,4 +41,8 @@
 		from freeboard
 		where freeboard_posting_no=#freeboard_posting_no#
 	</delete>
+	
+	<select id="totalFreeBoard" parameterClass="str" resultClass="int">
+		select count(*) from freeBoard where freeboard_title like '%'||#freeboard_title#||'%'
+	</select>
 </sqlMap>

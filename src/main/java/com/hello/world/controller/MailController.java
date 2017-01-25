@@ -54,10 +54,14 @@ public class MailController {
 		
 		// properties
 		// 수정해야함.. 2016-01-24 jihyun.Park
-		/*Properties prop = new Properties();
+		Properties prop = new Properties();
+		
+		ClassLoader classLoader = getClass().getClassLoader();
+		File file = new File(classLoader.getResource("certification.properties").getFile());
+		System.out.println(file.getAbsolutePath());
 		
 		try {
-			FileInputStream fis = new FileInputStream("");
+			FileInputStream fis = new FileInputStream(file.getAbsolutePath());
 			prop.load(fis);
 		} catch (FileNotFoundException e3) {
 			// TODO Auto-generated catch block
@@ -70,7 +74,7 @@ public class MailController {
 		prop.setProperty(mem_mail, token);
 
 		try {
-			FileOutputStream fos = new FileOutputStream("");
+			FileOutputStream fos = new FileOutputStream(file.getAbsolutePath());
 			prop.store(fos, "test");
 			fos.close();
 		} catch (FileNotFoundException e2) {
@@ -79,7 +83,7 @@ public class MailController {
 		} catch (IOException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
-		}*/
+		}
 
 		// SimpleMailMessage message = new SimpleMailMessage();
 		String htmlContent = "<a href=\"http://192.168.202.120:8181/world/mail/certification?certifi="
@@ -118,9 +122,25 @@ public class MailController {
 			@RequestParam(value = "certifi") String certifi,
 			@RequestParam(value = "mem_mail") String mem_mail) {
 		String cettification = "fail";
+		
+		Properties prop = new Properties();
+		
+		ClassLoader classLoader = getClass().getClassLoader();
+		File file = new File(classLoader.getResource("certification.properties").getFile());
+		
+		try {
+			FileInputStream fis = new FileInputStream(file.getAbsolutePath());
+			prop.load(fis);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		// 성공하면..
-		if(true) {
-			cettification = "fail";
+		if(certifi.equals(prop.getProperty(mem_mail))) {
+			cettification = "success";
 		}
 		
 		String url = "redirect:../member/join?mem_mail=" + mem_mail+"&cetifi="+cettification;

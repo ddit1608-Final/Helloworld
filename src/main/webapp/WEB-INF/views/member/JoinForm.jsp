@@ -16,8 +16,7 @@
 		<form action="join" method="post" id="joinForm">
 			<label>이메일</label> <input type="email" id="mem_mail"
 				name="mem_mail" value="${param.mem_mail }"
-				onkeyup="checkDepulicateId()"> <label id="mailCheck">메일체크하는건데
-				이따가 지워야함</label>
+				onkeyup="checkDepulicateId()"> <label id="mailCheck"></label>
 			<c:choose>
 				<c:when test="${param.cetifi eq null}">
 					<input type="button" onclick="go_certification()" value="인증">
@@ -34,6 +33,7 @@
 							<br />
 							<script type="text/javascript">
 								alert("인증에 실패 하였습니다.");
+								document.getElementById("mailCheck").innerHTML = "이메일 인증을 해야 합니다.";
 								// 2017-01-24 jihyun.Park
 								// 메인 화면으로 이동하는 부분 추가할것
 							</script>
@@ -44,16 +44,17 @@
 			
 
 			<label>패스워드</label> <input type="password" id="mem_pw"
-				name="mem_pw"> <br /> <label>패스워드 확인</label> <input
-				type="password" id="pwdCheck" name="pwdCheck"> <br /> <label>이름</label>
-			<input type="text" id="mem_nm" name="mem_nm"> <br /> <label>닉네임</label>
-			<input type="text" id="mem_nick" name="mem_nick"> <br /> <label>연락처</label>
-			<input type="text" id="mem_phn" name="mem_phn"> <br /> <label>성별</label>
+				name="mem_pw"><label id="pwCheck"></label> <br /> <label>패스워드 확인</label> <input
+				type="password" id="pwdCheck" name="pwdCheck"> <label id="pwdCheckCheck"></label> <br /> <label>이름</label>
+			<input type="text" id="mem_nm" name="mem_nm"> <label id="nameCheck"></label> <br /> <label>닉네임</label>
+			<input type="text" id="mem_nick" name="mem_nick"> <label id="nickCheck"></label> <br /> <label>연락처</label>
+			<input type="text" id="mem_phn" name="mem_phn"> <label id="phnCheck"></label> <br /> <label>성별</label>
 			<input type="radio" id="mem_sex" name="mem_sex" value="1">남성
-			<input type="radio" id="mem_sex" name="mem_sex" value="2">여성<br />
+			<input type="radio" id="mem_sex" name="mem_sex" value="2">여성 <label id="sexCheck"></label><br />
 			<label>주소</label> 
 			<input type="text" id="addr_zipnum" name="addr_zipnum"> 
 			<input type="text" id="mem_addr" name="mem_addr">
+			<label id="addrCheck"></label>
 			<input type="button" value="주소 찾기" class="btn btn-success"
 				onclick="post_zip()"> <br />
 
@@ -67,7 +68,7 @@
 			<br /> 
 			<label>경력 : </label>
 			<br/>
-			<input type="submit" value="가입">
+			<input type="button" onclick="go_join('${param.cetifi}');" value="가입">
 		</form>
 	</div>
 </body>

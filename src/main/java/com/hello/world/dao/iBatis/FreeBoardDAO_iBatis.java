@@ -31,11 +31,12 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 		
 	}
 	@Override
-	public ArrayList<FreeBoardVO> listAllFreeBoard() throws SQLException {
+	public ArrayList<FreeBoardVO> listAllFreeBoard(int startRow, String product_name, int counts) throws SQLException {
 		ArrayList<FreeBoardVO> freeBoardList = new ArrayList<FreeBoardVO>();
 		// 게시판 데이터 가지오 오는 쿼리
-		freeBoardList = (ArrayList<FreeBoardVO>)client.queryForList("listAllFreeBoard",null);
-		
+		freeBoardList = (ArrayList<FreeBoardVO>) client.queryForList(
+				"listAllFreeBoard", startRow, counts);
+
 		return freeBoardList;
 	}
 	
@@ -62,6 +63,17 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 	public void deleteFreeBoard(String freeboard_posting_no)
 			throws SQLException {
 		client.delete("deleteFreeBoard",freeboard_posting_no);
+	}
+	
+		@Override
+	public int totalRecord(String product_name) throws SQLException {
+		int total_pages = 0;
+		if (product_name.equals("")) {
+			product_name = "%";
+		}
+		total_pages = (Integer) client.queryForObject("totalFreeBoard",
+				product_name);
+		return total_pages;
 	}
 	
 }

@@ -18,6 +18,14 @@
 				<!-- <th>작성자</th> -->
 				<th>등록일</th>
 			</tr>
+			<c:choose>
+				<c:when test="${freeBoardListSize<=0}">
+					<tr>
+						<td width="100%" colspan="6" align="center" height="23">
+							There are no registered freeboard.</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
 			<c:forEach items="${freeBoardList}" var="freeBoardVO">
 				<tr>
 					<td>${freeBoardVO.freeboard_posting_no}</td>
@@ -30,6 +38,11 @@
 					<fmt:formatDate value="${freeBoardVO.freeboard_wridate}" type="date" /></td>
 				</tr>
 			</c:forEach>
+			<tr>
+						<td colspan="5" style="text-align: center;">${paging}</td>
+					</tr>
+				</c:otherwise>
+			</c:choose>
 			</table >
 			<table style="margin:0 auto;">
 			<tr>
