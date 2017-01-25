@@ -8,8 +8,11 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/signup.css">
 
+<div>
+		<a href="#"></a><img id="joinLogo" src="<%= request.getContextPath() %>/resources/images/joinlogo.png"></a>
+	</div> 
 <article>
-
+<div class="jfbg">
 
 	<form action="join" method="post" id="joinForm" class="form-horizontal">
 		<div style="margin: auto;" class="form-group">
@@ -88,5 +91,5 @@
 				onclick="go_join('${param.cetifi}');" value="가입">
 		</div>
 	</form>
-
+</div>
 </article>
