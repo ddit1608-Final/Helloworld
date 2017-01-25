@@ -6,27 +6,27 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard.png">
+		<a href="<%=request.getContextPath()%>/free/freeBoardList.do"><img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard.png"></a>
 	</div> 
 	<form name="form" method="post">
-		<table class="table table-condensed">
+		<table class="table table-condensed" id="blt">
 			<tr style="background-color: gray; font-size:15pt; color:white; font-family:;">
-				<th>번호</th>
-				<th>제목</th>
+				<td style="text-align: center;">NO</td>
+				<td style="text-align: center;">SUBJECT</td>
 				<!-- <th>내용</th> -->
-				<th>작성자</th>
+				<td style="text-align: center;">NAME</td>
 				<!-- <th>작성자</th> -->
-				<th>등록일</th>
+				<td style="text-align: center;">DATE</td>
 			</tr>
 			<c:forEach items="${freeBoardList}" var="freeBoardVO">
 				<tr>
-					<td>${freeBoardVO.freeboard_posting_no}</td>
+					<td style="text-align: center;">${freeBoardVO.freeboard_posting_no}</td>
 					<td><a href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">${freeBoardVO.freeboard_title}</a>
 					</td>
 					<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
-					<td>${freeBoardVO.mem_nick}</td>
+					<td style="text-align: center;">${freeBoardVO.mem_nick}</td>
 					<%-- <td>${loginUser.mem_nick}</td> --%>
-					<td>
+					<td style="text-align: center;">
 					<fmt:formatDate value="${freeBoardVO.freeboard_wridate}" type="date" /></td>
 				</tr>
 			</c:forEach>

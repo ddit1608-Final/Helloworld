@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
 <article>
+<div>
+		<a href="<%=request.getContextPath()%>/free/freeBoardList.do"><img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard.png"></a>
+	</div> 
 	<h2>자유게시판</h2>
 	<h3>자유롭게...머문자리는 아름답게</h3>
 	<form name="form" method="post" action="freeBoardWrite.do">

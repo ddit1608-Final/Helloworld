@@ -2,28 +2,55 @@
   pageEncoding="UTF-8"%>
 
 <%-- <%@ include file="/admin/header.jsp"%> --%>
-
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
 <article>
-<h1>게시글 상세보기</h1> 
+<div>
+		<a href="<%=request.getContextPath()%>/free/freeBoardList.do"><img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard.png"></a>
+	</div> 
+<!-- <h1>게시글 상세보기</h1>  -->
 <form name="form" method="post">
-<table id="list">
-  <tr>
-   <th>제목</th>
+<table class="table table-condensed" id="bdt">
+  <tr style="background-color: #8bdb69">
+   <th>SUBJECT</th>
    <td>${freeBoardVO.freeboard_title }</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td style="float:right;">추천 비추천</td>
   </tr>
   
   <tr> 
-   <th>작성날짜</th>
-   <td>${freeBoardVO.freeboard_wridate }</td>
-   <th>작성자</th>
-   <td>${freeBoardVO.mem_nick }</td>
+   <th>NAME</th>
+   <td style="color:#a31313">(Level)${freeBoardVO.mem_nick }(POINT)</td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td></td>
+   <td style="float:right;">${freeBoardVO.freeboard_wridate }</td>
+   <td style="float:right;">DATE : </td>
   </tr>
   
   <tr>
-  <th>내용</th>
-   <td>${freeBoardVO.freeboard_cont }</td>
+  <th>CONTENT</th>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
   </tr>
-   
+  <tr>
+ 
+    <td>${freeBoardVO.freeboard_cont }</td>
+  <td></td>
+  <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    
+  </tr> 
    
 </table>
 <!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. --> 
