@@ -292,7 +292,7 @@ color:#a31313;
       			<li id="mem_mail" name="mem_mail">(Level) ${loginUser.mem_nick } (POINT) </li>
 				<li><a href="#" id="aa">접속자수</a></li>
 				<li><a href="#" id="aa">반응 ()</a></li>
-				<li><a href="#" id="aa">마이페이지</a></li>
+				<li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li>
 				<li><a href="<%=request.getContextPath()%>/member/logout" id="aa">로그아웃</a></li>
       		</c:otherwise>
       	</c:choose>
