@@ -39,7 +39,7 @@ public class MemberDAO_iBatis implements MemberDAO {
 		int result = -1;
 		if (client.insert("insertMem", MemVO) != null) {
 			result = -1;
-		} else {
+		} else { // 성공
 			result = 1;
 		}
 		return result;

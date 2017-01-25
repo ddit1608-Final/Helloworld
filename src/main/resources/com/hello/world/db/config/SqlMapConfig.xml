@@ -10,4 +10,6 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/FreeBoard.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/Lang.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/Resm.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/PointbfOwn.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/Crr.xml" />
 </sqlMapConfig>
