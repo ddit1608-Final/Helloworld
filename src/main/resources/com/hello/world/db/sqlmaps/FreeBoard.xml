@@ -6,6 +6,8 @@
 	<typeAlias alias="int" type="java.lang.Integer" />	
 	<typeAlias alias="freeboard" type="com.hello.world.dto.FreeBoardVO"/>
 	<typeAlias alias="mem" type="com.hello.world.dto.MemVO"/>
+	<typeAlias alias="freecomm" type="com.hello.world.dto.FreeBoardCommVO"/>
+	
 	
 	<select id="listFreeBoard" parameterClass="str" resultClass="freeboard">
 		select * from freeboard where mem_mail =#mem_mail#
@@ -33,7 +35,7 @@
 	</select>
 
 	<select id="freeDetail" parameterClass="str" resultClass="freeboard">
-		select * from memfree where freeboard_posting_no=#freeboard_posting_no#
+		select * from memfree where freeboard_posting_no=#freeboard_posting_no# 
 	</select>
 	
 	<delete id="deleteFreeBoard" parameterClass="str">
@@ -45,4 +47,29 @@
 	<select id="totalFreeBoard" parameterClass="str" resultClass="int">
 		select count(*) from freeBoard where freeboard_title like '%'||#freeboard_title#||'%'
 	</select>
+	
+	<!-- 
+	댓글에 관한 view를 이용한 쿼리 
+	<select id="freeDetail" parameterClass="str" resultClass="freecomm">
+		select * from mfcomm where freeboard_posting_no=#freeboard_posting_no# 
+	</select>
+	 -->
+	<!-- 댓글 -->
+	<insert id="insertFreeComm" parameterClass="freecomm">
+		INSERT INTO FREEBOARD_COMM(FREEBOARD_ANS_CODE,FREEBOARD_COMM_CONT,FREEBOARD_COMM_WRI) 
+    		VALUES(freeboard_ans_code.nextval,#freeboard_comm_cont#,#freeboard_comm_wri#);
+	</insert>
+	<update id="updateFreeComm" parameterClass="freecomm">
+		UPDATE freeBoard_comm
+		SET
+			FREEBOARD_COMM_CONT = #freeboard_comm_cont#
+		WHERE freeboard_ans_code= #freeboard_ans_code#
+	</update>
+	<delete id="deleteFreeComm" parameterClass="str">
+		delete
+		from freeboard_comm
+		where freeboard_ans_code=#freeboard_ans_code#
+	</delete>
+	
+	
 </sqlMap>

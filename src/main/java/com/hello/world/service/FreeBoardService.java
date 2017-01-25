@@ -4,12 +4,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.FreeBoardDAO;
+import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
 
 public class FreeBoardService {
 
-	static int view_rows = 10; // ÆäÀÌÁöÀÇ °³¼ö
-	static int counts = 15; // ÇÑ ÆäÀÌÁö¿¡ ³ªÅ¸³¾ »óÇ°ÀÇ °³¼ö
+	static int view_rows = 10; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	static int counts = 15; // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
 	FreeBoardDAO freeBoardDAO;
 	

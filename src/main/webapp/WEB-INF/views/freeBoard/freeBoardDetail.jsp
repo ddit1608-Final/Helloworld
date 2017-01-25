@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%-- <%@ include file="/admin/header.jsp"%> --%>
 
 <article>
@@ -11,7 +11,6 @@
    <th>제목</th>
    <td>${freeBoardVO.freeboard_title }</td>
   </tr>
-  
   <tr> 
    <th>작성날짜</th>
    <td>${freeBoardVO.freeboard_wridate }</td>
@@ -23,7 +22,13 @@
   <th>내용</th>
    <td>${freeBoardVO.freeboard_cont }</td>
   </tr>
-   
+  	<%-- <c:forEach items="${freeBoardList}" var="freeBoardVO">
+	  <tr>
+	 	<td>댓글작성자 | ${freeBoardVO.mem_nick }</td> 
+	 	<td>댓글내용 | ${freeBoardVO.freeboard_comm_cont }</td> 
+	 	<td>작성날짜 | ${freeBoardVO.freeboard_wri_date }</td> 
+	  </tr>
+	</c:forEach> --%>
 </table>
 <!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. --> 
 <input class="btn"  type="button" value="수정" 

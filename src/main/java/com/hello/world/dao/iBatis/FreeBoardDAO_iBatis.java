@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.FreeBoardDAO;
+import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -44,6 +45,7 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 	public FreeBoardVO getFreeDetail(String freeboard_posting_no)
 			throws SQLException {
 		FreeBoardVO freeBoardVO = (FreeBoardVO) client.queryForObject("freeDetail",freeboard_posting_no);
+		
 		return freeBoardVO;
 	}
 	

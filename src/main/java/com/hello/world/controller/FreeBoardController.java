@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.service.FreeBoardService;
-import com.hello.world.service.MemberService;
 
 //import com.nonage.dto.MemVO;
 
@@ -74,16 +73,16 @@ public class FreeBoardController {
 	}
 
    @RequestMapping("/freeBoardDetail.do")
-   public String freeBoardDetail(@RequestParam String freeboard_posting_no, HttpSession session,
-         Model model) throws ServletException, IOException {
-
+   public String freeBoardDetail(@RequestParam String freeboard_posting_no,HttpSession session,
+		   		Model model) throws ServletException, IOException {
       String url = "freeBoard/freeBoardDetail";
       /*MemVO loginUser = (MemVO) session.getAttribute("loginUser");*/
+      
       FreeBoardVO freeBoardVO = freeService.getFreeDetail(freeboard_posting_no);
-      System.out.println("들어옴1");
+      //FreeBoardCommVO freeBoardCommVO = freeService.getFreeDetail(freeboard_posting_no, freebaord_ans_code);
+      System.out.println("자유게시글 상세보기 입장 !!!");
       model.addAttribute("freeBoardVO", freeBoardVO);
-      System.out.println(freeBoardVO);
-      System.out.println("들어옴2");
+      System.out.println("상세보기 >> "+freeBoardVO);
       return url;
    }
 
@@ -117,16 +116,15 @@ public class FreeBoardController {
 		return url;
 	}
 	@RequestMapping("/freeBoardUpdateForm.do")
-	public String freeBoardUpdateForm(@RequestParam String freeboard_posting_no, HttpSession session,
+	public String freeBoardUpdateForm(@RequestParam String freeboard_posting_no,HttpSession session,
 	         Model model) throws ServletException, IOException {
 
 	      String url = "freeBoard/freeBoardUpdate";
 	      /*MemVO loginUser = (MemVO) session.getAttribute("loginUser");*/
 	      FreeBoardVO freeBoardVO = freeService.getFreeDetail(freeboard_posting_no);
-	      System.out.println("들어옴1");
+	      System.out.println("게시글 수정 폼 입장!!!");
 	      model.addAttribute("freeBoardVO", freeBoardVO);
-	      System.out.println(freeBoardVO);
-	      System.out.println("들어옴2");
+	      System.out.println("freeboardVO >>"+freeBoardVO);
 	      return url;
 	   }
 	
@@ -138,7 +136,7 @@ public class FreeBoardController {
 		
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 	
-		System.out.println("테스트용 위치는 컨트롤러 업데이트");
+		System.out.println("컨트롤러 ==> 게시글수정 실행");
 		System.out.println(freeBoardVO);
 	
 		freeService.updateFreeBoard(freeBoardVO);
@@ -154,7 +152,7 @@ public class FreeBoardController {
 		
 		//MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 	
-		System.out.println("테스트용 위치는 컨트롤러 삭제");
+		System.out.println("컨트롤러 ==> 게시글삭제 실행");
 	
 		freeService.deleteFreeBoard(freeboard_posting_no);
 		
