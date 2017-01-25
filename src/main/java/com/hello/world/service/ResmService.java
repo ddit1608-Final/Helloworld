@@ -1,7 +1,6 @@
 package com.hello.world.service;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +38,35 @@ public class ResmService {
 			e.printStackTrace();
 		}
 		return resmList;
+	}
+	
+	public ResmVO getResmDetail(String resm_id){
+		ResmVO resmVO = null;
+		
+		try {
+			resmVO = resmDAO.getResmDetail(resm_id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return resmVO;
+	}
+	public void updateResm(ResmVO resmVO){		
+		try {
+			resmDAO.updateResm(resmVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteFreeBoard(String resm_id){
+		
+		try {
+			resmDAO.deleteResm(resm_id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
 	}
 
 }

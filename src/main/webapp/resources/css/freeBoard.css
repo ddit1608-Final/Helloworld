@@ -1,15 +1,14 @@
+
 @CHARSET "UTF-8";
 
 /* freeBoardList */
-h2{
-	color:red;
-	
-}
+
 
 #freeLogo{
-	margin:2% auto auto 10%;
-	border:2px solid #3EAF0E;
+	margin:1% auto 1% 5%;
+	border:5px solid #3EAF0E;
 	border-style: dashed;
+	width:90%;
 }
   /* .table-hover{
   background-color:gray; 
@@ -18,7 +17,7 @@ h2{
   font-family:한나;
   font-size:13pt;
   } */
-.table-condensed{
+#blt{
 	width:90%;
 	margin:1% auto;
 	font-family:한나;
@@ -27,12 +26,36 @@ h2{
 	
 	
 }
-.table-condensed tr:hover{
+#blt tr:hover{
 	background-color: #8bdb69;
 	
 }
-.table-condensed tr td a{
+#blt tr td a{
 	text-decoration: none;
 	color:black;
 }
 /* freeBoardList 끝 */
+
+/* freeBoardDeatil */
+
+#bdt{
+	width:90%;
+	margin:1% auto;
+	font-family:한나;
+	font-size:12pt;
+	
+}
+
+#btn{
+	float:right;
+	margin-right:5%;
+}
+
+/* freeBoardDeatil 끝*/
+
+/* freeBoardWrite */
+
+
+
+/* freeBoardWrite 끝*/
+

@@ -256,7 +256,7 @@ color:#a31313;
           <span class="glyphicon glyphicon-home"></span>
         </a></li><br> -->
 
-        <li><a href="#">구인구직</a></li>
+        <li><a href="<%=request.getContextPath()%>/worknet/worknet.do">구인구직</a></li>
         <li><a href="#">IT소식</a></li>
         <li><a href="<%=request.getContextPath()%>/free/freeBoardList.do">자유게시판</a></li>
         <li><a href="#">QnA게시판</a></li>
@@ -292,7 +292,7 @@ color:#a31313;
       			<li id="mem_mail" name="mem_mail">(Level) ${loginUser.mem_nick } (POINT) </li>
 				<li><a href="#" id="aa">접속자수</a></li>
 				<li><a href="#" id="aa">반응 ()</a></li>
-				<li><a href="#" id="aa">마이페이지</a></li>
+				<li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li>
 				<li><a href="<%=request.getContextPath()%>/member/logout" id="aa">로그아웃</a></li>
       		</c:otherwise>
       	</c:choose>

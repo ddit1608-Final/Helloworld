@@ -13,11 +13,9 @@
 				<th>등록일</th>
 			</tr>
 			<c:forEach items="${resmList}" var="ResmVO">
-				<tr>
 					<td>
-					<fmt:formatDate value="${ResmVO.resm_wri_date}" type="date" />
+					<a href="/world/resm/resmDetail.do?resm_id=${ResmVO.resm_id}"><fmt:formatDate value="${ResmVO.resm_wri_date}" type="date" /></a>
 					</td>
-				</tr>
 			</c:forEach>
 			</table >
 			<table style="margin:0 auto;">
