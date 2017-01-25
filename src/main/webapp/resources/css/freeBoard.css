@@ -6,7 +6,7 @@
 
 #freeLogo{
 	margin:1% auto 1% 5%;
-	border:2px solid #3EAF0E;
+	border:5px solid #3EAF0E;
 	border-style: dashed;
 	width:90%;
 }
@@ -44,6 +44,11 @@
 	font-family:한나;
 	font-size:12pt;
 	
+}
+
+#btn{
+	float:right;
+	margin-right:5%;
 }
 
 /* freeBoardDeatil 끝*/

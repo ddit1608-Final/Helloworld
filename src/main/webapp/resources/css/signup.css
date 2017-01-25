@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+
+label{
+	color:black;
+	font-family: 고딕;
+	font-size:15pt;
+	
+	
+}
+
+.form-control{
+	width:20%;
+}
+.cec{
+	margin-left:10%;
+	color:#ff0000;
+	font-family: 고딕;
+	font-size:11pt;
+	font-weight: bold;
+	
+}
+.cex{
+	margin-left:1%;
+	color:#ff0000;
+	font-size:11pt;
+	font-family: 고딕;
+	font-weight: bold;
+}
+#mem_addr{
+	margin-left:16.65%;
+}
+#joinForm{
+	margin:1% auto auto 20%;
+}
+.control-label{
+	padding-top:0px;
+}
+#checkbtn{
+margin-left:22%;
+}
