@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="PointbfOwn">
+
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="point" type="com.hello.world.dto.PointVO" />
+	
+	
+
+	<update id="insertPoint" parameterClass="point">
+		insert into pointbfown(point_code, point, mem_mail)
+		values(point_seq.nextval, #point#, #mem_mail#)
+	</update>
+	
+	<select id="sumPoint" parameterClass="str" resultClass="int">
+		select sum(point) from pointbfown where mem_mail = #mem_mail#
+	</select>
+
+</sqlMap>

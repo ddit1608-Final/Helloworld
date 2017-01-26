@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -48,6 +50,14 @@ public class MailController {
 		String url = "redirect:../member/join?mem_mail=" + mem_mail;
 
 		String token = generateToken();
+		InetAddress ip = null;
+		
+		try {
+			ip = InetAddress.getLocalHost();
+		} catch (UnknownHostException e4) {
+			// TODO Auto-generated catch block
+			e4.printStackTrace();
+		}
 
 		MimeMessage message = mailSender.createMimeMessage();
 		System.out.println("token : " + token);
@@ -86,7 +96,7 @@ public class MailController {
 		}
 
 		// SimpleMailMessage message = new SimpleMailMessage();
-		String htmlContent = "<a href=\"http://192.168.202.120:8181/world/mail/certification?certifi="
+		String htmlContent = "<a href=\"http://"+ip.getHostAddress()+":8181/world/mail/certification?certifi="
 				+ token + "&mem_mail=" + mem_mail + "\">인증페이지 이동</a>";
 
 		try {

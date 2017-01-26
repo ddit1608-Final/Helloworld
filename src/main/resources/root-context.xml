@@ -23,6 +23,12 @@
    
    	<bean id="addrDao" class="com.hello.world.dao.iBatis.AddressDAO_iBatis"
 		p:client-ref="sqlMapClient" />
+		
+	<bean id="pointDao" class="com.hello.world.dao.iBatis.PointDAO_ibatis"
+		p:client-ref="sqlMapClient" />
+	
+	<bean id="crrDao" class="com.hello.world.dao.iBatis.CrrDAO_iBatis"
+		p:client-ref="sqlMapClient" />
       
    <!-- Service -->
    <bean id="ResmService" class="com.hello.world.service.ResmService" >
@@ -40,6 +46,11 @@
 		p:langDao-ref="langDao" />
 	
 	<bean id="arrdService" class="com.hello.world.service.AddressService"
-		p:addressDao-ref="addrDao" 
-	/>
+		p:addressDao-ref="addrDao" />
+	
+	<bean id="pointService" class="com.hello.world.service.PointService"
+		p:pointDAO-ref="pointDao" />
+		
+	<bean id="crrService" class="com.hello.world.service.CrrService"
+		p:langDao-ref="crrDao" />
 </beans>

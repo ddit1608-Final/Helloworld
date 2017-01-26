@@ -8,8 +8,11 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/signup.css">
 
+<div>
+		<a href="#"></a><img id="joinLogo" src="<%= request.getContextPath() %>/resources/images/joinlogo.png"></a>
+	</div> 
 <article>
-
+<div class="jfbg">
 
 	<form action="join" method="post" id="joinForm" class="form-horizontal">
 		<div style="margin: auto;" class="form-group">
@@ -76,9 +79,17 @@
 			<c:forEach var="lang" items="${langList }" varStatus="status">
 				<input type="checkbox" name="mem_lang" value="${lang.mem_lang }">${lang.mem_lang_nm }
 			</c:forEach>
-			<br /> <label>경력 : </label> <br /> <input type="button"
+			<br /> 
+			<label>경력 : </label> 
+			<select id=crr_code name="crr_code">
+				<c:forEach var="crr" items="${crrList }" varStatus="status">
+					<option value="${crr.crr_code }">${crr.crr_nm }</option>
+				</c:forEach>
+				
+			</select>
+			<br /> <input type="button"
 				onclick="go_join('${param.cetifi}');" value="가입">
 		</div>
 	</form>
-
+</div>
 </article>
