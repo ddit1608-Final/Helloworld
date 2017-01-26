@@ -49,6 +49,7 @@
 				</c:otherwise>
 			</c:choose>
 		</table>
+		<div id="divdiv">
 		<table style="margin: 0 auto;">
 			<tr>
 				<td>
@@ -66,5 +67,6 @@
 				</td>
 			</tr>
 		</table>
+		</div>
 	</form>
 </article>

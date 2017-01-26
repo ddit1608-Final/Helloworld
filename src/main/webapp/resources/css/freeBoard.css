@@ -46,16 +46,30 @@
 	
 }
 
-#btn{
-	float:right;
-	margin-right:5%;
-}
 
+#fdf{
+	background-color: #f3f3f3;
+	height: 100%;
+}
+#divdiv{
+	
+	margin:5% auto;
+		
+}
+.btn{
+	background-color: #8bdb69;
+	font-family: 한나;
+}
+.btn:hover{
+	background-color: #62ce33;
+}
 /* freeBoardDeatil 끝*/
 
 /* freeBoardWrite */
 
-
+#bwt{
+	font-family:한나;
+}
 
 /* freeBoardWrite 끝*/
 
