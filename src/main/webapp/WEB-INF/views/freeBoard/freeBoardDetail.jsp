@@ -45,23 +45,33 @@
 		<table>
 			<thead>
 				<tr>
-					<td colspan="2">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
+					<td colspan="3">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
 				</tr>
 			</thead>
 			<tbody>
+				<tr>
+					<td>작성자</td>
+					<td>내용</td>
+					<td></td>
+				</tr>
 				<c:forEach items="${freeBoardCommList}" var="freeBoardComm">
 					<tr>
 						<td>${ freeBoardComm.freeboard_comm_wri}</td>
 						<td>${ freeBoardComm.freeboard_comm_cont}</td>
-					<tr>
+						<c:if test="${loginUser.mem_mail ==freeBoardComm.freeboard_comm_wri }">
+						<td><a href="/world/free/freeBoardCommUpdateForm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}">수정</a>/
+							<a href="/world/free/deleteFreeBoardComm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}
+								&freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">삭제</a>
+						</td>
+						</c:if>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		
-		
 		<input type="text" id="freeboard_comm_cont" name="freeboard_comm_cont">
 		<input type="hidden" id="freeboard_posting_no" name="freeboard_posting_no" value="${freeBoardVO.freeboard_posting_no }">
 		<input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}">
 		<input type="submit" value="댓글등록">
+		
 	</form>
 </article>

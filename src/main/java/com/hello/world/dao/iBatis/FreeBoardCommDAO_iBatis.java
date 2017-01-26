@@ -36,4 +36,16 @@ public class FreeBoardCommDAO_iBatis implements FreeBoardCommDAO {
 		return freeBoardCommList;
 	}
 
+	@Override
+	public void deleteFreeBoardComm(String freeboard_ans_code) throws SQLException {
+		client.delete("deleteFreeBoardComm",freeboard_ans_code);
+		
+	}
+
+	@Override
+	public void updateFreeBoardComm(FreeBoardCommVO freeBoardCommVO)
+			throws SQLException {
+		client.update("updateFreeBoardComm",freeBoardCommVO);
+	}
+
 }

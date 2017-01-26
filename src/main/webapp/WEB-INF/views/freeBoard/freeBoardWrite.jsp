@@ -13,6 +13,7 @@
 		<tr>
 			<td>
 			작성자:<label>${loginUser.mem_nick}</label><br>
+			<input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}">
 			제목:<input type="text" name="freeboard_title"><br>
 			내용:<textarea rows="8" cols="65" name="freeboard_cont"></textarea><br>
 			게시글 비밀번호:<input type="text" name="freeboard_pwd"><!-- type password로 바뀔것임 테스트보기위해 당분간 text -->

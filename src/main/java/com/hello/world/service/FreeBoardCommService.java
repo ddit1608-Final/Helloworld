@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.hello.world.dao.FreeBoardCommDAO;
 import com.hello.world.dao.iBatis.MemberDAO_iBatis;
 import com.hello.world.dto.FreeBoardCommVO;
+import com.hello.world.dto.FreeBoardVO;
 
 @Service
 public class FreeBoardCommService {
@@ -32,5 +33,21 @@ public class FreeBoardCommService {
 
 		return freeBoardCommList;
 	}
+	public void deleteFreeBoardComm(String freeboard_ans_code){
+		
+		try {
+			freeBoardCommDAO.deleteFreeBoardComm(freeboard_ans_code);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+	}
+	public void updateFreeBoardComm(FreeBoardCommVO freeBoardCommVO){		
+		try {
+			freeBoardCommDAO.updateFreeBoardComm(freeBoardCommVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

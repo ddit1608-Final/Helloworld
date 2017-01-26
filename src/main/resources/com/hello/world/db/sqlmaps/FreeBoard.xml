@@ -55,7 +55,7 @@
 	</select>
 	 -->
 	<!-- 댓글 -->
-	<insert id="insertFreeComm" parameterClass="freecomm">
+	<!-- <insert id="insertFreeComm" parameterClass="freecomm">
 		INSERT INTO FREEBOARD_COMM(FREEBOARD_ANS_CODE,FREEBOARD_COMM_CONT,FREEBOARD_COMM_WRI) 
     		VALUES(freeboard_ans_code.nextval,#freeboard_comm_cont#,#freeboard_comm_wri#);
 	</insert>
@@ -69,7 +69,7 @@
 		delete
 		from freeboard_comm
 		where freeboard_ans_code=#freeboard_ans_code#
-	</delete>
+	</delete> -->
 	
 	
 </sqlMap>
