@@ -20,6 +20,9 @@
    <bean id="resmDAO" class="com.hello.world.dao.iBatis.ResmDAO_iBatis">
    	 <property name="client" ref="sqlMapClient" />
    </bean>
+   <bean id="jobhtBoardDAO" class="com.hello.world.dao.iBatis.JobhtBoardDAO_iBatis">
+   	<property name="client" ref="sqlMapClient" />
+   </bean>
    
    	<bean id="addrDao" class="com.hello.world.dao.iBatis.AddressDAO_iBatis"
 		p:client-ref="sqlMapClient" />
@@ -41,6 +44,11 @@
       <property name="memDao" ref="memDAO" />
       <property name="freeBoardDAO" ref="freeBoardDAO" />
    </bean>
+   
+   
+   <bean id="JobhtBoardService" class="com.hello.world.service.JobhtBoardService">
+   	 <property name="jobhtBoardDAO" ref="jobhtBoardDAO" />
+   </bean>   
    
 <bean id="langService" class="com.hello.world.service.LangService"
 		p:langDao-ref="langDao" />

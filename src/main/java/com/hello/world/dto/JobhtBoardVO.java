@@ -14,8 +14,15 @@ public class JobhtBoardVO {
 	private Timestamp jobhtboard_wri_date;
 	private String com_use_abil_code;
 	private String lang_abil_code;
+	private String jobhtboard_title;
 	
 	
+	public String getJobhtboard_title() {
+		return jobhtboard_title;
+	}
+	public void setJobhtboard_title(String jobhtboard_title) {
+		this.jobhtboard_title = jobhtboard_title;
+	}
 	public String getMem_mail() {
 		return mem_mail;
 	}
@@ -76,6 +83,20 @@ public class JobhtBoardVO {
 	public void setLang_abil_code(String lang_abil_code) {
 		this.lang_abil_code = lang_abil_code;
 	}
+	@Override
+	public String toString() {
+		return "JobhtBoardVO [mem_mail=" + mem_mail + ", jobhtboard_homep="
+				+ jobhtboard_homep + ", jobhtboard_hope_sal="
+				+ jobhtboard_hope_sal + ", jobhtboard_hope_workp="
+				+ jobhtboard_hope_workp + ", jobhtboard_vltr_kind="
+				+ jobhtboard_vltr_kind + ", jobhtboard_posting_no="
+				+ jobhtboard_posting_no + ", resm_id=" + resm_id
+				+ ", jobhtboard_wri_date=" + jobhtboard_wri_date
+				+ ", com_use_abil_code=" + com_use_abil_code
+				+ ", lang_abil_code=" + lang_abil_code + "]";
+	}
+	
+	
 	
 	
 	
