@@ -8,9 +8,9 @@
 		<a href="<%=request.getContextPath()%>/free/freeBoardList.do"><img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard.png"></a>
 	</div> 
 	
-	<form name="form" method="post" action="freeBoardUpdate.do">
+	<form id="fdf" name="form" method="post" action="freeBoardUpdate.do">
 	<input type="hidden" value="${freeBoardVO.freeboard_posting_no}" name="freeboard_posting_no">
-		<table>
+		<table class="table .table-condensed" id="bwt">
 			<tr>
 				<th>제목</th>
 			    <td>${freeBoardVO.freeboard_title }</td>
@@ -18,8 +18,11 @@
   			<tr> 
 			    <th>작성날짜</th>
    				<td>${freeBoardVO.freeboard_wridate }</td>
+   				</tr>
+   				<tr>
    				<th>작성자</th>
    				<td>${freeBoardVO.mem_nick }</td>
+   				
   			</tr>
 			<tr>
 	  			<th>내용</th>
@@ -30,12 +33,12 @@
 		</table>
 		<table>
 		<tr>
-			<td>
-				<input class="btn"  type="submit" value="수정" >
-				<input class="btn" type="reset" value="수정취소"> 
-				<input class="btn" type="button" value="메인" onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
-			</td>
 		</tr>
 	</table>
-	</form>
+			<div id="divdiv">
+				<input class="btn" type="submit" value="수정" >
+				<input class="btn" type="reset" value="수정취소" onclick="javascript:history.back()"> 
+				<input class="btn" type="button" value="메인" onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
+			</div>
+			</form>
 </article>

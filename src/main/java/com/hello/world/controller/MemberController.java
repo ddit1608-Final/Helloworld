@@ -2,6 +2,7 @@ package com.hello.world.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hello.world.dto.AddressVO;
 import com.hello.world.dto.CrrVO;
@@ -28,6 +30,10 @@ import com.hello.world.service.PointService;
 @Controller
 @RequestMapping("member")
 public class MemberController {
+	
+	// 2017-01-26 jihyun.Park, session ID처리 추가 해야함...
+	// 접속자 처리하기 위해..
+	private HashMap<String, String> sessionMap = new HashMap<String, String>();
 
 	@Autowired
 	private MemberService memService;
@@ -151,6 +157,8 @@ public class MemberController {
 					e.printStackTrace();
 				}
 				session.setAttribute("loginUser", mem);
+				url = url + "?loginResult:"+RequestContextHolder.currentRequestAttributes().getSessionId();
+				System.out.println(RequestContextHolder.currentRequestAttributes().getSessionId());
 			} else {
 				url = url + "?loginResult:pwdMismatch";
 			}
@@ -191,4 +199,10 @@ public class MemberController {
 
 		return url;
 	}
+	
+	// 2017-01-26 jihyun.Park, session ID처리 추가 해야함...
+	private void setSessionMap() {
+		
+	}
+	
 }

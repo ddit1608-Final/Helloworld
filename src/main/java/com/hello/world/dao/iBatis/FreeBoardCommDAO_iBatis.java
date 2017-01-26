@@ -1,0 +1,39 @@
+package com.hello.world.dao.iBatis;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import com.hello.world.dao.FreeBoardCommDAO;
+import com.hello.world.dto.FreeBoardCommVO;
+import com.ibatis.sqlmap.client.SqlMapClient;
+
+public class FreeBoardCommDAO_iBatis implements FreeBoardCommDAO {
+
+	private SqlMapClient client;
+
+	public void setClient(SqlMapClient client) {
+		this.client = client;
+	}
+
+	@Override
+	public int insertFreeBoardComm(FreeBoardCommVO freeBoardCommVO)
+			throws SQLException {
+		int result = -1;
+		// 성공시..
+		if (client.insert("insertFreeBoardComm", freeBoardCommVO) == null)
+			result = 1;
+
+		return result;
+
+	}
+
+	@Override
+	public ArrayList<FreeBoardCommVO> listFreeBoardComm(
+			String freeboard_posting_no) throws SQLException {
+		ArrayList<FreeBoardCommVO> freeBoardCommList = (ArrayList<FreeBoardCommVO>) client
+				.queryForList("listFreeBoardComm", freeboard_posting_no);
+		
+		return freeBoardCommList;
+	}
+
+}
