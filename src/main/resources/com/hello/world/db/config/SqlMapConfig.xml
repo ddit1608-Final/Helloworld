@@ -12,4 +12,5 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/Resm.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/PointbfOwn.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/Crr.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/FreeBoardComm.xml" />
 </sqlMapConfig>

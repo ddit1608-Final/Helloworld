@@ -29,6 +29,10 @@
 	
 	<bean id="crrDao" class="com.hello.world.dao.iBatis.CrrDAO_iBatis"
 		p:client-ref="sqlMapClient" />
+	
+	<bean id="freeBoardCommDAO" class="com.hello.world.dao.iBatis.FreeBoardCommDAO_iBatis" 
+		p:client-ref="sqlMapClient"
+	/>
       
    <!-- Service -->
    <bean id="ResmService" class="com.hello.world.service.ResmService" >
@@ -53,4 +57,9 @@
 		
 	<bean id="crrService" class="com.hello.world.service.CrrService"
 		p:langDao-ref="crrDao" />
+		
+	<bean id="FreeBoardCommService" class="com.hello.world.service.FreeBoardCommService"
+		p:freeBoardCommDAO-ref="freeBoardCommDAO"
+	 />
+      
 </beans>
