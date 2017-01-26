@@ -13,9 +13,10 @@
 		<table style="boader: 1px solid black;">
 		<tr>
 			<td>
-			이메일:<input type="text" name="mem_mail">비번:<input type="text" name="freeboard_pwd"><br>
+			작성자:<label>${loginUser.mem_nick}</label><br>
 			제목:<input type="text" name="freeboard_title"><br>
-			내용:<textarea rows="8" cols="65" name="freeboard_cont"></textarea>
+			내용:<textarea rows="8" cols="65" name="freeboard_cont"></textarea><br>
+			게시글 비밀번호:<input type="text" name="freeboard_pwd"><!-- type password로 바뀔것임 테스트보기위해 당분간 text -->
 			</td>
 		</tr>
 		</table>
