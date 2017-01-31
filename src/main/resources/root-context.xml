@@ -12,7 +12,6 @@
    </bean>
 	<bean id="langDao" class="com.hello.world.dao.iBatis.LangDAO_iBatis"
 		p:client-ref="sqlMapClient" />
-	
 
    <bean id="freeBoardDAO" class="com.hello.world.dao.iBatis.FreeBoardDAO_iBatis">
       <property name="client" ref="sqlMapClient"/>
@@ -31,6 +30,10 @@
 		p:client-ref="sqlMapClient" />
 	
 	<bean id="freeBoardCommDAO" class="com.hello.world.dao.iBatis.FreeBoardCommDAO_iBatis" 
+		p:client-ref="sqlMapClient"
+	/>
+	
+	<bean id="compMemDao" class="com.hello.world.dao.iBatis.CompMemberDAO_iBatis"
 		p:client-ref="sqlMapClient"
 	/>
       
@@ -61,5 +64,9 @@
 	<bean id="FreeBoardCommService" class="com.hello.world.service.FreeBoardCommService"
 		p:freeBoardCommDAO-ref="freeBoardCommDAO"
 	 />
+	  
+	<bean id="compMemService" class="com.hello.world.service.CompMemberService"
+		p:compMemDao-ref="compMemDao"
+	/>
       
 </beans>

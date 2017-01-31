@@ -5,7 +5,7 @@ public class CompanyMemberVO {
 	private String compmem_bsnss_lcse_no; // 사업자 등록번호
 	private String compmem_mail; // 이메일
 	private String compmem_nm; // 가입자명
-	private String compmem_pw; // 패스워드
+	private String compmem_pwd; // 패스워드
 	private String compmem_workp; // 근무지
 	private String compmem_ceo; // 대표자
 	private String compmem_comp_nm; // 회사명
@@ -35,12 +35,12 @@ public class CompanyMemberVO {
 		this.compmem_nm = compmem_nm;
 	}
 
-	public String getCompmem_pw() {
-		return compmem_pw;
+	public String getCompmem_pwd() {
+		return compmem_pwd;
 	}
 
-	public void setCompmem_pw(String compmem_pw) {
-		this.compmem_pw = compmem_pw;
+	public void setCompmem_pwd(String compmem_pwd) {
+		this.compmem_pwd = compmem_pwd;
 	}
 
 	public String getCompmem_workp() {
@@ -73,15 +73,5 @@ public class CompanyMemberVO {
 
 	public void setCompmem_phn(String compmem_phn) {
 		this.compmem_phn = compmem_phn;
-	}
-
-	@Override
-	public String toString() {
-		return "CompanyMember [compmem_bsnss_lcse_no=" + compmem_bsnss_lcse_no
-				+ ", compmem_mail=" + compmem_mail + ", compmem_nm="
-				+ compmem_nm + ", compmem_pw=" + compmem_pw
-				+ ", compmem_workp=" + compmem_workp + ", compmem_ceo="
-				+ compmem_ceo + ", compmem_comp_nm=" + compmem_comp_nm
-				+ ", compmem_phn=" + compmem_phn + "]";
 	}
 }

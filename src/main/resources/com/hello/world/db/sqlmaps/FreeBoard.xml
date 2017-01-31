@@ -17,10 +17,10 @@
 		select * from freeBoard where freeboard_posting_no=#freeboard_posting_no#
 	</select>
 	
-	<insert id="insertFreeBoard" parameterClass="freeboard">
+	<update id="insertFreeBoard" parameterClass="freeboard">
 		insert into freeboard(freeboard_posting_no,mem_mail,freeboard_title,freeboard_cont,freeboard_pwd)
 			values(freeboard_posting_no.nextval,#mem_mail#,#freeboard_title#,#freeboard_cont#,#freeboard_pwd#)
-	</insert>
+	</update>
 	
 	<update id="updateFreeBoard" parameterClass="freeboard">
 		UPDATE freeBoard

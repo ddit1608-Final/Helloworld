@@ -2,6 +2,21 @@
  * 
  */
 
+function autoHypenLicense() {
+	var str = $('#compmem_bsnss_lcse_no').val();
+	
+	var length = str.length;
+	
+	if(length==3 || length==6) {
+		$('#compmem_bsnss_lcse_no').val(str+"\-");
+	}
+
+}
+
+function go_joinComp() {
+	$('#joinCompForm').submit();
+}
+
 function go_join(certifi) {
 	var result = true;
 
@@ -51,6 +66,8 @@ function go_join(certifi) {
 	}
 
 }
+
+
 // 이메일 유효성.
 function check_mail() {
 	var mail = $('#mem_mail').val();
@@ -172,13 +189,14 @@ function check_addr() {
 }
 
 function checkDepulicateId() {
-	var formData = $("#joinForm").serialize();
-
 	$
 			.ajax({
 				url : "<%=request.getContextPath()%>/member/duplicationCheck",
 				type : "post",
-				data : formData,
+				dataType : "text",
+				data : ({
+					mem_mail:$("#mem_mail").val()
+				}),
 				success : function(data) {
 					if (data == 1) {
 						document.getElementById("mailCheck").value = "이미 해당 아이디로 가입된 회원가 있습니다.";
