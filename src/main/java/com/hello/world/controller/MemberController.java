@@ -81,8 +81,13 @@ public class MemberController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
-	public String joinMemberForm(Model model) {
+	public String joinMemberForm(Model model, HttpSession session) {
 		String url = "member/JoinForm";
+		
+		if(session.getAttribute("loginUser")!=null) {
+			url = "redirect:/index2.jsp";
+			return url;
+		}
 
 		ArrayList<LangVO> langList = new ArrayList<LangVO>();
 		ArrayList<CrrVO> crrList = new ArrayList<CrrVO>();
@@ -102,25 +107,36 @@ public class MemberController implements ServletContextAware {
 	}
 	
 	@RequestMapping(value = "/joinMenu", method = RequestMethod.GET)
-	public String JoinMenu() {
+	public String JoinMenu(HttpSession session) {
 		String url = "member/JoinMenu";
 		
+		if(session.getAttribute("loginUser")!=null) {
+			url = "redirect:/index2.jsp";
+		}
 
 		return url;
 	}
 	
 	@RequestMapping(value = "/joinCompany", method = RequestMethod.GET)
-	public String JoinCompanyForm() {
+	public String JoinCompanyForm(HttpSession session) {
 		String url = "member/JoinCompForm";
 		
+		if(session.getAttribute("loginUser")!=null) {
+			url = "redirect:/index2.jsp";
+		}
 
 		return url;
 	}
 	
 	@RequestMapping(value = "/joinCompany", method = RequestMethod.POST)
-	public String JoinCompany(CompanyMemberVO compMemVo, Model model) {
+	public String JoinCompany(CompanyMemberVO compMemVo, Model model, HttpSession session) {
 		String url = "redirect:/index2.jsp";
 		int result = 0;
+		
+		if(session.getAttribute("loginUser")!=null) {
+			url = "redirect:/index2.jsp";
+			return url;
+		}
 		
 		try {
 			result = compMemService.joinCompMember(compMemVo);
@@ -143,9 +159,14 @@ public class MemberController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String joinMember(MemVO memVO, Model model) {
+	public String joinMember(MemVO memVO, Model model, HttpSession session) {
 		String url = "redirect:/index2.jsp";
 		int result = 0;
+		
+		if(session.getAttribute("loginUser")!=null) {
+			url = "redirect:/index2.jsp";
+			return url;
+		}
 
 		try {
 			result = memService.joinMember(memVO);
@@ -189,10 +210,11 @@ public class MemberController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String login_mem_mail, String login_mem_pw,
+	public String login(String login_mem_mail, String login_mem_pw, String prePage,
 			Model model, HttpSession session) {
-		String url = "redirect:/index2.jsp";
+		String url = "redirect:"+prePage;
 		String sessionId = "";
+		System.err.println(prePage);
 
 		MemVO mem = new MemVO();
 		int sum = 0;

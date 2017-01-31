@@ -275,6 +275,7 @@ color:#a31313;
 	<div class="collapse navbar-collapse" id="myNavbar" style="background-color: #d9d9d9;">
 	<form method="post" id="login" name="login" style="margin: 0;" 
 			action="<%=request.getContextPath()%>/member/login">
+			<input name="prePage" hidden="hidden" value="<%=request.getRequestURL()%>">
       <ul class="nav navbar-nav">
       	<c:choose>
       		<c:when test="${loginUser eq null }">
