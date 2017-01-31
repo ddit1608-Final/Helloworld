@@ -287,14 +287,14 @@ color:#a31313;
 						<input id="check2" type="checkbox"
 						style="vertical-align: text-top;"> 자동
 				</label></li>
-		    	<li><a href="<%=request.getContextPath()%>/member/join" id="aa">회원가입</a></li>
+		    	<li><a href="<%=request.getContextPath()%>/member/joinMenu" id="aa">회원가입</a></li>
       		</c:when>
       		<c:otherwise>
       			<li id="mem_mail" name="mem_mail">(Level) ${loginUser.mem_nick } (POINT : ${myPoint }) </li>
-				<li><a href="#" id="aa">접속자수</a></li>
+				<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 				<li><a href="#" id="aa">반응 ()</a></li>
 				<li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li>
-				<li><a href="<%=request.getContextPath()%>/member/logout" id="aa">로그아웃</a></li>
+				<li><a href="<%=request.getContextPath()%>/member/logout?"+${loginUser.mem_mail } id="aa">로그아웃</a></li>
       		</c:otherwise>
       	</c:choose>
     	<li><a href="#" id="aa">아이디/비밀번호 찾기</a></li>

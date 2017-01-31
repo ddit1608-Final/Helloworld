@@ -15,4 +15,5 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/JobhtBoard.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/FreeBoardComm.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoard.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/CompMem.xml" />
 </sqlMapConfig>

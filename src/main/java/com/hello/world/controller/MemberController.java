@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +16,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.context.request.RequestContextHolder;
 
 import com.hello.world.dto.AddressVO;
+import com.hello.world.dto.CompanyMemberVO;
 import com.hello.world.dto.CrrVO;
 import com.hello.world.dto.LangVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.PointVO;
 import com.hello.world.service.AddressService;
+import com.hello.world.service.CompMemberService;
 import com.hello.world.service.CrrService;
 import com.hello.world.service.LangService;
 import com.hello.world.service.MemberService;
@@ -29,12 +34,17 @@ import com.hello.world.service.PointService;
 
 @Controller
 @RequestMapping("member")
-public class MemberController {
+public class MemberController implements ServletContextAware {
+	
+	private ServletContext servletContext;
 	
 	// 2017-01-26 jihyun.Park, session ID처리 추가 해야함...
 	// 접속자 처리하기 위해..
 	private HashMap<String, String> sessionMap = new HashMap<String, String>();
 
+	@Autowired
+	private CompMemberService compMemService;
+	
 	@Autowired
 	private MemberService memService;
 
@@ -90,6 +100,47 @@ public class MemberController {
 
 		return url;
 	}
+	
+	@RequestMapping(value = "/joinMenu", method = RequestMethod.GET)
+	public String JoinMenu() {
+		String url = "member/JoinMenu";
+		
+
+		return url;
+	}
+	
+	@RequestMapping(value = "/joinCompany", method = RequestMethod.GET)
+	public String JoinCompanyForm() {
+		String url = "member/JoinCompForm";
+		
+
+		return url;
+	}
+	
+	@RequestMapping(value = "/joinCompany", method = RequestMethod.POST)
+	public String JoinCompany(CompanyMemberVO compMemVo, Model model) {
+		String url = "redirect:/index2.jsp";
+		int result = 0;
+		
+		try {
+			result = compMemService.joinCompMember(compMemVo);
+
+			// 가입 성공시
+			if (result == 1) {
+				model.addAttribute("join","success");
+			}
+			// 가입실패
+			else {
+				model.addAttribute("join","fail");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		return url;
+	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinMember(MemVO memVO, Model model) {
@@ -121,11 +172,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/duplicationCheck", method = RequestMethod.POST)
-	public int duplicationCheckID(MemVO memVO, Model model) {
+	@ResponseBody
+	public int duplicationCheckID(HttpServletRequest request , Model model) {
 		int result = -1;
+		
+		String mem_mail = request.getParameter("mem_mail");
 
 		try {
-			result = memService.confirmID(memVO.getMem_mail());
+			result = memService.confirmID(mem_mail);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,6 +192,7 @@ public class MemberController {
 	public String login(String login_mem_mail, String login_mem_pw,
 			Model model, HttpSession session) {
 		String url = "redirect:/index2.jsp";
+		String sessionId = "";
 
 		MemVO mem = new MemVO();
 		int sum = 0;
@@ -147,7 +202,8 @@ public class MemberController {
 		if (mem == null) {
 			url = url + "?loginResult:notexist";
 		} else {
-
+			
+			// 로그인 성공시.
 			if (login_mem_pw.equals(mem.getMem_pw())) {
 				try {
 					sum = poingService.sumPoint(mem.getMem_mail());
@@ -157,9 +213,20 @@ public class MemberController {
 					e.printStackTrace();
 				}
 				session.setAttribute("loginUser", mem);
+				sessionId =	RequestContextHolder.currentRequestAttributes().getSessionId(); 
+				setSessionMap(mem.getMem_mail(), sessionId);
+				//model.addAttribute("loginUserCnt", sessionMap.size());
+				//session.setAttribute("loginUserCnt", sessionMap.size());
+				
+				// 처리 하는 부분 수정해야함....
+				// 2017-01-26 jihyun.Park
+				servletContext.setAttribute("loginUserCnt", sessionMap.size());
+				
 				url = url + "?loginResult:"+RequestContextHolder.currentRequestAttributes().getSessionId();
 				System.out.println(RequestContextHolder.currentRequestAttributes().getSessionId());
-			} else {
+			}
+			// 로그인 실패(패스워드 불일치)
+			else {
 				url = url + "?loginResult:pwdMismatch";
 			}
 		}
@@ -168,10 +235,11 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, String mem_mail) {
 		String url = "redirect:/index2.jsp";
 
 		session.removeAttribute("loginUser");
+		removeSessionMap(mem_mail);
 
 		return url;
 	}
@@ -201,7 +269,17 @@ public class MemberController {
 	}
 	
 	// 2017-01-26 jihyun.Park, session ID처리 추가 해야함...
-	private void setSessionMap() {
+	private void setSessionMap(String mem_mail, String sessionId) {
+		sessionMap.put(mem_mail, sessionId);
+	}
+	
+	private void removeSessionMap(String mem_mail) {
+		sessionMap.remove(mem_mail);
+	}
+
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
 		
 	}
 	

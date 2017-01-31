@@ -52,9 +52,11 @@
 		<div id="divdiv">
 		<table style="margin: 0 auto;">
 			<tr>
-				<td><input type="button" class="btn btn-success btn-sm"
-					value="글쓰기"
+				<td>
+				<c:if test="${loginUser != null}"> 
+				<input type="button" class="btn btn-success btn-sm" value="글쓰기"
 					onclick="location.href='<%=request.getContextPath()%>/free/freeBoardWriteForm.do'">
+				</c:if>
 					<input type="button" class="btn btn-success btn-sm" value="메인"
 					onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
 					<%-- <input type="button" value="글쓰기" class="submit"onclick="location.href='<%=request.getContextPath()%>/free/freeBoardWriteForm.do'"> --%>

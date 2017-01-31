@@ -20,6 +20,19 @@
 		* from freeboard_comm where FREEBOARD_POSTING_NO =
 		#freeboard_posting_no# order by FREEBOARD_COMM_WRIDATE asc
 	</select>
+	
+	<delete id="deleteFreeBoardComm" parameterClass="str">
+		delete
+		from freeboard_comm
+		where freeboard_ans_code=#freeboard_ans_code#
+	</delete>
+	
+	<update id="updateFreeBoardComm" parameterClass="freecomm">
+		UPDATE freeBoard_comm
+		SET
+			FREEBOARD_COMM_CONT = #freeboard_comm_cont#
+		WHERE freeboard_ans_code= #freeboard_ans_code#
+	</update>
 
 
 </sqlMap>

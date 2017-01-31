@@ -134,7 +134,19 @@ public class FreeBoardController {
 		System.out.println(freeBoardVO);
 		/* memberService.insertFreeBoard(freeBoardVO, loginUser.getMem_mail()); */
 		// memberService.insertFreeBoard(freeBoardVO,"shm@naver.com");
-		freeService.insertFreeBoard(freeBoardVO);
+		try {
+			//	insert 성공
+			if(freeService.insertFreeBoard(freeBoardVO) == 1) {
+				url += "?result:success";
+			}
+			//실패
+			else {
+				url += "?result:fail";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		return url;
 	}
@@ -197,5 +209,24 @@ public class FreeBoardController {
 		}
 
 		return url;
+	}
+	@RequestMapping(value = "/deleteFreeBoardComm.do")
+	public String deleteFreeBoardComm(@RequestParam String freeboard_ans_code,FreeBoardCommVO fbcVO,
+			HttpSession session) throws ServletException, IOException {
+		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
+				+ fbcVO.getFreeboard_posting_no();
+		System.out.println(fbcVO.getFreeboard_posting_no());
+		freeBoardCommService.deleteFreeBoardComm(freeboard_ans_code);
+
+		return url;
+	}
+	// 수정 미구현
+	@RequestMapping("/updateFreeBoardComm.do")
+	public String updateFreeBoardComm(
+			@RequestParam String freeboard_ans_code, FreeBoardCommVO fbcVO, HttpSession session,
+			Model model) throws ServletException, IOException {
+		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
+				+ fbcVO.getFreeboard_posting_no();
+		return null;
 	}
 }

@@ -11,13 +11,12 @@ public class FreeBoardService {
 
 	static int view_rows = 10; // �������� ����
 	static int counts = 15; // �� �������� ��Ÿ�� ��ǰ�� ����
-	
+
 	FreeBoardDAO freeBoardDAO;
-	
-	public void setFreeBoardDAO(FreeBoardDAO freeBoardDAO){
-		this.freeBoardDAO=freeBoardDAO;
+
+	public void setFreeBoardDAO(FreeBoardDAO freeBoardDAO) {
+		this.freeBoardDAO = freeBoardDAO;
 	}
-	
 
 	public ArrayList<FreeBoardVO> listAllFreeBoard(int tpage,
 			String freeboard_title) throws SQLException {
@@ -36,14 +35,14 @@ public class FreeBoardService {
 		endRow = startRow + counts - 1;
 		if (endRow > totalRecord)
 			endRow = totalRecord;
-		
-		list = freeBoardDAO.listAllFreeBoard(startRow,freeboard_title,counts);
+
+		list = freeBoardDAO.listAllFreeBoard(startRow, freeboard_title, counts);
 
 		return list;
 	}
-	
-	public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
-		ArrayList<FreeBoardVO> freeBoardList=null;
+
+	public ArrayList<FreeBoardVO> getFreeBoardList(String loginID) {
+		ArrayList<FreeBoardVO> freeBoardList = null;
 
 		try {
 
@@ -54,8 +53,8 @@ public class FreeBoardService {
 		}
 		return freeBoardList;
 	}
-	
-	public FreeBoardVO getFreeBoardVO(String freeboard_posting_no){
+
+	public FreeBoardVO getFreeBoardVO(String freeboard_posting_no) {
 		FreeBoardVO freeBoardVO = null;
 		try {
 			freeBoardVO = freeBoardDAO.getFreeBoard(freeboard_posting_no);
@@ -64,46 +63,43 @@ public class FreeBoardService {
 		}
 		return freeBoardVO;
 	}
-	
-	public void insertFreeBoard(FreeBoardVO freeBoardVO){		
-		try {
-			freeBoardDAO.insertFreeBoard(freeBoardVO);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+
+	public int insertFreeBoard(FreeBoardVO freeBoardVO) throws SQLException {
+		return freeBoardDAO.insertFreeBoard(freeBoardVO);
 	}
-	public FreeBoardVO getFreeDetail(String freeboard_posting_no){
+
+	public FreeBoardVO getFreeDetail(String freeboard_posting_no) {
 		FreeBoardVO freeBoardVO = null;
-		
+
 		try {
 			freeBoardVO = freeBoardDAO.getFreeDetail(freeboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return freeBoardVO;
 	}
-	public void updateFreeBoard(FreeBoardVO freeBoardVO){		
+
+	public void updateFreeBoard(FreeBoardVO freeBoardVO) {
 		try {
 			freeBoardDAO.updateFreeBoard(freeBoardVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void deleteFreeBoard(String freeboard_posting_no){
-		
+
+	public void deleteFreeBoard(String freeboard_posting_no) {
+
 		try {
 			freeBoardDAO.deleteFreeBoard(freeboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
+
 	public String pageNumber(int tpage, String name) throws SQLException {
 		String str = "";
 
@@ -148,14 +144,3 @@ public class FreeBoardService {
 		return str;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-

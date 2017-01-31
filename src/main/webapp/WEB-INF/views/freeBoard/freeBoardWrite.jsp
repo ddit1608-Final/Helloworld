@@ -10,8 +10,6 @@
 	<form id="fdf" name="form" method="post" action="freeBoardWrite.do">
 			<!-- freeboard_posting_no,mem_mail,freeboard_title,freeboard_cont -->
 		<table class="table .table-condensed" id="bwt">
-		
-	
 <thead>
       <tr style="border-bottom:1px solid #c9c9c9;">
         <td style="width:20%;">작성자 ${loginUser.mem_nick}</td>
