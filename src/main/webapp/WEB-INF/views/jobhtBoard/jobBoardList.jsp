@@ -20,24 +20,23 @@
 			</tr>
 			<c:forEach items="${JobhtBoardList}" var="jobhtBoardVO">
 				<tr>
+					<td style="text-align: center;">${jobhtBoardVO.jobhtboard_posting_no }</td>
 					<td>${jobhtBoardVO.jobhtboard_title }</td>
-				</tr>
-				<tr>
-					<td><fmt:formatDate value="${jobhtBoardVO.jobhtboard_wri_date}" type="date" /></td>
+					<td style="text-align: center;" >${loginUser.mem_nm }</td>				
+					<td style="text-align: center;"><fmt:formatDate value="${jobhtBoardVO.jobhtboard_wri_date}" type="date" /></td>
 				</tr>
 			</c:forEach>
+			<tr>
+						<td colspan="5" style="text-align: center;">${paging}</td>
+					</tr>
 			</table >
 			<table style="margin:0 auto;">
 			<tr>
 			<td><input type="button" class="btn btn-success btn-sm" value="글쓰기"
-				  	onclick="location.href='<%=request.getContextPath()%>/free/freeBoardWriteForm.do'">
+				  	onclick="location.href='<%=request.getContextPath()%>/jobht/jobhtForm.do'">
 				<input type="button" class="btn btn-success btn-sm" value="메인"
 				  	onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
-			<%-- <input type="button" value="글쓰기" class="submit"onclick="location.href='<%=request.getContextPath()%>/free/freeBoardWriteForm.do'"> --%>
-			</td>
-			<td>
-			<%-- <input type="button" value="메인" class="cancel"
-				onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"> --%>
+			
 			</td>
 			</tr>
 		</table>
