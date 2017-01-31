@@ -43,6 +43,10 @@
 	<bean id="qnaBoardDao" class="com.hello.world.dao.iBatis.QnaBoard_iBatis" 
 		p:client-ref="sqlMapClient"	
 	/>
+	<bean id="qnaBoardCommDAO" class="com.hello.world.dao.iBatis.QnaBoardCommDAO_iBatis"
+		p:client-ref="sqlMapClient"
+	/>
+	
       
    <!-- Service -->
    <bean id="ResmService" class="com.hello.world.service.ResmService" >
@@ -83,6 +87,10 @@
 	  
 	<bean id="compMemService" class="com.hello.world.service.CompMemberService"
 		p:compMemDao-ref="compMemDao"
+	/>
+	
+	<bean id="qnaBoardCommService" class="com.hello.world.service.QnaBoardCommService"
+		p:qnaBoardCommDAO-ref="qnaBoardCommDAO"
 	/>
       
 </beans>

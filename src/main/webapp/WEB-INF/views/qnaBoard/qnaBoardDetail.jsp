@@ -20,8 +20,8 @@
   
   	 <tr> 
 	    <th>NAME</th>
-	    <td>${freeBoardVO.mem_nick }</td>
-	    <td><b>DATE</b> &nbsp;${freeBoardVO.freeboard_wridate }</td>
+	    <td>${qnaBoardVO.mem_nick }</td>
+	    <td><b>DATE</b> &nbsp;${qnaBoardVO.qnaboard_wridate }</td>
 	    
   	 </tr>
  		 
@@ -35,7 +35,7 @@
    
   </tr>
   <tr>
-   <td colspan="3">${freeBoardVO.freeboard_cont }</td>
+   <td colspan="3">${qnaBoardVO.qnaboard_cont }</td>
   
    </tr>
   	<%-- <c:forEach items="${freeBoardList}" var="freeBoardVO">
@@ -48,7 +48,7 @@
 		</table>
 		<!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. -->
 <div id="divdiv">
-		<c:if test="${loginUser.mem_mail ==freeBoardVO.mem_mail }">
+		<c:if test="${loginUser.mem_mail ==qnaBoardVO.mem_mail }">
 			<input class="btn" type="button" value="수정"
 				onClick="location.href='/world/free/freeBoardUpdateForm.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}'">
 			<input class="btn" type="button" value="삭제"
@@ -65,22 +65,28 @@
 		<table>
 			<thead>
 				<tr>
-					<td colspan="2">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
+					<td colspan="2">댓글이 ${qnaBoardCommListCnt }개 달렸습니다.</td>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${freeBoardCommList}" var="freeBoardComm">
+				<c:forEach items="${qnaBoardCommList}" var="qnaBoardComm">
 					<tr>
-						<td>${ freeBoardComm.freeboard_comm_wri}</td>
-						<td>${ freeBoardComm.freeboard_comm_cont}</td>
+						<td>${ qnaBoardComm.qnaboard_comm_wri}</td>
+						<td>${ qnaBoardComm.qnaboard_comm_cont}</td>
+						<c:if test="${loginUser.mem_mail ==qnaBoardComm.qnaboard_comm_wri }">
+						<td><a href="/world/qna/qnaBoardCommUpdateForm.do?qnaboard_ans_code=${qnaBoardComm.qnaboard_ans_code}">수정</a>/
+							<a href="/world/qna/deleteqnaBoardComm.do?qnaboard_ans_code=${qnaBoardComm.qnaboard_ans_code}
+								&qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">삭제</a>
+						</td>
+						</c:if>
 					<tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		
 		
-		<input type="text" id="freeboard_comm_cont" name="freeboard_comm_cont">
-		<input type="hidden" id="freeboard_posting_no" name="freeboard_posting_no" value="${freeBoardVO.freeboard_posting_no }">
+		<input type="text" id="qnaboard_comm_cont" name="qnaboard_comm_cont">
+		<input type="hidden" id="qnaboard_posting_no" name="qnaboard_posting_no" value="${qnaBoardVO.qnaboard_posting_no }">
 		<input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}">
 		<input type="submit" value="댓글등록">
 	</form>

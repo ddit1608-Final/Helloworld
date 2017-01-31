@@ -11,8 +11,15 @@ public class QnaBoardVO {
 	private int qnaboard_hits;
 	private String qnaboard_pwd;
 	private String mem_mail;
+	private String mem_nick;
 	
 	
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
+	}
 	public String getQnaboard_posting_no() {
 		return qnaboard_posting_no;
 	}

@@ -23,24 +23,24 @@
 				<td style="text-align: center;">DATE</td>
 			</tr>
 			<c:choose>
-				<c:when test="${freeBoardListSize<=0}">
+				<c:when test="${qnaBoardListSize<=0}">
 					<tr>
 						<td width="100%" colspan="6" align="center" height="23">
 							There are no registered freeboard.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${qnaBoardList}" var="freeBoardVO">
+					<c:forEach items="${qnaBoardList}" var="qnaBoardVO">
 						<tr>
-							<td style="text-align: center;">${qnaBoardVO.freeboard_posting_no}</td>
+							<td style="text-align: center;">${qnaBoardVO.qnaboard_posting_no}</td>
 							<td><a
-								href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">${freeBoardVO.freeboard_title}</a>
+								href="/world/qna/qnaBoardDetail.do?qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">${qnaBoardVO.qnaboard_title}</a>
 							</td>
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
-							<td style="text-align: center;">${freeBoardVO.mem_nick}</td>
+							<td style="text-align: center;">${qnaBoardVO.mem_nick}</td>
 							<%-- <td>${loginUser.mem_nick}</td> --%>
 							<td style="text-align: center;"><fmt:formatDate
-									value="${freeBoardVO.freeboard_wridate}" type="date" /></td>
+									value="${qnaBoardVO.qnaboard_wridate}" type="date" /></td>
 						</tr>
 					</c:forEach>
 					<tr>
@@ -54,7 +54,7 @@
 			<tr>
 				<td><input type="button" class="btn btn-success btn-sm"
 					value="글쓰기"
-					onclick="location.href='<%=request.getContextPath()%>/free/freeBoardWriteForm.do'">
+					onclick="location.href='<%=request.getContextPath()%>/qna/qnaBoardWriteForm.do'">
 					<input type="button" class="btn btn-success btn-sm" value="메인"
 					onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
 					<%-- <input type="button" value="글쓰기" class="submit"onclick="location.href='<%=request.getContextPath()%>/free/freeBoardWriteForm.do'"> --%>
