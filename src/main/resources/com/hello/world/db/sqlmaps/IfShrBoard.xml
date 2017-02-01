@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="IfShrBoard">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="ifshrboard" type="com.hello.world.dto.IfShrBoardVO" />
+
+	<!-- <select id="listIfShrBoard" parameterClass="str" resultClass="ifshrboard">
+		select * from ifshrboard where mem_mail =#mem_mail#
+	</select>-->
+
+<!-- 	<select id="getIfShrBoard" parameterClass="str" resultClass="ifshrboard" >
+		select * from ifshrboard where
+		ifshrboard_posting_no=#ifshrboard_posting_no#
+	</select>  -->
+
+	<select id="listAllIfShrBoard" parameterClass="str" resultClass="ifshrboard">
+		select * from memifshr where ifshrboard_title like
+		'%'||#ifshrboard_title#||'%' order by ifshrboard_posting_no desc
+	</select>
+
+	<select id="totalIfShrBoard" parameterClass="str" resultClass="int">
+		select count(*) from ifshrboard where ifshrboard_title like
+		'%'||#ifshrboard_title#||'%'
+	</select>
+
+</sqlMap>

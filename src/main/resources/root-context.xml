@@ -16,6 +16,8 @@
    <bean id="freeBoardDAO" class="com.hello.world.dao.iBatis.FreeBoardDAO_iBatis">
       <property name="client" ref="sqlMapClient"/>
    </bean>
+   <bean id="ifShrBoardDAO" class="com.hello.world.dao.iBatis.IfShrBoardDAO_iBatis"
+		p:client-ref="sqlMapClient" />
 
 	<bean id="meetBoardDAO" class="com.hello.world.dao.iBatis.MeetBoardDAO_iBatis"
    	  p:client-ref="sqlMapClient" />
@@ -67,6 +69,9 @@
    <bean id="FreeBoardService" class="com.hello.world.service.FreeBoardService" >
       <property name="freeBoardDAO" ref="freeBoardDAO" />      
    </bean>
+   <bean id="ifShrBoardService" class="com.hello.world.service.IfShrBoardService"
+		p:ifShrBoardDAO-ref="ifShrBoardDAO" />
+   
 <bean id="MeetBoardService" class="com.hello.world.service.MeetBoardService">
       <property name="meetBoardDAO" ref="meetBoardDAO"/>
    </bean>

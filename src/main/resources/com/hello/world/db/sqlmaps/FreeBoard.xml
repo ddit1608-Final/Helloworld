@@ -14,7 +14,7 @@
 	</select>
 	
 	<select id="getFreeBoard" parameterClass="str" resultClass="freeboard">
-		select * from freeBoard where freeboard_posting_no=#freeboard_posting_no#
+		select * from freeboard where freeboard_posting_no=#freeboard_posting_no#
 	</select>
 	
 	<update id="insertFreeBoard" parameterClass="freeboard">
