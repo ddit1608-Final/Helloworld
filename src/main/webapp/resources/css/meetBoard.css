@@ -1,0 +1,64 @@
+@CHARSET "UTF-8";
+
+#meetLogo{
+	margin:1% auto 1% 5%;
+	border:5px solid #3EAF0E;
+	border-style: dashed;
+	width:90%;
+	
+}
+
+#bwt{
+	width:90%;
+	margin:1% auto;
+	font-family:한나;
+	font-size:12pt;
+	
+}
+
+#divdiv{
+	
+	margin:5% auto;
+		
+}
+
+
+
+
+#fdf{
+	background-color: #f3f3f3;
+	height: 100%;
+}
+.btn{
+	background-color: #8bdb69;
+	font-family: 한나;
+	color:black;
+	border:none;
+	font-size:12pt;
+}
+.btn:hover{
+	background-color: #62ce33;
+	color:black;
+}
+
+
+
+
+
+#blt{
+	width:90%;
+	margin:1% auto;
+	font-family:한나;
+	font-size:12pt;
+	
+	
+	
+}
+#blt tr:hover{
+	background-color: #8bdb69;
+	
+}
+#blt tr td a{
+	text-decoration: none;
+	color:black;
+}

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -215,18 +216,34 @@ public class FreeBoardController {
 			HttpSession session) throws ServletException, IOException {
 		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
 				+ fbcVO.getFreeboard_posting_no();
-		System.out.println(fbcVO.getFreeboard_posting_no());
 		freeBoardCommService.deleteFreeBoardComm(freeboard_ans_code);
 
 		return url;
 	}
-	// 수정 미구현
-	@RequestMapping("/updateFreeBoardComm.do")
+	// 수정 구현중
+	@RequestMapping(value="/freeBoardCommUpdateForm.do")
 	public String updateFreeBoardComm(
-			@RequestParam String freeboard_ans_code, FreeBoardCommVO fbcVO, HttpSession session,
-			Model model) throws ServletException, IOException {
+			@RequestParam String freeboard_ans_code,FreeBoardCommVO freeBoardCommVO, HttpSession session,
+			Model model, String commCont) throws ServletException, IOException {
+		
+		System.out.println("test"+freeBoardCommVO.getFreeboard_posting_no());
+		freeBoardCommVO.setFreeboard_comm_cont(commCont);
 		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
-				+ fbcVO.getFreeboard_posting_no();
-		return null;
+				+ freeBoardCommVO.getFreeboard_posting_no();
+		freeBoardCommService.updateFreeBoardComm(freeBoardCommVO);
+		
+		return url;
 	}
+/*	@RequestMapping(value = "/freeBoardCommUpdateForm.do")
+	public String updateFreeBoardComm(FreeBoardCommVO freeBoardCommVO, Model model, String mem_mail) throws SQLException {
+		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
+				+ freeBoardCommVO.getFreeboard_posting_no();
+
+		freeBoardCommVO.setFreeboard_comm_cont(mem_mail);
+		freeBoardCommService.updateFreeBoardComm(freeBoardCommVO);
+
+		return url;
+	}*/
+	
+	
 }

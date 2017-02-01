@@ -13,7 +13,7 @@
       <tr style="background-color: #8bdb69; border-bottom:2px solid #c9c9c9;">
         <th style="width:20%;">SUBJECT</th>
         <td style="width:60%;">${freeBoardVO.freeboard_title }</td>
-        <th style="width:20%;">추천 비추천</th>
+        <th style="width:20%;"><a href="#">추천</a>(#)/ <a href="#">비추천</a>(#)조회수(${ freeBoardVO.freeboard_hits})</th>
        
       </tr>
     </thead>
@@ -47,7 +47,7 @@
 	</c:forEach> --%>
 		</table>
 		<!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. -->
-<div id="divdiv">
+	<div id="divdiv">
 		<c:if test="${loginUser.mem_mail ==freeBoardVO.mem_mail }">
 			<input class="btn" type="button" value="수정"
 				onClick="location.href='/world/free/freeBoardUpdateForm.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}'">
@@ -60,9 +60,11 @@
 			</div>
 	</form>
 	
-	<form action="writeComm" id="writeComm" method="post">
-		<label>댓글 테스트</label> <br /> 
-		<table>
+	<form action="writeComm" id="writeComm" name="formm" method="post">
+		<div id="result">
+		<div id="div1">
+		<label>★★★★★★댓글★★★★★★</label> <br /> 
+		<table class="table table-condensed">
 			<thead>
 				<tr>
 					<td colspan="3">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
@@ -70,16 +72,23 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>작성자</td>
-					<td>내용</td>
+					<td style="width:100px">작성자</td>
+					<td style="width:800px">내용</td>
+					<td style="width:200px">작성날짜</td>
 					<td></td>
 				</tr>
 				<c:forEach items="${freeBoardCommList}" var="freeBoardComm">
-					<tr>
-						<td>${ freeBoardComm.freeboard_comm_wri}</td>
-						<td>${ freeBoardComm.freeboard_comm_cont}</td>
+					<tr id="commBody">
+						<td style="width:13%;">${ freeBoardComm.freeboard_comm_wri}</td>
+						<td style="width:70%;" id="add">${ freeBoardComm.freeboard_comm_cont}</td>
+						<td style="float:left; width:100%;">
+						<input type="button" value="추천">
+						<input type="button" value="비추천"></td>
+						<td>${ freeBoardComm.freeboard_comm_wridate }</td>
 						<c:if test="${loginUser.mem_mail ==freeBoardComm.freeboard_comm_wri }">
-						<td><a href="/world/free/freeBoardCommUpdateForm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}">수정</a>/
+						<td><%-- <a href="/world/free/freeBoardCommUpdateForm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}">수정</a> --%>
+							<a href="#" id="div1hide">수정</a>
+						/
 							<a href="/world/free/deleteFreeBoardComm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}
 								&freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">삭제</a>
 						</td>
@@ -88,10 +97,48 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		</div> <!-- div1 종료  -->
+		<div id="div2" style="display:none">
+			<label>★★★★★★댓글★★★★★★</label> <br /> 
+		<table>
+			<thead>
+				<tr>
+					<td colspan="3">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="width:100px">작성자</td>
+					<td style="width:800px">내용</td>
+					<td style="width:200px">작성날짜</td>
+					<td></td>
+				</tr>
+				<c:forEach items="${freeBoardCommList}" var="freeBoardComm">
+					<tr>
+						<c:if test="${loginUser.mem_mail ==freeBoardComm.freeboard_comm_wri }">
+						<td>${ freeBoardComm.freeboard_comm_wri}</td>
+						<td>
+						<%-- <textarea rows="6" cols="45" value=${ freeBoardComm.freeboard_comm_cont}></textarea> --%>
+						<input type="text" id="commCont" name="commCont" size="100" height="30" value="${ freeBoardComm.freeboard_comm_cont}">
+						</td>
+						<td>${ freeBoardComm.freeboard_comm_wridate }</td>
+						<td><a href="/world/free/freeBoardCommUpdateForm.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}&freeboard_ans_code=${freeBoardComm.freeboard_ans_code}
+							&freeboard_comm_cont=${freeboardComm.freeboard_comm_cont}" id="div2hide" onclick="freeBoardCommUpdateForm.do">수정하기</a>/
+							<a href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">수정취소</a>
+						</td>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		</div> <!-- div2 종료  -->
+		<c:if test="${loginUser!=null}">
 		<input type="text" id="freeboard_comm_cont" name="freeboard_comm_cont">
 		<input type="hidden" id="freeboard_posting_no" name="freeboard_posting_no" value="${freeBoardVO.freeboard_posting_no }">
 		<input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}">
-		<input type="submit" value="댓글등록">
-		
+		<input type="button" value="댓글등록" onclick="writeComm_go(this.formm)">
+		</c:if>
+		</div> <!-- result div  -->
 	</form>
+		
 </article>

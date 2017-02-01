@@ -16,6 +16,12 @@
    <bean id="freeBoardDAO" class="com.hello.world.dao.iBatis.FreeBoardDAO_iBatis">
       <property name="client" ref="sqlMapClient"/>
    </bean>
+   <bean id="ifShrBoardDAO" class="com.hello.world.dao.iBatis.IfShrBoardDAO_iBatis"
+		p:client-ref="sqlMapClient" />
+
+	<bean id="meetBoardDAO" class="com.hello.world.dao.iBatis.MeetBoardDAO_iBatis"
+   	  p:client-ref="sqlMapClient" />
+
    <bean id="resmDAO" class="com.hello.world.dao.iBatis.ResmDAO_iBatis">
    	 <property name="client" ref="sqlMapClient" />
    </bean>
@@ -47,7 +53,15 @@
 		p:client-ref="sqlMapClient"
 	/>
 	
+<<<<<<< HEAD
 	<bean id="qnaBoardChuDAO" class="com.hello.world.dao.iBatis.QnaBoardChuDAO_iBatis" 
+=======
+	<bean id="cstBoardDao" class="com.hello.world.dao.iBatis.CstBoard_iBatis" 
+		p:client-ref="sqlMapClient"
+	/>
+	
+	<bean id="flowDao" class="com.hello.world.dao.iBatis.FlowDAO_iBatis"
+>>>>>>> branch 'master' of https://github.com/ddit1608-Final/Helloworld.git
 		p:client-ref="sqlMapClient"
 	/>
 	
@@ -58,6 +72,12 @@
    </bean>   
    <bean id="FreeBoardService" class="com.hello.world.service.FreeBoardService" >
       <property name="freeBoardDAO" ref="freeBoardDAO" />      
+   </bean>
+   <bean id="ifShrBoardService" class="com.hello.world.service.IfShrBoardService"
+		p:ifShrBoardDAO-ref="ifShrBoardDAO" />
+   
+<bean id="MeetBoardService" class="com.hello.world.service.MeetBoardService">
+      <property name="meetBoardDAO" ref="meetBoardDAO"/>
    </bean>
    <bean id="memberService" class="com.hello.world.service.MemberService" >
       <property name="memDao" ref="memDAO" />
@@ -101,4 +121,11 @@
 		p:qnaBoardChuDAO-ref="qnaBoardChuDAO"
 	/>
       
+      		<bean id="flowService" class="com.hello.world.service.FlowService"
+		p:flowDao-ref="flowDao" 
+	/>
+
+	<bean id="cstBoardService" class="com.hello.world.service.CstBoardService"
+		p:cstBoardDao-ref="cstBoardDao"
+	/>
 </beans>

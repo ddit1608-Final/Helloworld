@@ -54,15 +54,27 @@
 #divdiv{
 	
 	margin:5% auto;
+	
 		
 }
 .btn{
 	background-color: #8bdb69;
 	font-family: 한나;
+	color:black;
+	border:none;
+	font-size:12pt;
 }
 .btn:hover{
 	background-color: #62ce33;
+	color:black;
 }
+#writeComm{
+	background-color: #f3f3f3;	
+}
+#commBody:hover{
+	background-color: #8bdb69; 
+}
+
 /* freeBoardDeatil 끝*/
 
 /* freeBoardWrite */
