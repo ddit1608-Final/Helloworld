@@ -19,4 +19,5 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardComm.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/CstBoard_Counsel.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/Flow.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/MeetBoard.xml" />
 </sqlMapConfig>

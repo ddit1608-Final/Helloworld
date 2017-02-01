@@ -64,7 +64,7 @@
 		<div id="result">
 		<div id="div1">
 		<label>★★★★★★댓글★★★★★★</label> <br /> 
-		<table>
+		<table class="table table-condensed">
 			<thead>
 				<tr>
 					<td colspan="3">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
@@ -78,9 +78,12 @@
 					<td></td>
 				</tr>
 				<c:forEach items="${freeBoardCommList}" var="freeBoardComm">
-					<tr>
-						<td>${ freeBoardComm.freeboard_comm_wri}</td>
-						<td id="add">${ freeBoardComm.freeboard_comm_cont}</td>
+					<tr id="commBody">
+						<td style="width:13%;">${ freeBoardComm.freeboard_comm_wri}</td>
+						<td style="width:70%;" id="add">${ freeBoardComm.freeboard_comm_cont}</td>
+						<td style="float:left; width:100%;">
+						<input type="button" value="추천">
+						<input type="button" value="비추천"></td>
 						<td>${ freeBoardComm.freeboard_comm_wridate }</td>
 						<c:if test="${loginUser.mem_mail ==freeBoardComm.freeboard_comm_wri }">
 						<td><%-- <a href="/world/free/freeBoardCommUpdateForm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}">수정</a> --%>
