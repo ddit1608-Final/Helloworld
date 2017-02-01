@@ -53,15 +53,14 @@
 		p:client-ref="sqlMapClient"
 	/>
 	
-<<<<<<< HEAD
-	<bean id="qnaBoardChuDAO" class="com.hello.world.dao.iBatis.QnaBoardChuDAO_iBatis" 
-=======
+	<bean id="qnaBoardChuDAO" class="com.hello.world.dao.iBatis.QnaBoardChuDAO_iBatis"
+		p:client-ref="sqlMapClient" 
+	/>
 	<bean id="cstBoardDao" class="com.hello.world.dao.iBatis.CstBoard_iBatis" 
 		p:client-ref="sqlMapClient"
 	/>
 	
 	<bean id="flowDao" class="com.hello.world.dao.iBatis.FlowDAO_iBatis"
->>>>>>> branch 'master' of https://github.com/ddit1608-Final/Helloworld.git
 		p:client-ref="sqlMapClient"
 	/>
 	
