@@ -21,6 +21,7 @@
 				<td style="text-align: center;">NAME</td>
 				<!-- <th>작성자</th> -->
 				<td style="text-align: center;">DATE</td>
+				<td style="text-align: center;">HITS</td>
 			</tr>
 			<c:choose>
 				<c:when test="${freeBoardListSize<=0}">
@@ -33,14 +34,15 @@
 					<c:forEach items="${freeBoardList}" var="freeBoardVO">
 						<tr>
 							<td style="text-align: center;">${freeBoardVO.freeboard_posting_no}</td>
-							<td><a
+							<td style="text-align: center;"><a
 								href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">${freeBoardVO.freeboard_title}</a>
 							</td>
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
 							<td style="text-align: center;">${freeBoardVO.mem_nick}</td>
 							<%-- <td>${loginUser.mem_nick}</td> --%>
 							<td style="text-align: center;"><fmt:formatDate
-									value="${freeBoardVO.freeboard_wridate}" type="date" /></td>
+									value="${freeBoardVO.freeboard_wridate}"  /></td>
+							<td style="text-align: center;">${ freeBoardVO.freeboard_hits}</td>
 						</tr>
 					</c:forEach>
 					<tr>

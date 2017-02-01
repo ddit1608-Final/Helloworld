@@ -1,5 +1,6 @@
 package com.hello.world.dto;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class FreeBoardCommVO {
@@ -8,7 +9,7 @@ public class FreeBoardCommVO {
 	private String freeboard_posting_no;		// 해당게시글 번호(seq)
 	private String freeboard_comm_cont;			// 답변 내용
 	private String freeboard_comm_wri;			// 답변 작성자 nick 가져올것 == mem_mail
-	private Date freeboard_comm_wridate;		// 답변 작성날짜	
+	private Timestamp freeboard_comm_wridate;		// 답변 작성날짜	
 	//private String mem_nick;					// 답변 작성자 nick
 	
 	
@@ -43,12 +44,13 @@ public class FreeBoardCommVO {
 	public void setFreeboard_comm_wri(String freeboard_comm_wri) {
 		this.freeboard_comm_wri = freeboard_comm_wri;
 	}
-	public Date getFreeboard_comm_wridate() {
+	public Timestamp getFreeboard_comm_wridate() {
 		return freeboard_comm_wridate;
 	}
-	public void setFreeboard_comm_wridate(Date freeboard_comm_wridate) {
+	public void setFreeboard_comm_wridate(Timestamp freeboard_comm_wridate) {
 		this.freeboard_comm_wridate = freeboard_comm_wridate;
 	}
+	
 	/*public FreeBoardCommVO(String freeboard_ans_code,
 			String freeboard_posting_no, String freeboard_comm_cont,
 			String freeboard_comm_wri, Date freeboard_comm_wridate,

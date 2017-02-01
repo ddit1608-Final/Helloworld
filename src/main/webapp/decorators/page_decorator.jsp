@@ -22,6 +22,8 @@
 	crossorigin="anonymous"></script>
   <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/member.js"></script>
+ <script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/freeboard.js"></script>
 <link href="<%=request.getContextPath()%>/resources/css/hw.css" rel="stylesheet">
 
 </head>
