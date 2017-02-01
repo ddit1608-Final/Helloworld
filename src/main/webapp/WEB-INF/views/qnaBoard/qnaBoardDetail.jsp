@@ -13,7 +13,7 @@
       <tr style="background-color: #8bdb69; border-bottom:2px solid #c9c9c9;">
         <th style="width:20%;">SUBJECT</th>
         <td style="width:60%;">${qnaBoardVO.qnaboard_title }</td>
-        <th style="width:20%;">추천 비추천</th>
+        <th style="width:20%;"><a href="#" onclick="chu('up','2')">추천</a> / 비추천</th>
        
       </tr>
     </thead>
@@ -91,3 +91,26 @@
 		<input type="submit" value="댓글등록">
 	</form>
 </article>
+
+<script>
+	function chu() {
+		
+		 $.ajax({
+		      url:"chu",
+		      type:"post",
+		      data:{
+		    	  
+		    	 /* "radio":$('input:radio[name="radio"]:checked').val(),
+		         "addr":$('#address').val(),
+		         "sel":$("select[name=sel]").val() */
+		         "chu"
+		         
+		         
+		      },
+		      success:function(data){
+		         alert('성공');
+		      }
+		   });
+		
+	}
+</script>

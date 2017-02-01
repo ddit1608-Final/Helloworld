@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
+import com.hello.world.service.QnaBoardChuService;
 import com.hello.world.service.QnaBoardCommService;
 import com.hello.world.service.QnaBoardService;
 
@@ -33,6 +35,9 @@ public class QnaBoardController {
 	
 	@Autowired
 	QnaBoardCommService qnaBoardCommService;
+	
+	@Autowired
+	QnaBoardChuService qnaBoardChuService;
 	
 	
 	@RequestMapping("/qnaBoardWriteForm.do")
@@ -128,7 +133,8 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
-	public String writeComm(QnaBoardCommVO qncVO, Model model, String mem_mail) {
+	public String writeComm(QnaBoardCommVO qncVO, Model model, String mem_mail, 
+			QnaBoardChuVO qbcVO, String qnaboard_ans_code) {
 		String url = "redirect:qnaBoardDetail.do?qnaboard_posting_no="
 				+ qncVO.getQnaboard_posting_no();
 
@@ -149,6 +155,16 @@ public class QnaBoardController {
 				+ qncVO.getQnaboard_posting_no();
 		qnaBoardCommService.deleteFreeBoardComm(qnaboard_ans_code);
 
+		return url;
+	}
+	
+	@RequestMapping(value = "/chu", method = RequestMethod.POST)
+	public String boardChu(){
+		
+		String url = "redirect:qnaBoardList.do";
+		
+		System.out.println();
+		
 		return url;
 	}
 	
