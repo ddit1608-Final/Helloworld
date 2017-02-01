@@ -10,6 +10,7 @@
 		<param-value>classpath:root-context.xml
 		classpath:application-context.xml
 		classpath:spring-mail.xml
+		classpath:websocket-config.xml
 		
 		</param-value>
 	</context-param>

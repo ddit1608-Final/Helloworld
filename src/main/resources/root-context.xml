@@ -47,6 +47,14 @@
 		p:client-ref="sqlMapClient"
 	/>
 	
+	<bean id="cstBoardDao" class="com.hello.world.dao.iBatis.CstBoard_iBatis" 
+		p:client-ref="sqlMapClient"
+	/>
+	
+	<bean id="flowDao" class="com.hello.world.dao.iBatis.FlowDAO_iBatis"
+		p:client-ref="sqlMapClient"
+	/>
+	
       
    <!-- Service -->
    <bean id="ResmService" class="com.hello.world.service.ResmService" >
@@ -93,4 +101,11 @@
 		p:qnaBoardCommDAO-ref="qnaBoardCommDAO"
 	/>
       
+      		<bean id="flowService" class="com.hello.world.service.FlowService"
+		p:flowDao-ref="flowDao" 
+	/>
+
+	<bean id="cstBoardService" class="com.hello.world.service.CstBoardService"
+		p:cstBoardDao-ref="cstBoardDao"
+	/>
 </beans>

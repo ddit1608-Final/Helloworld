@@ -265,7 +265,7 @@ color:#a31313;
         <li><a href="<%=request.getContextPath()%>/qna/qnaBoardList.do">QnA게시판</a></li>
         <li><a href="#">모임게시판</a></li>
         <li><a href="#">정보공유</a></li>
-        <li><a href="#">컨설팅게시판</a></li>
+	<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
         <li><a href="#">개소리</a></li>
         
     
