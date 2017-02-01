@@ -17,12 +17,9 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoard.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/CompMem.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardComm.xml" />
-<<<<<<< HEAD
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardChu.xml" />
-=======
 	<sqlMap resource="com/hello/world/db/sqlmaps/CstBoard_Counsel.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/Flow.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/MeetBoard.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/IfShrBoard.xml" />
->>>>>>> branch 'master' of https://github.com/ddit1608-Final/Helloworld.git
 </sqlMapConfig>
