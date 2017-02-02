@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.MemVO;
@@ -96,5 +97,16 @@ public class IfShrBoardController {
 		return url;
 	}
 	
+	@RequestMapping(value="/ifShrBoardDetail.do",method=RequestMethod.GET)
+	public String ifShrBoardDetail(@RequestParam String ifshrboard_posting_no,HttpSession session,Model model)
+		throws ServletException,IOException{
+		
+		String url = "ifShrBoard/ifShrBoardDetail";
+		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
+		
+		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
+		
+		return url;
+	}
 	
 }

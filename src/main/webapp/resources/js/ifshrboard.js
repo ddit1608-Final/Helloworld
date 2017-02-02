@@ -1,4 +1,4 @@
-function write_ok(form) {
+function iswrite_ok(form) {
 	var result=true;
 	
 	if(cont()==false){
@@ -98,7 +98,7 @@ function pwd(){
 }	*/
 	
 	
-function writeComm_go() {
+function iswriteComm_go() {
 	if (document.formm.ifshrboard_comm_cont.value == "") {
 		alert("댓글을 입력해주세요");
 		document.formm.ifshrboard_comm_cont.focus();
