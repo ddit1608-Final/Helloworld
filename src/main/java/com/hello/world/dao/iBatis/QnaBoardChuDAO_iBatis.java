@@ -15,16 +15,13 @@ public class QnaBoardChuDAO_iBatis implements QnaBoardChuDAO {
 	}
 
 	@Override
-	public int insertQnaBoardChu(QnaBoardChuVO qnaBoardChuVO)
+	public void updateQnaBoardChuComm(QnaBoardChuVO qnaBoardChuVO)
 			throws SQLException {
+
+		client.update("updateQnaBoardChuComm", qnaBoardChuVO);
 		
-		int result = -1;
-		
-		if(client.insert("insertQnaBoardChu", qnaBoardChuVO) == null)
-			
-		result = 1;
-		
-		return result;
 	}
+	
+	
 
 }

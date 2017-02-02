@@ -96,15 +96,14 @@
 	function chu() {
 		
 		 $.ajax({
-		      url:"chu",
+		      url: contextPath + "/qna/chu",
 		      type:"post",
 		      data:{
 		    	  
 		    	 /* "radio":$('input:radio[name="radio"]:checked').val(),
 		         "addr":$('#address').val(),
 		         "sel":$("select[name=sel]").val() */
-		         "chu"
-		         
+		         		         
 		         
 		      },
 		      success:function(data){
