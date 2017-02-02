@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<%-- <a href="<%=request.getContextPath()%>/free/ifShrBoardList.do"><img
+		<a href="<%=request.getContextPath()%>/free/ifShrBoardList.do"><img
 			id="freeLogo"
-			src="<%=request.getContextPath()%>/resources/images/ifShrboard.png"></a> --%>
+			src="<%=request.getContextPath()%>/resources/images/ifshrboard.png"></a>
 	</div>
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
