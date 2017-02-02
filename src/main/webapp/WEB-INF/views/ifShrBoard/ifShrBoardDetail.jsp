@@ -44,7 +44,7 @@
 			<input class="btn" type="button" value="수정"
 				onClick="location.href='/world/is/ifShrBoardUpdateForm.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}'">
 			<input class="btn" type="button" value="삭제"
-				onClick="location.href='/world/is/deleteFreeBoard.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}'">
+				onClick="location.href='/world/is/deleteIfShrBoard.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}'">
 			<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. -->
 		</c:if>
 		<input class="btn" type="button" value="목록"

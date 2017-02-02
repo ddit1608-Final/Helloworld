@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/ifShrBoard.css">
 <article>
 <div>
-		<a href="<%=request.getContextPath()%>/ifShrBoard/ifShrBoardList.do">
+		<a href="<%=request.getContextPath()%>/is/ifShrBoardList.do">
 		<img id="ifShrBoardLogo" src="<%= request.getContextPath() %>/resources/images/ifshrboard.png"></a>
 	</div> 
 	
@@ -41,8 +41,8 @@
 				<div id="divdiv">
 				<input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}">
 				<input class="btn" type="button" value="글쓰기" onclick="iswrite_ok(this.form)"> 
-				<input class="btn" type="reset" value="취소"> 
-				<input class="btn" type="button" value="메인" onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
+				<input class="btn" type="reset" value="지우기"> 
+				<input class="btn" type="button" value="뒤로가기" onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardList.do'">
 				</div>
 </form>
 </article>

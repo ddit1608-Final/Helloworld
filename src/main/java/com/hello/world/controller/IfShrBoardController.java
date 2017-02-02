@@ -109,4 +109,43 @@ public class IfShrBoardController {
 		return url;
 	}
 	
+	// 게시글 수정 폼 입장
+	@RequestMapping(value="/ifShrBoardUpdateForm.do",method=RequestMethod.GET)
+	public String ifShrBoardUpdateForm(@RequestParam String ifshrboard_posting_no,HttpSession session,Model model)
+		throws ServletException,IOException{
+		String url="ifShrBoard/ifShrBoardUpdate";
+		
+		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
+		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
+		
+		
+		return url;
+	}
+	// 게시글 수정 완료
+	@RequestMapping(value="/ifShrBoardUpdate.do",method=RequestMethod.POST)
+	public String ifShrBoardUpdate(IfShrBoardVO ifShrBoardVO,HttpSession session)
+		throws ServletException,IOException{
+		String url = "redirect:ifShrBoardList.do";
+		
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+
+		ifShrBoardService.updateIfShrBoard(ifShrBoardVO);
+		
+		return url;
+		
+	}
+	
+	@RequestMapping(value="/deleteIfShrBoard.do",method=RequestMethod.GET)
+	public String deleteIfShrBoard(@RequestParam String ifshrboard_posting_no,HttpSession session)
+		throws ServletException,IOException{
+		
+		String url = "redirect:ifShrBoardList.do";
+		
+		ifShrBoardService.deleteIfShrBoard(ifshrboard_posting_no);
+		
+		return url;
+		
+	}
+	
+	
 }

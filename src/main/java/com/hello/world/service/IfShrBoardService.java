@@ -103,6 +103,24 @@ public class IfShrBoardService {
 		return ifShrBoardVO;
 	}
 	
+	public void updateIfShrBoard(IfShrBoardVO ifShrBoardVO){
+		
+		try {
+			ifShrBoardDAO.updateIfShrBoard(ifShrBoardVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void deleteIfShrBoard(String ifshrboard_posting_no){
+		try {
+			ifShrBoardDAO.deleteIfShrBoard(ifshrboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 }

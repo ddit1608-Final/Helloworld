@@ -33,5 +33,20 @@
 		select * from memifshr where ifshrboard_posting_no=#ifshrboard_posting_no# 
 	</select>
 	
+	<update id="updateIfShrBoard" parameterClass="ifshrboard">
+		update 
+			ifshrboard
+		set 
+			ifshrboard_cont=#ifshrboard_cont#
+		where
+			ifshrboard_posting_no=#ifshrboard_posting_no# 
+	</update>
+	
+	<delete id="deleteIfShrBoard" parameterClass="str">
+		delete
+		from ifshrboard
+		where ifshrboard_posting_no=#ifshrboard_posting_no#
+	</delete>
+	
 
 </sqlMap>

@@ -41,8 +41,8 @@
 				<div id="divdiv">
 				<input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}">
 				<input class="btn" type="button" value="글쓰기" onclick="write_ok(this.form)"> 
-				<input class="btn" type="reset" value="취소"> 
-				<input class="btn" type="button" value="메인" onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
+				<input class="btn" type="reset" value="지우기"> 
+				<input class="btn" type="button" value="뒤로가기" onclick="location.href='<%=request.getContextPath()%>/free/freeBoardList.do'">
 				</div>
 </form>
 </article>

@@ -57,4 +57,16 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 
 		return ifShrBoardVO;
 	}
+
+	@Override
+	public void updateIfShrBoard(IfShrBoardVO ifShrBoardVO) throws SQLException {
+
+		client.update("updateIfShrBoard",ifShrBoardVO);
+	}
+
+	@Override
+	public void deleteIfShrBoard(String ifShrBoard_posting_no) throws SQLException {
+
+		client.delete("deleteIfShrBoard",ifShrBoard_posting_no);
+	}
 }
