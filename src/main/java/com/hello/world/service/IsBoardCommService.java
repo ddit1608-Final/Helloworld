@@ -33,21 +33,21 @@ public class IsBoardCommService {
 
 		return isBoardCommList;
 	}
-	/*public void deleteFreeBoardComm(String freeboard_ans_code){
+	public void deleteIsBoardComm(String ifshrboard_ans_code){
 		
 		try {
-			freeBoardCommDAO.deleteFreeBoardComm(freeboard_ans_code);
+			isBoardCommDAO.deleteIsBoardComm(ifshrboard_ans_code);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-	public void updateFreeBoardComm(FreeBoardCommVO freeBoardCommVO){		
+	public void updateIsBoardComm(IsBoardCommVO isBoardCommVO){		
 		try {
-			freeBoardCommDAO.updateFreeBoardComm(freeBoardCommVO);
+			isBoardCommDAO.updateIsBoardComm(isBoardCommVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 }

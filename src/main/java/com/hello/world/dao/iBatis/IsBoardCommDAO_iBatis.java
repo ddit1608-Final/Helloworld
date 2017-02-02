@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.IsBoardCommDAO;
-import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.IsBoardCommVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -36,16 +35,14 @@ public class IsBoardCommDAO_iBatis implements IsBoardCommDAO {
 	}
 
 	@Override
-	public void deleteIsBoardComm(String isBoardCommVO) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void deleteIsBoardComm(String ifshrboard_ans_code) throws SQLException {
+		client.delete("deleteIsBoardComm", ifshrboard_ans_code);
 	}
 
 	@Override
-	public void updateIsBoardComm(FreeBoardCommVO isBoardCommVO)
+	public void updateIsBoardComm(IsBoardCommVO isBoardCommVO)
 			throws SQLException {
-		// TODO Auto-generated method stub
-		
+		client.update("updateIsBoardComm", isBoardCommVO);
 	}
 
 	

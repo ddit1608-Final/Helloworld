@@ -30,7 +30,7 @@
       	<td style="text-align: left;">&nbsp;&nbsp;&nbsp;내용<label id="ifshrboard_cont" class="cec" ></label></td>
       	
         	<td>
-      		<textarea rows="8" cols="65" name="ifshrboard_cont"></textarea>
+      		<textarea rows="8" cols="65" name="ifshrboard_cont" id="isboard_cont"></textarea>
       	</td>
       </tr>
      </thead>

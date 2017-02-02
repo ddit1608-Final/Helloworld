@@ -78,10 +78,10 @@
 						<td>${ ifShrBoardComm.ifshrboard_comm_wridate }</td>
 						<c:if test="${loginUser.mem_nick ==ifShrBoardComm.ifshrboard_comm_wri }">
 						<td>
-							<a href="#" id="div1hide">수정</a>
+							<a href="#" id="isCommUpdate">수정</a>
 						/
-							<a href="/world/is/deleteifShrBoardComm.do?freeboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
-								&freeboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">삭제</a>
+							<a href="/world/is/deleteIsBoardComm.do?ifshrboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
+								&ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">삭제</a>
 						</td>
 						</c:if>
 					</tr>
@@ -90,7 +90,7 @@
 		</table>
 		</div> <!-- div1 종료  -->
 		<c:if test="${loginUser!=null}">
-		<input type="text" id="ifshrboard_comm_cont" name="ifshrboard_comm_cont">
+		<textarea rows="2" cols="150" id="ifshrboard_comm_cont" name="ifshrboard_comm_cont"></textarea>
 		<input type="hidden" id="ifshrboard_posting_no" name="ifshrboard_posting_no" value="${ifShrBoardVO.ifshrboard_posting_no }">
 		<input type="hidden" id="mem_nick" name="mem_nick" value="${loginUser.mem_nick}">
 		<input type="button" value="댓글등록" onclick="iswriteComm_go(this.formm)">
