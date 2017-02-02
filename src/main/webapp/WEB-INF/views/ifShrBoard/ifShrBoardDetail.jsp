@@ -68,7 +68,7 @@
 					<td style="width:200px">작성날짜</td>
 					<td></td>
 				</tr>
-				<c:forEach items="${ifShrBoardCommList}" var="ifShrBoardComm">
+				<c:forEach items="${isBoardCommList}" var="ifShrBoardComm">
 					<tr id="commBody">
 						<td style="width:13%;">${ ifShrBoardComm.ifshrboard_comm_wri}</td>
 						<td style="width:70%;" id="add">${ ifShrBoardComm.ifshrboard_comm_cont}</td>
@@ -76,7 +76,7 @@
 						<input type="button" value="추천">
 						<input type="button" value="비추천"></td>
 						<td>${ ifShrBoardComm.ifshrboard_comm_wridate }</td>
-						<c:if test="${loginUser.mem_mail ==ifShrBoardComm.ifshrboard_comm_wri }">
+						<c:if test="${loginUser.mem_nick ==ifShrBoardComm.ifshrboard_comm_wri }">
 						<td>
 							<a href="#" id="div1hide">수정</a>
 						/
@@ -89,6 +89,12 @@
 			</tbody>
 		</table>
 		</div> <!-- div1 종료  -->
+		<c:if test="${loginUser!=null}">
+		<input type="text" id="ifshrboard_comm_cont" name="ifshrboard_comm_cont">
+		<input type="hidden" id="ifshrboard_posting_no" name="ifshrboard_posting_no" value="${ifShrBoardVO.ifshrboard_posting_no }">
+		<input type="hidden" id="mem_nick" name="mem_nick" value="${loginUser.mem_nick}">
+		<input type="button" value="댓글등록" onclick="iswriteComm_go(this.formm)">
+		</c:if>
 	</form>
 		
 </article>

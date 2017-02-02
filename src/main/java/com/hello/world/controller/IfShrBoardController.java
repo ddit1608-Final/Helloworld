@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.IsBoardCommVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.service.IfShrBoardService;
+import com.hello.world.service.IsBoardCommService;
 
 @Controller
 @RequestMapping("/is")
@@ -26,6 +28,9 @@ public class IfShrBoardController {
 	
 	@Autowired
 	IfShrBoardService ifShrBoardService;
+	
+	@Autowired
+	IsBoardCommService isBoardCommService;
 	
 	@RequestMapping("/ifShrBoardList.do")
 	public String ifShareBoardList(HttpSession session, Model model,
@@ -102,9 +107,20 @@ public class IfShrBoardController {
 		throws ServletException,IOException{
 		
 		String url = "ifShrBoard/ifShrBoardDetail";
+		
+		ArrayList<IsBoardCommVO> isBoardCommList = new ArrayList<IsBoardCommVO>();
+		
 		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
 		
+		try {
+			isBoardCommList = isBoardCommService.listIsBoardComm(ifshrboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
+		model.addAttribute("isBoardCommList",isBoardCommList);
 		
 		return url;
 	}
@@ -117,6 +133,7 @@ public class IfShrBoardController {
 		
 		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
 		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
+		
 		
 		
 		return url;

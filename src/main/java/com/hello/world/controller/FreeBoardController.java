@@ -197,12 +197,12 @@ public class FreeBoardController {
 	}
 
 	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
-	public String writeComm(FreeBoardCommVO fbcVO, Model model, String mem_mail) {
+	public String writeComm(FreeBoardCommVO fbcVO, Model model, String mem_nick) {
 		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
 				+ fbcVO.getFreeboard_posting_no();
 
 		try {
-			fbcVO.setFreeboard_comm_wri(mem_mail);
+			fbcVO.setFreeboard_comm_wri(mem_nick);
 			freeBoardCommService.insertComm(fbcVO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
