@@ -163,7 +163,7 @@ public class QnaBoardController {
 		
 		String url = "redirect:qnaBoardList.do";
 		
-		
+		System.out.println();
 		
 		return url;
 	}

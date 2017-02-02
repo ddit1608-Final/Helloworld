@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.MemVO;
 import com.hello.world.service.IfShrBoardService;
 
 @Controller
@@ -64,6 +66,33 @@ public class IfShrBoardController {
 		//model.addAttribute("ifShrBoardListSize", n);
 		model.addAttribute("paging", paging);
 
+		return url;
+	}
+	
+	@RequestMapping(value="/ifShrBoardWriteForm.do",method=RequestMethod.GET)
+	public String ifShrBoardWriteForm(HttpSession session)throws ServletException,IOException{
+		String url="ifShrBoard/ifShrBoardWrite";
+		
+		MemVO loginUser=(MemVO)session.getAttribute("loginUser");
+		
+		return url;
+	}
+	
+	@RequestMapping(value="/ifShrBoardWrite.do",method=RequestMethod.POST)
+	public String ifShrBoardWrite(IfShrBoardVO ifShrBoardVO,HttpSession session) throws ServletException,IOException{
+		String url="redirect:ifShrBoardList.do";
+		MemVO loginUser = (MemVO)session.getAttribute("loginUser");
+		try {
+			if(ifShrBoardService.insertIfShrBoard(ifShrBoardVO)==1){
+				url+="?result:success";
+			}else{
+				url+="?result:fail";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return url;
 	}
 	

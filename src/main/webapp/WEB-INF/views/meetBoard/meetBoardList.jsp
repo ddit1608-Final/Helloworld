@@ -11,7 +11,7 @@
 	<div>
 		<a href="<%=request.getContextPath()%>/meet/meetBoardList.do"><img
 			id="meetLogo"
-			src="<%=request.getContextPath()%>/resources/images/jungboLogo.png"></a>
+			src="<%=request.getContextPath()%>/resources/images/meetLogo.png"></a>
 	</div>
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">

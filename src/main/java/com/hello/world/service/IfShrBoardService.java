@@ -84,4 +84,8 @@ public class IfShrBoardService {
 		}
 		return str;
 	}
+	
+	public int insertIfShrBoard(IfShrBoardVO ifShrBoardVO)throws SQLException{
+		return ifShrBoardDAO.insertIfShrBoard(ifShrBoardVO);
+	}
 }

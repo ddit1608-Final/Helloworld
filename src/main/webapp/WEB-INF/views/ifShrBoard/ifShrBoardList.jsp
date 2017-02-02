@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<%-- <a href="<%=request.getContextPath()%>/free/ifShrBoardList.do"><img
+		<a href="<%=request.getContextPath()%>/free/ifShrBoardList.do"><img
 			id="freeLogo"
-			src="<%=request.getContextPath()%>/resources/images/ifShrboard.png"></a> --%>
+			src="<%=request.getContextPath()%>/resources/images/ifshrboard.png"></a>
 	</div>
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
@@ -56,7 +56,7 @@
 				<td>
 				<c:if test="${loginUser != null}"> 
 				<input type="button" class="btn btn-success btn-sm" value="글쓰기"
-					onclick="location.href='<%=request.getContextPath()%>/free/ifShrBoardWriteForm.do'">
+					onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardWriteForm.do'">
 				</c:if>
 					<input type="button" class="btn btn-success btn-sm" value="메인"
 					onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
