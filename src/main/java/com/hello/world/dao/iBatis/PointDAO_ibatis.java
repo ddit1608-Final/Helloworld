@@ -1,13 +1,14 @@
 package com.hello.world.dao.iBatis;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.hello.world.dao.PointDAO;
 import com.hello.world.dto.PointVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
-public class PointDAO_ibatis implements PointDAO{
-	
+public class PointDAO_ibatis implements PointDAO {
+
 	private SqlMapClient client;
 
 	public void setClient(SqlMapClient client) {
@@ -28,14 +29,29 @@ public class PointDAO_ibatis implements PointDAO{
 	@Override
 	public int sumPoint(String mem_mail) throws SQLException {
 		int sum = 0;
-		
-		Object ob = client.queryForObject("sumPoint", mem_mail); 
-		
-		sum = (Integer)ob;
-	 
-				
-		
+
+		Object ob = client.queryForObject("sumPoint", mem_mail);
+
+		sum = (Integer) ob;
+
 		return sum;
+	}
+
+	@Override
+	public ArrayList<PointVO> listMyPoint(int startRow, String mem_mail, int counts) throws SQLException {
+		ArrayList<PointVO> listMyPoint = new ArrayList<PointVO>();
+		listMyPoint = (ArrayList<PointVO>) client.queryForList("selectPoint",
+				mem_mail, startRow, counts);
+
+		return listMyPoint;
+	}
+
+	@Override
+	public int totalMyPoint(String mem_mail) throws SQLException {
+		int total_pages = 0;
+		total_pages = (Integer) client.queryForObject("totalMyPoint",
+				mem_mail);
+		return total_pages;
 	}
 
 }

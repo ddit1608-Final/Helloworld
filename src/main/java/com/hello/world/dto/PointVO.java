@@ -7,6 +7,15 @@ public class PointVO {
 	private String point;
 	private Timestamp point_save_date;
 	private String mem_mail;
+	private String point_cont;
+
+	public String getPoint_cont() {
+		return point_cont;
+	}
+
+	public void setPoint_cont(String point_cont) {
+		this.point_cont = point_cont;
+	}
 
 	public String getPoint_code() {
 		return point_code;
