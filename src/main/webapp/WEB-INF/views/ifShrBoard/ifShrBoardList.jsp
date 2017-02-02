@@ -56,7 +56,7 @@
 				<td>
 				<c:if test="${loginUser != null}"> 
 				<input type="button" class="btn btn-success btn-sm" value="글쓰기"
-					onclick="location.href='<%=request.getContextPath()%>/free/ifShrBoardWriteForm.do'">
+					onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardWriteForm.do'">
 				</c:if>
 					<input type="button" class="btn btn-success btn-sm" value="메인"
 					onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">

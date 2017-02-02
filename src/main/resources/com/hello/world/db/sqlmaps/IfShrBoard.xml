@@ -24,5 +24,10 @@
 		select count(*) from ifshrboard where ifshrboard_title like
 		'%'||#ifshrboard_title#||'%'
 	</select>
+	
+	<update id="insertIfShrBoard" parameterClass="ifshrboard">
+		insert into ifshrboard(ifshrboard_posting_no,mem_mail,ifshrboard_title,ifshrboard_cont,ifshrboard_pwd)
+			values(ifshrboard_posting_no.nextval,#mem_mail#,#ifshrboard_title#,#ifshrboard_cont#,#ifshrboard_pwd#)
+	</update>
 
 </sqlMap>
