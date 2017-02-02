@@ -29,5 +29,9 @@
 		insert into ifshrboard(ifshrboard_posting_no,mem_mail,ifshrboard_title,ifshrboard_cont,ifshrboard_pwd)
 			values(ifshrboard_posting_no.nextval,#mem_mail#,#ifshrboard_title#,#ifshrboard_cont#,#ifshrboard_pwd#)
 	</update>
+	<select id="ifShrBoardDetail" parameterClass="str" resultClass="ifshrboard">
+		select * from memifshr where ifshrboard_posting_no=#ifshrboard_posting_no# 
+	</select>
+	
 
 </sqlMap>

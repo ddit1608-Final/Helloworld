@@ -13,6 +13,7 @@ public interface IfShrBoardDAO {
 	public ArrayList<IfShrBoardVO> listAllIfShrBoard(int startRow, String ifshrboard_title, int counts)throws SQLException;
 	public int totalRecord(String name) throws SQLException;
 	public int insertIfShrBoard(IfShrBoardVO ifShrBoardVO)throws SQLException;
+	public IfShrBoardVO getIfShrBoardDetail(String ifshrboard_posting_no)throws SQLException;
 }
 
 

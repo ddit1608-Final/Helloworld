@@ -6,9 +6,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<a href="<%=request.getContextPath()%>/free/ifShrBoardList.do"><img
-			id="freeLogo"
-			src="<%=request.getContextPath()%>/resources/images/ifshrboard.png"></a>
+		<a href="<%=request.getContextPath()%>/is/ifShrBoardList.do">
+		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/ifshrboard.png"></a>
 	</div>
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
@@ -34,7 +33,7 @@
 						<tr>
 							<td style="text-align: center;">${ifShrBoardVO.ifshrboard_posting_no}</td>
 							<td style="text-align: center;"><a
-								href="/world/free/ifShrBoardDetail.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">${ifShrBoardVO.ifshrboard_title}</a>
+								href="/world/is/ifShrBoardDetail.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">${ifShrBoardVO.ifshrboard_title}</a>
 							</td>
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
 							<td style="text-align: center;">${ifShrBoardVO.mem_mail}</td>

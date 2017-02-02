@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.IfShrBoardDAO;
+import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 
 public class IfShrBoardService {
@@ -88,4 +89,20 @@ public class IfShrBoardService {
 	public int insertIfShrBoard(IfShrBoardVO ifShrBoardVO)throws SQLException{
 		return ifShrBoardDAO.insertIfShrBoard(ifShrBoardVO);
 	}
+	
+	public IfShrBoardVO getIfShrBoardDetail(String ifshrboard_posting_no) {
+		IfShrBoardVO ifShrBoardVO = null;
+
+		try {
+			ifShrBoardVO = ifShrBoardDAO.getIfShrBoardDetail(ifshrboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return ifShrBoardVO;
+	}
+	
+	
+	
 }
