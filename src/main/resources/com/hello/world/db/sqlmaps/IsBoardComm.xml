@@ -33,6 +33,12 @@
 			ifshrboard_comm_cont = #ifshrboard_comm_cont#
 		WHERE ifshrboard_ans_code= #ifshrboard_ans_code#
 	</update>
+	
+	<select id="getIsBoardComm"  parameterClass="str" resultClass="iscomm">
+		select *
+		from ifshrboard_comm
+		where ifshrboard_ans_code= #ifshrboard_ans_code#
+	</select>
 
 
 </sqlMap>

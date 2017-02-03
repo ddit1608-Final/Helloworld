@@ -45,5 +45,11 @@ public class IsBoardCommDAO_iBatis implements IsBoardCommDAO {
 		client.update("updateIsBoardComm", isBoardCommVO);
 	}
 
+	@Override
+	public IsBoardCommVO getIsBoardComm(String ifshrboard_ans_code)
+			throws SQLException {
+		return (IsBoardCommVO) client.queryForObject("getIsBoardComm",ifshrboard_ans_code);
+	}
+
 	
 }
