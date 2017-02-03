@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
@@ -117,18 +118,40 @@ public class QnaBoardController {
 
 		ArrayList<QnaBoardCommVO> qnaBoardCommList = new ArrayList<QnaBoardCommVO>();
 		QnaBoardVO qnaBoardVO = qnaBoardService.getQnaDetail(qnaboard_posting_no);
+		
+		ArrayList<QnaBoardChuVO> qnaBoardChuList = new ArrayList<QnaBoardChuVO>();
 				//.getFreeDetail(freeboard_posting_no);
-
+		
+		String qnaboard_ans_code = "";
 		try {
 			qnaBoardCommList = qnaBoardCommService.listQnaBoardComm(qnaboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		for(QnaBoardCommVO vo:qnaBoardCommList) {
+			qnaboard_ans_code = vo.getQnaboard_ans_code();
+			try {
+				qnaBoardChuList.add(qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		
+		/*try {
+			qnaBoardChuList = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 
 		model.addAttribute("qnaBoardVO", qnaBoardVO);
 		model.addAttribute("qnaBoardCommList", qnaBoardCommList);
 		model.addAttribute("qnaBoardCommListCnt", qnaBoardCommList.size());
+		model.addAttribute("qnaBoardChuList", qnaBoardChuList);
 		return url;
 	}
 	
@@ -159,11 +182,26 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping(value = "/chu", method = RequestMethod.POST)
-	public String boardChu(){
+	@ResponseBody
+	public String boardChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, Model model, HttpServletRequest request){
 		
 		String url = "redirect:qnaBoardList.do";
 		
-		System.out.println();
+		/*int chu = Integer.parseInt(qnaBoardChuVO.getQnaboard_chu());
+		chu = chu +1;
+		String chu1 = String.valueOf(chu);
+		
+		qnaBoardChuVO.setQnaboard_chu(chu1);*/
+		
+		String chu = request.getParameter("chu");
+		
+		qnaBoardChuVO.setQnaboard_chu(chu);
+		
+		qnaBoardChuVO.setQnaboard_ans_code(qnaboard_ans_code);
+		
+		qnaBoardChuService.updateQnaBoardChuComm(qnaBoardChuVO);
+		
+		model.addAttribute("qnaBoardChuVO", qnaBoardChuVO);
 		
 		return url;
 	}

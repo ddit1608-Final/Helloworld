@@ -13,7 +13,7 @@
       <tr style="background-color: #8bdb69; border-bottom:2px solid #c9c9c9;">
         <th style="width:20%;">SUBJECT</th>
         <td style="width:60%;">${qnaBoardVO.qnaboard_title }</td>
-        <th style="width:20%;"><a href="#" onclick="chu('up','2')">추천</a> / 비추천</th>
+        <th style="width:20%;">추천 / 비추천</th>
        
       </tr>
     </thead>
@@ -73,11 +73,19 @@
 					<tr>
 						<td>${ qnaBoardComm.qnaboard_comm_wri}</td>
 						<td>${ qnaBoardComm.qnaboard_comm_cont}</td>
+					<c:forEach items="${ qnaBoardChuList }" var="qnaBoardChuList">
+						<c:if test="${qnaBoardComm.qnaboard_ans_code == qnaBoardChuList.qnaboard_ans_code }">				
+							<td>추천<input type="button" id="chu" value="${ qnaBoardChuList.qnaboard_chu }"></td>
+							<td>비추천 ${ qnaBoardChuList.qnaboard_bchu }</td>
+						</c:if>
+					</c:forEach>
+					
 						<c:if test="${loginUser.mem_mail ==qnaBoardComm.qnaboard_comm_wri }">
 						<td><a href="/world/qna/qnaBoardCommUpdateForm.do?qnaboard_ans_code=${qnaBoardComm.qnaboard_ans_code}">수정</a>/
 							<a href="/world/qna/deleteqnaBoardComm.do?qnaboard_ans_code=${qnaBoardComm.qnaboard_ans_code}
 								&qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">삭제</a>
 						</td>
+						<td><input type="hidden" id="qnaboard_ans_code" value="${qnaBoardComm.qnaboard_ans_code}"></td>
 						</c:if>
 					<tr>
 				</c:forEach>
@@ -93,23 +101,19 @@
 </article>
 
 <script>
-	function chu() {
-		
-		 $.ajax({
-		      url: contextPath + "/qna/chu",
-		      type:"post",
-		      data:{
-		    	  
-		    	 /* "radio":$('input:radio[name="radio"]:checked').val(),
-		         "addr":$('#address').val(),
-		         "sel":$("select[name=sel]").val() */
-		         		         
-		         
-		      },
-		      success:function(data){
-		         alert('성공');
-		      }
-		   });
-		
-	}
+	$(function() {
+		$('#chu').click(function(){
+			
+			var chu = {"chu" : $('#chu').val() };
+			var qnaboard_ans_code = {"qnaboard_ans_code" : $('#qnaboard_ans_code').val() };
+			$.ajax({
+				url : "chu",
+				type : "post",
+				data : {chu: $('#chu').val(), qnaboard_ans_code:$('#qnaboard_ans_code').val()},
+				success : function(){
+					
+				}
+			});
+		});
+	});
 </script>
