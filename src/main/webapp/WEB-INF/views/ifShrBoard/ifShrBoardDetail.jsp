@@ -71,15 +71,15 @@
 				<c:forEach items="${isBoardCommList}" var="ifShrBoardComm">
 					<tr id="commBody">
 						<td style="width:13%;">${ ifShrBoardComm.ifshrboard_comm_wri}</td>
-						<td style="width:70%;" id="add">${ ifShrBoardComm.ifshrboard_comm_cont}
+						<td style="width:70%;" id="isBoardComm_cont" name="isBoardComm_cont">${ ifShrBoardComm.ifshrboard_comm_cont}
 						<input type="button" value="추천">
 						<input type="button" value="비추천"></td>
 						<td>${ ifShrBoardComm.ifshrboard_comm_wridate }</td>
 						<c:if test="${loginUser.mem_nick ==ifShrBoardComm.ifshrboard_comm_wri }">
 						<td>
-							<a href="/world/is/updateIsBoardComm.do?ifshrboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
-								&ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}" id=${ifShrBoardComm.ifshrboard_ans_code};>수정</a>
+							<a href="#" onclick="updateIsComm()">수정</a>
 						/
+						<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
 							<a href="/world/is/deleteIsBoardComm.do?ifshrboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
 								&ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">삭제</a>
 						</td>
@@ -95,6 +95,13 @@
 		<input type="hidden" id="mem_nick" name="mem_nick" value="${loginUser.mem_nick}">
 		<input type="button" value="댓글등록" onclick="iswriteComm_go(this.formm)">
 		</c:if>
+	</form>
+	<form id="test_go">
+	<input type="hidden" id="ifshrboard_posting_no" name="ifshrboard_posting_no" value="${ifShrBoardVO.ifshrboard_posting_no }">
+	<input type="hidden" id="ifshrboard_ans_code" name="ifshrboard_ans_code" value="${ifShrBoardCommVO.ifshrboard_ans_code}">
+	<input type="hidden" id="ifshrboard_comm_cont" name="ifshrboard_comm_cont" value="${ifShrBoardCommVO.ifshrboard_comm_cont}">
+	
+	
 	</form>
 		
 </article>

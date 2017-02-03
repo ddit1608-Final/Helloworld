@@ -59,6 +59,21 @@ function iswriteComm_go() {
 		return true;
 	}
 }
+function updateIsComm(){
+	
+	alert($('#test_go input').serialize());
+	$.ajax({
+		url:"updateIsBoardComm.do",
+		type:"post",
+		data: $('#test_go input').serialize(),
+		success : function(data) {
+			
+		},
+		error : function(error) {
+			alert("22");
+		}
+	})
+}
 /*$(document).ready(function(){
 	$('#div1hide').click(function(){
 		$('#div1').hide();
