@@ -275,16 +275,18 @@ color:#a31313;
     
     </div>
     
+    
 	<div class="collapse navbar-collapse" id="myNavbar" style="background-color: #d9d9d9;">
 	<form method="post" id="login" name="login" style="margin: 0;" 
 			action="<%=request.getContextPath()%>/member/login">
 			<input name="prePage" hidden="hidden" value="<%=request.getRequestURL()%>">
+			<input name="param" id= "param" hidden="hidden" value="1">
       <ul class="nav navbar-nav">
       	<c:choose>
       		<c:when test="${loginUser eq null }">
       			<li><input class="login" id="login_mem_mail" name="login_mem_mail" type="text" placeholder=" 이메일"></li>
 				<li><input class="login" id="login_mem_pw" name="login_mem_pw" type="password" placeholder=" 비밀번호"></li>
-		        <li><input type="submit" value="로그인" id="loginbtn"></li>
+		        <li><input type="button" value="로그인" id="loginbtn" onclick="login_go();"></li>
 				<li id="check" style="margin: 13px auto; width: 5%;"><label
 					style="vertical-align: text-botom;" for="check2" id="auto">
 						<input id="check2" type="checkbox"

@@ -2,6 +2,7 @@ package com.hello.world.controller;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 import javax.servlet.ServletContext;
@@ -212,9 +213,10 @@ public class MemberController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String login_mem_mail, String login_mem_pw, String prePage,
+	public String login(String login_mem_mail, String login_mem_pw, String prePage, String param,
 			Model model, HttpSession session) {
-		String url = "redirect:"+prePage;
+		
+		String url = "redirect:"+prePage+"?"+param;
 		String sessionId = "";
 		System.err.println(prePage);
 
@@ -224,7 +226,7 @@ public class MemberController implements ServletContextAware {
 		mem = memService.getMember(login_mem_mail);
 
 		if (mem == null) {
-			url = url + "?loginResult:notexist";
+			url = url + "&loginResult:notexist";
 		} else {
 			
 			// 로그인 성공시.
@@ -246,12 +248,12 @@ public class MemberController implements ServletContextAware {
 				// 2017-01-26 jihyun.Park
 				servletContext.setAttribute("loginUserCnt", sessionMap.size());
 				
-				url = url + "?loginResult:"+RequestContextHolder.currentRequestAttributes().getSessionId();
+				url = url + "&loginResult:"+RequestContextHolder.currentRequestAttributes().getSessionId();
 				System.out.println(RequestContextHolder.currentRequestAttributes().getSessionId());
 			}
 			// 로그인 실패(패스워드 불일치)
 			else {
-				url = url + "?loginResult:pwdMismatch";
+				url = url + "&loginResult:pwdMismatch";
 			}
 		}
 

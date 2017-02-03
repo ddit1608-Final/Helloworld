@@ -2,6 +2,15 @@
  * 
  */
 
+function login_go() {
+	var str = document.location.href;
+    var index = str.indexOf("?");
+    var paramStr = str.substring(index+1);
+    $('#param').val(paramStr);
+    
+    $('#login').submit();
+}
+
 function autoHypenLicense() {
 	var str = $('#compmem_bsnss_lcse_no').val();
 
