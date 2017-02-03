@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.IfShrBoardDAO;
+import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -46,5 +47,26 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 		if (client.insert("insertIfShrBoard", ifShrBoardVO) == null)
 			result = 1;
 		return result;
+	}
+
+	@Override
+	public IfShrBoardVO getIfShrBoardDetail(String ifshrboard_posting_no)
+			throws SQLException {
+		IfShrBoardVO ifShrBoardVO = (IfShrBoardVO) client.queryForObject(
+				"ifShrBoardDetail", ifshrboard_posting_no);
+
+		return ifShrBoardVO;
+	}
+
+	@Override
+	public void updateIfShrBoard(IfShrBoardVO ifShrBoardVO) throws SQLException {
+
+		client.update("updateIfShrBoard",ifShrBoardVO);
+	}
+
+	@Override
+	public void deleteIfShrBoard(String ifShrBoard_posting_no) throws SQLException {
+
+		client.delete("deleteIfShrBoard",ifShrBoard_posting_no);
 	}
 }

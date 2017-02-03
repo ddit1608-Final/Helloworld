@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="IsBoardComm">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="iscomm" type="com.hello.world.dto.IsBoardCommVO" />
+
+	<update id="insertIsBoardComm" parameterClass="iscomm">
+		insert into
+		ifshrboard_comm
+		(ifshrboard_ans_code, ifshrboard_comm_cont,
+		ifshrboard_comm_wri, ifshrboard_posting_no)
+		values(ifshrboard_ans_code.nextval, #ifshrboard_comm_cont#,
+		#ifshrboard_comm_wri#, #ifshrboard_posting_no#)
+	</update>
+
+	<select id="listIsBoardComm" parameterClass="str" resultClass="iscomm">
+		select
+		* from ifshrboard_comm where ifshrboard_POSTING_NO =
+		#ifshrboard_posting_no# order by ifshrboard_COMM_WRIDATE asc
+	</select>
+	
+	<!-- <delete id="deleteIsBoardComm" parameterClass="str">
+		delete
+		from freeboard_comm
+		where freeboard_ans_code=#freeboard_ans_code#
+	</delete>
+	
+	<update id="updateIsBoardComm" parameterClass="iscomm">
+		UPDATE freeBoard_comm
+		SET
+			FREEBOARD_COMM_CONT = #freeboard_comm_cont#
+		WHERE freeboard_ans_code= #freeboard_ans_code#
+	</update> -->
+
+
+</sqlMap>

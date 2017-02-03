@@ -4,11 +4,11 @@
 
 function autoHypenLicense() {
 	var str = $('#compmem_bsnss_lcse_no').val();
-	
+
 	var length = str.length;
-	
-	if(length==3 || length==6) {
-		$('#compmem_bsnss_lcse_no').val(str+"\-");
+
+	if (length == 3 || length == 6) {
+		$('#compmem_bsnss_lcse_no').val(str + "\-");
 	}
 
 }
@@ -31,30 +31,30 @@ function go_join(certifi) {
 		result = false;
 
 	// 이름 유효성 검사
-	if(check_name() == false) {
+	if (check_name() == false) {
 		result = false;
 	}
-	
+
 	// 닉네임 유효성 검사
-	if(check_nick() == false) {
+	if (check_nick() == false) {
 		result = false;
 	}
-	
+
 	// 닉네임 유효성 검사
-	if(check_phn() == false) {
+	if (check_phn() == false) {
 		result = false;
 	}
-	
+
 	// 성별 선택 검사
-	if(check_sex() == false) {
+	if (check_sex() == false) {
 		result = false;
 	}
-	
+
 	// 주소 입력여부 검사
-	if(check_addr() == false) {
+	if (check_addr() == false) {
 		result = false;
 	}
-	
+
 	if (result == true) {
 		// 이메일 인증 검사
 		if (certifi == "success") {
@@ -67,6 +67,46 @@ function go_join(certifi) {
 
 }
 
+function go_update() {
+	var result = true;
+
+	// 패스워드 유효성 검사
+	if (check_pw() == false)
+		result = false;
+	// 패스워드 확인
+	if (check_pwdcheck() == false)
+		result = false;
+
+	// 이름 유효성 검사
+	if (check_name() == false) {
+		result = false;
+	}
+
+	// 닉네임 유효성 검사
+	if (check_nick() == false) {
+		result = false;
+	}
+
+	// 닉네임 유효성 검사
+	if (check_phn() == false) {
+		result = false;
+	}
+
+	// 성별 선택 검사
+	if (check_sex() == false) {
+		result = false;
+	}
+
+	// 주소 입력여부 검사
+	if (check_addr() == false) {
+		result = false;
+	}
+
+	if (result == true) {
+		$('#updateForm').submit();
+	}
+
+}
 
 // 이메일 유효성.
 function check_mail() {
@@ -118,7 +158,7 @@ function check_name() {
 	var name = $('#mem_nm').val();
 
 	var regex = /^[가-힝]{2,}$/;
-	
+
 	if (regex.test(name) == false) {
 		document.getElementById("nameCheck").innerHTML = "잘못된 이름 입니다.";
 		return false;
@@ -128,7 +168,7 @@ function check_name() {
 	}
 }
 
-//닉네임 유효성 검사
+// 닉네임 유효성 검사
 function check_nick() {
 	var nick = $('#mem_nick').val();
 
@@ -144,7 +184,7 @@ function check_nick() {
 
 }
 
-//핸드폰 유효성 검사
+// 핸드폰 유효성 검사
 function check_phn() {
 	var phn = $('#mem_phn').val();
 
@@ -162,10 +202,10 @@ function check_phn() {
 
 // 성별 선택 체크
 function check_sex() {
-	
+
 	var sex = $('input:radio[name=mem_sex]').is(':checked');
-	
-	if(sex == true) {
+
+	if (sex == true) {
 		document.getElementById("sexCheck").innerHTML = "";
 		return true;
 	} else {
@@ -174,12 +214,12 @@ function check_sex() {
 	}
 }
 
-//주소 선택 체크
+// 주소 선택 체크
 function check_addr() {
-	
+
 	var mem_addr = $('#mem_addr').val();
-	
-	if(mem_addr == null || mem_addr == "") {
+
+	if (mem_addr == null || mem_addr == "") {
 		document.getElementById("addrCheck").innerHTML = "주소를 입력해 주세요.";
 		return false;
 	} else {
@@ -189,22 +229,21 @@ function check_addr() {
 }
 
 function checkDepulicateId() {
+	
 	$
 			.ajax({
-				url : "<%=request.getContextPath()%>/member/duplicationCheck",
+				
+				url : "duplicationCheck",
 				type : "post",
-				dataType : "text",
-				data : ({
-					mem_mail:$("#mem_mail").val()
-				}),
+				data : $("#joinForm input").serialize(),
 				success : function(data) {
-					if (data == 1) {
-						document.getElementById("mailCheck").value = "이미 해당 아이디로 가입된 회원가 있습니다.";
+					if (data == "Exit") {
+						document.getElementById("mailCheck").innerHTML = "이미 해당 아이디로 가입된 회원가 있습니다.";
 					} else {
 						if ($("#mem_mail").val().length < 5) {
-							document.getElementById("mailCheck").value = "아이디를 5자 이상 입력해주세요.";
+							document.getElementById("mailCheck").innerHTML = "아이디를 5자 이상 입력해주세요.";
 						} else {
-							document.getElementById("mailCheck").value = "사용 가능한 아이디입니다.";
+							document.getElementById("mailCheck").innerHTML = "";
 						}
 					}
 				},
@@ -222,10 +261,10 @@ function go_certification() {
 		location.href = "../mail/sendMail?mem_mail=" + $("#mem_mail").val();
 	}
 }
-function free_go_detail(freeboard_posting_no){
+function free_go_detail(freeboard_posting_no) {
 	alert("testDA");
 	var free = document.form;
-	free.action="/freeBoard/freeBoardDetail.do?"+freeboard_posting_no;
+	free.action = "/freeBoard/freeBoardDetail.do?" + freeboard_posting_no;
 	free.submit();
 }
 

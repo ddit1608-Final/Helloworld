@@ -22,8 +22,10 @@
 	crossorigin="anonymous"></script>
   <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/member.js"></script>
- <script type="text/javascript"	src="<%=request.getContextPath()%>/js/freeboard.js"></script>
- <script type="text/javascript"	src="<%=request.getContextPath()%>/js/ifshrboard.js"></script>
+<script type="text/javascript"	src="<%=request.getContextPath()%>/js/freeboard.js"></script>	
+<script type="text/javascript"	src="<%=request.getContextPath()%>/js/ifshrboard.js"></script>	
+ 
+ 
 <link href="<%=request.getContextPath()%>/resources/css/hw.css" rel="stylesheet">
 
 </head>
@@ -294,7 +296,8 @@ color:#a31313;
       			<li id="mem_mail" name="mem_mail">(Level) ${loginUser.mem_nick } (POINT : ${myPoint }) </li>
 				<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 				<li><a href="#" id="aa">반응 ()</a></li>
-				<li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li>
+				<li><a href="<%=request.getContextPath()%>/mypage/main" id="aa">마이페이지</a></li>
+				<%-- <li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li> --%>
 				<li><a href="<%=request.getContextPath()%>/member/logout?"+${loginUser.mem_mail } id="aa">로그아웃</a></li>
       		</c:otherwise>
       	</c:choose>
