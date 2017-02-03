@@ -77,11 +77,12 @@
 						<td>${ ifShrBoardComm.ifshrboard_comm_wridate }</td>
 						<c:if test="${loginUser.mem_nick ==ifShrBoardComm.ifshrboard_comm_wri }">
 						
-						<c:set value="${ifShrBoardComm.ifshrboard_comm_cont}" var="ifshrboard_comm_cont"/>
-						<c:set value="isBoardComm_cont${status.count}" var="indexTd"/>
+						<input type="hidden" value="${ifShrBoardComm.ifshrboard_ans_code }" id="ifshrboard_ans_code${status.count}">
+						
+						<c:set value="${status.count}" var="indexTd"/>
 						
 						<td>
-							<a href="#" onclick="updateIsComm('${ifshrboard_comm_cont}','${indexTd }', event )">수정</a>
+							<a href="#" onclick="updateIsCommForm('${indexTd }', event )">수정</a>
 						/
 						<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
 							<a href="/world/is/deleteIsBoardComm.do?ifshrboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
