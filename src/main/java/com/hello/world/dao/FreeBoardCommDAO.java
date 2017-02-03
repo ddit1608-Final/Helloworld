@@ -13,6 +13,7 @@ public interface FreeBoardCommDAO {
 	public ArrayList<FreeBoardCommVO> listFreeBoardComm(String freeboard_posting_no)throws SQLException;
 	public void deleteFreeBoardComm(String freeBoardCommVO)throws SQLException;
 	public void updateFreeBoardComm(FreeBoardCommVO freeBoardCommVO)throws SQLException;
+	
 }
 
 

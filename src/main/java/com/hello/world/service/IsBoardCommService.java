@@ -50,4 +50,10 @@ public class IsBoardCommService {
 			e.printStackTrace();
 		}
 	}
+	public IsBoardCommVO getIsBoardComm(String ifshrboard_ans_code)
+			throws SQLException {
+		
+		return isBoardCommDAO.getIsBoardComm(ifshrboard_ans_code);
+	}
+
 }

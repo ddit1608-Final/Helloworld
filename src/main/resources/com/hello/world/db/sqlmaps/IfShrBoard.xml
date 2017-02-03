@@ -48,5 +48,7 @@
 		where ifshrboard_posting_no=#ifshrboard_posting_no#
 	</delete>
 	
+	
+	
 
 </sqlMap>

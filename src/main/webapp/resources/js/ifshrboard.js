@@ -49,14 +49,41 @@ function pwd(){
 
 	
 	
-function iswriteComm_go() {
+function iswriteComm_go(mem_nick,ifshrboard_posting_no,ifshrboard_comm_contt,event) {
+	event.preventDefault();
+	var cont={
+		"ifshrboard_comm_contt" : ifshrboard_comm_contt,
+		"mem_nick": mem_nick,
+		"ifshrboard_posting_no":ifshrboard_posting_no
+	};
 	if (document.formm.ifshrboard_comm_cont.value == "") {
 		alert("댓글을 입력해주세요");
 		document.formm.ifshrboard_comm_cont.focus();
 		return false;
 	}else{
-		formm.submit();
-		return true;
+		$.ajax({
+			url:"writeComm",
+			type:"post",
+			contentType:'application/json',
+			dataType:'json',
+			data: JSON.stringify(cont),
+			success : function(data) {
+				var a;
+				$.each(data,function(){
+					a = '<tr><td>'+mem_nick+'</td>'+
+						'<td>'+ifshrboard_comm_contt+'<input type="button" value="추천">'+
+						'<input type="button" value="비추천"></td>'+
+					 	'<td></td>'+
+					 	'<td><a href="#" onclick="updateIsComm()">수정</a>/'+
+						'<a href="#" onclick="deleteIsComm()">삭제</a></td></tr>'
+				})
+				$('#iscomm_go').append(a);
+				$('#ifshrboard_comm_contt').val("");
+			},
+			error : function(error) {
+				alert("22");
+			}
+		})
 	}
 }
 function updateIsComm(ifshrboard_comm_cont,indexTd, event){
@@ -77,7 +104,9 @@ function updateIsComm(ifshrboard_comm_cont,indexTd, event){
 		}
 	})
 }
-function deleteIsComm(ifshrboard_ans_code, indexTd){
+function deleteIsComm(ifshrboard_ans_code, indexTdd, event){
+	alert("code값 test >>"+ifshrboard_ans_code);
+	event.preventDefault();
 	var code ={
 		"ifshrboard_ans_code" : ifshrboard_ans_code	
 	};
@@ -86,7 +115,7 @@ function deleteIsComm(ifshrboard_ans_code, indexTd){
 		type: "post",
 		data: code,
 		success: function(data){
-			alert("성공");
+			$('#'+indexTdd).remove();
 		},
 		error : function(error){
 			alert("실패");
