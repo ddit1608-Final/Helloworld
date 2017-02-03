@@ -229,22 +229,21 @@ function check_addr() {
 }
 
 function checkDepulicateId() {
+	
 	$
 			.ajax({
-				url : "<%=request.getContextPath()%>/member/duplicationCheck",
+				
+				url : "duplicationCheck",
 				type : "post",
-				dataType : "text",
-				data : ({
-					mem_mail : $("#mem_mail").val()
-				}),
+				data : $("#joinForm input").serialize(),
 				success : function(data) {
-					if (data == 1) {
-						document.getElementById("mailCheck").value = "이미 해당 아이디로 가입된 회원가 있습니다.";
+					if (data == "Exit") {
+						document.getElementById("mailCheck").innerHTML = "이미 해당 아이디로 가입된 회원가 있습니다.";
 					} else {
 						if ($("#mem_mail").val().length < 5) {
-							document.getElementById("mailCheck").value = "아이디를 5자 이상 입력해주세요.";
+							document.getElementById("mailCheck").innerHTML = "아이디를 5자 이상 입력해주세요.";
 						} else {
-							document.getElementById("mailCheck").value = "사용 가능한 아이디입니다.";
+							document.getElementById("mailCheck").innerHTML = "";
 						}
 					}
 				},
