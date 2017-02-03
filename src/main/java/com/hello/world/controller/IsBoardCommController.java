@@ -85,7 +85,7 @@ public class IsBoardCommController {
 		isBoardCommVO.setIfshrboard_ans_code(ifshrboard_ans_code);
 		isBoardCommService.updateIsBoardComm(isBoardCommVO);
 
-		return "data";
+		return ifshrboard_comm_cont;
 
 	}
 

@@ -90,9 +90,6 @@ function updateIsComm(indexTd, event) {
 	var ifshrboard_ans_code = $('#ifshrboard_ans_code'+indexTd).val();
 	var ifshrboard_comm_cont = $('#ifshrboard_comm_cont').val();
 	
-	alert('ifshrboard_ans_code : '+ifshrboard_ans_code);
-	alert('ifshrboard_comm_cont : '+ifshrboard_comm_cont);
-	
 	var arr = {
 			"ifshrboard_ans_code" : ifshrboard_ans_code,
 			"ifshrboard_comm_cont" : ifshrboard_comm_cont
@@ -103,7 +100,8 @@ function updateIsComm(indexTd, event) {
 		type : "post",
 		data : arr,
 		success : function(data) {
-			alert("11");
+			$('#isBoardComm_cont' + indexTd)
+			.html(data);
 		},
 		error : function(error) {
 			alert("22");
