@@ -75,8 +75,8 @@
 						<td>${ qnaBoardComm.qnaboard_comm_cont}</td>
 					<c:forEach items="${ qnaBoardChuList }" var="qnaBoardChuList">
 						<c:if test="${qnaBoardComm.qnaboard_ans_code == qnaBoardChuList.qnaboard_ans_code }">				
-							<td>추천<input type="button" id="chu" value="${ qnaBoardChuList.qnaboard_chu }"></td>
-							<td>비추천 ${ qnaBoardChuList.qnaboard_bchu }</td>
+							<td onclick="chu_go('${status.count }');">추천<input type="button" id="chu${status.count }" value="${ qnaBoardChuList.qnaboard_chu }"></td>
+							<td onclick="bchu_go('${status.count }');">비추천<input type="button" id="bchu${status.count }" value="${ qnaBoardChuList.qnaboard_bchu }"></td>
 						</c:if>
 					</c:forEach>
 					
@@ -85,7 +85,7 @@
 							<a href="/world/qna/deleteqnaBoardComm.do?qnaboard_ans_code=${qnaBoardComm.qnaboard_ans_code}
 								&qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">삭제</a>
 						</td>
-						<td><input type="text" name="qnaboard_ans_code${status.count }" value="${qnaBoardComm.qnaboard_ans_code}"></td>
+						<td><input type="text" id="qnaboard_ans_code${status.count }" value="${qnaBoardComm.qnaboard_ans_code}"></td>
 						<c:set value="${status.count }" var="indexTd" />
 						</c:if>
 					<tr>
@@ -102,19 +102,26 @@
 </article>
 
 <script>
-	$(function() {
-		$('#chu').click(function(){
-			
-			var chu = {"chu" : $('#chu').val() };
-			var qnaboard_ans_code = {"qnaboard_ans_code" : $('#qnaboard_ans_code').val() };
-			$.ajax({
-				url : "chu",
-				type : "post",
-				data : {chu: $('#chu').val(), qnaboard_ans_code:$('#qnaboard_ans_code').val()},
-				success : function(){
-					alert($('#qnaboard_ans_code').val());
-				}
-			});
+	
+	function chu_go(index) {
+		$.ajax({
+			url : "chu",
+			type : "post",
+			data : {chu: $('#chu'+index).val(), qnaboard_ans_code:$('#qnaboard_ans_code'+index).val()},
+			success : function(data){
+				$('#chu'+index).val(data);
+			}
 		});
-	});
+	}
+	
+	function bchu_go(index) {
+		$.ajax({
+			url : "bchu",
+			type : "post",
+			data : {bchu: $('#bchu'+index).val(), qnaboard_ans_code:$('#qnaboard_ans_code'+index).val()},
+			success : function(data){
+				$('#bchu'+index).val(data);
+			}
+		});
+	}
 </script>

@@ -25,6 +25,12 @@ public class QnaBoardChuDAO_iBatis implements QnaBoardChuDAO {
 	}
 
 	@Override
+	public void updateQnaBoardBChuComm(QnaBoardChuVO qnaBoardChuVO)
+			throws SQLException {
+		client.update("updateQnaBoardBChuComm", qnaBoardChuVO);
+	}
+	
+	@Override
 	public QnaBoardChuVO listQnaBoardChu(String qnaboard_ans_code)
 			throws SQLException {
 		QnaBoardChuVO qnaBoardChuVO = (QnaBoardChuVO) client
@@ -32,6 +38,7 @@ public class QnaBoardChuDAO_iBatis implements QnaBoardChuDAO {
 		
 		return qnaBoardChuVO;
 	}
+
 	
 	
 

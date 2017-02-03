@@ -185,14 +185,6 @@ public class QnaBoardController {
 	@ResponseBody
 	public String boardChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, Model model, HttpServletRequest request){
 		
-		String url = "redirect:qnaBoardList.do";
-		
-		/*int chu = Integer.parseInt(qnaBoardChuVO.getQnaboard_chu());
-		chu = chu +1;
-		String chu1 = String.valueOf(chu);
-		
-		qnaBoardChuVO.setQnaboard_chu(chu1);*/
-		
 		String chu = request.getParameter("chu");
 		
 		qnaBoardChuVO.setQnaboard_chu(chu);
@@ -201,9 +193,40 @@ public class QnaBoardController {
 		
 		qnaBoardChuService.updateQnaBoardChuComm(qnaBoardChuVO);
 		
-		model.addAttribute("qnaBoardChuVO", qnaBoardChuVO);
+		String upChu ="";
+		try {
+			upChu = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_chu();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return url;
+		
+		return upChu;
+	}
+	
+	@RequestMapping(value = "/bchu", method = RequestMethod.POST)
+	@ResponseBody
+	public String boardBChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, Model model, HttpServletRequest request){
+		
+		String bchu = request.getParameter("bchu");
+		
+		qnaBoardChuVO.setQnaboard_bchu(bchu);
+		
+		qnaBoardChuVO.setQnaboard_ans_code(qnaboard_ans_code);
+		
+		qnaBoardChuService.updateQnaBoardBChuComm(qnaBoardChuVO);
+		
+		String upBChu ="";
+		try {
+			upBChu = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_bchu();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return upBChu;
 	}
 	
 }

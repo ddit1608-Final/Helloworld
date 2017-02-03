@@ -27,6 +27,14 @@ public class QnaBoardChuService {
 		}
 	}
 	
+	public void updateQnaBoardBChuComm(QnaBoardChuVO qnaBoardChuVO) {
+		try {
+			this.qnaBoardChuDAO.updateQnaBoardBChuComm(qnaBoardChuVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public QnaBoardChuVO listQnaBoardChu(
 			String qnaboard_ans_code) throws SQLException {
 		QnaBoardChuVO qnaBoardChuVO = qnaBoardChuDAO.listQnaBoardChu(qnaboard_ans_code);

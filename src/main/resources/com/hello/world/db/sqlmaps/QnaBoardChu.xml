@@ -13,6 +13,13 @@
 		WHERE qnaboard_ans_code=#qnaboard_ans_code#
 	</update>
 	
+	<update id="updateQnaBoardBChuComm" parameterClass="qnachu">
+		UPDATE qnaboard_chu
+		SET
+			qnaboard_bchu = #qnaboard_bchu#+1
+		WHERE qnaboard_ans_code=#qnaboard_ans_code#
+	</update>
+	
 	<select id="listQnaBoardChu" parameterClass="str" resultClass="qnachu">
 		select
 		* from qnaboard_chu where qnaboard_ans_code =

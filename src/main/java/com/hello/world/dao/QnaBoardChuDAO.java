@@ -10,6 +10,7 @@ import com.hello.world.dto.QnaBoardCommVO;
 public interface QnaBoardChuDAO {
 	
 	public void updateQnaBoardChuComm(QnaBoardChuVO qnaBoardChuVO)throws SQLException;
+	public void updateQnaBoardBChuComm(QnaBoardChuVO qnaBoardChuVO)throws SQLException;
 	public QnaBoardChuVO listQnaBoardChu(String qnaboard_ans_code)throws SQLException;
 
 }
