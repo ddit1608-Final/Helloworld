@@ -229,7 +229,6 @@ function check_addr() {
 }
 
 function checkDepulicateId() {
-	
 	$
 			.ajax({
 				

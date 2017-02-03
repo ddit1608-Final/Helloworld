@@ -21,18 +21,18 @@
 		#ifshrboard_posting_no# order by ifshrboard_COMM_WRIDATE asc
 	</select>
 	
-	<!-- <delete id="deleteIsBoardComm" parameterClass="str">
+	<delete id="deleteIsBoardComm" parameterClass="str">
 		delete
-		from freeboard_comm
-		where freeboard_ans_code=#freeboard_ans_code#
+		from ifshrboard_comm
+		where ifshrboard_ans_code=#ifshrboard_ans_code#
 	</delete>
 	
 	<update id="updateIsBoardComm" parameterClass="iscomm">
-		UPDATE freeBoard_comm
+		UPDATE ifshrboard_comm
 		SET
-			FREEBOARD_COMM_CONT = #freeboard_comm_cont#
-		WHERE freeboard_ans_code= #freeboard_ans_code#
-	</update> -->
+			ifshrboard_COMM_CONT = #ifshrboard_comm_cont#
+		WHERE ifshrboard_ans_code= #ifshrboard_ans_code#
+	</update>
 
 
 </sqlMap>
