@@ -84,8 +84,7 @@
 							<a href="#" onclick="updateIsComm('${ifshrboard_comm_cont}','${indexTd }' )">수정</a>
 						/
 						<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
-							<a href="/world/is/deleteIsBoardComm.do?ifshrboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
-								&ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">삭제</a>
+							<a href="#" onclick="deleteIsComm('${ifshrboard_ans_code}','${indexTd }')">삭제</a>
 						</td>
 						</c:if>
 					</tr>

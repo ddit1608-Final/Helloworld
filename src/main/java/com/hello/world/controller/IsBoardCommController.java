@@ -48,6 +48,7 @@ public class IsBoardCommController {
 	}
 	
 	@RequestMapping(value = "/deleteIsBoardComm.do")
+	@ResponseBody
 	public String deleteIsBoardComm(@RequestParam String ifshrboard_ans_code,IsBoardCommVO ibcVO,
 			HttpSession session) throws ServletException, IOException {
 		String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="

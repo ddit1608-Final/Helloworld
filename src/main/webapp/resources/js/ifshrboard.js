@@ -77,6 +77,25 @@ function updateIsComm(ifshrboard_comm_cont,indexTd){
 		}
 	})
 }
+function deleteIsComm(ifshrboard_ans_code, indexTd){
+	var code ={
+		"ifshrboard_ans_code" : ifshrboard_ans_code	
+	};
+	$.ajax({
+		url:"deleteIsBoardComm.do",
+		type: "post",
+		data: code,
+		success: function(data){
+			alert("성공");
+		},
+		error : function(error){
+			alert("실패");
+		}
+		
+	})
+	
+	
+}
 /*$(document).ready(function(){
 	$('#div1hide').click(function(){
 		$('#div1').hide();
