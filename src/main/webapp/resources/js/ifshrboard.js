@@ -59,8 +59,8 @@ function iswriteComm_go() {
 		return true;
 	}
 }
-function updateIsComm(ifshrboard_comm_cont,indexTd){
-	
+function updateIsComm(ifshrboard_comm_cont,indexTd, event){
+	event.preventDefault();
 	var arr = {
 			"ifshrboard_comm_cont" : ifshrboard_comm_cont
 	};

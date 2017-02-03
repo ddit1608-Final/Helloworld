@@ -81,7 +81,7 @@
 						<c:set value="isBoardComm_cont${status.count}" var="indexTd"/>
 						
 						<td>
-							<a href="#" onclick="updateIsComm('${ifshrboard_comm_cont}','${indexTd }' )">수정</a>
+							<a href="#" onclick="updateIsComm('${ifshrboard_comm_cont}','${indexTd }', event )">수정</a>
 						/
 						<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
 							<a href="#" onclick="deleteIsComm('${ifshrboard_ans_code}','${indexTd }')">삭제</a>
