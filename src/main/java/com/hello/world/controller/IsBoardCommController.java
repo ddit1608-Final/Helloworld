@@ -57,7 +57,7 @@ public class IsBoardCommController {
 		return url;
 	}
 	
-	@RequestMapping(value="/updateIsBoardComm.do", method = RequestMethod.POST)
+	@RequestMapping(value="/updateIsBoardComm.do", method = RequestMethod.GET)
 	@ResponseBody
 	public String updateIsBoardComm(HttpServletRequest request)throws ServletException,IOException{
 		/*String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="
@@ -65,7 +65,7 @@ public class IsBoardCommController {
 		
 		String ifshrboard_comm_cont = request.getParameter("ifshrboard_comm_cont");
 		
-		return "";
+		return ifshrboard_comm_cont;
 	
 	}
 	

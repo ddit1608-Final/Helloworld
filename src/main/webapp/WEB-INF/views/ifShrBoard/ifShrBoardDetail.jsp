@@ -68,16 +68,20 @@
 					<td style="width:200px">작성날짜</td>
 					<td></td>
 				</tr>
-				<c:forEach items="${isBoardCommList}" var="ifShrBoardComm">
+				<c:forEach items="${isBoardCommList}" var="ifShrBoardComm" varStatus="status" >
 					<tr id="commBody">
 						<td style="width:13%;">${ ifShrBoardComm.ifshrboard_comm_wri}</td>
-						<td style="width:70%;" id="isBoardComm_cont" name="isBoardComm_cont">${ ifShrBoardComm.ifshrboard_comm_cont}
+						<td style="width:70%;" id="isBoardComm_cont${status.count}" name="isBoardComm_cont${status.count}">${ ifShrBoardComm.ifshrboard_comm_cont}
 						<input type="button" value="추천">
 						<input type="button" value="비추천"></td>
 						<td>${ ifShrBoardComm.ifshrboard_comm_wridate }</td>
 						<c:if test="${loginUser.mem_nick ==ifShrBoardComm.ifshrboard_comm_wri }">
+						
+						<c:set value="${ifShrBoardComm.ifshrboard_comm_cont}" var="ifshrboard_comm_cont"/>
+						<c:set value="isBoardComm_cont${status.count}" var="indexTd"/>
+						
 						<td>
-							<a href="#" onclick="updateIsComm()">수정</a>
+							<a href="#" onclick="updateIsComm('${ifshrboard_comm_cont}','${indexTd }' )">수정</a>
 						/
 						<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
 							<a href="/world/is/deleteIsBoardComm.do?ifshrboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
@@ -96,12 +100,6 @@
 		<input type="button" value="댓글등록" onclick="iswriteComm_go(this.formm)">
 		</c:if>
 	</form>
-	<form id="test_go">
-	<input type="hidden" id="ifshrboard_posting_no" name="ifshrboard_posting_no" value="${ifShrBoardVO.ifshrboard_posting_no }">
-	<input type="hidden" id="ifshrboard_ans_code" name="ifshrboard_ans_code" value="${ifShrBoardCommVO.ifshrboard_ans_code}">
-	<input type="hidden" id="ifshrboard_comm_cont" name="ifshrboard_comm_cont" value="${ifShrBoardCommVO.ifshrboard_comm_cont}">
 	
-	
-	</form>
 		
 </article>

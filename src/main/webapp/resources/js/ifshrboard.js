@@ -59,15 +59,18 @@ function iswriteComm_go() {
 		return true;
 	}
 }
-function updateIsComm(){
+function updateIsComm(ifshrboard_comm_cont,indexTd){
 	
-	alert($('#test_go input').serialize());
+	var arr = {
+			"ifshrboard_comm_cont" : ifshrboard_comm_cont
+	};
+	
 	$.ajax({
 		url:"updateIsBoardComm.do",
-		type:"post",
-		data: $('#test_go input').serialize(),
+		type:"get",
+		data: arr,
 		success : function(data) {
-			
+			$('#'+indexTd).html('<input value='+data+'></input>');
 		},
 		error : function(error) {
 			alert("22");
