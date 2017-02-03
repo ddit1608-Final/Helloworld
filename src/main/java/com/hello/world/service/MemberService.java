@@ -53,6 +53,12 @@ public class MemberService {
 		}
 		return member;
 	}
+	
+	public int updateMember(MemVO memVO) throws SQLException{
+		int result = memDao.updateMember(memVO);
+
+		return result;
+	}
 		
 	/*public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
 		ArrayList<FreeBoardVO> freeBoardList=null;

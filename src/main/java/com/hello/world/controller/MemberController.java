@@ -194,13 +194,15 @@ public class MemberController implements ServletContextAware {
 
 	@RequestMapping(value = "/duplicationCheck", method = RequestMethod.POST)
 	@ResponseBody
-	public int duplicationCheckID(HttpServletRequest request , Model model) {
-		int result = -1;
+	public String duplicationCheckID(HttpServletRequest request , Model model) {
+		String result = "NotExist";
 		
 		String mem_mail = request.getParameter("mem_mail");
 
 		try {
-			result = memService.confirmID(mem_mail);
+			if(memService.confirmID(mem_mail) == 1) {
+				result = "Exit";
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
