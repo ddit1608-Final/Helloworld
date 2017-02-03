@@ -71,14 +71,14 @@
 				<c:forEach items="${isBoardCommList}" var="ifShrBoardComm">
 					<tr id="commBody">
 						<td style="width:13%;">${ ifShrBoardComm.ifshrboard_comm_wri}</td>
-						<td style="width:70%;" id="add">${ ifShrBoardComm.ifshrboard_comm_cont}</td>
-						<td style="float:left; width:100%;">
+						<td style="width:70%;" id="add">${ ifShrBoardComm.ifshrboard_comm_cont}
 						<input type="button" value="추천">
 						<input type="button" value="비추천"></td>
 						<td>${ ifShrBoardComm.ifshrboard_comm_wridate }</td>
 						<c:if test="${loginUser.mem_nick ==ifShrBoardComm.ifshrboard_comm_wri }">
 						<td>
-							<a href="#" id="isCommUpdate">수정</a>
+							<a href="/world/is/updateIsBoardComm.do?ifshrboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
+								&ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}" id=${ifShrBoardComm.ifshrboard_ans_code};>수정</a>
 						/
 							<a href="/world/is/deleteIsBoardComm.do?ifshrboard_ans_code=${ifShrBoardComm.ifshrboard_ans_code}
 								&ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">삭제</a>

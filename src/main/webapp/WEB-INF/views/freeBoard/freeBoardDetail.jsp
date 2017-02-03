@@ -133,7 +133,7 @@
 		</table>
 		</div> <!-- div2 종료  -->
 		<c:if test="${loginUser!=null}">
-		<input type="text" id="freeboard_comm_cont" name="freeboard_comm_cont">
+		<textarea rows="2" cols="150" id="freeboard_comm_cont" name="freeboard_comm_cont"></textarea>
 		<input type="hidden" id="freeboard_posting_no" name="freeboard_posting_no" value="${freeBoardVO.freeboard_posting_no }">
 		<input type="hidden" id="mem_nick" name="mem_nick" value="${loginUser.mem_nick}">
 		<input type="button" value="댓글등록" onclick="writeComm_go(this.formm)">

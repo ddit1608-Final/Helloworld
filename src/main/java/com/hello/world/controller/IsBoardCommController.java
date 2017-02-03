@@ -55,6 +55,16 @@ public class IsBoardCommController {
 		return url;
 	}
 	
+	@RequestMapping(value="/updateIsBoardComm.do")
+	public String updateIsBoardComm(@RequestParam String ifshrboard_ans_code,IsBoardCommVO ibcVO,
+			HttpSession session)throws ServletException,IOException{
+		String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="
+				+ ibcVO.getIfshrboard_posting_no();	
+		
+		
+		
+		return url;
 	
+	}
 	
 }
