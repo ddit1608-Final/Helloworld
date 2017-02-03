@@ -30,7 +30,7 @@
 	<update id="updateIsBoardComm" parameterClass="iscomm">
 		UPDATE ifshrboard_comm
 		SET
-			ifshrboard_COMM_CONT = #ifshrboard_comm_cont#
+			ifshrboard_comm_cont = #ifshrboard_comm_cont#
 		WHERE ifshrboard_ans_code= #ifshrboard_ans_code#
 	</update>
 

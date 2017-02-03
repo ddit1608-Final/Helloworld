@@ -21,16 +21,15 @@ import com.hello.world.service.IfShrBoardService;
 import com.hello.world.service.IsBoardCommService;
 
 @Controller
-@RequestMapping(value="/is")
+@RequestMapping(value = "/is")
 public class IsBoardCommController {
 
 	@Autowired
 	IfShrBoardService ifShrBoardService;
-	
+
 	@Autowired
 	IsBoardCommService isBoardCommService;
-	
-	
+
 	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
 	public String writeComm(IsBoardCommVO ibcVO, Model model, String mem_nick) {
 		String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="
@@ -46,27 +45,48 @@ public class IsBoardCommController {
 
 		return url;
 	}
-	
+
 	@RequestMapping(value = "/deleteIsBoardComm.do")
-	public String deleteIsBoardComm(@RequestParam String ifshrboard_ans_code,IsBoardCommVO ibcVO,
-			HttpSession session) throws ServletException, IOException {
+	public String deleteIsBoardComm(@RequestParam String ifshrboard_ans_code,
+			IsBoardCommVO ibcVO, HttpSession session) throws ServletException,
+			IOException {
 		String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="
 				+ ibcVO.getIfshrboard_posting_no();
 		isBoardCommService.deleteIsBoardComm(ifshrboard_ans_code);
 
 		return url;
 	}
-	
-	@RequestMapping(value="/updateIsBoardComm.do", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/updateIsBoardCommForm.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
 	@ResponseBody
-	public String updateIsBoardComm(HttpServletRequest request)throws ServletException,IOException{
-		/*String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="
-				+ ibcVO.getIfshrboard_posting_no();*/	
-		
-		String ifshrboard_comm_cont = request.getParameter("ifshrboard_comm_cont");
-		
+	public String updateIsBoardCommForm(HttpServletRequest request)
+			throws ServletException, IOException {
+
+		String ifshrboard_comm_cont = request
+				.getParameter("ifshrboard_comm_cont");
+
 		return ifshrboard_comm_cont;
-	
+
 	}
 	
+	@RequestMapping(value = "/updateIsBoardComm.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String updateIsBoardComm(HttpServletRequest request)
+			throws ServletException, IOException {
+
+		String ifshrboard_ans_code = request
+				.getParameter("ifshrboard_ans_code");
+		
+		String ifshrboard_comm_cont = request
+				.getParameter("ifshrboard_comm_cont");
+		
+		IsBoardCommVO isBoardCommVO = new IsBoardCommVO();
+		isBoardCommVO.setIfshrboard_comm_cont(ifshrboard_comm_cont.trim());
+		isBoardCommVO.setIfshrboard_ans_code(ifshrboard_ans_code);
+		isBoardCommService.updateIsBoardComm(isBoardCommVO);
+
+		return "data";
+
+	}
+
 }
