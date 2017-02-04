@@ -42,9 +42,7 @@
 
 	<bean id="crrDao" class="com.hello.world.dao.iBatis.CrrDAO_iBatis"
 		p:client-ref="sqlMapClient" />
-
-
-
+	
 	<bean id="compMemDao" class="com.hello.world.dao.iBatis.CompMemberDAO_iBatis"
 		p:client-ref="sqlMapClient" />
 
@@ -59,6 +57,9 @@
 		p:client-ref="sqlMapClient" />
 
 	<bean id="flowDao" class="com.hello.world.dao.iBatis.FlowDAO_iBatis"
+		p:client-ref="sqlMapClient" />
+		
+	<bean id="qnaBoardChooseDAO" class="com.hello.world.dao.iBatis.QnaBoardChooseDAO_iBatis"
 		p:client-ref="sqlMapClient" />
 
 
@@ -120,4 +121,8 @@
 
 	<bean id="cstBoardService" class="com.hello.world.service.CstBoardService"
 		p:cstBoardDao-ref="cstBoardDao" />
+	
+	<bean id="qnaBoardChooseService" class="com.hello.world.service.QnaBoardChooseService"
+		p:qnaBoardChooseDAO-ref="qnaBoardChooseDAO" />
+		
 </beans>

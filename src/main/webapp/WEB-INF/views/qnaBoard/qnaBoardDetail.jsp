@@ -77,6 +77,7 @@
 						<c:if test="${qnaBoardComm.qnaboard_ans_code == qnaBoardChuList.qnaboard_ans_code }">				
 							<td onclick="chu_go('${status.count }');">추천<input type="button" id="chu${status.count }" value="${ qnaBoardChuList.qnaboard_chu }"></td>
 							<td onclick="bchu_go('${status.count }');">비추천<input type="button" id="bchu${status.count }" value="${ qnaBoardChuList.qnaboard_bchu }"></td>
+							<td onclick="choose_go('${status.count}')"><input type="button" id="choose${status.count }" value=""></td>
 						</c:if>
 					</c:forEach>
 					
