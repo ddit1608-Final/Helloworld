@@ -13,6 +13,7 @@ public interface IsBoardCommDAO {
 	public ArrayList<IsBoardCommVO> listIsBoardComm(String ifshrboard_posting_no)throws SQLException;
 	public void deleteIsBoardComm(String isBoardCommVO)throws SQLException;
 	public void updateIsBoardComm(IsBoardCommVO isBoardCommVO)throws SQLException;
+	public IsBoardCommVO getIsBoardComm (String ifshrboard_ans_code)throws SQLException;
 }
 
 
