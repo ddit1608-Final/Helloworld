@@ -89,4 +89,9 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 		return total_pages;
 	}
 
+	@Override
+	public void updateFreeHits(FreeBoardVO freeBoardVO) throws SQLException {
+		client.update("updateFreeHits",freeBoardVO);
+	}
+
 }

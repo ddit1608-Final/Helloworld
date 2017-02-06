@@ -2,6 +2,8 @@ package com.hello.world.dao.iBatis;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.hello.world.dao.IfShrBoardDAO;
 import com.hello.world.dto.FreeBoardVO;
@@ -74,6 +76,25 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 	public void updateHits(IfShrBoardVO ifShrBoardVO) throws SQLException {
 		client.update("updateHits",ifShrBoardVO);
 	}
+
+	@Override
+	public List<IfShrBoardVO> getIfShrBoard( String is_key)
+			throws SQLException {
+		ArrayList<IfShrBoardVO> getIfShrBoardList = new ArrayList<IfShrBoardVO>();
+		
+		for(IfShrBoardVO board:getIfShrBoardList){
+			if(board.getIfshrboard_title().equals(is_key)){
+				getIfShrBoardList.add(board);
+			}
+		}
+		return getIfShrBoardList;
+	}
+
+
+	
+	
+	
+	
 
 	
 }

@@ -2,8 +2,8 @@ package com.hello.world.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
 import com.hello.world.service.IfShrBoardService;
 import com.hello.world.service.IsBoardCommService;
@@ -98,5 +99,8 @@ public class IsBoardCommController {
 		return ifshrboard_comm_cont;
 
 	}
+	
+	
+	
 
 }
