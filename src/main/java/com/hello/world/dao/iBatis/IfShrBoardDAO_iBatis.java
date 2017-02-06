@@ -69,4 +69,11 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 
 		client.delete("deleteIfShrBoard",ifShrBoard_posting_no);
 	}
+
+	@Override
+	public void updateHits(IfShrBoardVO ifShrBoardVO) throws SQLException {
+		client.update("updateHits",ifShrBoardVO);
+	}
+
+	
 }

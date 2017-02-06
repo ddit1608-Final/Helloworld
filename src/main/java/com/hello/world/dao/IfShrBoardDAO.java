@@ -20,6 +20,8 @@ public interface IfShrBoardDAO {
 	public void updateIfShrBoard(IfShrBoardVO ifShrBoardVO)throws SQLException;
 	
 	public void deleteIfShrBoard(String ifShrBoardVO)throws SQLException;
+	
+	public void updateHits(IfShrBoardVO ifShrBoardVO)throws SQLException;
 }
 
 
