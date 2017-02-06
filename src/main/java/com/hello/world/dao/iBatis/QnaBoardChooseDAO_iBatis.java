@@ -4,7 +4,6 @@ import java.sql.SQLException;
 
 import com.hello.world.dao.QnaBoardChooseDAO;
 import com.hello.world.dto.QnaBoardChooseVO;
-import com.hello.world.dto.QnaBoardChuVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class QnaBoardChooseDAO_iBatis implements QnaBoardChooseDAO {
