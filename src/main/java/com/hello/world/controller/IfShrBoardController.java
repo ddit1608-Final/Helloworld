@@ -3,14 +3,18 @@ package com.hello.world.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -103,22 +107,22 @@ public class IfShrBoardController {
 	}
 	
 	@RequestMapping(value="/ifShrBoardDetail.do",method=RequestMethod.GET)
-	public String ifShrBoardDetail(@RequestParam String ifshrboard_posting_no,HttpSession session,Model model)
+	public String ifShrBoardDetail(@RequestParam String ifshrboard_posting_no,HttpSession session,Model model
+			,HttpServletRequest request)
 		throws ServletException,IOException{
-		
+			
 		String url = "ifShrBoard/ifShrBoardDetail";
 		
 		ArrayList<IsBoardCommVO> isBoardCommList = new ArrayList<IsBoardCommVO>();
 		
 		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
-		
+		ifShrBoardService.updateHits(ifShrBoardVO);
 		try {
 			isBoardCommList = isBoardCommService.listIsBoardComm(ifshrboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
 		model.addAttribute("isBoardCommList",isBoardCommList);
 		

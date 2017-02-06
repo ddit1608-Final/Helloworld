@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
 <article>
 <div>
-		<a href="<%=request.getContextPath()%>/ifShr/ifShrBoardList.do"><img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/ifshrboard.png"></a>
+		<a href="<%=request.getContextPath()%>/ifShr/ifShrBoardList.do">
+		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/ifshrboard.png"></a>
 	</div> 
 
 <form id="fdf" name="form" method="post">
@@ -22,12 +23,7 @@
 	    <th>NAME</th>
 	    <td>${ifShrBoardVO.mem_nick}</td>
 	    <td><b>DATE</b> &nbsp;${ifShrBoardVO.ifshrboard_wridate }</td>
-	    
   	 </tr>
- 		 
-  
-  
-    
   <tr>
   <th>CONTENT</th>
    <td></td>

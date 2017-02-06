@@ -48,6 +48,16 @@
 		where ifshrboard_posting_no=#ifshrboard_posting_no#
 	</delete>
 	
+	<update id="updateHits" parameterClass="ifshrboard">
+	UPDATE 
+		ifshrboard 
+	SET 
+		ifshrboard_hits = #ifshrboard_hits#+1 
+	WHERE 
+		ifshrboard_posting_no=#ifshrboard_posting_no#
+	</update>
+	
+	
 	
 	
 

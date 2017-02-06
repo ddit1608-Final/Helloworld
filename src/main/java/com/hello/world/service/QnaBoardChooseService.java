@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hello.world.dao.QnaBoardChooseDAO;
 import com.hello.world.dto.QnaBoardChooseVO;
-import com.hello.world.dto.QnaBoardChuVO;
 
 public class QnaBoardChooseService {
 	

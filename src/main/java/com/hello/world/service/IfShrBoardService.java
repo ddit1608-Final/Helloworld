@@ -122,5 +122,15 @@ public class IfShrBoardService {
 		
 	}
 	
+	public void updateHits(IfShrBoardVO ifShrBoardVO){
+		try {
+			ifShrBoardDAO.updateHits(ifShrBoardVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 }
