@@ -19,9 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.QnaBoardChooseVO;
 import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
+import com.hello.world.service.QnaBoardChooseService;
 import com.hello.world.service.QnaBoardChuService;
 import com.hello.world.service.QnaBoardCommService;
 import com.hello.world.service.QnaBoardService;
@@ -39,6 +41,9 @@ public class QnaBoardController {
 	
 	@Autowired
 	QnaBoardChuService qnaBoardChuService;
+	
+	@Autowired
+	QnaBoardChooseService qnaBoardChooseService;
 	
 	
 	@RequestMapping("/qnaBoardWriteForm.do")
@@ -119,8 +124,7 @@ public class QnaBoardController {
 		ArrayList<QnaBoardCommVO> qnaBoardCommList = new ArrayList<QnaBoardCommVO>();
 		QnaBoardVO qnaBoardVO = qnaBoardService.getQnaDetail(qnaboard_posting_no);
 		
-		ArrayList<QnaBoardChuVO> qnaBoardChuList = new ArrayList<QnaBoardChuVO>();
-				//.getFreeDetail(freeboard_posting_no);
+		ArrayList<QnaBoardChuVO> qnaBoardChuList = new ArrayList<QnaBoardChuVO>(); 
 		
 		String qnaboard_ans_code = "";
 		try {
@@ -139,19 +143,22 @@ public class QnaBoardController {
 				e.printStackTrace();
 			}
 		}
-
 		
-		/*try {
-			qnaBoardChuList = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code);
+		QnaBoardChooseVO qnaBoardChooseList = null;
+		
+		try {
+			qnaBoardChooseList = qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 
 		model.addAttribute("qnaBoardVO", qnaBoardVO);
 		model.addAttribute("qnaBoardCommList", qnaBoardCommList);
 		model.addAttribute("qnaBoardCommListCnt", qnaBoardCommList.size());
 		model.addAttribute("qnaBoardChuList", qnaBoardChuList);
+		model.addAttribute("qnaBoardChooseList", qnaBoardChooseList);
+		
 		return url;
 	}
 	
@@ -227,6 +234,41 @@ public class QnaBoardController {
 		
 		
 		return upBChu;
+	}
+	
+	@RequestMapping(value="/choose", method=RequestMethod.POST, produces="application/text;charset=utf8")
+	@ResponseBody
+	public String boardChoose(@RequestParam String qnaboard_ans_code, QnaBoardChooseVO qnaBoardChooseVO, Model model, HttpServletRequest request){
+		
+		String choose = request.getParameter("choose");
+		
+		if(choose != null){
+			qnaBoardChooseVO.setQnaboard_comm_choose("1");
+		}
+		
+		qnaBoardChooseVO.setQnaboard_ans_code(qnaboard_ans_code);
+		
+		try {
+			qnaBoardChooseService.insertQnaBoardChoose(qnaBoardChooseVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String qnaboardChoose = "";
+		
+		try {
+			if(qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_comm_choose() != null){
+				qnaboardChoose = "채택완료";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		
+		return qnaboardChoose;
 	}
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hello.world.dao.QnaBoardChooseDAO;
 import com.hello.world.dto.QnaBoardChooseVO;
+import com.hello.world.dto.QnaBoardChuVO;
 
 public class QnaBoardChooseService {
 	
@@ -22,6 +23,13 @@ public class QnaBoardChooseService {
 		int result =  qnaBoardChooseDAO.insertQnaBoardChoose(vo);
 
 		return result;
+	}
+	
+	public QnaBoardChooseVO listQnaBoardChu(
+			String qnaboard_ans_code) throws SQLException {
+		QnaBoardChooseVO qnaBoardchooseVo = qnaBoardChooseDAO.listQnaBoardChoose(qnaboard_ans_code); 
+
+		return qnaBoardchooseVo;
 	}
 
 	

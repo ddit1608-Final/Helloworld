@@ -12,5 +12,13 @@
 		(qnaboard_comm_choose, qnaboard_ans_code)
 		values(#qnaboard_comm_choose#,#qnaboard_ans_code#)
 	</update>
-	
+
+	<select id="listQnaBoardChoose" parameterClass="str" resultClass="qnachoose">
+		select
+		* from qnaboard_choose where qnaboard_ans_code =
+		#qnaboard_ans_code#
+	</select>
+
+
+
 </sqlMap>
