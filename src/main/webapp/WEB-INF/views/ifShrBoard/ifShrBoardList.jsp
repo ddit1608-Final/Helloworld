@@ -9,7 +9,7 @@
 		<a href="<%=request.getContextPath()%>/is/ifShrBoardList.do">
 		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/ifshrboard.png"></a>
 	</div>
-	<form name="form" method="post">
+	<form name="form" method="post" >
 		<table class="table table-condensed" id="blt">
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
@@ -61,10 +61,29 @@
 					onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
 					<%-- <input type="button" value="글쓰기" class="submit"onclick="location.href='<%=request.getContextPath()%>/free/freeBoardWriteForm.do'"> --%>
 				</td>
+			</tr>
+		</table>
+		</div>
+	</form>
+	<form name="formm" id="formm" method="get">
+		<div id="divdiv">
+		<table class="table table-condensed" id="blt" style="margin: 0 auto;">
+			<tr>
 				<td>
-					<%-- <input type="button" value="메인" class="cancel"
-				onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"> --%>
+				<select id="is_type" name="is_type">
+					<option value="ifshrboard_title" selected="selected">제목</option>
+					<option value="ifshrboard_cont">내용</option>
+					<option value="ifshrboard_wri">작성자</option>
+				</select>
+				<input type="text" name="is_key" id="is_key" placeholder="검색어를 입력해주세요"/>
+				<%-- <input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src('${is_key}',event)"> --%>
+				<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src()">
 				</td>
+				</tr>
+				<tr>
+					<td style="background: white;">
+						<label id="isert_key" style="color:red;"></label>
+					</td>
 			</tr>
 		</table>
 		</div>

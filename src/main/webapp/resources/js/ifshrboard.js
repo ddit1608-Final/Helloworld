@@ -113,6 +113,8 @@ function updateIsCommForm(indexTd, event) {
 			})
 }
 
+
+
 function updateIsComm(indexTd, event) {
 	event.preventDefault();
 	var ifshrboard_ans_code = $('#ifshrboard_ans_code'+indexTd).val();
@@ -154,6 +156,47 @@ function deleteIsComm(ifshrboard_ans_code, indexTdd, event){
 		}
 		
 	})
+
+	
+}	
 	
 	
-}
+	
+	function is_src(){
+		
+		var is_key = jQuery('#formm #is_key').val();
+		if(document.formm.is_key.value == ""){
+			document.getElementById("isert_key").innerHTML = "검색어를 입력해주세요";
+			return false;
+		}else{
+			document.getElementById("isert_key").innerHTML = "";
+			alert(is_key);
+			formm.action =  "isSearch.do?key="+is_key;
+			formm.submit();
+		}
+		/*}else{
+			$.ajax({
+				url:"isSearch.do",
+				type: "get",
+				data: is_key,
+				success: function(data){
+					document.getElementById("isert_key").innerHTML = "";
+					alert('data');
+				},
+				error : function(error){
+					document.getElementById("isert_key").innerHTML = "";
+					alert('실패');
+				}
+			})
+		}*/
+	}
+			
+		
+
+	
+	
+	
+	
+	
+	
+

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
@@ -114,7 +116,6 @@ public class IfShrBoardController {
 		String url = "ifShrBoard/ifShrBoardDetail";
 		
 		ArrayList<IsBoardCommVO> isBoardCommList = new ArrayList<IsBoardCommVO>();
-		
 		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
 		ifShrBoardService.updateHits(ifShrBoardVO);
 		try {
@@ -167,6 +168,15 @@ public class IfShrBoardController {
 		return url;
 		
 	}
+	// 검색기능 추가중
+	@RequestMapping(value="/isSearch.do",method = RequestMethod.GET)
+	@ResponseBody
+	public String getIfShrBoard(@RequestParam("is_type")String is_type,@RequestParam("is_key")String is_key,
+			HttpServletRequest request,Model model)throws ServletException,IOException{
+		
+		
+
+		return null;
 	
-	
+	}
 }

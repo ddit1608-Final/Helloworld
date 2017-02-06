@@ -16,6 +16,7 @@ public interface FreeBoardDAO {
 	public void updateFreeBoard(FreeBoardVO freeBoardVO)throws SQLException;
 	public void deleteFreeBoard(String freeBoardVO)throws SQLException;
 	public int totalRecord(String name)throws SQLException;
+	public void updateFreeHits(FreeBoardVO freeBoardVO)throws SQLException;
 }
 
 

@@ -2,8 +2,9 @@ package com.hello.world.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 
 
@@ -22,6 +23,7 @@ public interface IfShrBoardDAO {
 	public void deleteIfShrBoard(String ifShrBoardVO)throws SQLException;
 	
 	public void updateHits(IfShrBoardVO ifShrBoardVO)throws SQLException;
+	public List<IfShrBoardVO> getIfShrBoard(String is_key)throws SQLException;
 }
 
 

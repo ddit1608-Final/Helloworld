@@ -92,6 +92,7 @@ public class FreeBoardController {
 		ArrayList<FreeBoardCommVO> freeBoardCommList = new ArrayList<FreeBoardCommVO>();
 		FreeBoardVO freeBoardVO = freeService
 				.getFreeDetail(freeboard_posting_no);
+		freeService.updateFreeHits(freeBoardVO);
 
 		try {
 			freeBoardCommList = freeBoardCommService.listFreeBoardComm(freeboard_posting_no);

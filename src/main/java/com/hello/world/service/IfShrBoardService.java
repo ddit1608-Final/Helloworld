@@ -2,9 +2,9 @@ package com.hello.world.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.hello.world.dao.IfShrBoardDAO;
-import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 
 public class IfShrBoardService {
@@ -130,6 +130,18 @@ public class IfShrBoardService {
 			e.printStackTrace();
 		}
 		
+	}
+	public ArrayList<IfShrBoardVO> getIfShrBoard(String is_key ){
+		
+		ArrayList<IfShrBoardVO> getIfShrBoardList = null;
+		try {
+			getIfShrBoardList=(ArrayList<IfShrBoardVO>) ifShrBoardDAO.getIfShrBoard(is_key);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return getIfShrBoardList;
 	}
 	
 	
