@@ -22,7 +22,7 @@ public class NaverNewsController {
 		ModelAndView mav = new ModelAndView();
 
 		if (keyword != null) {
-			mav.addObject("newsList", service.searchNews(keyword, 20, 1));
+			mav.addObject("newsList", service.searchNews(keyword, 10, 1));
 		}
 		mav.setViewName("newsList");
 		return mav;
