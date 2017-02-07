@@ -59,6 +59,12 @@ public class MemberService {
 
 		return result;
 	}
+	
+	public int changePw(MemVO memVO) throws SQLException{
+		int result = memDao.changePw(memVO);
+
+		return result;
+	}
 		
 	/*public ArrayList<FreeBoardVO> getFreeBoardList(String loginID){
 		ArrayList<FreeBoardVO> freeBoardList=null;

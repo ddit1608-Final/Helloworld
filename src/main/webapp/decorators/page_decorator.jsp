@@ -20,13 +20,19 @@
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 	crossorigin="anonymous"></script>
-  <script type="text/javascript"
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/member.js"></script>
-<script type="text/javascript"	src="<%=request.getContextPath()%>/js/freeboard.js"></script>	
-<script type="text/javascript"	src="<%=request.getContextPath()%>/js/ifshrboard.js"></script>	
- 
- 
-<link href="<%=request.getContextPath()%>/resources/css/hw.css" rel="stylesheet">
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/freeboard.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/ifshrboard.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/sockjs-0.3.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/push.min.js"></script>
+
+<link href="<%=request.getContextPath()%>/resources/css/hw.css"
+	rel="stylesheet">
 
 </head>
 
@@ -34,13 +40,14 @@
 <style>
 ::selection {
 	/* background: #68e234; */
-	background:#68e234;
+	background: #68e234;
 }
 
 @font-face {
 	font-family: "한나";
 	src: url(../resources/fonts/BM-HANNA.ttf) format("truetype");
 }
+
 @font-face {
 	font-family: "한나";
 	src: url(fonts/BM-HANNA.ttf) format("truetype");
@@ -212,54 +219,98 @@ footer {
 	color: #3EAF0E;
 }
 
-#mem_mail{
-padding-top:13px;
-
-font-family:한나;
-font-size:12pt;
-color:#a31313;
+#mem_mail {
+	padding-top: 13px;
+	font-family: 한나;
+	font-size: 12pt;
+	color: #a31313;
 }
-
 </style>
+
+<script>
+	var wsocket;
+
+	function connect() {
+		
+		wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
+		wsocket.onopen;
+		
+		wsocket.onmessage = onMessage("${loginUser.mem_mail }");
+		send("${loginUser.mem_mail }");
+		wsocket.onclose = onClose;
+	}
+	
+	function onClose(evt) {
+		appendMessage("연결을 끊었습니다.");
+	}
+
+	function disconnect() {
+		wsocket.close();
+	}
+
+	function send(msg) {
+		var socket = wsocket;
+		socket.send(msg);
+	}
+
+	function onMessage(evt) {
+		
+		
+		appendMessage(evt);
+	}
+	
+
+	function appendMessage(msg) {
+		function push() {
+			Push.create('이런!', {
+				body : msg,
+				timeout : 5000
+			});
+		}
+		;
+	}
+</script>
 
 <body>
 
-<!-- 최상단 로고 및 검색바 -->
-<header>
-	<nav class="navbar navbar-inverse" style="border: none;">
-		<div style="background-color: white;">
-			<table>
-				<tr>
-					<td><a href="#"><img id="logo"
-							src="<%=request.getContextPath()%>/images/world2.png" onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"></a></td>
-					<td><input type="search" id="search"></td>
-					<td><a href="#"> <span class="glyphicon glyphicon-search"></span>
-					</a></td>
-				</tr>
-			</table>
-		</div>
-	</nav>
-	<!-- 최상단 로고 및 검색바END -->
-	<!-- 탑메뉴 -->
-
-	<nav class="navbar navbar-inverse"
-		style="border-left: 1px solid #3EAF0E; border-bottom: 1px solid #3EAF0E; border-right: 1px solid #3EAF0E; border-top: none;">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<!-- <a class="navbar-brand" href="#">Logo</a> -->
+	<!-- 최상단 로고 및 검색바 -->
+	<header>
+		<nav class="navbar navbar-inverse" style="border: none;">
+			<div style="background-color: white;">
+				<table>
+					<tr>
+						<td><a href="#"><img id="logo"
+								src="<%=request.getContextPath()%>/images/world2.png"
+								onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"></a></td>
+						<td><input type="search" id="search"></td>
+						<td><a href="#"> <span class="glyphicon glyphicon-search"></span>
+						</a></td>
+					</tr>
+				</table>
 			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav nav-pills">
+		</nav>
+		<!-- 최상단 로고 및 검색바END -->
+		<!-- 탑메뉴 -->
 
-					<!-- <li><a href="#">
+		<nav class="navbar navbar-inverse"
+			style="border-left: 1px solid #3EAF0E; border-bottom: 1px solid #3EAF0E; border-right: 1px solid #3EAF0E; border-top: none;">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+					<!-- <a class="navbar-brand" href="#">Logo</a> -->
+				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav nav-pills">
+
+						<!-- <li><a href="#">
           <span class="glyphicon glyphicon-home"></span>
         </a></li><br> -->
 
+<<<<<<< HEAD
 		<li><a href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구인</a></li>
         <li><a href="<%=request.getContextPath()%>/worknet/worknet.do">구직</a></li>
         <li><a href="<%=request.getContextPath()%>/news/news?keyword=IT">IT소식</a></li>
@@ -315,38 +366,105 @@ color:#a31313;
      <!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
-   
-   
 
-		<!--  <ul class="nav navbar-nav navbar-right">
+					</ul>
+				</div>
+
+			</div>
+
+
+			<div class="collapse navbar-collapse" id="myNavbar"
+				style="background-color: #d9d9d9;">
+				<form method="post" id="login" name="login" style="margin: 0;"
+					action="<%=request.getContextPath()%>/member/login">
+					<input name="prePage" hidden="hidden"
+						value="<%=request.getRequestURL()%>"> <input name="param"
+						id="param" hidden="hidden" value="1">
+					<ul class="nav navbar-nav" id="loginActionForm">
+						<c:choose>
+							<c:when test="${loginUser eq null }">
+								<li><input class="login" id="login_mem_mail"
+									name="login_mem_mail" type="text" placeholder=" 이메일"></li>
+								<li><input class="login" id="login_mem_pw"
+									name="login_mem_pw" type="password" placeholder=" 비밀번호"
+									onkeypress="key_enter(event);"></li>
+								<li><input type="button" value="로그인" id="loginbtn"
+									onclick="login_go();"></li>
+								<li id="check" style="margin: 13px auto; width: 5%;"><label
+									style="vertical-align: text-botom;" for="check2" id="auto">
+										<input id="check2" type="checkbox"
+										style="vertical-align: text-top;"> 자동
+								</label></li>
+								<li><a href="<%=request.getContextPath()%>/member/joinMenu"
+									id="aa">회원가입</a></li>
+							</c:when>
+							<c:otherwise>
+
+
+								<c:if test="${sockJS == 'close' }">
+									<c:set value="open" var="sockJS" scope="session" />
+									<script>
+										connect();
+									</script>
+								</c:if>
+
+
+
+								<li id="mem_mail" name="mem_mail">(Level)
+									${loginUser.mem_nick } (POINT : ${myPoint })</li>
+								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
+								<li><a href="#" id="aa">반응 ()</a></li>
+								<li><a href="<%=request.getContextPath()%>/mypage/main"
+									id="aa">마이페이지</a></li>
+								<%-- <li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li> --%>
+								<li><a href="<%=request.getContextPath()%>/member/logout?"
+									+${loginUser.mem_mail } id="aa">로그아웃</a></li>
+							</c:otherwise>
+						</c:choose>
+						<li><a href="<%=request.getContextPath()%>/member/find" id="aa">아이디/비밀번호 찾기</a></li>
+						<li><a href="#" id="aa">접속자수</a></li>
+					</ul>
+				</form>
+
+			</div>
+			<!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
-		<!--  <ul class="nav navbar-nav navbar-right">
+			<!--  <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul> -->
+
+
+
+			<!--  <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul> -->
+			<!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
 
 
 
 
-	</nav>
-</header>
+		</nav>
+	</header>
 
-<!-- 탑메뉴END -->
-<!-- 컨텐트 -->
+	<!-- 탑메뉴END -->
+	<!-- 컨텐트 -->
 
-<div class="container-fluid text-center">
+	<div class="container-fluid text-center">
 		<div class="row content">
-			 <div class="col-sm-2 sidenav" style="background-color: white;">
+			<div class="col-sm-2 sidenav" style="background-color: white;">
 				<!-- <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p>
       <p><a href="#">Link</a></p> -->
-			</div> 
+			</div>
 			<!-- 컨텐트내용 -->
 			<div class="col-sm-8 text-left">
-			
-			
-<decorator:body />
-	</div>
+
+
+				<decorator:body />
+			</div>
 			<!-- 컨텐트내용 END -->
 
 			<div class="col-sm-2 sidenav" style="background-color: white;">
@@ -354,11 +472,13 @@ color:#a31313;
 		</div>
 	</div>
 
-<!-- 컨텐트end -->
-<!-- 풋터 -->
-<footer class="container-fluid text-center2">
-	<p style="float:right">Copyright © 2016 Apple Inc. 모든 권리 보유</p>
-</footer>
-<!-- 풋터 END-->
+	<!-- 컨텐트end -->
+	<!-- 풋터 -->
+	<footer class="container-fluid text-center2">
+		<p style="float: right">Copyright © 2016 Apple Inc. 모든 권리 보유</p>
+	</footer>
+	<!-- 풋터 END-->
 </body>
+
+
 </html>

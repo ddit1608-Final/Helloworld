@@ -39,6 +39,10 @@
 		from ifshrboard_comm
 		where ifshrboard_ans_code= #ifshrboard_ans_code#
 	</select>
+	
+	<select id="getMaxAnxCode" resultClass="int">
+		select max(to_number(IFSHRBOARD_ANS_CODE)) from IFSHRBOARD_COMM
+	</select>
 
 
 </sqlMap>

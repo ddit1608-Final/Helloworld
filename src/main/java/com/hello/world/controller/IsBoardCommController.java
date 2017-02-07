@@ -2,6 +2,8 @@ package com.hello.world.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.WebSocketSession;
 
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
 import com.hello.world.service.IfShrBoardService;
 import com.hello.world.service.IsBoardCommService;
+import com.hello.world.websocket.EchoHandler;
 
 @Controller
 @RequestMapping(value = "/is")
@@ -32,12 +36,20 @@ public class IsBoardCommController {
 
 	@Autowired
 	IsBoardCommService isBoardCommService;
+	
+	@Autowired
+	EchoHandler sjs;
 
 	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
 	@ResponseBody
-	public List<IsBoardCommVO> writeComm(HttpServletRequest request,@RequestBody Map<String,Object> map, Model model) {
+	public String writeComm(HttpServletRequest request,@RequestBody Map<String,Object> map, Model model) {
 		/*String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="
 				+ ibcVO.getIfshrboard_posting_no();*/
+		
+		Map<String, WebSocketSession> users = sjs.getUsers();
+		
+		
+		String today = "";
 		String ifshrboard_comm_contt = (String) map.get("ifshrboard_comm_contt");
 		String mem_nick = (String) map.get("mem_nick");
 		String ifshrboard_posting_no = (String) map.get("ifshrboard_posting_no"); 
@@ -50,13 +62,18 @@ public class IsBoardCommController {
 			ibcVO.setIfshrboard_comm_cont(ifshrboard_comm_contt);
 			ibcVO.setIfshrboard_posting_no(ifshrboard_posting_no);
 			isBoardCommService.insertComm(ibcVO);
-			//ibcVO = isBoardCommService.getIsBoardComm(aa);
-			isBoardCommList = isBoardCommService.listIsBoardComm(ifshrboard_posting_no);
+			ibcVO = isBoardCommService.getIsBoardComm(isBoardCommService.getMaxSeq()+"");
+			
+			SimpleDateFormat sdfCurrent = new SimpleDateFormat ("yyyy-mm-dd hh:mm:ss"); 
+			Timestamp currentTime = ibcVO.getIfshrboard_comm_wridate(); 
+			today = sdfCurrent.format(currentTime); 
+			
+			//isBoardCommList = isBoardCommService.listIsBoardComm(ifshrboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return isBoardCommList;
+		return today;
 	}
 	
 	@RequestMapping(value = "/deleteIsBoardComm.do",method = RequestMethod.POST)

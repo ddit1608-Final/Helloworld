@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hello.world.dto.FlowVO;
 import com.hello.world.dto.MeetBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.service.FlowService;
 import com.hello.world.service.MeetBoardService;
 import com.hello.world.service.MemberService;
 
@@ -30,6 +32,9 @@ public class MeetBoardController {
 	
 	@Autowired
 	MeetBoardService meetService;
+	
+	@Autowired
+	FlowService flowService;
 	
 	@RequestMapping("/meetBoardList.do")
 	public String MeetBoardList(HttpSession session, Model model,
@@ -70,6 +75,16 @@ public class MeetBoardController {
 	public String meetBoardDetail(@RequestParam String meet_board_posting_no, HttpSession session, Model model)throws ServletException, IOException{
 		String url = "meetBoard/meetBoardDetail";
 		
+		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
+		
+		try {
+			flowList=flowService.listFlowVO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("flowList",flowList);
+		
 		MeetBoardVO meetBoardVO = meetService.getMeetDetail(meet_board_posting_no);
 		
 		model.addAttribute("meetBoardVO",meetBoardVO);
@@ -108,8 +123,20 @@ public class MeetBoardController {
 	}
 	
 	@RequestMapping(value="/meetBoardUpdate.do", method=RequestMethod.POST)
-	public String meetBoardUpdate(MeetBoardVO meetBoardVO, HttpSession session)throws ServletException, IOException{
+	public String meetBoardUpdate(MeetBoardVO meetBoardVO, HttpSession session,Model model)throws ServletException, IOException{
 		String url="redirect:meetBoardList.do";
+		
+		ArrayList<FlowVO> flowList=new ArrayList<FlowVO>();
+		
+		try {
+			flowList = flowService.listFlowVO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("flowList",flowList);
+		
 		
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 		

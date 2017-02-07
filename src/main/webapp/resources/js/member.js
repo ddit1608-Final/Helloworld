@@ -1,14 +1,48 @@
 /**
  * 
  */
+function change_pw() {
+	var result = true;
+	
+	if (check_pw() == false)
+		result = false;
+	// 패스워드 확인
+	if (check_pwdcheck() == false)
+		result = false;
+	
+	if (result == true) {
+		
+		$('#changeForm').submit();
+		
+	}
+	
+}
+
+function findPw_go() {
+	if(check_mail() == true) {
+		$('#findPw').submit();
+	}
+}
+
+function key_enter(event) {
+	if (event.which == 13) {
+		login_go();
+	}
+}
+
+function logout_go(event) {
+	event.preventDefault();
+}
 
 function login_go() {
 	var str = document.location.href;
-    var index = str.indexOf("?");
-    var paramStr = str.substring(index+1);
-    $('#param').val(paramStr);
-    
-    $('#login').submit();
+	var index = str.indexOf("?");
+	if (index != -1) {
+		var paramStr = str.substring(index + 1);
+	}
+	$('#param').val(paramStr);
+
+	$('#login').submit();
 }
 
 function autoHypenLicense() {
@@ -240,7 +274,7 @@ function check_addr() {
 function checkDepulicateId() {
 	$
 			.ajax({
-				
+
 				url : "duplicationCheck",
 				type : "post",
 				data : $("#joinForm input").serialize(),

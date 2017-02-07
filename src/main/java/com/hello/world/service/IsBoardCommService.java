@@ -55,5 +55,10 @@ public class IsBoardCommService {
 		
 		return isBoardCommDAO.getIsBoardComm(ifshrboard_ans_code);
 	}
+	
+	public int getMaxSeq() throws SQLException {
+		
+		return isBoardCommDAO.getMaxSeq();
+	}
 
 }

@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/cstBoard.css">
 <article>
 	<div>
 		<a href="<%=request.getContextPath()%>/cst/cstBoardList"><img
@@ -46,7 +46,7 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="4" style="text-align: center;">${cstpaging}</td>
+						<td colspan="4" style="text-align: center;">${paging}</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>

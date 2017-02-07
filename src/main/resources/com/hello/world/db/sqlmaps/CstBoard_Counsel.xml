@@ -17,7 +17,7 @@
 	</update>
 	
 	<select id="selectCstBoard" parameterClass="str" resultClass="cstBoard_Counsel">
-		select * from cstboardcounsel where mem_mail =#mem_mail#
+		select * from cstboardcounsel where mem_mail =#mem_mail# order by cstboard_counsel_posting_no desc
 	</select>
 	
 	<select id="getCstBoard" parameterClass="str" resultClass="cstBoard_Counsel">

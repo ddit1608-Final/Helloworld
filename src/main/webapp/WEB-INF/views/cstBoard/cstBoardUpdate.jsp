@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/cstBoard.css">
 <article>
 	<div>
 		<a href="<%=request.getContextPath()%>/cst/cstBoardList"><img
@@ -29,14 +30,39 @@
 						value="${cstBoardVO.cstboard_counsel_title }"></td>
 					<td style="text-align: center;">상태 <select id=flow_code
 						name="flow_code">
-							<c:forEach var="flow_code" items="${flowList }"
-								varStatus="status">
-								<option value="${flow_code.flow_code }"
-									<c:if test="${status.count == cstBoardVO.flow_code}">
-						selected
 
-					</c:if>>${flow_code.flow_cont }</option>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${cstBoardVO.flow_code == 1}">
+									<c:forEach var="flow_code" items="${flowList }"
+										varStatus="status">
+										<c:if test="${flow_code.flow_code == 1}">
+											<option value="${flow_code.flow_code }">${flow_code.flow_cont }</option>
+										</c:if>
+									</c:forEach>
+								</c:when>
+								<c:when test="${cstBoardVO.flow_code == 3}">
+									<c:forEach var="flow_code" items="${flowList }"
+										varStatus="status">
+										<c:if test="${flow_code.flow_code == 3 || flow_code.flow_code == 4 || flow_code.flow_code == 5}">
+											
+											<option value="${flow_code.flow_code }"
+												<c:if test="${status.count == cstBoardVO.flow_code}"></c:if>
+											>${flow_code.flow_cont }</option>
+										</c:if>
+									</c:forEach>
+								</c:when>
+								<c:when test="${cstBoardVO.flow_code == 4}">
+									<c:forEach var="flow_code" items="${flowList }"
+										varStatus="status">
+										<c:if test="${flow_code.flow_code == 4}">
+											<option value="${flow_code.flow_code }">${flow_code.flow_cont }</option>
+										</c:if>
+									</c:forEach>
+								</c:when>
+								
+							</c:choose>
+
+
 
 					</select></td>
 				</tr>
