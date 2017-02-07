@@ -17,14 +17,14 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
-
+	
 	@Override
 	public ArrayList<IfShrBoardVO> listAllIfShrBoard(int startRow,
 			String product_name, int counts) throws SQLException {
 		ArrayList<IfShrBoardVO> ifShrBoardList = new ArrayList<IfShrBoardVO>();
 
 		ifShrBoardList = (ArrayList<IfShrBoardVO>) client.queryForList(
-				"listAllIfShrBoard", startRow, counts);
+				"ifAllIfShrBoard", startRow, counts);
 		System.out.println("test입니당" + ifShrBoardList);
 		return ifShrBoardList;
 	}
@@ -78,17 +78,18 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 	}
 
 	@Override
-	public List<IfShrBoardVO> getIfShrBoard( String is_key)
+	public List<IfShrBoardVO> getIsBoardList(int startRow, String key,int counts) 
 			throws SQLException {
-		ArrayList<IfShrBoardVO> getIfShrBoardList = new ArrayList<IfShrBoardVO>();
-		
-		for(IfShrBoardVO board:getIfShrBoardList){
-			if(board.getIfshrboard_title().equals(is_key)){
-				getIfShrBoardList.add(board);
-			}
-		}
-		return getIfShrBoardList;
+		ArrayList<IfShrBoardVO> ifShrBoardList = new ArrayList<IfShrBoardVO>();
+
+		ifShrBoardList = (ArrayList<IfShrBoardVO>) client.queryForList(
+				"getBoardByTitle", key, startRow, counts);
+		System.out.println(" getIsBoardList()  >>" + ifShrBoardList);
+		return ifShrBoardList;
 	}
+	
+
+
 
 
 	

@@ -4,22 +4,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
@@ -64,7 +60,7 @@ public class IfShrBoardController {
 		String paging = null;
 
 		try {
-			ifShrBoardList = ifShrBoardService.listAllIfShrBoard(
+			ifShrBoardList = ifShrBoardService.getIsBoardList(
 					Integer.parseInt(tpage), key);
 			//System.out.println("테스트입니다 "+ifShrBoardList);
 			paging = ifShrBoardService.pageNumber(Integer.parseInt(tpage), key);
@@ -169,14 +165,44 @@ public class IfShrBoardController {
 		
 	}
 	// 검색기능 추가중
-	@RequestMapping(value="/isSearch.do",method = RequestMethod.GET)
-	@ResponseBody
-	public String getIfShrBoard(@RequestParam("is_type")String is_type,@RequestParam("is_key")String is_key,
-			HttpServletRequest request,Model model)throws ServletException,IOException{
-		
-		
+	@RequestMapping(value="/ifShrBoardSearch.do",method = RequestMethod.POST)
+	public String getIsBoardList(HttpServletRequest request,Model model)
+			throws ServletException,IOException{
 
-		return null;
-	
+		String url = "ifShrBoard/ifShrBoardList";
+		String key = request.getParameter("key");
+		String tpage = request.getParameter("tpage");
+		String type= request.getParameter("type");
+		Map<String, String> map = new HashMap<String, String>();
+		
+		if (key == null) {
+			key = "";
+		}
+		if (tpage == null) {
+			tpage = "1"; // 현재 페이지 (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		model.addAttribute("key", key);
+		model.addAttribute("type",type);
+		map.put(type, key);
+		model.addAttribute("tpage", tpage);
+		ArrayList<IfShrBoardVO> isBoardList = null;
+		String paging = null;
+
+		try {
+			isBoardList = ifShrBoardService.getIsBoardList(
+					Integer.parseInt(tpage), key);
+			paging = ifShrBoardService.pageNumber(Integer.parseInt(tpage), key);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("ifShrBoardList", isBoardList);
+		int n = isBoardList.size();
+		model.addAttribute("ifShrBoardListSize", n);
+		model.addAttribute("paging", paging);
+
+		return url;
 	}
 }

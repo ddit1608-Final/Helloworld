@@ -18,24 +18,23 @@ public class IfShrBoardService {
 		this.ifShrBoardDAO = ifShrBoardDAO;
 	}
 
-	public ArrayList<IfShrBoardVO> listAllIfShrBoard(int tpage,
-			String ifshrboard_title) throws SQLException {
+	public ArrayList<IfShrBoardVO> listAllIfShrBoard(int tpage,String key) throws SQLException {
 		ArrayList<IfShrBoardVO> list = new ArrayList<IfShrBoardVO>();
 		int startRow = -1;
 		int endRow = -1;
 
-		if (ifshrboard_title.equals("")) {
-			ifshrboard_title = "%";
+		if (key.equals("")) {
+			key = "%";
 		}
 
-		int totalRecord = ifShrBoardDAO.totalRecord(ifshrboard_title);
+		int totalRecord = ifShrBoardDAO.totalRecord(key);
 
 		startRow = (tpage - 1) * counts;
 		endRow = startRow + counts - 1;
 		if (endRow > totalRecord)
 			endRow = totalRecord;
 
-		list = ifShrBoardDAO.listAllIfShrBoard(startRow, ifshrboard_title, counts);
+		list = (ArrayList<IfShrBoardVO>) ifShrBoardDAO.listAllIfShrBoard(startRow, key, counts);
 
 		return list;
 	}
@@ -131,17 +130,26 @@ public class IfShrBoardService {
 		}
 		
 	}
-	public ArrayList<IfShrBoardVO> getIfShrBoard(String is_key ){
+	public ArrayList<IfShrBoardVO> getIsBoardList(int tpage,String key )throws SQLException{
 		
-		ArrayList<IfShrBoardVO> getIfShrBoardList = null;
-		try {
-			getIfShrBoardList=(ArrayList<IfShrBoardVO>) ifShrBoardDAO.getIfShrBoard(is_key);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		ArrayList<IfShrBoardVO> list = new ArrayList<IfShrBoardVO>();
+		int startRow = -1;
+		int endRow = -1;
+
+		if (key.equals("")) {
+			key = "%";
 		}
-		
-		return getIfShrBoardList;
+
+		int totalRecord = ifShrBoardDAO.totalRecord(key);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+
+		list = (ArrayList<IfShrBoardVO>) ifShrBoardDAO.getIsBoardList(startRow, key, counts);
+
+		return list;
 	}
 	
 	

@@ -57,9 +57,9 @@
 		ifshrboard_posting_no=#ifshrboard_posting_no#
 	</update>
 	
-	<select id="getIfshrBoard" parameterClass="str" resultClass="ifshrboard">
-		select * from ifshrboard where ifshrboard_title like'%'||#is_key#||'%'
-	</select>
+	<select id="getBoardByTitle" parameterClass="str" resultClass="ifshrboard">
+		select * from ifshrboard where ifshrboard_title like'%'||#key#||'%'
+	</select> 
 	
 	
 	

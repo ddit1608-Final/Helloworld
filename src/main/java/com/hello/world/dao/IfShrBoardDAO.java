@@ -23,7 +23,8 @@ public interface IfShrBoardDAO {
 	public void deleteIfShrBoard(String ifShrBoardVO)throws SQLException;
 	
 	public void updateHits(IfShrBoardVO ifShrBoardVO)throws SQLException;
-	public List<IfShrBoardVO> getIfShrBoard(String is_key)throws SQLException;
+	
+	public List<IfShrBoardVO> getIsBoardList(int startRow,String key,int counts)throws SQLException;
 }
 
 

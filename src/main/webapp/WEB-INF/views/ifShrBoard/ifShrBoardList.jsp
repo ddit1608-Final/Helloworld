@@ -65,17 +65,17 @@
 		</table>
 		</div>
 	</form>
-	<form name="formm" id="formm" method="get">
+	<form name="formm" id="formm" method="post">
 		<div id="divdiv">
 		<table class="table table-condensed" id="blt" style="margin: 0 auto;">
 			<tr>
 				<td>
-				<select id="is_type" name="is_type">
+				<select id="type" name="type">
 					<option value="ifshrboard_title" selected="selected">제목</option>
 					<option value="ifshrboard_cont">내용</option>
 					<option value="ifshrboard_wri">작성자</option>
 				</select>
-				<input type="text" name="is_key" id="is_key" placeholder="검색어를 입력해주세요"/>
+				<input type="text" name="key" id="key" placeholder="검색어를 입력해주세요"/>
 				<%-- <input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src('${is_key}',event)"> --%>
 				<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src()">
 				</td>
