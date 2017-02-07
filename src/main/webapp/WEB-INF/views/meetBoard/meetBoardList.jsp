@@ -18,6 +18,7 @@
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
 				<td style="text-align: center;">NO</td>
+				<td style="text-align: center;">STATUS</td>
 				<td style="text-align: center;">SUBJECT</td>
 				<!-- <th>내용</th> -->
 				<td style="text-align: center;">NAME</td>
@@ -35,6 +36,12 @@
 					<c:forEach items="${meetBoardList}" var="meetBoardVO">
 						<tr>
 							<td style="text-align: center;">${meetBoardVO.meet_board_posting_no}</td>
+							<c:forEach var="flow" items="${flowList }" varStatus="status">
+								<c:if test="${status.count == meetBoardVO.flow_code}">
+									<c:set value="${flow.flow_cont }" var="flow_cont" />
+
+								</c:if>
+							</c:forEach>
 							<td><a
 								href="/world/meet/meetBoardDetail.do?meet_board_posting_no=${meetBoardVO.meet_board_posting_no}">${meetBoardVO.meet_board_title}</a>
 							</td>

@@ -16,8 +16,8 @@
 	</select>
 
 	<insert id="insertMeetBoard" parameterClass="meetboard">
-		insert into meet_board(meet_board_posting_no, mem_mail, meet_board_title, meet_board_cont)
-		values(meet_board_posting_no.nextval,#mem_mail#,#meet_board_title#,#meet_board_cont#)		
+		insert into meet_board(meet_board_posting_no, mem_mail, meet_board_title, meet_board_cont, flow_code)
+		values(meet_board_posting_no.nextval,#mem_mail#,#meet_board_title#,#meet_board_cont#, #flow_code#)		
 	</insert>
 	<update id="updateMeetBoard" parameterClass="meetboard">
 			update meet_board
@@ -26,9 +26,9 @@
 			where meet_board_posting_no=#meet_board_posting_no#
 	</update>
 	
-	<select id="listAllMeetBoard" parameterClass="str" resultClass="meetboard">
+	 <select id="listAllMeetBoard" parameterClass="str" resultClass="meetboard">
 			select * from memmeet where meet_board_posting_no=#meet_board_posting_no#
-	</select>
+	</select> 
 	
 	<delete id="deleteMeetBoard" parameterClass="str">
 			delete
