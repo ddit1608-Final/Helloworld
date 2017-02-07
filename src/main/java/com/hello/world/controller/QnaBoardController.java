@@ -14,13 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.QnaBoardChooseVO;
 import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
+import com.hello.world.service.QnaBoardChooseService;
 import com.hello.world.service.QnaBoardChuService;
 import com.hello.world.service.QnaBoardCommService;
 import com.hello.world.service.QnaBoardService;
@@ -38,6 +41,9 @@ public class QnaBoardController {
 	
 	@Autowired
 	QnaBoardChuService qnaBoardChuService;
+	
+	@Autowired
+	QnaBoardChooseService qnaBoardChooseService;
 	
 	
 	@RequestMapping("/qnaBoardWriteForm.do")
@@ -117,10 +123,31 @@ public class QnaBoardController {
 
 		ArrayList<QnaBoardCommVO> qnaBoardCommList = new ArrayList<QnaBoardCommVO>();
 		QnaBoardVO qnaBoardVO = qnaBoardService.getQnaDetail(qnaboard_posting_no);
-				//.getFreeDetail(freeboard_posting_no);
-
+		
+		ArrayList<QnaBoardChuVO> qnaBoardChuList = new ArrayList<QnaBoardChuVO>(); 
+		
+		String qnaboard_ans_code = "";
 		try {
 			qnaBoardCommList = qnaBoardCommService.listQnaBoardComm(qnaboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		for(QnaBoardCommVO vo:qnaBoardCommList) {
+			qnaboard_ans_code = vo.getQnaboard_ans_code();
+			try {
+				qnaBoardChuList.add(qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		QnaBoardChooseVO qnaBoardChooseList = null;
+		
+		try {
+			qnaBoardChooseList = qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -129,6 +156,9 @@ public class QnaBoardController {
 		model.addAttribute("qnaBoardVO", qnaBoardVO);
 		model.addAttribute("qnaBoardCommList", qnaBoardCommList);
 		model.addAttribute("qnaBoardCommListCnt", qnaBoardCommList.size());
+		model.addAttribute("qnaBoardChuList", qnaBoardChuList);
+		model.addAttribute("qnaBoardChooseList", qnaBoardChooseList);
+		
 		return url;
 	}
 	
@@ -159,13 +189,86 @@ public class QnaBoardController {
 	}
 	
 	@RequestMapping(value = "/chu", method = RequestMethod.POST)
-	public String boardChu(){
+	@ResponseBody
+	public String boardChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, Model model, HttpServletRequest request){
 		
-		String url = "redirect:qnaBoardList.do";
+		String chu = request.getParameter("chu");
 		
-		System.out.println();
+		qnaBoardChuVO.setQnaboard_chu(chu);
 		
-		return url;
+		qnaBoardChuVO.setQnaboard_ans_code(qnaboard_ans_code);
+		
+		qnaBoardChuService.updateQnaBoardChuComm(qnaBoardChuVO);
+		
+		String upChu ="";
+		try {
+			upChu = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_chu();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return upChu;
+	}
+	
+	@RequestMapping(value = "/bchu", method = RequestMethod.POST)
+	@ResponseBody
+	public String boardBChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, Model model, HttpServletRequest request){
+		
+		String bchu = request.getParameter("bchu");
+		
+		qnaBoardChuVO.setQnaboard_bchu(bchu);
+		
+		qnaBoardChuVO.setQnaboard_ans_code(qnaboard_ans_code);
+		
+		qnaBoardChuService.updateQnaBoardBChuComm(qnaBoardChuVO);
+		
+		String upBChu ="";
+		try {
+			upBChu = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_bchu();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return upBChu;
+	}
+	
+	@RequestMapping(value="/choose", method=RequestMethod.POST, produces="application/text;charset=utf8")
+	@ResponseBody
+	public String boardChoose(@RequestParam String qnaboard_ans_code, QnaBoardChooseVO qnaBoardChooseVO, Model model, HttpServletRequest request){
+		
+		String choose = request.getParameter("choose");
+		
+		if(choose != null){
+			qnaBoardChooseVO.setQnaboard_comm_choose("1");
+		}
+		
+		qnaBoardChooseVO.setQnaboard_ans_code(qnaboard_ans_code);
+		
+		try {
+			qnaBoardChooseService.insertQnaBoardChoose(qnaBoardChooseVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String qnaboardChoose = "";
+		
+		try {
+			if(qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_comm_choose() != null){
+				qnaboardChoose = "채택완료";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	
+		
+		return qnaboardChoose;
 	}
 	
 }

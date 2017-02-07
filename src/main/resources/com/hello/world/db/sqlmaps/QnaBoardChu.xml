@@ -6,11 +6,24 @@
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="qnachu" type="com.hello.world.dto.QnaBoardChuVO" />
 
-	<update id="insertQnaBoardChu" parameterClass="qnachu">
-		insert into
-		qnaboard_chu
-		(qnaboard_chu, qnaboard_bchu, qnaboard_ans_code)
-		values(#qnaboard_chu#,#qnaboard_bchu#,#qnaboard_ans_code#)
+	<update id="updateQnaBoardChuComm" parameterClass="qnachu">
+		UPDATE qnaboard_chu
+		SET
+			qnaboard_chu = #qnaboard_chu#+1
+		WHERE qnaboard_ans_code=#qnaboard_ans_code#
 	</update>
+	
+	<update id="updateQnaBoardBChuComm" parameterClass="qnachu">
+		UPDATE qnaboard_chu
+		SET
+			qnaboard_bchu = #qnaboard_bchu#+1
+		WHERE qnaboard_ans_code=#qnaboard_ans_code#
+	</update>
+	
+	<select id="listQnaBoardChu" parameterClass="str" resultClass="qnachu">
+		select
+		* from qnaboard_chu where qnaboard_ans_code =
+		#qnaboard_ans_code#
+	</select>
 		
 </sqlMap>

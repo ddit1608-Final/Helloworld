@@ -19,7 +19,7 @@ public class MemberDAO_iBatis implements MemberDAO {
 	@Override
 	public int confirmID(String userid) throws SQLException {
 		int result = -1;
-		MemVO member = (MemVO) client.queryForObject("confirmID", userid);
+		MemVO member = (MemVO) client.queryForObject("duplicationCheckID", userid);
 		if (member != null) {
 			result = 1;
 		} else {

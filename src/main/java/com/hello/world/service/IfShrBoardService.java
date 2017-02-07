@@ -2,6 +2,7 @@ package com.hello.world.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.hello.world.dao.IfShrBoardDAO;
 import com.hello.world.dto.IfShrBoardVO;
@@ -88,4 +89,60 @@ public class IfShrBoardService {
 	public int insertIfShrBoard(IfShrBoardVO ifShrBoardVO)throws SQLException{
 		return ifShrBoardDAO.insertIfShrBoard(ifShrBoardVO);
 	}
+	
+	public IfShrBoardVO getIfShrBoardDetail(String ifshrboard_posting_no) {
+		IfShrBoardVO ifShrBoardVO = null;
+
+		try {
+			ifShrBoardVO = ifShrBoardDAO.getIfShrBoardDetail(ifshrboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return ifShrBoardVO;
+	}
+	
+	public void updateIfShrBoard(IfShrBoardVO ifShrBoardVO){
+		
+		try {
+			ifShrBoardDAO.updateIfShrBoard(ifShrBoardVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void deleteIfShrBoard(String ifshrboard_posting_no){
+		try {
+			ifShrBoardDAO.deleteIfShrBoard(ifshrboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void updateHits(IfShrBoardVO ifShrBoardVO){
+		try {
+			ifShrBoardDAO.updateHits(ifShrBoardVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	public ArrayList<IfShrBoardVO> getIfShrBoard(String is_key ){
+		
+		ArrayList<IfShrBoardVO> getIfShrBoardList = null;
+		try {
+			getIfShrBoardList=(ArrayList<IfShrBoardVO>) ifShrBoardDAO.getIfShrBoard(is_key);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return getIfShrBoardList;
+	}
+	
+	
 }

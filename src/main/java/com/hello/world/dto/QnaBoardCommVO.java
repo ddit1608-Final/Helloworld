@@ -4,11 +4,11 @@ import java.sql.Timestamp;
 
 public class QnaBoardCommVO {
 	
-	private String qnaboard_ans_code;
-	private String qnaboard_comm_cont;
-	private String qnaboard_comm_wri;
-	private Timestamp qnaboard_comm_wridate;
-	private String qnaboard_posting_no;
+	private String qnaboard_ans_code; //댓글 번호
+	private String qnaboard_comm_cont; // 댓글 내용
+	private String qnaboard_comm_wri; // 댓글 작성자
+	private Timestamp qnaboard_comm_wridate; // 댓글 작성날짜
+	private String qnaboard_posting_no; // 게시글 번호
 	
 	
 	public String getQnaboard_ans_code() {

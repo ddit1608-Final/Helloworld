@@ -2,8 +2,11 @@ package com.hello.world.dao.iBatis;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.hello.world.dao.IfShrBoardDAO;
+import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -47,4 +50,51 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 			result = 1;
 		return result;
 	}
+
+	@Override
+	public IfShrBoardVO getIfShrBoardDetail(String ifshrboard_posting_no)
+			throws SQLException {
+		IfShrBoardVO ifShrBoardVO = (IfShrBoardVO) client.queryForObject(
+				"ifShrBoardDetail", ifshrboard_posting_no);
+
+		return ifShrBoardVO;
+	}
+
+	@Override
+	public void updateIfShrBoard(IfShrBoardVO ifShrBoardVO) throws SQLException {
+
+		client.update("updateIfShrBoard",ifShrBoardVO);
+	}
+
+	@Override
+	public void deleteIfShrBoard(String ifShrBoard_posting_no) throws SQLException {
+
+		client.delete("deleteIfShrBoard",ifShrBoard_posting_no);
+	}
+
+	@Override
+	public void updateHits(IfShrBoardVO ifShrBoardVO) throws SQLException {
+		client.update("updateHits",ifShrBoardVO);
+	}
+
+	@Override
+	public List<IfShrBoardVO> getIfShrBoard( String is_key)
+			throws SQLException {
+		ArrayList<IfShrBoardVO> getIfShrBoardList = new ArrayList<IfShrBoardVO>();
+		
+		for(IfShrBoardVO board:getIfShrBoardList){
+			if(board.getIfshrboard_title().equals(is_key)){
+				getIfShrBoardList.add(board);
+			}
+		}
+		return getIfShrBoardList;
+	}
+
+
+	
+	
+	
+	
+
+	
 }

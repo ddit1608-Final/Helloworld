@@ -85,7 +85,7 @@
 						<input type="button" value="추천">
 						<input type="button" value="비추천"></td>
 						<td>${ freeBoardComm.freeboard_comm_wridate }</td>
-						<c:if test="${loginUser.mem_mail ==freeBoardComm.freeboard_comm_wri }">
+						<c:if test="${loginUser.mem_nick ==freeBoardComm.freeboard_comm_wri }">
 						<td><%-- <a href="/world/free/freeBoardCommUpdateForm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}">수정</a> --%>
 							<a href="#" id="div1hide">수정</a>
 						/
@@ -133,9 +133,9 @@
 		</table>
 		</div> <!-- div2 종료  -->
 		<c:if test="${loginUser!=null}">
-		<input type="text" id="freeboard_comm_cont" name="freeboard_comm_cont">
+		<textarea rows="2" cols="150" id="freeboard_comm_cont" name="freeboard_comm_cont"></textarea>
 		<input type="hidden" id="freeboard_posting_no" name="freeboard_posting_no" value="${freeBoardVO.freeboard_posting_no }">
-		<input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}">
+		<input type="hidden" id="mem_nick" name="mem_nick" value="${loginUser.mem_nick}">
 		<input type="button" value="댓글등록" onclick="writeComm_go(this.formm)">
 		</c:if>
 		</div> <!-- result div  -->

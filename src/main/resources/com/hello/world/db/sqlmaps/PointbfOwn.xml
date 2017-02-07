@@ -18,5 +18,12 @@
 	<select id="sumPoint" parameterClass="str" resultClass="int">
 		select sum(point) from pointbfown where mem_mail = #mem_mail#
 	</select>
-
+	
+	<select id="selectPoint" parameterClass="str" resultClass="point">
+		select * from pointbfown where mem_mail = #mem_mail#
+	</select>
+	
+	<select id="totalMyPoint" parameterClass="str" resultClass="int">
+		select count(*) from pointbfown where mem_mail = #mem_mail#
+	</select>
 </sqlMap>

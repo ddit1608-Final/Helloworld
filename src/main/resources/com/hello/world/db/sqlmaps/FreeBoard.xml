@@ -48,28 +48,18 @@
 		select count(*) from freeBoard where freeboard_title like '%'||#freeboard_title#||'%'
 	</select>
 	
-	<!-- 
-	댓글에 관한 view를 이용한 쿼리 
-	<select id="freeDetail" parameterClass="str" resultClass="freecomm">
-		select * from mfcomm where freeboard_posting_no=#freeboard_posting_no# 
-	</select>
-	 -->
-	<!-- 댓글 -->
-	<!-- <insert id="insertFreeComm" parameterClass="freecomm">
-		INSERT INTO FREEBOARD_COMM(FREEBOARD_ANS_CODE,FREEBOARD_COMM_CONT,FREEBOARD_COMM_WRI) 
-    		VALUES(freeboard_ans_code.nextval,#freeboard_comm_cont#,#freeboard_comm_wri#);
-	</insert>
-	<update id="updateFreeComm" parameterClass="freecomm">
-		UPDATE freeBoard_comm
-		SET
-			FREEBOARD_COMM_CONT = #freeboard_comm_cont#
-		WHERE freeboard_ans_code= #freeboard_ans_code#
-	</update>
-	<delete id="deleteFreeComm" parameterClass="str">
-		delete
-		from freeboard_comm
-		where freeboard_ans_code=#freeboard_ans_code#
-	</delete> -->
+	<update id="updateFreeHits" parameterClass="freeboard">
+	UPDATE 
+		freeboard 
+	SET 
+		freeboard_hits = #freeboard_hits#+1 
+	WHERE 
+		freeboard_posting_no=#freeboard_posting_no#
+	</update>	
+	
+	
+	
+
 	
 	
 </sqlMap>

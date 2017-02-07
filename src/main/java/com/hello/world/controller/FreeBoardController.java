@@ -92,6 +92,7 @@ public class FreeBoardController {
 		ArrayList<FreeBoardCommVO> freeBoardCommList = new ArrayList<FreeBoardCommVO>();
 		FreeBoardVO freeBoardVO = freeService
 				.getFreeDetail(freeboard_posting_no);
+		freeService.updateFreeHits(freeBoardVO);
 
 		try {
 			freeBoardCommList = freeBoardCommService.listFreeBoardComm(freeboard_posting_no);
@@ -197,12 +198,12 @@ public class FreeBoardController {
 	}
 
 	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
-	public String writeComm(FreeBoardCommVO fbcVO, Model model, String mem_mail) {
+	public String writeComm(FreeBoardCommVO fbcVO, Model model, String mem_nick) {
 		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
 				+ fbcVO.getFreeboard_posting_no();
 
 		try {
-			fbcVO.setFreeboard_comm_wri(mem_mail);
+			fbcVO.setFreeboard_comm_wri(mem_nick);
 			freeBoardCommService.insertComm(fbcVO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

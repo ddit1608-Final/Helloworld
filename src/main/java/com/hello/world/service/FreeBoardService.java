@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.hello.world.dao.FreeBoardDAO;
 import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
+import com.hello.world.dto.IfShrBoardVO;
 
 public class FreeBoardService {
 
@@ -142,5 +143,14 @@ public class FreeBoardService {
 					+ name + "'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 		return str;
+	}
+	public void updateFreeHits(FreeBoardVO freeBoardVO){
+		try {
+			freeBoardDAO.updateFreeHits(freeBoardVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
