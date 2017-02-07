@@ -59,12 +59,13 @@ public class IfShrBoardController {
 		testVO testVO = new testVO();
 		testVO.setKey(key);
 		testVO.setType("ifshrboard_title");
-		try {
-			total= ifShrBoardService.getTotal(testVO)+"";
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		
+			try {
+				total= ifShrBoardService.getTotal(testVO)+"";
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		
 		/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
 

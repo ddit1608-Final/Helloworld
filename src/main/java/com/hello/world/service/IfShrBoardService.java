@@ -39,7 +39,7 @@ public class IfShrBoardService {
 		if (endRow > totalRecord)
 			endRow = totalRecord;
 
-		list = (ArrayList<IfShrBoardVO>) ifShrBoardDAO.listAllIfShrBoard(startRow, key, counts);
+		list = ifShrBoardDAO.listAllIfShrBoard(startRow, key, counts);
 
 		return list;
 	}

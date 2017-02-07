@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import com.hello.world.dao.FreeBoardDAO;
 import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
+import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class FreeBoardDAO_iBatis implements FreeBoardDAO {
@@ -16,14 +18,6 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 		this.client = client;
 	}
 
-	@Override
-	public ArrayList<FreeBoardVO> listFreeBoard(String mem_mail)
-			throws SQLException {
-		ArrayList<FreeBoardVO> freeBoardList = new ArrayList<FreeBoardVO>();
-		freeBoardList = (ArrayList<FreeBoardVO>) client.queryForList(
-				"listFreeBoard", mem_mail);
-		return freeBoardList;
-	}
 
 	@Override
 	public int insertFreeBoard(FreeBoardVO freeBoardVO) throws SQLException {
@@ -57,15 +51,6 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 		return freeBoardVO;
 	}
 
-	// //////////////////////////////////////////////////////////미구현
-	@Override
-	public FreeBoardVO getFreeBoard(String freeboard_posting_no)
-			throws SQLException {
-		FreeBoardVO freeBoardVO = (FreeBoardVO) client.queryForObject(
-				"getFreeBoard", freeboard_posting_no);
-		return freeBoardVO;
-	}
-
 	@Override
 	public void updateFreeBoard(FreeBoardVO freeBoardVO) throws SQLException {
 
@@ -79,19 +64,39 @@ public class FreeBoardDAO_iBatis implements FreeBoardDAO {
 	}
 
 	@Override
-	public int totalRecord(String product_name) throws SQLException {
+	public int totalRecord(testVO testVO) throws SQLException {
 		int total_pages = 0;
-		if (product_name.equals("")) {
-			product_name = "%";
+		String key = testVO.getKey();
+		if (key.equals("")) {
+			key = "%";
 		}
 		total_pages = (Integer) client.queryForObject("totalFreeBoard",
-				product_name);
+				testVO);
 		return total_pages;
 	}
 
 	@Override
 	public void updateFreeHits(FreeBoardVO freeBoardVO) throws SQLException {
 		client.update("updateFreeHits",freeBoardVO);
+	}
+
+
+	@Override
+	public int getTotal(testVO testVO) throws SQLException {
+		
+		return (int) client.queryForObject("totalFreeBoard",testVO);
+	}
+
+
+	@Override
+	public ArrayList<FreeBoardVO> getFreeBoardList(int startRow, testVO testVO,
+			int counts) throws SQLException {
+		ArrayList<FreeBoardVO> freeBoardList = new ArrayList<FreeBoardVO>();
+
+		freeBoardList = (ArrayList<FreeBoardVO>) client.queryForList(
+				"getFreeBoardList", testVO, startRow, counts);
+
+		return freeBoardList;
 	}
 
 }

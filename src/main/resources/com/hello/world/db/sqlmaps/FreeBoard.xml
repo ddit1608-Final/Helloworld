@@ -7,14 +7,11 @@
 	<typeAlias alias="freeboard" type="com.hello.world.dto.FreeBoardVO"/>
 	<typeAlias alias="mem" type="com.hello.world.dto.MemVO"/>
 	<typeAlias alias="freecomm" type="com.hello.world.dto.FreeBoardCommVO"/>
+	<typeAlias alias="testVO" type="com.hello.world.dto.testVO" />
 	
 	
 	<select id="listFreeBoard" parameterClass="str" resultClass="freeboard">
 		select * from freeboard where mem_mail =#mem_mail#
-	</select>
-	
-	<select id="getFreeBoard" parameterClass="str" resultClass="freeboard">
-		select * from freeboard where freeboard_posting_no=#freeboard_posting_no#
 	</select>
 	
 	<update id="insertFreeBoard" parameterClass="freeboard">
@@ -31,7 +28,10 @@
 	
 	<select id="listAllFreeBoard" parameterClass="str" resultClass="freeboard" >
 		<!-- select * from freeboard order by freeboard_posting_no desc -->
-		select * from memfree where freeboard_title like '%'||#freeboard_title#||'%' order by freeboard_posting_no desc
+		select *
+		from memfree 
+		where freeboard_title like '%'||#freeboard_title#||'%' 
+			order by TO_NUMBER(freeboard_posting_no) asc;
 	</select>
 
 	<select id="freeDetail" parameterClass="str" resultClass="freeboard">
@@ -44,8 +44,8 @@
 		where freeboard_posting_no=#freeboard_posting_no#
 	</delete>
 	
-	<select id="totalFreeBoard" parameterClass="str" resultClass="int">
-		select count(*) from freeBoard where freeboard_title like '%'||#freeboard_title#||'%'
+	<select id="totalFreeBoard" parameterClass="testVO" resultClass="int">
+		select count(*) from memfreee where $type$ like '%'||#key#||'%'
 	</select>
 	
 	<update id="updateFreeHits" parameterClass="freeboard">
@@ -57,6 +57,9 @@
 		freeboard_posting_no=#freeboard_posting_no#
 	</update>	
 	
+	<select id="getFreeBoardList" parameterClass="testVO" resultClass="freeboard">
+		select * from memfreee where $type$ like'%'||#key#||'%' order by TO_NUMBER(freeboard_posting_no) asc
+	</select>
 	
 	
 
