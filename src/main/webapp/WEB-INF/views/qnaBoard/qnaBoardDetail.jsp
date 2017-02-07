@@ -93,6 +93,10 @@
                         </c:choose>
                      </c:if>
                   </c:forEach>
+                  		<td><input type="hidden"
+								id="qnaboard_ans_code${status.count }"
+								value="${qnaBoardComm.qnaboard_ans_code}"></td>
+							<c:set value="${status.count }" var="indexTd" />
 
 						<c:if
 							test="${loginUser.mem_mail ==qnaBoardComm.qnaboard_comm_wri }">
@@ -102,10 +106,7 @@
 								href="/world/qna/deleteqnaBoardComm.do?qnaboard_ans_code=${qnaBoardComm.qnaboard_ans_code}
 								&qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">삭제</a>
 							</td>
-							<td><input type="hidden"
-								id="qnaboard_ans_code${status.count }"
-								value="${qnaBoardComm.qnaboard_ans_code}"></td>
-							<c:set value="${status.count }" var="indexTd" />
+							
 						</c:if>
 					</tr>
 				</c:forEach>

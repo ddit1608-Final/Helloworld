@@ -390,6 +390,10 @@ border:2px soild red;
 				<td>asdasdasdasd</td>
 				<td>asdasdasdasd</td>
 			</tr>
+			<tr>
+				<td>asdlkjfdalskj</td>
+				<td>asdfsadlkjfdaslk</td>
+			</tr>
 			</table>
 
 				<decorator:body />
