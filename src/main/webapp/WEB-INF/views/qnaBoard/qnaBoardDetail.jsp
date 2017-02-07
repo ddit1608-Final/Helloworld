@@ -69,6 +69,9 @@
             <c:forEach items="${qnaBoardCommList}" var="qnaBoardComm"
                varStatus="status">
                <tr>
+               	
+               </tr>
+               <tr>
                   <td>${ qnaBoardComm.qnaboard_comm_wri}</td>
                   <td>${ qnaBoardComm.qnaboard_comm_cont}</td>
                   <c:forEach items="${ qnaBoardChuList }" var="qnaBoardChuList">
@@ -84,7 +87,7 @@
                         
                            <c:if test="${empty qnaBoardChooseList.qnaboard_comm_choose }">
                            <td onclick="choose_go('${status.count }')"><input
-                              type="button" id="cchoo${status.count}" value="채택"></td>
+                              type="button" id="cchoo${status.count}" value="${qnaBoardChooseList.qnaboard_comm_choose }"></td>
                              </c:if>
                          <td><input type="text" value="${qnaBoardChooseList.qnaboard_comm_choose}"></td>
                      </c:if>
@@ -156,9 +159,9 @@
          },
          success : function(data) {
             alert(data);
-            /* if (data != null) {
+             if (data != null) {
                $('#cchoo' + index).val(data);
-            } */
+            } 
          }
       });
    }
