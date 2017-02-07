@@ -81,16 +81,12 @@
                            type="button" id="bchu${status.count }"
                            value="${ qnaBoardChuList.qnaboard_bchu }"></td>
 
-                        <c:choose>
-                           <c:when test="${qnaBoardChooseList.qnaboard_comm_choose == 1 }">
-                           <td onclick="choose_go('${status.count }')"><input
-                              type="button" id="cchoo${status.count}" value="채택완료"></td>
-                           </c:when>
-                           <c:otherwise>
+                        
+                           <c:if test="${empty qnaBoardChooseList.qnaboard_comm_choose }">
                            <td onclick="choose_go('${status.count }')"><input
                               type="button" id="cchoo${status.count}" value="채택"></td>
-                           </c:otherwise>
-                        </c:choose>
+                             </c:if>
+                         <td><input type="text" value="${qnaBoardChooseList.qnaboard_comm_choose}"></td>
                      </c:if>
                   </c:forEach>
                   		<td><input type="hidden"
@@ -105,8 +101,7 @@
 								<a
 								href="/world/qna/deleteqnaBoardComm.do?qnaboard_ans_code=${qnaBoardComm.qnaboard_ans_code}
 								&qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">삭제</a>
-							</td>
-							
+							</td>							
 						</c:if>
 					</tr>
 				</c:forEach>
@@ -161,9 +156,9 @@
          },
          success : function(data) {
             alert(data);
-            if (data != null) {
+            /* if (data != null) {
                $('#cchoo' + index).val(data);
-            }
+            } */
          }
       });
    }

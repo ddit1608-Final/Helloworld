@@ -259,7 +259,7 @@ public class QnaBoardController {
 		
 		try {
 			if(qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_comm_choose() != null){
-				qnaboardChoose = "채택완료";
+				qnaboardChoose = qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_comm_choose();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
