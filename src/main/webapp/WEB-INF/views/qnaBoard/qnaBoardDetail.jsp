@@ -62,7 +62,7 @@
 	
 	<form action="writeComm" id="writeComm" method="post">
 		<label>댓글 테스트</label> <br /> 
-		<table>
+		<table class="table table-condensed">
 			<thead>
 				<tr>
 					<td colspan="2">댓글이 ${qnaBoardCommListCnt }개 달렸습니다.</td>
@@ -70,7 +70,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${qnaBoardCommList}" var="qnaBoardComm">
-					<tr>
+					<tr id="commBody">
 						<td>${ qnaBoardComm.qnaboard_comm_wri}</td>
 						<td>${ qnaBoardComm.qnaboard_comm_cont}</td>
 						<c:if test="${loginUser.mem_mail ==qnaBoardComm.qnaboard_comm_wri }">

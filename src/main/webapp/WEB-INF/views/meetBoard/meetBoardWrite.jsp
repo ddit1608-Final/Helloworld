@@ -11,12 +11,12 @@
 			<!-- freeboard_posting_no,mem_mail,freeboard_title,freeboard_cont -->
 		<table class="table .table-condensed" id="bwt">
 		
-	
+		<input type="hidden" name="mem_mail" value="${loginUser.mem_mail}">
 <thead>
       <tr style="border-bottom:1px solid #c9c9c9;">
         <td style="width:20%;">작성자 ${loginUser.mem_nick}</td>
         <td style="width:60%; float:left;">비밀번호
-        <input type="password" name="freeboard_pwd"></td>        
+        <input type="password" name="meet_board_pwd"></td>       
         <td style="width:10%;"></td>
         <td style="width:10%;"></td>
         <td style="width:10%;"></td>
@@ -24,13 +24,13 @@
       
       <tr>
       	<td style="text-align: center;">제목
-      	<input type="text" name="freeboard_title"></td>
+      	<input type="text" name="meetboard_title"></td>
       </tr>
       <tr>
       	<td style="text-align: left;">&nbsp;&nbsp;&nbsp;내용</td>
       	
         	<td>
-      		<textarea rows="8" cols="65" name="freeboard_cont"></textarea>
+      		<textarea rows="8" cols="65" name="meetboard_cont"></textarea>
       	</td>
       </tr>
      </thead>

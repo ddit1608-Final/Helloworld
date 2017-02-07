@@ -11,7 +11,9 @@ public class MeetBoardVO {
 	private int meet_hits; // 모임게시판 조회수
 	private String meet_board_cont; // 모임게시판 내용
 	private Timestamp meet_board_wri_date; //  모임게시판 작성 일자
-	private String flow_code;
+	private String flow_code; // 말머리
+	
+	
 	public String getMeet_board_posting_no() {
 		return meet_board_posting_no;
 	}
@@ -69,5 +71,5 @@ public class MeetBoardVO {
 				+ meet_board_cont + ", meet_board_wri_date="
 				+ meet_board_wri_date + ", flow_code=" + flow_code + "]";
 	}
-
+	
 }

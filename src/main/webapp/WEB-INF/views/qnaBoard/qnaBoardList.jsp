@@ -9,7 +9,7 @@
 	<div>
 		<a href="<%=request.getContextPath()%>/free/freeBoardList.do"><img
 			id="freeLogo"
-			src="<%=request.getContextPath()%>/resources/images/freeboard.png"></a>
+			src="<%=request.getContextPath()%>/resources/images/qnaLogo.png"></a>
 	</div>
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
@@ -36,6 +36,7 @@
 							<td><a
 								href="/world/qna/qnaBoardDetail.do?qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">${qnaBoardVO.qnaboard_title}</a>
 							</td>
+							
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
 							<td style="text-align: center;">${qnaBoardVO.mem_nick}</td>
 							<%-- <td>${loginUser.mem_nick}</td> --%>
