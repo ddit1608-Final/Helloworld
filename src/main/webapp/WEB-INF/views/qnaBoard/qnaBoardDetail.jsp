@@ -42,13 +42,6 @@
             <td colspan="3">${qnaBoardVO.qnaboard_cont }</td>
 
          </tr>
-         <%-- <c:forEach items="${freeBoardList}" var="freeBoardVO">
-     <tr>
-       <td>댓글작성자 | ${freeBoardVO.mem_nick }</td> 
-       <td>댓글내용 | ${freeBoardVO.freeboard_comm_cont }</td> 
-       <td>작성날짜 | ${freeBoardVO.freeboard_wri_date }</td> 
-     </tr>
-   </c:forEach> --%>
       </table>
       <!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. -->
       <div id="divdiv">
@@ -88,10 +81,6 @@
                            type="button" id="bchu${status.count }"
                            value="${ qnaBoardChuList.qnaboard_bchu }"></td>
 
-                        <%-- <c:if test="${qnaBoardChooseList.qnaboard_comm_choose == 1 }">
-                           <td onclick="choose_go('${status.count }')"><input
-                              type="button" id="cchoo${status.count}" value="채택완료"></td>
-                        </c:if> --%>
                         <c:choose>
                            <c:when test="${qnaBoardChooseList.qnaboard_comm_choose == 1 }">
                            <td onclick="choose_go('${status.count }')"><input
