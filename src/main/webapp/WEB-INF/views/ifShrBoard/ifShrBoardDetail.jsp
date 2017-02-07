@@ -144,7 +144,7 @@
 						    </div>	
 						 <!--  -->  
 						 
-						<td style="width:70%;" id="isBoardComm_cont${status.count}" name="isBoardComm_cont${status.count}">${ ifShrBoardComm.ifshrboard_comm_cont}
+						<td style="width:70%;  word-break:break-all;" id="isBoardComm_cont${status.count}" name="isBoardComm_cont${status.count}">${ ifShrBoardComm.ifshrboard_comm_cont}
 						<input type="button" value="추천">
 						<input type="button" value="비추천"></td>
 						<td>${ ifShrBoardComm.ifshrboard_comm_wridate }</td>

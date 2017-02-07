@@ -5,10 +5,10 @@
 
 
 #freeLogo{
-	margin:1% auto 1% 5%;
-	border:5px solid #3EAF0E;
-	border-style: dashed;
-	width:90%;
+	margin:1% auto 1% auto;
+	border:none;
+	border-style: none;
+	width:100%;
 }
   /* .table-hover{
   background-color:gray; 

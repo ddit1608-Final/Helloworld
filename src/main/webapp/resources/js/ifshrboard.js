@@ -69,7 +69,7 @@ function iswriteComm_go(mem_nick,ifshrboard_posting_no,ifshrboard_comm_contt,eve
 				var a;
 				
 					a = '<tr><td>'+mem_nick+'</td>'+
-						'<td>'+ifshrboard_comm_contt+'<input type="button" value="추천">'+
+						'<td style="work-break:break-all;">'+ifshrboard_comm_contt+'<input type="button" value="추천">'+
 						'<input type="button" value="비추천"></td>'+
 					 	'<td>'+data+'</td>'+
 					 	'<td><a href="#" onclick="updateIsComm()">수정</a>/'+
