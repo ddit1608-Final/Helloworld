@@ -60,13 +60,4 @@
 	<select id="getIfshrBoard" parameterClass="str" resultClass="ifshrboard">
 		select * from ifshrboard where ifshrboard_title like'%'||#is_key#||'%'
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-
 </sqlMap>

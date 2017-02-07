@@ -357,7 +357,7 @@ border:2px soild red;
 				<li><a href="<%=request.getContextPath()%>/member/logout?"+${loginUser.mem_mail } id="aa">로그아웃</a></li>
       		</c:otherwise>
       	</c:choose>
-    	<li><a href="#" id="aa">아이디/비밀번호 찾기</a></li>
+    	<li><a href="<%=request.getContextPath()%>/member/find" id="aa">아이디/비밀번호 찾기</a></li>
     	<li><a href="#" id="aa">접속자수</a></li>
     </ul>
     </form>
