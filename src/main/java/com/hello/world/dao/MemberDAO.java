@@ -13,4 +13,5 @@ public interface MemberDAO {
 	public int insertAuthority(MemVO memVO) throws SQLException;
 	public ArrayList<MemVO> listMember(String member_name) throws SQLException;
 	public int updateMember(MemVO memVO) throws SQLException;
+	public int changePw(MemVO memVO) throws SQLException;
 }

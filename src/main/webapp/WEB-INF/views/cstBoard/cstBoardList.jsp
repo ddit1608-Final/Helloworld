@@ -46,7 +46,7 @@
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="4" style="text-align: center;">${cstpaging}</td>
+						<td colspan="4" style="text-align: center;">${paging}</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>

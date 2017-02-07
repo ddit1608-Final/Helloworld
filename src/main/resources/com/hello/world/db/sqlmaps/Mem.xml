@@ -39,5 +39,11 @@
 		mem_nm=#mem_nm#,mem_pw=#mem_pw#,mem_phn=#mem_phn#,mem_addr=#mem_addr#,mem_nick=#mem_nick#,addr_zipnum=#addr_zipnum#
 		where mem_mail=#mem_mail#
 	</update>
+	
+	<update id="changePw" parameterClass="mem">
+		update mem set
+		mem_pw=#mem_pw#
+		where mem_mail=#mem_mail#
+	</update>
 
 </sqlMap>

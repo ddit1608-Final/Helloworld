@@ -64,18 +64,17 @@ function iswriteComm_go(mem_nick,ifshrboard_posting_no,ifshrboard_comm_contt,eve
 			url:"writeComm",
 			type:"post",
 			contentType:'application/json',
-			dataType:'json',
 			data: JSON.stringify(cont),
 			success : function(data) {
 				var a;
-				$.each(data,function(){
+				
 					a = '<tr><td>'+mem_nick+'</td>'+
 						'<td>'+ifshrboard_comm_contt+'<input type="button" value="추천">'+
 						'<input type="button" value="비추천"></td>'+
-					 	'<td></td>'+
+					 	'<td>'+data+'</td>'+
 					 	'<td><a href="#" onclick="updateIsComm()">수정</a>/'+
 						'<a href="#" onclick="deleteIsComm()">삭제</a></td></tr>'
-				})
+				
 				$('#iscomm_go').append(a);
 				$('#ifshrboard_comm_contt').val("");
 			},

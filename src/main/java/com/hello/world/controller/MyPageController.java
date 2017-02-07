@@ -27,6 +27,13 @@ public class MyPageController {
 	@Autowired
 	PointService pointService;
 	
+	@RequestMapping(value = "/myBoard", method = RequestMethod.GET)
+	public String myBoard() {
+		String url = "myPage/myBoardList";
+		
+		return url;
+	}
+	
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.GET)
 	public String updateInfoForm() {
 		String url = "myPage/MyInfo";

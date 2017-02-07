@@ -14,6 +14,7 @@ public interface IsBoardCommDAO {
 	public void deleteIsBoardComm(String isBoardCommVO)throws SQLException;
 	public void updateIsBoardComm(IsBoardCommVO isBoardCommVO)throws SQLException;
 	public IsBoardCommVO getIsBoardComm (String ifshrboard_ans_code)throws SQLException;
+	public int getMaxSeq() throws SQLException;
 }
 
 

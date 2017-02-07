@@ -69,4 +69,10 @@ public class MemberDAO_iBatis implements MemberDAO {
 		return res;
 	}
 
+	@Override
+	public int changePw(MemVO memVO) throws SQLException {
+		int res = client.update("changePw", memVO);
+		return res;
+	}
+
 }

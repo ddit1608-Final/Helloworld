@@ -51,5 +51,11 @@ public class IsBoardCommDAO_iBatis implements IsBoardCommDAO {
 		return (IsBoardCommVO) client.queryForObject("getIsBoardComm",ifshrboard_ans_code);
 	}
 
+	@Override
+	public int getMaxSeq() throws SQLException {
+		
+		return (int) client.queryForObject("getMaxAnxCode");
+	}
+
 	
 }
