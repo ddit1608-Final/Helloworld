@@ -332,9 +332,14 @@ public class MemberController implements ServletContextAware {
 		if (mem == null) {
 
 			if (url.indexOf("?") != -1) {
-				url = url + "&loginResult=notexist";
+				if(url.contains("loginResult=pwdMismatch") == true)
+					url = url.replace("pwdMismatch", "notexist");
+				else if(url.contains("loginResult=notexist") == true)
+					url = url.replace("notexist", "notexist");
+				else 
+					url = url + "&loginResult=notexist";
 			} else {
-				url = url + "?&loginResult=notexist";
+				url = url + "?loginResult=notexist";
 			}
 
 			// url = url + "&loginResult:notexist";
@@ -362,6 +367,16 @@ public class MemberController implements ServletContextAware {
 				servletContext.setAttribute("loginUserCnt", sessionMap.size());
 
 				if (url.indexOf("?") != -1) {
+					if(url.contains("loginResult=notexist") == true)
+						url = url.replace("notexist", RequestContextHolder.currentRequestAttributes()
+								.getSessionId());
+					else if(url.contains("loginResult=pwdMismatch") == true)
+						url = url.replace("pwdMismatch", RequestContextHolder.currentRequestAttributes()
+								.getSessionId());
+					else 
+						
+					
+					
 					url = url
 							+ "&loginResult="
 							+ RequestContextHolder.currentRequestAttributes()
@@ -381,7 +396,12 @@ public class MemberController implements ServletContextAware {
 			// 로그인 실패(패스워드 불일치)
 			else {
 				if (url.indexOf("?") != -1) {
-					url = url + "&loginResult=pwdMismatch";
+					if(url.contains("loginResult=notexist") == true)
+						url = url.replace("notexist", "pwdMismatch");
+					else if(url.contains("loginResult=pwdMismatch") == true)
+						url = url.replace("pwdMismatch", "pwdMismatch");
+					else 
+						url = url + "&loginResult=pwdMismatch";
 				} else {
 					url = url + "?loginResult=pwdMismatch";
 				}
