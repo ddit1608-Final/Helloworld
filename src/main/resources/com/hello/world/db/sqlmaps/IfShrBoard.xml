@@ -5,6 +5,7 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="ifshrboard" type="com.hello.world.dto.IfShrBoardVO" />
+	<typeAlias alias="testVo" type="com.hello.world.dto.testVO" />
 
 	<!-- <select id="listIfShrBoard" parameterClass="str" resultClass="ifshrboard">
 		select * from ifshrboard where mem_mail =#mem_mail#
@@ -16,13 +17,11 @@
 	</select>  -->
 
 	<select id="listAllIfShrBoard" parameterClass="str" resultClass="ifshrboard">
-		select * from memifshr where ifshrboard_title like
-		'%'||#ifshrboard_title#||'%' order by ifshrboard_posting_no desc
+		select * from memifshr where ifshrboard_posting_no order by ifshrboard_posting_no asc
 	</select>
 
-	<select id="totalIfShrBoard" parameterClass="str" resultClass="int">
-		select count(*) from ifshrboard where ifshrboard_title like
-		'%'||#ifshrboard_title#||'%'
+	<select id="totalIfShrBoard" parameterClass="testVo" resultClass="int">
+		select count(*) from memifshr where $type$ like '%'||#key#||'%'
 	</select>
 	
 	<update id="insertIfShrBoard" parameterClass="ifshrboard">
@@ -57,11 +56,13 @@
 		ifshrboard_posting_no=#ifshrboard_posting_no#
 	</update>
 	
-	<select id="getBoardByTitle" parameterClass="str" resultClass="ifshrboard">
+	<!-- <select id="getBoardByTitle" parameterClass="str" resultClass="ifshrboard">
 		select * from ifshrboard where ifshrboard_title like'%'||#key#||'%'
-	</select> 
+	</select>  -->
 	
-	
+	<select id="getBoardByTitle" parameterClass="testVo" resultClass="ifshrboard">
+		select * from memifshr where $type$ like'%'||#key#||'%' order by ifshrboard_posting_no asc
+	</select> 	
 	
 	
 	

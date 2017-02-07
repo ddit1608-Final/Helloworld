@@ -6,13 +6,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.testVO;
 
 
 public interface IfShrBoardDAO {  
 	
 	
 	public ArrayList<IfShrBoardVO> listAllIfShrBoard(int startRow, String ifshrboard_title, int counts)throws SQLException;
-	public int totalRecord(String name) throws SQLException;
+	public int totalRecord(testVO testVO) throws SQLException;
 	
 	public int insertIfShrBoard(IfShrBoardVO ifShrBoardVO)throws SQLException;
 	
@@ -24,7 +25,12 @@ public interface IfShrBoardDAO {
 	
 	public void updateHits(IfShrBoardVO ifShrBoardVO)throws SQLException;
 	
-	public List<IfShrBoardVO> getIsBoardList(int startRow,String key,int counts)throws SQLException;
+	//public List<IfShrBoardVO> getIsBoardList(int startRow,String key,int counts)throws SQLException;
+	public List<IfShrBoardVO> getIsBoardList(int startRow,testVO testVO,int counts)throws SQLException;
+	
+	public int getTotal(testVO testVO)throws SQLException;
+	
+	
 }
 
 

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.testVO;
 import com.hello.world.service.IfShrBoardService;
 import com.hello.world.service.IsBoardCommService;
 
@@ -37,10 +38,11 @@ public class IfShrBoardController {
 	@RequestMapping("/ifShrBoardList.do")
 	public String ifShareBoardList(HttpSession session, Model model,
 			HttpServletRequest request) throws ServletException, IOException {
-
+		String total="";
 		String url = "ifShrBoard/ifShrBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
+		
 
 		if (key == null) {
 			key = "";
@@ -50,10 +52,20 @@ public class IfShrBoardController {
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-
+		
 		model.addAttribute("key", key);
 		model.addAttribute("tpage", tpage);
-
+		
+		testVO testVO = new testVO();
+		testVO.setKey(key);
+		testVO.setType("ifshrboard_title");
+		try {
+			total= ifShrBoardService.getTotal(testVO)+"";
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
 
 		ArrayList<IfShrBoardVO> ifShrBoardList = null;
@@ -61,9 +73,9 @@ public class IfShrBoardController {
 
 		try {
 			ifShrBoardList = ifShrBoardService.getIsBoardList(
-					Integer.parseInt(tpage), key);
+					Integer.parseInt(tpage), testVO);
 			//System.out.println("테스트입니다 "+ifShrBoardList);
-			paging = ifShrBoardService.pageNumber(Integer.parseInt(tpage), key);
+			paging = ifShrBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,7 +85,7 @@ public class IfShrBoardController {
 		//int n = ifShrBoardList.size();
 		//model.addAttribute("ifShrBoardListSize", n);
 		model.addAttribute("paging", paging);
-
+		model.addAttribute("searchCnt",total);
 		return url;
 	}
 	
@@ -90,6 +102,8 @@ public class IfShrBoardController {
 	public String ifShrBoardWrite(IfShrBoardVO ifShrBoardVO,HttpSession session) throws ServletException,IOException{
 		String url="redirect:ifShrBoardList.do";
 		MemVO loginUser = (MemVO)session.getAttribute("loginUser");
+		String a =ifShrBoardVO.getIfshrboard_cont().replace("\r\n","<br>");
+		ifShrBoardVO.setIfshrboard_cont(a);
 		try {
 			if(ifShrBoardService.insertIfShrBoard(ifShrBoardVO)==1){
 				url+="?result:success";
@@ -122,6 +136,7 @@ public class IfShrBoardController {
 		}
 		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
 		model.addAttribute("isBoardCommList",isBoardCommList);
+		model.addAttribute("isBoardCommListCnt", isBoardCommList.size());
 		
 		return url;
 	}
@@ -133,6 +148,8 @@ public class IfShrBoardController {
 		String url="ifShrBoard/ifShrBoardUpdate";
 		
 		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
+		String a =ifShrBoardVO.getIfshrboard_cont().replace("<br>","\r\n");
+		ifShrBoardVO.setIfshrboard_cont(a);
 		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
 		
 		
@@ -168,12 +185,11 @@ public class IfShrBoardController {
 	@RequestMapping(value="/ifShrBoardSearch.do",method = RequestMethod.POST)
 	public String getIsBoardList(HttpServletRequest request,Model model)
 			throws ServletException,IOException{
-
+		String total = "";
 		String url = "ifShrBoard/ifShrBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
 		String type= request.getParameter("type");
-		Map<String, String> map = new HashMap<String, String>();
 		
 		if (key == null) {
 			key = "";
@@ -185,22 +201,35 @@ public class IfShrBoardController {
 		}
 		model.addAttribute("key", key);
 		model.addAttribute("type",type);
-		map.put(type, key);
 		model.addAttribute("tpage", tpage);
 		ArrayList<IfShrBoardVO> isBoardList = null;
 		String paging = null;
+		
+		testVO testVO = new testVO();
+		
+		testVO.setKey(key);
+		testVO.setType(type);
+		
+		try {
+			total= ifShrBoardService.getTotal(testVO)+"";
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		try {
+			/*isBoardList = ifShrBoardService.getIsBoardList(
+					Integer.parseInt(tpage), key);*/
 			isBoardList = ifShrBoardService.getIsBoardList(
-					Integer.parseInt(tpage), key);
-			paging = ifShrBoardService.pageNumber(Integer.parseInt(tpage), key);
+					Integer.parseInt(tpage), testVO);
+			paging = ifShrBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 		model.addAttribute("ifShrBoardList", isBoardList);
 		int n = isBoardList.size();
-		model.addAttribute("ifShrBoardListSize", n);
+		model.addAttribute("searchCnt",total);
 		model.addAttribute("paging", paging);
 
 		return url;

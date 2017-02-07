@@ -160,14 +160,12 @@ function deleteIsComm(ifshrboard_ans_code, indexTdd, event){
 	
 }	
 	
+function is_src(){
+
+	formm.action =  "ifShrBoardSearch.do";
+	formm.submit();
+}
 	
-	
-	function is_src(){
-		
-			formm.action =  "ifShrBoardSearch.do";
-			document.formm.key.focus();
-			formm.submit();
-		}
 		/*}else{
 			$.ajax({
 				url:"isSearch.do",

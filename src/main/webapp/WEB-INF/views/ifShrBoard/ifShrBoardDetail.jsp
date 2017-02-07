@@ -21,9 +21,53 @@
   
   	 <tr> 
 	    <th>NAME</th>
-	    <td>${ifShrBoardVO.mem_nick}</td>
+	    <td>
+	    	<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+	    		${ifShrBoardVO.mem_nick}</button>
+	    </td>
 	    <td><b>DATE</b> &nbsp;${ifShrBoardVO.ifshrboard_wridate }</td>
   	 </tr>
+  	 
+  	 
+  	 
+  	 <tr>
+      	<td>
+      	
+		  <!-- Modal -->
+		  <div class="modal fade" id="myModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">${ifShrBoardVO.mem_nick} 님의 정보입니다.</h4>
+		        </div>
+		        <div class="modal-body">
+		          <p>이메일:${ifShrBoardVO.mem_mail} <a href="#">메일보내기</a></p>
+		          <p>연락처:01*-**${ifShrBoardVO.mem_phn}*-**** <a href="#">문자보내기</a> </p>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+   		</td>
+      </tr>
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
   <tr>
   <th>CONTENT</th>
    <td></td>
@@ -44,7 +88,7 @@
 			<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. -->
 		</c:if>
 		<input class="btn" type="button" value="목록"
-			onclick="location.href='<%=request.getContextPath()%>/ifShrBoard/ifShrBoardList.do'">
+			onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardList.do'">
 			</div>
 	</form>
 	
@@ -53,23 +97,52 @@
 		<table class="table table-condensed">
 			<thead>
 				<tr>
-					<td colspan="3">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
+					<td colspan="3">댓글이 ${isBoardCommListCnt }개 달렸습니다.</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td style="width:100px">작성자</td>
-					<td style="width:800px">내용</td>
-					<td style="width:200px">작성날짜</td>
+					<td style="width:100px;text-align:center;" >작성자</td>
+					<td style="width:800px;text-align:center;">내용</td>
+					<td style="width:200px;text-align:center;">작성날짜</td>
 					<td></td>
 				</tr>
 			</tbody>
 			</table>
+			
+			<!-- 댓글 영역 시작  -->
 			<table class="table table-condensed" id="iscomm_go">
 				<c:forEach items="${isBoardCommList}" var="ifShrBoardComm" varStatus="status" >
 					<tbody>
 					<tr id="ifshrboard_ans_code${status.count}" class="iscoment">
-						<td style="width:13%;">${ ifShrBoardComm.ifshrboard_comm_wri}</td>
+						<%-- <td style="width:100px;text-align:center;">${ ifShrBoardComm.ifshrboard_comm_wri}</td> --%>
+						
+						<td style="width:100px;text-align:center;">
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2">
+	    					${ ifShrBoardComm.ifshrboard_comm_wri}</button></td>
+	    					
+	    				<!-- 일단 댓글에서는 쪽지 기능  -->
+	    				 <div class="modal fade" id="myModal2" role="dialog">
+						    <div class="modal-dialog">
+						      <!-- Modal content-->
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <c:set value="${ifShrBoardCommVO.getIfshrboard_comm_wri}" var="ifshrboard_comm_wri"/>
+						          <h4 class="modal-title"> ifshrboard_comm_wri 님에게 쪽지 보내기</h4>
+						        </div>
+						        <div class="modal-body">
+						          	<textarea class="form-control" rows="7" name="ifshrboard_cont" id="isboard_cont"></textarea>
+						        	<input type="button" class="btn btn-default btn-xs" value="쪽지전송">
+						        	<input type="button" class="btn btn-default btn-xs" value="취소">
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+						        </div>
+						      </div>
+						    </div>	
+						 <!--  -->  
+						 
 						<td style="width:70%;" id="isBoardComm_cont${status.count}" name="isBoardComm_cont${status.count}">${ ifShrBoardComm.ifshrboard_comm_cont}
 						<input type="button" value="추천">
 						<input type="button" value="비추천"></td>
@@ -87,6 +160,7 @@
 						<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
 							<a href="#" onclick="deleteIsComm('${ifshrboard_ans_code}','${indexTdd }',event )">삭제</a>
 						</td>
+						<td></td>
 						</c:if>
 					</tr>
 				</tbody>
@@ -100,6 +174,7 @@
 		<input type="button" value="댓글등록" onclick="iswriteComm_go($('#mem_nick').val(),$('#ifshrboard_posting_no').val(),$('#ifshrboard_comm_contt').val(),event)">
 		</c:if>
 	</form>
+	 
 	
 		
 </article>

@@ -36,7 +36,7 @@
 								href="/world/is/ifShrBoardDetail.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">${ifShrBoardVO.ifshrboard_title}</a>
 							</td>
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
-							<td style="text-align: center;">${ifShrBoardVO.mem_mail}</td>
+							<td style="text-align: center;">${ifShrBoardVO.mem_nick}</td>
 							<%-- <td>${loginUser.mem_nick}</td> --%>
 							<td style="text-align: center;"><fmt:formatDate
 									value="${ifShrBoardVO.ifshrboard_wridate}"  /></td>
@@ -63,27 +63,37 @@
 				</td>
 			</tr>
 		</table>
+				<font color="red">
+				<center>♥하늘으l 별은 수도없ol 많지만..LH 사랑은..오직 너뿐Ol야..♥</center>
+				</font>
 		</div>
 	</form>
 	<form name="formm" id="formm" method="post">
 		<div id="divdiv">
 		<table class="table table-condensed" id="blt" style="margin: 0 auto;">
-			<tr>
+			<tr >
 				<td>
 				<select id="type" name="type">
 					<option value="ifshrboard_title" selected="selected">제목</option>
 					<option value="ifshrboard_cont">내용</option>
-					<option value="ifshrboard_wri">작성자</option>
+					<option value="mem_nick">작성자</option>
 				</select>
 				<input type="text" name="key" id="key" placeholder="검색어를 입력해주세요"/>
 				<%-- <input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src('${is_key}',event)"> --%>
 				<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src()">
+				<marquee behavior=alternate width="300" scrollamount="5">
+				<span>
+				총 (${searchCnt})개의 게시물
+				</span>
+				</marquee>
+				<marquee width="300">←<font color="pink">♥</font>--&lt;</marquee><font size="5">{＼((￣<font color="red">■</font> ￣)</font>
 				</td>
 				</tr>
 				<tr>
 					<td style="background: white;">
 						<label id="isert_key" style="color:red;"></label>
 					</td>
+					<td></td>
 			</tr>
 		</table>
 		</div>
