@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.hello.world.dao.IfShrBoardDAO;
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.testVO;
 
 public class IfShrBoardService {
 
@@ -18,34 +19,41 @@ public class IfShrBoardService {
 		this.ifShrBoardDAO = ifShrBoardDAO;
 	}
 
-	public ArrayList<IfShrBoardVO> listAllIfShrBoard(int tpage,
-			String ifshrboard_title) throws SQLException {
+	public ArrayList<IfShrBoardVO> listAllIfShrBoard(int tpage,String key) throws SQLException {
 		ArrayList<IfShrBoardVO> list = new ArrayList<IfShrBoardVO>();
 		int startRow = -1;
 		int endRow = -1;
 
-		if (ifshrboard_title.equals("")) {
-			ifshrboard_title = "%";
+		if (key.equals("")) {
+			key = "%";
 		}
+		
+		testVO testVO = new testVO();
+		testVO.setKey(key);
+		testVO.setType("ifshrboard_title");
 
-		int totalRecord = ifShrBoardDAO.totalRecord(ifshrboard_title);
+		int totalRecord = ifShrBoardDAO.totalRecord(testVO);
 
 		startRow = (tpage - 1) * counts;
 		endRow = startRow + counts - 1;
 		if (endRow > totalRecord)
 			endRow = totalRecord;
 
-		list = ifShrBoardDAO.listAllIfShrBoard(startRow, ifshrboard_title, counts);
+		list = (ArrayList<IfShrBoardVO>) ifShrBoardDAO.listAllIfShrBoard(startRow, key, counts);
 
 		return list;
 	}
 
 	
 
-	public String pageNumber(int tpage, String name) throws SQLException {
+	public String pageNumber(int tpage, testVO testVO) throws SQLException {
 		String str = "";
 
-		int total_pages = ifShrBoardDAO.totalRecord(name);
+		testVO.setKey(testVO.getKey());
+		testVO.setType(testVO.getType());
+		
+		
+		int total_pages = ifShrBoardDAO.totalRecord(testVO);
 		int page_count = total_pages / counts + 1;
 
 		if (total_pages % counts == 0) {
@@ -62,7 +70,7 @@ public class IfShrBoardService {
 			end_page = page_count;
 		}
 		if (start_page > view_rows) {
-			str += "<a href='ifShrBoardList.do?tpage=1&key=" + name
+			str += "<a href='ifShrBoardList.do?tpage=1&key=" + testVO.getKey()
 					+ "'>&lt;&lt;</a>&nbsp;&nbsp;";
 			str += "<a href='ifShrBoardList.do?tpage=" + (start_page - 1);
 			str += "&key=<%=product_name%>'>&lt;</a>&nbsp;&nbsp;";
@@ -72,16 +80,16 @@ public class IfShrBoardService {
 			if (i == tpage) {
 				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
 			} else {
-				str += "<a href='ifShrBoardList.do?tpage=" + i + "&key=" + name
+				str += "<a href='ifShrBoardList.do?tpage=" + i + "&key=" + testVO.getKey()
 						+ "'>[" + i + "]</a>&nbsp;&nbsp;";
 			}
 		}
 
 		if (page_count > end_page) {
 			str += "<a href='ifShrBoardList.do?tpage=" + (end_page + 1)
-					+ "&key=" + name + "'> &gt; </a>&nbsp;&nbsp;";
+					+ "&key=" + testVO.getKey() + "'> &gt; </a>&nbsp;&nbsp;";
 			str += "<a href='ifShrBoardList.do?tpage=" + page_count + "&key="
-					+ name + "'> &gt; &gt; </a>&nbsp;&nbsp;";
+					+ testVO.getKey() + "'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 		return str;
 	}
@@ -131,17 +139,34 @@ public class IfShrBoardService {
 		}
 		
 	}
-	public ArrayList<IfShrBoardVO> getIfShrBoard(String is_key ){
+	//public ArrayList<IfShrBoardVO> getIsBoardList(int tpage,String key )throws SQLException{
+	public ArrayList<IfShrBoardVO> getIsBoardList(int tpage, testVO testVO )throws SQLException{
+		ArrayList<IfShrBoardVO> list = new ArrayList<IfShrBoardVO>();
+		int startRow = -1;
+		int endRow = -1;
 		
-		ArrayList<IfShrBoardVO> getIfShrBoardList = null;
-		try {
-			getIfShrBoardList=(ArrayList<IfShrBoardVO>) ifShrBoardDAO.getIfShrBoard(is_key);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String key = testVO.getKey(); 
+		
+		if (key.equals("")) {
+			key = "%";
 		}
+
+		int totalRecord = ifShrBoardDAO.totalRecord(testVO);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+
+		//list = (ArrayList<IfShrBoardVO>) ifShrBoardDAO.getIsBoardList(startRow, key, counts);
+		list = (ArrayList<IfShrBoardVO>) ifShrBoardDAO.getIsBoardList(startRow, testVO, counts);
+
+		return list;
+	}
+	public int getTotal(testVO testVO)throws SQLException{
 		
-		return getIfShrBoardList;
+		return ifShrBoardDAO.getTotal(testVO);
+		
 	}
 	
 	

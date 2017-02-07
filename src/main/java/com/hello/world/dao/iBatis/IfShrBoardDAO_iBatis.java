@@ -8,6 +8,7 @@ import java.util.Map;
 import com.hello.world.dao.IfShrBoardDAO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
@@ -17,26 +18,27 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 	public void setClient(SqlMapClient client) {
 		this.client = client;
 	}
-
+	
 	@Override
 	public ArrayList<IfShrBoardVO> listAllIfShrBoard(int startRow,
 			String product_name, int counts) throws SQLException {
 		ArrayList<IfShrBoardVO> ifShrBoardList = new ArrayList<IfShrBoardVO>();
 
 		ifShrBoardList = (ArrayList<IfShrBoardVO>) client.queryForList(
-				"listAllIfShrBoard", startRow, counts);
+				"ifAllIfShrBoard", startRow, counts);
 		System.out.println("test입니당" + ifShrBoardList);
 		return ifShrBoardList;
 	}
 
 	@Override
-	public int totalRecord(String product_name) throws SQLException {
+	public int totalRecord(testVO testVO) throws SQLException {
 		int total_pages = 0;
-		if (product_name.equals("")) {
-			product_name = "%";
+		String key = testVO.getKey();
+		if (key.equals("")) {
+			key = "%";
 		}
 		total_pages = (Integer) client.queryForObject("totalIfShrBoard",
-				product_name);
+				testVO);
 		return total_pages;
 	}
 
@@ -78,17 +80,37 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 	}
 
 	@Override
-	public List<IfShrBoardVO> getIfShrBoard( String is_key)
-			throws SQLException {
-		ArrayList<IfShrBoardVO> getIfShrBoardList = new ArrayList<IfShrBoardVO>();
-		
-		for(IfShrBoardVO board:getIfShrBoardList){
-			if(board.getIfshrboard_title().equals(is_key)){
-				getIfShrBoardList.add(board);
-			}
-		}
-		return getIfShrBoardList;
+	public List<IfShrBoardVO> getIsBoardList(int startRow, testVO testVO,
+			int counts) throws SQLException {
+		ArrayList<IfShrBoardVO> ifShrBoardList = new ArrayList<IfShrBoardVO>();
+
+		ifShrBoardList = (ArrayList<IfShrBoardVO>) client.queryForList(
+				"getBoardByTitle", testVO, startRow, counts);
+
+		return ifShrBoardList;
 	}
+	/*@Override
+	public List<IfShrBoardVO> getIsBoardList(int startRow, String key,int counts) 
+			throws SQLException {
+		ArrayList<IfShrBoardVO> ifShrBoardList = new ArrayList<IfShrBoardVO>();
+
+		ifShrBoardList = (ArrayList<IfShrBoardVO>) client.queryForList(
+				"getBoardByTitle", key, startRow, counts);
+		System.out.println(" getIsBoardList()  >>" + ifShrBoardList);
+		return ifShrBoardList;
+	}*/
+	
+
+	@Override
+	public int getTotal(testVO testVO) throws SQLException {
+
+		
+		return (int) client.queryForObject("totalIfShrBoard", testVO);
+	}
+
+
+
+
 
 
 	

@@ -12,7 +12,17 @@ public class IfShrBoardVO {
 	private String ifshrboard_pwd;		  // 게시글 비번
 	private String mem_mail;			  // 작성자 메일
 	private String mem_nick;			  // 작성자 메일
+	private String mem_phn;				  // 작성자 연락처
 	
+	
+	
+	
+	public String getMem_phn() {
+		return mem_phn;
+	}
+	public void setMem_phn(String mem_phn) {
+		this.mem_phn = mem_phn;
+	}
 	public String getIfshrboard_posting_no() {
 		return ifshrboard_posting_no;
 	}
@@ -61,16 +71,6 @@ public class IfShrBoardVO {
 	}
 	public void setMem_nick(String mem_nick) {
 		this.mem_nick = mem_nick;
-	}
-	@Override
-	public String toString() {
-		return "IfShrBoardVO [ifshrboard_posting_no=" + ifshrboard_posting_no
-				+ ", ifshrboard_title=" + ifshrboard_title
-				+ ", ifshrboard_cont=" + ifshrboard_cont
-				+ ", ifshrboard_wridate=" + ifshrboard_wridate
-				+ ", ifshrboard_hits=" + ifshrboard_hits + ", ifshrboard_pwd="
-				+ ifshrboard_pwd + ", mem_mail=" + mem_mail + ", mem_nick="
-				+ mem_nick + "]";
 	}
 	
 	
