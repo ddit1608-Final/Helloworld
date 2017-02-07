@@ -67,6 +67,7 @@
 			</table>
 			<table class="table table-condensed" id="iscomm_go">
 				<c:forEach items="${isBoardCommList}" var="ifShrBoardComm" varStatus="status" >
+					<input type="hidden" id="ifshrboard_ans_code${status.count}" value="${ifShrBoardComm.ifshrboard_ans_code }">
 					<tbody>
 					<tr id="ifshrboard_ans_code${status.count}" class="iscoment">
 						<td style="width:13%;">${ ifShrBoardComm.ifshrboard_comm_wri}</td>
@@ -77,7 +78,7 @@
 						<c:if test="${loginUser.mem_nick ==ifShrBoardComm.ifshrboard_comm_wri }">
 						
 						<c:set value="${ifShrBoardComm.ifshrboard_comm_cont}" var="ifshrboard_comm_cont"/>
-						<c:set value="isBoardComm_cont${status.count}" var="indexTd"/>
+						<c:set value="${status.count}" var="indexTd"/>
 						<c:set value="${ifShrBoardComm.ifshrboard_ans_code}" var="ifshrboard_ans_code"/>
 						<c:set value="ifshrboard_ans_code${status.count}" var="indexTdd"/>
 						
