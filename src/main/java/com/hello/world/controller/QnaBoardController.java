@@ -59,7 +59,7 @@ public class QnaBoardController {
 	@RequestMapping("/qnaBoardWrite.do")
 	public String freeBoardWrite(QnaBoardVO qnaBoardVO, HttpSession session)
 			throws ServletException, IOException {
-		String url = "redirect:freeBoardList.do";
+		String url = "redirect:qnaBoardList.do";
 
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 		
@@ -134,30 +134,34 @@ public class QnaBoardController {
 			e.printStackTrace();
 		}
 		
+		QnaBoardChooseVO qnaBoardChooseList = null;
+		
 		for(QnaBoardCommVO vo:qnaBoardCommList) {
 			qnaboard_ans_code = vo.getQnaboard_ans_code();
 			try {
 				qnaBoardChuList.add(qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code));
+				qnaBoardChooseList = qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code);
+				if(qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code) != null)
+					model.addAttribute("qnaBoardChooseList", qnaBoardChooseList);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-		QnaBoardChooseVO qnaBoardChooseList = null;
 		
-		try {
+		/*try {
 			qnaBoardChooseList = qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 
 		model.addAttribute("qnaBoardVO", qnaBoardVO);
 		model.addAttribute("qnaBoardCommList", qnaBoardCommList);
 		model.addAttribute("qnaBoardCommListCnt", qnaBoardCommList.size());
 		model.addAttribute("qnaBoardChuList", qnaBoardChuList);
-		model.addAttribute("qnaBoardChooseList", qnaBoardChooseList);
+		//model.addAttribute("qnaBoardChooseList", qnaBoardChooseList);
 		
 		return url;
 	}
