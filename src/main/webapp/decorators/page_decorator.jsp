@@ -226,9 +226,7 @@ footer {
 	color: #a31313;
 }
 
-#tablle{
-border:2px soild red;
-}
+
 </style>
 
 <script>

@@ -7,11 +7,21 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
+article{
+width:90%;
+margin:0 auto;
+}
 td{
 font-family: 돋움;
 font-size:12pt;
-
 }
+
+td:hover{
+font-weight: bold;
+background-color: #bdeba9;
+}
+
+
 td a{
 color:black;
 }

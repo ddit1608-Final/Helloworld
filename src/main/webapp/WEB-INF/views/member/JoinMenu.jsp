@@ -40,7 +40,7 @@ cursor:pointer;
 	</a>
 
 </div>
-	<br>
+	
 	<button onclick="location.href='<%=request.getContextPath()%>/member/join'">개인회원 가입</button>
 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<button onclick="location.href='<%=request.getContextPath()%>/member/joinCompany'">기업회원 가입</button>
