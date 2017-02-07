@@ -226,8 +226,31 @@ footer {
 	color: #a31313;
 }
 
-#tablle{
-border:2px soild red;
+
+#newsListTd{
+border:1px solid #3EAF0E;
+text-align: center;
+background-color: #3EAF0E;
+font-family: 한나;
+color:white;
+font-size:14pt;
+cursor:pointer;
+
+}
+
+#newsListTd:hover{
+background-color: #006f00;
+}
+
+#newsListTable{
+width:90%;
+margin:1% auto 1% 5%;
+}
+
+#newsListTd a{
+color:white;
+text-decoration: none;
+
 }
 </style>
 
@@ -272,6 +295,32 @@ border:2px soild red;
 			});
 		}
 		;
+	}
+	
+	function mobile(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=mobile";
+	}
+	
+	function sns(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=sns";
+	}
+	function media(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=media";
+	}
+	function IT(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=it";
+	}
+	function hacking(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=hacking";
+	}
+	function computer(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=computer";
+	}
+	function game(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=FPS";
+	}
+	function sience(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=sience";
 	}
 </script>
 
@@ -384,16 +433,19 @@ border:2px soild red;
       <p><a href="#">Link</a></p> -->
 			</div>
 			<!-- 컨텐트내용 -->
-			<div class="col-sm-8 text-left">
-			<table>
+		<div class="col-sm-8 text-left">
+			<table id="newsListTable">
 			<tr>
-				<td>asdasdasdasd</td>
-				<td>asdasdasdasd</td>
+				<td id="newsListTd" onclick="mobile()">모바일</td>
+				<td id="newsListTd" onclick="sns()">인터넷/SNS</td>
+				<td id="newsListTd" onclick="media()">통신/뉴미디어</td>
+				<td id="newsListTd" onclick="IT()">IT일반</td>
+				<td id="newsListTd" onclick="hacking()">보안/해킹</td>
+				<td id="newsListTd" onclick="computer()">컴퓨터</td>
+				<td id="newsListTd" onclick="game()">게임/리뷰</td>
+				<td id="newsListTd" onclick="sience()">과학 일반</td>
 			</tr>
-			<tr>
-				<td>asdlkjfdalskj</td>
-				<td>asdfsadlkjfdaslk</td>
-			</tr>
+			
 			</table>
 
 				<decorator:body />

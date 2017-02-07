@@ -226,9 +226,7 @@ footer {
 	color: #a31313;
 }
 
-#tablle{
-border:2px soild red;
-}
+
 </style>
 
 <script>
@@ -276,6 +274,20 @@ border:2px soild red;
 </script>
 
 <body>
+	<c:if test="${param.loginResult != null }">
+		<c:choose>
+			<c:when test="${param.loginResult == 'pwdMismatch' }">
+				<script>
+				alert("패스워드가 일치 하지 않습니다.");
+			</script>
+			</c:when>
+			<c:when test="${param.loginResult == 'notexist' }">
+				<script>
+				alert("아이디가 존재 하지 않습니다.");
+			</script>
+			</c:when>
+		</c:choose>
+	</c:if>
 
 	<!-- 최상단 로고 및 검색바 -->
 	<header>
