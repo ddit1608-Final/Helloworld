@@ -385,7 +385,12 @@ border:2px soild red;
 			</div>
 			<!-- 컨텐트내용 -->
 			<div class="col-sm-8 text-left">
-
+			<table>
+			<tr>
+				<td>asdasdasdasd</td>
+				<td>asdasdasdasd</td>
+			</tr>
+			</table>
 
 				<decorator:body />
 			</div>
