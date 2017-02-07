@@ -310,7 +310,6 @@ footer {
           <span class="glyphicon glyphicon-home"></span>
         </a></li><br> -->
 
-<<<<<<< HEAD
 		<li><a href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구인</a></li>
         <li><a href="<%=request.getContextPath()%>/worknet/worknet.do">구직</a></li>
         <li><a href="<%=request.getContextPath()%>/news/news?keyword=IT">IT소식</a></li>
@@ -366,86 +365,7 @@ footer {
      <!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
-
-					</ul>
-				</div>
-
-			</div>
-
-
-			<div class="collapse navbar-collapse" id="myNavbar"
-				style="background-color: #d9d9d9;">
-				<form method="post" id="login" name="login" style="margin: 0;"
-					action="<%=request.getContextPath()%>/member/login">
-					<input name="prePage" hidden="hidden"
-						value="<%=request.getRequestURL()%>"> <input name="param"
-						id="param" hidden="hidden" value="1">
-					<ul class="nav navbar-nav" id="loginActionForm">
-						<c:choose>
-							<c:when test="${loginUser eq null }">
-								<li><input class="login" id="login_mem_mail"
-									name="login_mem_mail" type="text" placeholder=" 이메일"></li>
-								<li><input class="login" id="login_mem_pw"
-									name="login_mem_pw" type="password" placeholder=" 비밀번호"
-									onkeypress="key_enter(event);"></li>
-								<li><input type="button" value="로그인" id="loginbtn"
-									onclick="login_go();"></li>
-								<li id="check" style="margin: 13px auto; width: 5%;"><label
-									style="vertical-align: text-botom;" for="check2" id="auto">
-										<input id="check2" type="checkbox"
-										style="vertical-align: text-top;"> 자동
-								</label></li>
-								<li><a href="<%=request.getContextPath()%>/member/joinMenu"
-									id="aa">회원가입</a></li>
-							</c:when>
-							<c:otherwise>
-
-
-								<c:if test="${sockJS == 'close' }">
-									<c:set value="open" var="sockJS" scope="session" />
-									<script>
-										connect();
-									</script>
-								</c:if>
-
-
-
-								<li id="mem_mail" name="mem_mail">(Level)
-									${loginUser.mem_nick } (POINT : ${myPoint })</li>
-								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
-								<li><a href="#" id="aa">반응 ()</a></li>
-								<li><a href="<%=request.getContextPath()%>/mypage/main"
-									id="aa">마이페이지</a></li>
-								<%-- <li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li> --%>
-								<li><a href="<%=request.getContextPath()%>/member/logout?"
-									+${loginUser.mem_mail } id="aa">로그아웃</a></li>
-							</c:otherwise>
-						</c:choose>
-						<li><a href="<%=request.getContextPath()%>/member/find" id="aa">아이디/비밀번호 찾기</a></li>
-						<li><a href="#" id="aa">접속자수</a></li>
-					</ul>
-				</form>
-
-			</div>
-			<!--  <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul> -->
-			<!--  <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul> -->
-
-
-
-			<!--  <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul> -->
-			<!--  <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul> -->
-
-
-
-
+   
 		</nav>
 	</header>
 
