@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true" %>
+	pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -10,27 +10,14 @@
 <title></title>
 </head>
 <body>
- <center>
-        <form action="news">
-            <input type="text" name="keyword" >
-            <input type="submit" value="검색">
-        </form>
-        
-    </center>
-    <table>
-        <tr>
-            <td colspan="7" width="100%" bgcolor="pink"></td>
-        </tr>
-        <c:forEach items="${newsList}" var ="b">
-            <tr>
-                <td rowspan="2"><img src="${b.title}"></td>
-                <td rowspan="4" width="800">"${b.originallink}"</td>
-                <td width="200">${b.description}</td>
-            </tr>
-            <tr>
-                <td colspan="7" width="100%" bgcolor="pink"></td>
-            </tr>
-        </c:forEach>
-    </table>
+	<table style="border: 1px solid black;">
+		<c:forEach items="${newsList}" var="b">
+			<tr style="border: 1px solid black;">
+				<%-- <td>${b.title}</td> --%>
+				<td><a href='${b.originallink}'>${b.title}</a></td>
+				<%-- <td>${b.description}</td> --%>
+			</tr>
+		</c:forEach>
+	</table>
 </body>
 </html>
