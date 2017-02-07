@@ -17,7 +17,7 @@
 	</select>  -->
 
 	<select id="listAllIfShrBoard" parameterClass="str" resultClass="ifshrboard">
-		select * from memifshr where ifshrboard_posting_no order by ifshrboard_posting_no asc
+		select * from memifshr where ifshrboard_posting_no order by TO_NUMBER(ifshrboard_posting_no) asc
 	</select>
 
 	<select id="totalIfShrBoard" parameterClass="testVo" resultClass="int">
@@ -61,7 +61,7 @@
 	</select>  -->
 	
 	<select id="getBoardByTitle" parameterClass="testVo" resultClass="ifshrboard">
-		select * from memifshr where $type$ like'%'||#key#||'%' order by ifshrboard_posting_no asc
+		select * from memifshr where $type$ like'%'||#key#||'%' order by TO_NUMBER(ifshrboard_posting_no) asc
 	</select> 	
 	
 	

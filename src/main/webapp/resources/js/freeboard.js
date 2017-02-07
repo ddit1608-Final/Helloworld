@@ -120,3 +120,14 @@ $(document).ready(function(){
 	});
 	
 })
+
+
+
+
+
+function free_src(){
+	formm.action =  "freeBoardSearch.do";
+	formm.submit();
+}
+
+

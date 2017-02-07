@@ -71,4 +71,31 @@
 		</table>
 		</div>
 	</form>
+	<form name="formm" id="formm" method="post">
+		<div id="divdiv">
+		<table class="table table-condensed" id="blt" style="margin: 0 auto;">
+			<tr >
+				<td>
+				<select id="type" name="type">
+					<option value="freeboard_title" selected="selected">제목</option>
+					<option value="freeboard_cont">내용</option>
+					<option value="mem_nick">작성자</option>
+				</select>
+				<input type="text" name="key" id="key" placeholder="검색어를 입력해주세요"/>
+				<%-- <input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src('${is_key}',event)"> --%>
+				<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="free_src()">
+				<marquee behavior=alternate width="300" scrollamount="5">
+				<span>
+				총 (${searchCnt})개의 게시물
+				</span>
+				</marquee>
+				<marquee width="300">←<font color="pink">♥</font>--&lt;</marquee><font size="5">{＼((￣<font color="red">■</font> ￣)</font>
+				</td>
+				</tr>
+		</table>
+		</div>
+	</form>
+	
+	
+	
 </article>

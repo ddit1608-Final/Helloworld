@@ -1,22 +1,22 @@
 function iswrite_ok(form) {
 	var result = true;
 
-	if (cont() == false) {
+	if (is_cont() == false) {
 		result = cont();
 	}
-	if (title() == false) {
+	if (is_title() == false) {
 		result = false;
 	}
-	if (pwd() == false) {
+	if (is_pwd() == false) {
 		result = false;
 	}
 
-	if (result == true) {
+	if (is_result == true) {
 		// $('#isboard_cont').val().replace("\r\n","<br>")
 		form.submit();
 	}
 }
-function cont() {
+function is_cont() {
 	if (document.form.ifshrboard_cont.value == "") {
 		document.getElementById("ifshrboard_cont").innerHTML = "내용을 입력해주세요";
 		document.form.ifshrboard_cont.focus();
@@ -26,7 +26,7 @@ function cont() {
 		return true;
 	}
 }
-function title() {
+function is_title() {
 	if (document.form.ifshrboard_title.value == "") {
 		document.getElementById("ifshrboard_title").innerHTML = "제목을 입력해주세요";
 		document.form.ifshrboard_title.focus();
@@ -36,7 +36,7 @@ function title() {
 		return true;
 	}
 }
-function pwd() {
+function is_pwd() {
 	if (document.form.ifshrboard_pwd.value == "") {
 		document.getElementById("ifshrboard_pwd").innerHTML = "비밀번호를 입력해주세요";
 		document.form.ifshrboard_pwd.focus();
