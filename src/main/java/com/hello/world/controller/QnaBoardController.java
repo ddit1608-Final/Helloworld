@@ -23,6 +23,7 @@ import com.hello.world.dto.QnaBoardChooseVO;
 import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
+import com.hello.world.dto.testVO;
 import com.hello.world.service.QnaBoardChooseService;
 import com.hello.world.service.QnaBoardChuService;
 import com.hello.world.service.QnaBoardCommService;
@@ -77,6 +78,7 @@ public class QnaBoardController {
 		String url = "qnaBoard/qnaBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
+		String type = request.getParameter("type");
 
 		if (key == null) {
 			key = "";
@@ -86,9 +88,16 @@ public class QnaBoardController {
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
+		if(type == null) {
+			type = "qnaboard_title";
+		}
 
 		model.addAttribute("key", key);
 		model.addAttribute("tpage", tpage);
+		
+		testVO testVO = new testVO();
+		testVO.setKey(key);
+		testVO.setType(type);
 
 		/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
 
@@ -97,8 +106,8 @@ public class QnaBoardController {
 
 		try {
 			qnaBoardList = qnaBoardService.listAllQnaBoard(
-					Integer.parseInt(tpage), key);
-			paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), key);
+					Integer.parseInt(tpage), testVO);
+			paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 			// System.out.println("테스트용 컨트롤러");
 			// System.out.println(freeBoardList);
 		} catch (SQLException e) {

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.hello.world.dao.QnaBoardDAO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.QnaBoardVO;
+import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class QnaBoard_iBatis implements QnaBoardDAO {
@@ -24,24 +25,25 @@ public class QnaBoard_iBatis implements QnaBoardDAO {
 
 	@Override
 	public ArrayList<QnaBoardVO> listAllQnaBoard(int startRow,
-			String qnaboard_title, int counts) throws SQLException {
+			testVO testVO, int counts) throws SQLException {
 		ArrayList<QnaBoardVO> qnaBoardList = new ArrayList<QnaBoardVO>();
 
 		qnaBoardList = (ArrayList<QnaBoardVO>) client.queryForList(
-				"listAllQnaBoard", startRow, counts);
+				"listAllQnaBoard", testVO, startRow, counts);
 
 		return qnaBoardList;
 
 	}
 	
 	@Override
-	public int totalRecord(String product_name) throws SQLException {
+	public int totalRecord(testVO testVO) throws SQLException {
 		int total_pages = 0;
-		if (product_name.equals("")) {
-			product_name = "%";
+		String key = testVO.getKey();
+		if (key.equals("")) {
+			key = "%";
 		}
-		total_pages = (Integer) client.queryForObject("totalFreeBoard",
-				product_name);
+		total_pages = (Integer) client.queryForObject("totalQnaBoard",
+				testVO);
 		return total_pages;
 	}
 

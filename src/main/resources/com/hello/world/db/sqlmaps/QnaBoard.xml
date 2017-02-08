@@ -5,6 +5,7 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />	
 	<typeAlias alias="qnaboard" type="com.hello.world.dto.QnaBoardVO"/>
+	<typeAlias alias="testVO" type="com.hello.world.dto.testVO" />
 	
 	
 	<insert id="insertQnaBoard" parameterClass="qnaboard">
@@ -12,13 +13,17 @@
 			values(qnaboard_posting_no.nextval,#qnaboard_title#,#qnaboard_cont#,#qnaboard_hits#,#qnaboard_pwd#,#mem_mail#)
 	</insert>
 	
-	<select id="listAllQnaBoard" parameterClass="str" resultClass="qnaboard" >
+	<select id="listAllQnaBoard" parameterClass="testVO" resultClass="qnaboard" >
 		<!-- select * from freeboard order by freeboard_posting_no desc -->
-		select * from memqna where qnaboard_title like '%'||#qnaboard_title#||'%' order by qnaboard_posting_no desc
+		select * from memqna where $type$ like '%'||#key#||'%' order by qnaboard_posting_no desc
 	</select>
 	
 	<select id="qnaDetail" parameterClass="str" resultClass="qnaboard">
 		select * from qnaboard where qnaboard_posting_no=#qnaboard_posting_no#
+	</select>
+	
+	<select id="totalQnaBoard" parameterClass="testVO" resultClass="int">
+		select count(*) from qnaboard where $type$ like '%'||#key#||'%'
 	</select>
 	
 	
