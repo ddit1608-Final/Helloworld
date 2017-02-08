@@ -24,5 +24,6 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/IfShrBoard.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/IsBoardComm.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardChoose.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardBChu.xml" />
 	
 </sqlMapConfig>

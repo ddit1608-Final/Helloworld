@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.QnaBoardBChuVO;
 import com.hello.world.dto.QnaBoardChooseVO;
 import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.testVO;
+import com.hello.world.service.QnaBoardBChuService;
 import com.hello.world.service.QnaBoardChooseService;
 import com.hello.world.service.QnaBoardChuService;
 import com.hello.world.service.QnaBoardCommService;
@@ -45,6 +47,9 @@ public class QnaBoardController {
 	
 	@Autowired
 	QnaBoardChooseService qnaBoardChooseService;
+	
+	@Autowired
+	QnaBoardBChuService qnaBoardBChuService;
 	
 	
 	@RequestMapping("/qnaBoardWriteForm.do")
@@ -103,6 +108,8 @@ public class QnaBoardController {
 
 		ArrayList<QnaBoardVO> qnaBoardList = null;
 		String paging = null;
+		
+		
 
 		try {
 			qnaBoardList = qnaBoardService.listAllQnaBoard(
@@ -134,10 +141,12 @@ public class QnaBoardController {
 		QnaBoardVO qnaBoardVO = qnaBoardService.getQnaDetail(qnaboard_posting_no);
 		
 		ArrayList<QnaBoardChuVO> qnaBoardChuList = new ArrayList<QnaBoardChuVO>(); 
+		QnaBoardBChuVO qnaBoardBChuList = new QnaBoardBChuVO();
 		
 		String qnaboard_ans_code = "";
 		try {
 			qnaBoardCommList = qnaBoardCommService.listQnaBoardComm(qnaboard_posting_no);
+			qnaBoardBChuList = qnaBoardBChuService.listQnaBoardBChu(qnaboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -159,17 +168,13 @@ public class QnaBoardController {
 		}
 		
 		
-		/*try {
-			qnaBoardChooseList = qnaBoardChooseService.listQnaBoardChu(qnaboard_ans_code);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+		
 
 		model.addAttribute("qnaBoardVO", qnaBoardVO);
 		model.addAttribute("qnaBoardCommList", qnaBoardCommList);
 		model.addAttribute("qnaBoardCommListCnt", qnaBoardCommList.size());
 		model.addAttribute("qnaBoardChuList", qnaBoardChuList);
+		model.addAttribute("qnaBoardBChuList", qnaBoardBChuList);
 		//model.addAttribute("qnaBoardChooseList", qnaBoardChooseList);
 		
 		return url;
@@ -282,6 +287,53 @@ public class QnaBoardController {
 	
 		
 		return qnaboardChoose;
+	}
+	
+	@RequestMapping(value = "/boardchu", method = RequestMethod.POST)
+	@ResponseBody
+	public String qnaboardChu(@RequestParam String qnaboard_posting_no, QnaBoardBChuVO qnaBoardBChuVO, Model model, HttpServletRequest request){
+		
+		String boardchu = request.getParameter("boardchu");
+		
+		qnaBoardBChuVO.setQnaboard_board_chu(boardchu);
+		
+		qnaBoardBChuVO.setQnaboard_posting_no(qnaboard_posting_no);
+		
+		qnaBoardBChuService.updateQnaBoardBChu(qnaBoardBChuVO);		
+		
+		String upChu ="";
+		try {
+			upChu = qnaBoardBChuService.listQnaBoardBChu(qnaboard_posting_no).getQnaboard_board_chu();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return upChu;
+	}
+	
+	@RequestMapping(value = "/boardbchu", method = RequestMethod.POST)
+	@ResponseBody
+	public String qnaboardBChu(@RequestParam String qnaboard_posting_no, QnaBoardBChuVO qnaBoardBChuVO, Model model, HttpServletRequest request){
+		
+		String boardbchu = request.getParameter("boardbchu");
+		
+		qnaBoardBChuVO.setQnaboard_board_bchu(boardbchu);
+		
+		qnaBoardBChuVO.setQnaboard_posting_no(qnaboard_posting_no);
+		
+		qnaBoardBChuService.updateQnaBoardBBChu(qnaBoardBChuVO);
+		
+		String upBChu ="";
+		try {
+			upBChu = qnaBoardBChuService.listQnaBoardBChu(qnaboard_posting_no).getQnaboard_board_bchu();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return upBChu;
 	}
 	
 }

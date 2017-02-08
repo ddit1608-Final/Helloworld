@@ -17,7 +17,8 @@
 					style="background-color: #8bdb69; border-bottom: 2px solid #c9c9c9;">
 					<th style="width: 20%;">SUBJECT</th>
 					<td style="width: 60%;">${qnaBoardVO.qnaboard_title }</td>
-					<th style="width: 20%;">추천 / 비추천</th>
+					<th style="width: 5%;" onclick="qnaboardchu()">추천<input type="button" id=boardchu value=${qnaBoardBChuList.qnaboard_board_chu }></th>
+					<th style="width: 5%;" onclick="qnaboardbchu()">/ 비추천<input type="button" id=boardbchu value="${qnaBoardBChuList.qnaboard_board_bchu }"></th>
 
 				</tr>
 			</thead>
@@ -25,7 +26,7 @@
 			<tr>
 				<th>NAME</th>
 				<td>${qnaBoardVO.mem_nick }</td>
-				<td><b>DATE</b> &nbsp;${qnaBoardVO.qnaboard_wridate }</td>
+				<td colspan="2"><b>DATE</b> &nbsp;${qnaBoardVO.qnaboard_wridate }</td>
 
 			</tr>
 
@@ -39,7 +40,7 @@
 
 			</tr>
 			<tr>
-				<td colspan="3">${qnaBoardVO.qnaboard_cont }</td>
+				<td colspan="4">${qnaBoardVO.qnaboard_cont }</td>
 
 			</tr>
 		</table>
@@ -88,12 +89,11 @@
 								<c:if test="${empty qnaBoardChooseList.qnaboard_comm_choose }">
 									<td onclick="choose_go('${status.count }')"><input
 										type="button" id="cchoo${status.count}"
-										value="${qnaBoardChooseList.qnaboard_comm_choose }"></td>
+										value="채택"></td>
 								</c:if>
 								<c:if
 									test="${qnaBoardComm.qnaboard_ans_code == qnaBoardChooseList.qnaboard_ans_code }">
-									<td><input type="text"
-										value="${qnaBoardChooseList.qnaboard_comm_choose}"></td>
+									<td>채택된글입니다.</td>
 								</c:if>
 							</c:if>
 						</c:forEach>
@@ -111,6 +111,7 @@
 								&qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">삭제</a>
 							</td>
 						</c:if>
+						<td><label id="choose2${status.count }"></label></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -164,10 +165,40 @@
 			},
 			success : function(data) {
 				alert(data);
+				alert(document.getElementById("choose2"+ index));
 				if (data != null) {
-					$('#cchoo' + index).val(data);
+					//$("#choose2" + index).append('채택된글입니다.');
+					//document.getElementById("choose2").innerHTML = "채택된글입니다.";
+					//$('#choose2').val(data);
+					document.getElementById("choose2"+ index).innerHTML = "채택된글입니다";
 				}
 			}
 		});
+	}
+	function qnaboardchu(){
+		$.ajax({
+			url : "boardchu",
+			type : "post",
+			data : {
+				boardchu : $('#boardchu').val(),
+				qnaboard_posting_no : $('#qnaboard_posting_no').val()
+			},
+			success : function(data) {
+				$('#boardchu').val(data);
+			}
+		})
+	}
+	function qnaboardbchu(){
+		$.ajax({
+			url : "boardbchu",
+			type : "post",
+			data : {
+				boardbchu : $('#boardbchu').val(),
+				qnaboard_posting_no : $('#qnaboard_posting_no').val()
+			},
+			success : function(data) {
+				$('#boardbchu').val(data);
+			}
+		})
 	}
 </script>
