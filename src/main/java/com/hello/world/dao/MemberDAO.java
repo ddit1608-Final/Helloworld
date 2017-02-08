@@ -14,4 +14,5 @@ public interface MemberDAO {
 	public ArrayList<MemVO> listMember(String member_name) throws SQLException;
 	public int updateMember(MemVO memVO) throws SQLException;
 	public int changePw(MemVO memVO) throws SQLException;
+	public int totalMember(String key) throws SQLException;
 }

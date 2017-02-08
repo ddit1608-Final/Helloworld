@@ -11,9 +11,13 @@ import com.hello.world.dao.MemberDAO;
 import com.hello.world.dao.iBatis.MemberDAO_iBatis;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.testVO;
 
 @Service
 public class MemberService {
+	final static int VIEW_ROWS = 10; 
+	final static int COUNTS = 15; 
+	
 	@Autowired
 	private FreeBoardDAO freeBoardDAO;
 
@@ -34,14 +38,66 @@ public class MemberService {
 		this.freeBoardDAO = freeBoardDAO;
 	}
 	
-	public ArrayList<MemVO> getMemberList(String key){
+	public ArrayList<MemVO> getMemberList(int tpage, String key) throws SQLException{
 		ArrayList<MemVO> memberList=null;
-		try {
-			memberList = memDao.listMember(key);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		int startRow = -1;
+		int endRow = -1;
+		
+		if (key.equals("")) {
+			key = "%";
 		}
+		
+		int totalMember = memDao.totalMember(key);
+		
+		
+		memberList = memDao.listMember(key);
+		
 		return memberList;
+	}
+	
+	public String pageNumber(int tpage, String key) throws SQLException {
+		String str = "";
+
+		int total_pages = memDao.totalMember(key); 
+				//freeBoardDAO.totalRecord(name);
+		int page_count = total_pages / COUNTS + 1;
+
+		if (total_pages % COUNTS == 0) {
+			page_count--;
+		}
+		if (tpage < 1) {
+			tpage = 1;
+		}
+
+		int start_page = tpage - (tpage % VIEW_ROWS) + 1;
+		int end_page = start_page + (COUNTS - 1);
+
+		if (end_page > page_count) {
+			end_page = page_count;
+		}
+		if (start_page > VIEW_ROWS) {
+			str += "<a href='memberManageList?tpage=1&key=" + key
+					+ "'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='memberManageList?tpage=" + (start_page - 1);
+			str += "&key=<%="+key+"%>'>&lt;</a>&nbsp;&nbsp;";
+		}
+
+		for (int i = start_page; i <= end_page; i++) {
+			if (i == tpage) {
+				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
+			} else {
+				str += "<a href='memberManageList?tpage=" + i + "&key=" + key
+						+ "'>[" + i + "]</a>&nbsp;&nbsp;";
+			}
+		}
+
+		if (page_count > end_page) {
+			str += "<a href='memberManageList?tpage=" + (end_page + 1)
+					+ "&key=" + key + "'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='memberManageList?tpage=" + page_count + "&key="
+					+ key + "'> &gt; &gt; </a>&nbsp;&nbsp;";
+		}
+		return str;
 	}
 	
 	public MemVO getMember(String id){
