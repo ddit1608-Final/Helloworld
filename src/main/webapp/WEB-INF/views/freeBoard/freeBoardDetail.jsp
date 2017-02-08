@@ -18,35 +18,56 @@
       </tr>
     </thead>
   
-  	 <tr> 
-	    <th>NAME</th>
-	    <td>${freeBoardVO.mem_nick }</td>
+  	 <tr>
+  	 	<th>NAME</th> 
+	    <td>
+	    	<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+	    	${freeBoardVO.mem_nick}</button>
+	    </td>
 	    <td><b>DATE</b> &nbsp;${freeBoardVO.freeboard_wridate }</td>
-	    
   	 </tr>
- 		 
-  
-  
-    
-  <tr>
-  <th>CONTENT</th>
-   <td></td>
-  <td></td>
-   
-  </tr>
-  <tr>
-   <td colspan="3">${freeBoardVO.freeboard_cont }</td>
-  
-   </tr>
-  	<%-- <c:forEach items="${freeBoardList}" var="freeBoardVO">
-	  <tr>
-	 	<td>댓글작성자 | ${freeBoardVO.mem_nick }</td> 
-	 	<td>댓글내용 | ${freeBoardVO.freeboard_comm_cont }</td> 
-	 	<td>작성날짜 | ${freeBoardVO.freeboard_wri_date }</td> 
-	  </tr>
-	</c:forEach> --%>
-		</table>
-		<!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. -->
+     <tr>
+     	<td>	
+		  <!-- Modal -->
+		  <div class="modal fade" id="myModal" role="dialog">
+		    <div class="modal-dialog">
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">${freeBoardVO.mem_nick} 님의 정보입니다.</h4>
+		        </div>
+		        <div class="modal-body">
+		          <p>이메일:${freeBoardVO.mem_mail} <a href="#">메일보내기</a></p>
+		          <p>연락처:${freeBoardVO.mem_phn} <a href="#">문자보내기</a> </p>
+		        </div>
+		        <div class="modal-footer">
+		          <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+		        </div>
+		      </div>
+		    </div>
+		  </div>
+   		</td>
+      </tr>  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+  	 
+	 <tr>
+  		<th>CONTENT</th>
+   		<td></td>
+  		<td></td>
+  	</tr>
+	<tr>
+   		<td colspan="3">${freeBoardVO.freeboard_cont }</td>
+   	</tr>
+</table>
 	<div id="divdiv">
 		<c:if test="${loginUser.mem_mail ==freeBoardVO.mem_mail }">
 			<input class="btn" type="button" value="수정"
@@ -61,8 +82,6 @@
 	</form>
 	
 	<form action="writeComm" id="writeComm" name="formm" method="post">
-		<div id="result">
-		<div id="div1">
 		<label>★★★★★★댓글★★★★★★</label> <br /> 
 		<table class="table table-condensed">
 			<thead>
@@ -77,66 +96,66 @@
 					<td style="width:200px">작성날짜</td>
 					<td></td>
 				</tr>
-				<c:forEach items="${freeBoardCommList}" var="freeBoardComm">
-					<tr id="commBody">
-						<td style="width:13%;">${ freeBoardComm.freeboard_comm_wri}</td>
-						<td style="width:70%;" id="add">${ freeBoardComm.freeboard_comm_cont}</td>
-						<td style="float:left; width:100%;">
-						<input type="button" value="추천">
-						<input type="button" value="비추천"></td>
-						<td>${ freeBoardComm.freeboard_comm_wridate }</td>
-						<c:if test="${loginUser.mem_nick ==freeBoardComm.freeboard_comm_wri }">
-						<td><%-- <a href="/world/free/freeBoardCommUpdateForm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}">수정</a> --%>
-							<a href="#" id="div1hide">수정</a>
-						/
-							<a href="/world/free/deleteFreeBoardComm.do?freeboard_ans_code=${freeBoardComm.freeboard_ans_code}
-								&freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">삭제</a>
-						</td>
-						</c:if>
-					</tr>
-				</c:forEach>
 			</tbody>
-		</table>
-		</div> <!-- div1 종료  -->
-		<div id="div2" style="display:none">
-			<label>★★★★★★댓글★★★★★★</label> <br /> 
-		<table>
-			<thead>
-				<tr>
-					<td colspan="3">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td style="width:100px">작성자</td>
-					<td style="width:800px">내용</td>
-					<td style="width:200px">작성날짜</td>
-					<td></td>
-				</tr>
-				<c:forEach items="${freeBoardCommList}" var="freeBoardComm">
-					<tr>
-						<c:if test="${loginUser.mem_mail ==freeBoardComm.freeboard_comm_wri }">
-						<td>${ freeBoardComm.freeboard_comm_wri}</td>
-						<td>
-						<%-- <textarea rows="6" cols="45" value=${ freeBoardComm.freeboard_comm_cont}></textarea> --%>
-						<input type="text" id="commCont" name="commCont" size="100" height="30" value="${ freeBoardComm.freeboard_comm_cont}">
-						</td>
-						<td>${ freeBoardComm.freeboard_comm_wridate }</td>
-						<td><a href="/world/free/freeBoardCommUpdateForm.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}&freeboard_ans_code=${freeBoardComm.freeboard_ans_code}
-							&freeboard_comm_cont=${freeboardComm.freeboard_comm_cont}" id="div2hide" onclick="freeBoardCommUpdateForm.do">수정하기</a>/
-							<a href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">수정취소</a>
-						</td>
-						</c:if>
-					</tr>
+			</table>
+			<table class="table table-condensed" id="freecomm_go">
+				<c:forEach items="${freeBoardCommList}" var="freeBoardComm" varStatus="status">
+				<input type="hidden" id="freeboard_ans_code${status.count}" value="${freeBoardComm.freeboard_ans_code }">
+				<tbody>
+					<tr id="freeboard_ans_code${status.count}" class="freecoment">
+						<td style="width:100px;text-align:center;">
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2">
+	    					${ freeBoardComm.freeboard_comm_wri}</button></td>
+	    					
+	    				<!-- 일단 댓글에서는 쪽지 기능  -->
+	    				 <div class="modal fade" id="myModal2" role="dialog">
+						    <div class="modal-dialog">
+						      <!-- Modal content-->
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <button type="button" class="close" data-dismiss="modal">&times;</button>
+						          <c:set value="${freeboardCommVO.getFreeboard_comm_wri}" var="freeboard_comm_wri"/>
+						          <h4 class="modal-title"> freeboard_comm_wri 님에게 쪽지 보내기</h4>
+						        </div>
+						        <div class="modal-body">
+						          	<textarea class="form-control" rows="7" name="freeboard_cont" id="freeboard_cont"></textarea>
+						        	<input type="button" class="btn btn-default btn-xs" value="쪽지전송">
+						        	<input type="button" class="btn btn-default btn-xs" value="취소">
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+						        </div>
+						      </div>
+						    </div>
+						    <!-- 쪽지 모달 끝 -->
+						    <td style="width:70%;  word-break:break-all;" id="freeBoardComm_cont${status.count}" name="freeBoardComm_cont${status.count}">${ freeBoardComm.freeboard_comm_cont}
+							<input type="button" value="추천">
+							<input type="button" value="비추천"></td>
+							<td>${ freeBoardComm.freeboard_comm_wridate }</td>
+							<c:if test="${loginUser.mem_nick ==freeBoardComm.freeboard_comm_wri }">
+							
+							<c:set value="${freeBoardComm.freeboard_comm_cont}" var="freeboard_comm_cont"/>
+							<c:set value="${status.count}" var="indexTd"/>
+							<c:set value="${freeBoardComm.freeboard_ans_code}" var="freeboard_ans_code"/>
+							<c:set value="freeboard_ans_code${status.count}" var="indexTdd"/>
+							
+							<td>
+								<a href="#" onclick="updateFreeComm('${indexTd }', event )">수정</a>
+							/
+							<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
+								<a href="#" onclick="deleteFreeComm('${freeboard_ans_code}','${indexTdd }',event )">삭제</a>
+							</td>
+							<td></td>
+							</c:if>
+						</tr>	
+				</tbody>
 				</c:forEach>
-			</tbody>
 		</table>
-		</div> <!-- div2 종료  -->
 		<c:if test="${loginUser!=null}">
-		<textarea rows="2" cols="150" id="freeboard_comm_cont" name="freeboard_comm_cont"></textarea>
+		<textarea rows="2" cols="150" id="freeboard_comm_contt" name="freeboard_comm_cont"></textarea>
 		<input type="hidden" id="freeboard_posting_no" name="freeboard_posting_no" value="${freeBoardVO.freeboard_posting_no }">
 		<input type="hidden" id="mem_nick" name="mem_nick" value="${loginUser.mem_nick}">
-		<input type="button" value="댓글등록" onclick="writeComm_go(this.formm)">
+		<input type="button" value="댓글등록" onclick="freeWriteComm_go($('#mem_nick').val(),$('#freeboard_posting_no').val(),$('#freeboard_comm_contt').val(),event)">
 		</c:if>
 		</div> <!-- result div  -->
 	</form>

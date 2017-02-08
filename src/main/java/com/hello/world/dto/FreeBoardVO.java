@@ -13,6 +13,18 @@ public class FreeBoardVO {
 	private int freeboard_hits; // 자유게시판 조휘수
 	private String freeboard_pwd; // 자유게시판 게시글 비밀번호
 	private String freeboard_ans_code;
+	private String mem_phn;
+	
+	
+	
+
+	public String getMem_phn() {
+		return mem_phn;
+	}
+
+	public void setMem_phn(String mem_phn) {
+		this.mem_phn = mem_phn;
+	}
 
 	public String getFreeboard_ans_code() {
 		return freeboard_ans_code;
@@ -70,13 +82,6 @@ public class FreeBoardVO {
 		this.freeboard_wridate = freeboard_wridate;
 	}
 
-	/*
-	 * public Date getFreeboard_wridate() { return freeboard_wridate; }
-	 */
-	/*
-	 * public void setFreeboard_wridate(Date freeboard_wridate) {
-	 * this.freeboard_wridate = freeboard_wridate; }
-	 */
 	public int getFreeboard_hits() {
 		return freeboard_hits;
 	}
@@ -101,20 +106,10 @@ public class FreeBoardVO {
 				+ freeboard_cont + ", freeboard_wridate=" + freeboard_wridate
 				+ ", freeboard_hits=" + freeboard_hits + ", freeboard_pwd="
 				+ freeboard_pwd + ", freeboard_ans_code=" + freeboard_ans_code
-				+ "]";
+				+ ", mem_phn=" + mem_phn + "]";
 	}
 
-	/*
-	 * public FreeBoardVO(String freeboard_posting_no, String mem_mail, String
-	 * freeboard_title, String freeboard_cont, Date freeboard_wridate, int
-	 * freeboard_hits, String freeboard_pwd) { super();
-	 * this.freeboard_posting_no = freeboard_posting_no; this.mem_mail =
-	 * mem_mail; this.freeboard_title = freeboard_title; this.freeboard_cont =
-	 * freeboard_cont; this.freeboard_wridate = freeboard_wridate;
-	 * this.freeboard_hits = freeboard_hits; this.freeboard_pwd = freeboard_pwd;
-	 * }
-	 */
-
+	
 	
 
 }

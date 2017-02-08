@@ -166,7 +166,6 @@
 					</tr>
 				</tbody>
 				</c:forEach>
-			</tbody>
 		</table>
 		<c:if test="${loginUser!=null}">
 		<textarea rows="2" cols="150" id="ifshrboard_comm_contt" name="ifshrboard_comm_cont"></textarea>

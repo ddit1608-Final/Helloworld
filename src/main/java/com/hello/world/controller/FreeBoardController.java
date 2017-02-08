@@ -116,9 +116,7 @@ public class FreeBoardController {
 
 		// FreeBoardCommVO freeBoardCommVO =
 		// freeService.getFreeDetail(freeboard_posting_no, freebaord_ans_code);
-		System.out.println("자유게시글 상세보기 입장 !!!");
 		model.addAttribute("freeBoardVO", freeBoardVO);
-		System.out.println("상세보기 >> " + freeBoardVO);
 		model.addAttribute("freeBoardCommList", freeBoardCommList);
 		model.addAttribute("freeBoardCommListCnt", freeBoardCommList.size());
 		return url;
@@ -140,6 +138,10 @@ public class FreeBoardController {
 		String url = "redirect:freeBoardList.do";
 
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+		
+		String a =freeBoardVO.getFreeboard_cont().replace("\r\n","<br>");
+		freeBoardVO.setFreeboard_cont(a);
+		
 		/*
 		 * FreeBoardVO freeBoardVO = new FreeBoardVO();
 		 * freeBoardVO.setFreeboard_title(title);
@@ -173,11 +175,12 @@ public class FreeBoardController {
 
 		String url = "freeBoard/freeBoardUpdate";
 		/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
-		FreeBoardVO freeBoardVO = freeService
-				.getFreeDetail(freeboard_posting_no);
-		System.out.println("게시글 수정 폼 입장!!!");
+		FreeBoardVO freeBoardVO = freeService.getFreeDetail(freeboard_posting_no);
+		
+		// Enter 변환
+		String a =freeBoardVO.getFreeboard_cont().replace("<br>","\r\n");
+		freeBoardVO.setFreeboard_cont(a);
 		model.addAttribute("freeBoardVO", freeBoardVO);
-		System.out.println("freeboardVO >>" + freeBoardVO);
 		return url;
 	}
 
@@ -187,10 +190,9 @@ public class FreeBoardController {
 		String url = "redirect:freeBoardList.do";
 
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
-
-		System.out.println("컨트롤러 ==> 게시글수정 실행");
-		System.out.println(freeBoardVO);
-
+		
+		String a =freeBoardVO.getFreeboard_cont().replace("\r\n","<br>");
+		freeBoardVO.setFreeboard_cont(a);
 		freeService.updateFreeBoard(freeBoardVO);
 
 		return url;
@@ -207,45 +209,6 @@ public class FreeBoardController {
 
 		freeService.deleteFreeBoard(freeboard_posting_no);
 
-		return url;
-	}
-
-	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
-	public String writeComm(FreeBoardCommVO fbcVO, Model model, String mem_nick) {
-		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
-				+ fbcVO.getFreeboard_posting_no();
-
-		try {
-			fbcVO.setFreeboard_comm_wri(mem_nick);
-			freeBoardCommService.insertComm(fbcVO);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return url;
-	}
-	@RequestMapping(value = "/deleteFreeBoardComm.do")
-	public String deleteFreeBoardComm(@RequestParam String freeboard_ans_code,FreeBoardCommVO fbcVO,
-			HttpSession session) throws ServletException, IOException {
-		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
-				+ fbcVO.getFreeboard_posting_no();
-		freeBoardCommService.deleteFreeBoardComm(freeboard_ans_code);
-
-		return url;
-	}
-	// 수정 구현중
-	@RequestMapping(value="/freeBoardCommUpdateForm.do")
-	public String updateFreeBoardComm(
-			@RequestParam String freeboard_ans_code,FreeBoardCommVO freeBoardCommVO, HttpSession session,
-			Model model, String commCont) throws ServletException, IOException {
-		
-		System.out.println("test"+freeBoardCommVO.getFreeboard_posting_no());
-		freeBoardCommVO.setFreeboard_comm_cont(commCont);
-		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
-				+ freeBoardCommVO.getFreeboard_posting_no();
-		freeBoardCommService.updateFreeBoardComm(freeBoardCommVO);
-		
 		return url;
 	}
 	@RequestMapping(value="/freeBoardSearch.do",method=RequestMethod.POST)

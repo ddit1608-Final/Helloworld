@@ -1,21 +1,21 @@
-function write_ok(form) {
+function free_write_ok(form) {
 	var result=true;
 	
-	if(cont()==false){
-		result= cont();
+	if(free_cont()==false){
+		result= free_cont();
 	}
-	if(title()==false){
-		result= false;
+	if(free_title()==false){
+		result= free_title;
 	}
-	if(pwd()==false){
-		result= false;
+	if(free_pwd()==false){
+		result= free_pwd;
 	}
 	
 	if(result==true){
 		form.submit();
 	}
 }	
-function cont(){
+function free_cont(){
 	if (document.form.freeboard_cont.value == "") {
 		document.getElementById("freeboard_cont").innerHTML = "내용을 입력해주세요";
 		document.form.freeboard_cont.focus();
@@ -25,7 +25,7 @@ function cont(){
 		return true;
 	}
 }
-function title(){
+function free_title(){
 	if (document.form.freeboard_title.value == "") {
 		document.getElementById("freeboard_title").innerHTML = "제목을 입력해주세요";
 		document.form.freeboard_title.focus();
@@ -35,7 +35,7 @@ function title(){
 			return true;
 	}
 }
-function pwd(){
+function free_pwd(){
 	if (document.form.freeboard_pwd.value == "") {
 		document.getElementById("freeboard_pwd").innerHTML = "비밀번호를 입력해주세요";
 		document.form.freeboard_pwd.focus();
@@ -45,86 +45,44 @@ function pwd(){
 		return true;
 	}
 }
-
-/*	if (document.form.freeboard_pwd.value == "") {
-		// alert("게시글 비밀번호를 입력하세요.");
-		document.getElementById("freeboard_pwd").innerHTML = "비밀번호를 입력해주세요";
-		document.form.freeboard_pwd.focus();
-		return false;
-	}else {
-		document.getElementById("freeboard_pwd").innerHTML = "";
-	}
-
-	if (document.form.freeboard_title.value == "") {
-		// alert("게시글 제목을 입력하세요.");
-		document.getElementById("freeboard_title").innerHTML = "제목을 입력해주세요";
-		document.form.freeboard_title.focus();
-		return false;
-	} else {
-		document.getElementById("freeboard_title").innerHTML = "";
-	}
-	if (document.form.freeboard_cont.value == "") {
-		// alert("게시글 내용을 입력하세요.");
-		document.getElementById("freeboard_cont").innerHTML = "내용을 입력해주세요";
-		document.form.freeboard_cont.focus();
-		return false;
-	} else {
-		document.getElementById("freeboard_cont").innerHTML = "";
-	}
-	form.submit();
-}*/
-/*	if (document.form.freeboard_pwd.value == "") {
-		if (document.form.freeboard_title.value == "") {
-			if (document.form.freeboard_cont.value == "") {
-				document.getElementById("freeboard_cont").innerHTML = "내용을 입력해주세요";
-				document.form.freeboard_cont.focus();
-				return false;
-			}else{
-				document.getElementById("freeboard_cont").innerHTML = "";
-			}
-			document.getElementById("freeboard_title").innerHTML = "제목을 입력해주세요";
-			document.form.freeboard_title.focus();
+	
+	
+function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,event) {
+	event.preventDefault();
+	var cont={
+			"freeboard_comm_contt" : freeboard_comm_contt,
+			"mem_nick": mem_nick,
+			"freeboard_posting_no":freeboard_posting_no
+		};
+		if (document.formm.freeboard_comm_cont.value == "") {
+			alert("댓글을 입력해주세요");
+			document.formm.freeboard_comm_cont.focus();
 			return false;
 		}else{
-			document.getElementById("freeboard_title").innerHTML = "";
+			$.ajax({
+				url:"writeComm",
+				type:"post",
+				contentType:'application/json',
+				data: JSON.stringify(cont),
+				success : function(data) {
+					var a;
+					
+						a = '<tr><td>'+mem_nick+'</td>'+
+							'<td style="work-break:break-all;">'+freeboard_comm_contt+'<input type="button" value="추천">'+
+							'<input type="button" value="비추천"></td>'+
+						 	'<td>'+data+'</td>'+
+						 	'<td><a href="#" onclick="updateFreeComm()">수정</a>/'+
+							'<a href="#" onclick="deleteFreeComm()">삭제</a></td></tr>'
+					
+					$('#freecomm_go').append(a);
+					$('#freeboard_comm_contt').val("");
+				},
+				error : function(error) {
+					alert("22");
+				}
+			})
 		}
-		document.getElementById("freeboard_pwd").innerHTML = "비밀번호를 입력해주세요";
-		document.form.freeboard_pwd.focus();
-		return false;
-	}else{
-		document.getElementById("freeboard_pwd").innerHTML = "";
 	}
-	form.submit();
-}	*/
-	
-	
-function writeComm_go() {
-	if (document.formm.freeboard_comm_cont.value == "") {
-		alert("댓글을 입력해주세요");
-		document.formm.freeboard_comm_cont.focus();
-		return false;
-	}else{
-		formm.submit();
-		return true;
-	}
-}
-$(document).ready(function(){
-	$('#div1hide').click(function(){
-		$('#div1').hide();
-		$('#div2').show();
-	});
-	$('#div2hide').click(function(){
-		//$('#div2').val()
-		$('#div2').hide();	
-		$('#div1').show();
-	});
-	
-})
-
-
-
-
-
 function free_src(){
 	formm.action =  "freeBoardSearch.do";
 	formm.submit();
