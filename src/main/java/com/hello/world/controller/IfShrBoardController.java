@@ -164,7 +164,8 @@ public class IfShrBoardController {
 		String url = "redirect:ifShrBoardList.do";
 		
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
-
+		String a =ifShrBoardVO.getIfshrboard_cont().replace("\r\n","<br>");
+		ifShrBoardVO.setIfshrboard_cont(a);
 		ifShrBoardService.updateIfShrBoard(ifShrBoardVO);
 		
 		return url;

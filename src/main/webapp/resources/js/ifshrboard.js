@@ -1,17 +1,17 @@
-function iswrite_ok(form) {
+function is_write_ok(form) {
 	var result = true;
 
 	if (is_cont() == false) {
-		result = cont();
+		result = is_cont();
 	}
 	if (is_title() == false) {
-		result = false;
+		result = is_title();
 	}
 	if (is_pwd() == false) {
-		result = false;
+		result = is_pwd();
 	}
 
-	if (is_result == true) {
+	if (result == true) {
 		// $('#isboard_cont').val().replace("\r\n","<br>")
 		form.submit();
 	}

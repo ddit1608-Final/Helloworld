@@ -56,7 +56,7 @@
 		</table>
 				<div id="divdiv" style="text-align:center;">
 				<input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}">
-				<input class="btn" type="button" value="글쓰기" onclick="iswrite_ok(this.form)"> 
+				<input class="btn" type="button" value="글쓰기" onclick="is_write_ok(this.form)"> 
 				<input class="btn" type="reset" value="지우기"> 
 				<input class="btn" type="button" value="뒤로가기" onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardList.do'">
 				</div>

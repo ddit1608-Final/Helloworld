@@ -50,4 +50,12 @@ public class FreeBoardCommService {
 			e.printStackTrace();
 		}
 	}
+	public FreeBoardCommVO getFreeBoardComm(String freeboard_ans_code)
+			throws SQLException {
+		return freeBoardCommDAO.getFreeBoardComm(freeboard_ans_code);
+	}
+	public int getMaxSeq() throws SQLException {
+		
+		return freeBoardCommDAO.getMaxSeq();
+	}
 }
