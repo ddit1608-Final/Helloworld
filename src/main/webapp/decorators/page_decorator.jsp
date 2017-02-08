@@ -365,7 +365,10 @@ footer {
 				<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 				<li><a href="#" id="aa">반응 ()</a></li>
 				<li><a href="<%=request.getContextPath()%>/mypage/main" id="aa">마이페이지</a></li>
-				<c:if test="${loginUser.mem_mail == 'jihyunkkkk@nate.com' }">
+				<c:if test="${loginUser.mem_mail == 'jihyunkkkk@nate.com' || 
+				loginUser.mem_mail == 'shm9166@gmail.com' ||
+				loginUser.mem_mail == 'a'
+				}">
     				<li><a href="<%=request.getContextPath()%>/admin/enter" id="aa">관리자 페이지</a></li>
     			</c:if>
 				<%-- <li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li> --%>
