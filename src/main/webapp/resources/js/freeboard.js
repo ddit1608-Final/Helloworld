@@ -47,8 +47,9 @@ function free_pwd(){
 }
 	
 	
-function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,event) {
+function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,indexTd,indexTdd,event) {
 	event.preventDefault();
+	var aa=Number(indexTd)+1;	
 	var cont={
 			"freeboard_comm_contt" : freeboard_comm_contt,
 			"mem_nick": mem_nick,
@@ -68,10 +69,10 @@ function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,eve
 					var a;
 					
 						a = '<tr><td>'+mem_nick+'</td>'+
-							'<td style="work-break:break-all;">'+freeboard_comm_contt+'<input type="button" value="추천">'+
+							'<td style="work-break:break-all;"id="freeBoardComm_cont'+aa+'">'+freeboard_comm_contt+'<input type="button" value="추천">'+
 							'<input type="button" value="비추천"></td>'+
 						 	'<td>'+data+'</td>'+
-						 	'<td><a href="#" onclick="updateFreeComm()">수정</a>/'+
+						 	'<td><a href="#" onclick="updateFreeCommForm('+aa+','+indexTdd+',event)">수정</a>/'+
 							'<a href="#" onclick="deleteFreeComm()">삭제</a></td></tr>'
 					
 					$('#freecomm_go').append(a);
@@ -83,6 +84,84 @@ function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,eve
 			})
 		}
 	}
+function deleteFreeComm(freeboard_ans_code, indexTdd, event){
+	alert("code값 test >>"+freeboard_ans_code);
+	event.preventDefault();
+	var code ={
+		"freeboard_ans_code" : freeboard_ans_code	
+	};
+	$.ajax({
+		url:"deleteFreeBoardComm.do",
+		type: "post",
+		data: code,
+		success: function(data){
+			$('#'+indexTdd).remove();
+		},
+		error : function(error){
+			alert("실패");
+		}
+	})
+}
+
+function updateFreeCommForm(indexTd,indexTdd , event) {
+	event.preventDefault();
+	
+	var freeboard_comm_cont = $('#freeBoardComm_cont'+indexTd).text();
+	var arr = {
+		"freeboard_comm_cont" : freeboard_comm_cont
+	};
+
+	$
+			.ajax({
+				url : "updateFreeBoardCommForm.do",
+				type : "post",
+				data : arr,
+				success : function(data) {
+					$('#freeBoardComm_cont' + indexTd)
+							.html(
+									'<textarea rows="2" cols="150" id="freeboard_comm_cont" name="freeboard_comm_cont">'
+											+ data 
+											+ '</textarea>'
+											+ '<input type="button" value="댓글수정" onclick="updateFreeComm('+indexTd+','+indexTdd+'event)">');
+				},
+				error : function(error) {
+					alert("22");
+				}
+			})
+}
+
+
+
+function updateFreeComm(indexTd,indexTdd , event) {
+	event.preventDefault();
+	var freeboard_ans_code = $('#'+indexTdd).val();
+	var freeboard_comm_cont = $('#freeboard_comm_cont').val();
+	alert(freeboard_ans_code);
+	alert("123"+freeboard_comm_cont);
+	
+	var arr = {
+			"freeboard_ans_code" : freeboard_ans_code,
+			"freeboard_comm_cont" : freeboard_comm_cont
+		};
+	$
+	.ajax({
+		url : "updateFreeBoardComm.do",
+		type : "post",
+		data : arr,
+		success : function(data) {
+			$('#freeBoardComm_cont' + indexTd)
+			.html(data);
+		},
+		error : function(error) {
+			alert("22");
+		}
+	})
+}
+
+
+
+
+
 function free_src(){
 	formm.action =  "freeBoardSearch.do";
 	formm.submit();

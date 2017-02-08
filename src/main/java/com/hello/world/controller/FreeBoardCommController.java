@@ -34,7 +34,6 @@ import com.hello.world.service.FreeBoardService;
 import com.hello.world.service.MemberService;
 import com.hello.world.websocket.EchoHandler;
 
-//import com.nonage.dto.MemVO;
 
 @Controller
 @RequestMapping("/free")
@@ -81,30 +80,44 @@ public class FreeBoardCommController {
 		}
 		return today;
 	}
-	@RequestMapping(value = "/deleteFreeBoardComm.do")
-	public String deleteFreeBoardComm(@RequestParam String freeboard_ans_code,FreeBoardCommVO fbcVO,
-			HttpSession session) throws ServletException, IOException {
-		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
-				+ fbcVO.getFreeboard_posting_no();
+	@RequestMapping(value = "/deleteFreeBoardComm.do",method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteFreeBoardComm(HttpServletRequest request) throws ServletException, IOException {
+		String freeboard_ans_code = request.getParameter("freeboard_ans_code");
+		
 		freeBoardCommService.deleteFreeBoardComm(freeboard_ans_code);
-
-		return url;
+		System.out.println("삭제하실 답변코드>>> "+freeboard_ans_code+"           이거입니다");
+		return freeboard_ans_code;
 	}
 	
 	
+	@RequestMapping(value = "/updateFreeBoardCommForm.do", method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String updateFreeBoardCommForm(HttpServletRequest request)
+			throws ServletException, IOException {
+
+		String freeboard_comm_cont = request
+				.getParameter("freeboard_comm_cont");
+
+		return freeboard_comm_cont;
+
+	}
+	
 	// 수정 구현중
-	@RequestMapping(value="/updateFreeBoardCommForm.do")
-	public String updateFreeBoardComm(
-			@RequestParam String freeboard_ans_code,FreeBoardCommVO freeBoardCommVO, HttpSession session,
-			Model model, String commCont) throws ServletException, IOException {
+	@RequestMapping(value="/updateFreeBoardComm.do",method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String updateFreeBoardComm(HttpServletRequest request)
+		throws ServletException, IOException {
 		
-		System.out.println("test"+freeBoardCommVO.getFreeboard_posting_no());
-		freeBoardCommVO.setFreeboard_comm_cont(commCont);
-		String url = "redirect:freeBoardDetail.do?freeboard_posting_no="
-				+ freeBoardCommVO.getFreeboard_posting_no();
+		String freeboard_ans_code = request.getParameter("freeboard_ans_code");
+		String freeboard_comm_cont = request.getParameter("freeboard_comm_cont");
+		
+		FreeBoardCommVO freeBoardCommVO = new FreeBoardCommVO();
+		freeBoardCommVO.setFreeboard_comm_cont(freeboard_comm_cont.trim());
+		freeBoardCommVO.setFreeboard_ans_code(freeboard_ans_code);
 		freeBoardCommService.updateFreeBoardComm(freeBoardCommVO);
-		
-		return url;
+
+		return freeboard_comm_cont;
 	}
 	
 	
