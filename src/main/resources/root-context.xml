@@ -61,6 +61,9 @@
 		
 	<bean id="qnaBoardChooseDAO" class="com.hello.world.dao.iBatis.QnaBoardChooseDAO_iBatis"
 		p:client-ref="sqlMapClient" />
+		
+	<bean id="qnaboardBChuDAO" class="com.hello.world.dao.iBatis.QnaBoardBChuDAO_iBatis" 
+		p:client-ref="sqlMapClient"	/>
 
 
 	<!-- Service -->
@@ -124,5 +127,8 @@
 	
 	<bean id="qnaBoardChooseService" class="com.hello.world.service.QnaBoardChooseService"
 		p:qnaBoardChooseDAO-ref="qnaBoardChooseDAO" />
+	
+	<bean id="qnaBoardBchuService" class="com.hello.world.service.QnaBoardBChuService"
+		p:qnaboardBChuDAO-ref="qnaboardBChuDAO" />
 		
 </beans>

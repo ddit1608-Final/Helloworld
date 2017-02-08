@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="QnaBoardBChu">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="qnabchu" type="com.hello.world.dto.QnaBoardBChuVO" />
+
+	<update id="updateqnaBoardBChu" parameterClass="qnabchu">
+		UPDATE qnaboard_bchu
+		SET
+			qnaboard_board_chu = #qnaboard_board_chu#+1
+		WHERE qnaboard_posting_no=#qnaboard_posting_no#
+	</update>
+	
+	<update id="updateqnaBoardBBchu" parameterClass="qnabchu">
+		UPDATE qnaboard_bchu
+		SET
+			qnaboard_board_bchu = #qnaboard_board_bchu#+1
+		WHERE qnaboard_posting_no=#qnaboard_posting_no#
+	</update>
+	
+	<select id="listQnaBoardBChu" parameterClass="str" resultClass="qnabchu">
+		select
+		* from qnaboard_bchu where qnaboard_posting_no =
+		#qnaboard_posting_no#
+	</select>
+		
+</sqlMap>
