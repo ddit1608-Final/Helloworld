@@ -7,7 +7,7 @@
 	href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<a href="<%=request.getContextPath()%>/free/freeBoardList.do"><img
+		<a href="<%=request.getContextPath()%>/qna/qnaBoardList.do"><img
 			id="freeLogo"
 			src="<%=request.getContextPath()%>/resources/images/qnaLogo.png"></a>
 	</div>

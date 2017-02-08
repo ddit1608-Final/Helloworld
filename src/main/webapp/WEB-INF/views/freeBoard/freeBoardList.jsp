@@ -74,8 +74,8 @@
 	<form name="formm" id="formm" method="post">
 		<div id="divdiv">
 		<table class="table table-condensed" id="blt" style="margin: 0 auto;">
-			<tr >
-				<td>
+			<tr id="nohover">
+				<td id="nohover">
 				<select id="type" name="type">
 					<option value="freeboard_title" selected="selected">제목</option>
 					<option value="freeboard_cont">내용</option>

@@ -6,8 +6,8 @@
 
 #freeLogo{
 	margin:1% auto 1% auto;
-	border:none;
-	border-style: none;
+	border:1px solid #5d5d5d;
+	
 	width:100%;
 }
   /* .table-hover{
@@ -23,13 +23,13 @@
 	font-family:한나;
 	font-size:12pt;
 	
-	
-	
 }
 #blt tr:hover{
 	background-color: #8bdb69;
-	
 }
+/* #nohover:hover{
+	background-color: white;
+} */
 #blt tr td a{
 	text-decoration: none;
 	color:black;

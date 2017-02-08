@@ -7,6 +7,9 @@
 <decorator name="news" page="news_decorator.jsp">
 		<pattern>/news/*</pattern>
 	</decorator>
+	<decorator name="mypage" page="mypage_decorator.jsp">
+		<pattern>/mypage/*</pattern>
+	</decorator>
 	
 	
 	<!-- 제외할 페이지는 아래에 추가 -->

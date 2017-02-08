@@ -7,7 +7,7 @@
 	href="<%=request.getContextPath()%>/resources/css/signup.css">
 
 <article>
-	<h2>myPage</h2>
+	<h2>개인정보 수정</h2>
 	<hr>
 
 	<div class="jfbg">
