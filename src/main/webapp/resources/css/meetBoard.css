@@ -2,8 +2,7 @@
 
 #meetLogo{
 	margin:1% auto 1% auto;
-	border:none;
-	border-style: none;
+	border:1px solid #5d5d5d;
 	width:100%;
 	
 }

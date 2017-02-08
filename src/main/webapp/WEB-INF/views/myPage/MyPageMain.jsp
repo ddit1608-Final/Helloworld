@@ -6,14 +6,20 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/mypage.css">
 
 <article>
-	<h2>myPage</h2>
-	<hr>
+	<%-- <div>
+		<a href="<%=request.getContextPath()%>/mypage/main"><img
+			id="freeLogo"
+			src="<%=request.getContextPath()%>/resources/images/mylogo.png"></a>
+	</div>
+
+	<!-- <h2>myPage</h2>
+	<hr> -->
 
 	<table class="mypageMemu">
 		<tr>
 			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/mypage/updateInfo'">개인정보
-					수정</button></td>
+					수정</button></td>	
 			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/resm/resmList.do'">이력서
 					수정</button></td>
@@ -21,11 +27,11 @@
 			<td><button>스크랩게시물 조회</button></td>
 			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/mypage/myBoard'">작성한게시물 조회</button></td>
-			<td><button>구직입찰조회</button></td>
+			<td><button>구직입찰조회</buttodn></td>
 		</tr>
 	</table>
-
-	<table class="pointList" border="1px;">
+ --%>
+	<table class="table table-striped" border="1px;">
 		<th colspan="3">
 			<h4>포인트적립내역</h4>
 		</th>

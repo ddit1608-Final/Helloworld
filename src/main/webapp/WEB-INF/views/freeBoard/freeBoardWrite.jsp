@@ -6,7 +6,7 @@
 <article>
 	<div>
 		<a href="<%=request.getContextPath()%>/free/freeBoardList.do">
-		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard.png"></a>
+		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard3.png"></a>
 	</div> 
 	
 	<form id="fdf" name="form" method="post" action="freeBoardWrite.do">
