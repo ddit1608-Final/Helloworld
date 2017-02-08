@@ -99,6 +99,7 @@
 			</tbody>
 			</table>
 			<table class="table table-condensed" id="freecomm_go">
+				
 				<c:forEach items="${freeBoardCommList}" var="freeBoardComm" varStatus="status">
 				<input type="hidden" id="freeboard_ans_code${status.count}" value="${freeBoardComm.freeboard_ans_code }">
 				<tbody>
@@ -141,7 +142,7 @@
 							<c:set value="freeboard_ans_code${status.count}" var="indexTdd"/>
 							
 							<td>
-								<a href="#" onclick="updateFreeCommForm($('#freeboard_posting_no').val(),'${indexTd }','${indexTdd }', event )" id="aa">수정</a>
+								<a href="#" onclick="updateFreeCommForm('${indexTd }','${indexTd }', event )" id="aa">수정</a>
 							/
 							<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
 								<a href="#" onclick="deleteFreeComm('${freeboard_ans_code}','${indexTdd }',event )"id="aa">삭제</a>
