@@ -333,9 +333,9 @@ footer {
         <li><a href="<%=request.getContextPath()%>/qna/qnaBoardList.do">QnA게시판</a></li>
          <li><a href="<%=request.getContextPath()%>/meet/meetBoardList.do">모임게시판</a></li>
         <li><a href="<%=request.getContextPath()%>/is/ifShrBoardList.do">정보공유</a></li>
-	<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
-        <li><a href="#">개소리</a></li>
-    	
+		<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
+        <li><a href="<%=request.getContextPath()%>/dog/dogBoardList">개소리</a></li>
+        <li><a href="#"></a></li>
     </ul>
     </div>
     
@@ -351,7 +351,7 @@ footer {
       	<c:choose>
       		<c:when test="${loginUser eq null }">
       			<li><input class="login" id="login_mem_mail" name="login_mem_mail" type="text" placeholder=" 이메일"></li>
-				<li><input class="login" id="login_mem_pw" name="login_mem_pw" type="password" placeholder=" 비밀번호"></li>
+				<li><input class="login" id="login_mem_pw" name="login_mem_pw" type="password" placeholder=" 비밀번호" onkeyup="key_enter(event);"></li>
 		        <li><input type="button" value="로그인" id="loginbtn" onclick="login_go();"></li>
 				<li id="check" style="margin: 13px auto; width: 5%;"><label
 					style="vertical-align: text-botom;" for="check2" id="auto">
@@ -365,6 +365,9 @@ footer {
 				<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 				<li><a href="#" id="aa">반응 ()</a></li>
 				<li><a href="<%=request.getContextPath()%>/mypage/main" id="aa">마이페이지</a></li>
+				<c:if test="${loginUser.mem_mail == 'jihyunkkkk@nate.com' }">
+    				<li><a href="<%=request.getContextPath()%>/admin/enter" id="aa">관리자 페이지</a></li>
+    			</c:if>
 				<%-- <li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li> --%>
 				<li><a href="<%=request.getContextPath()%>/member/logout?"+${loginUser.mem_mail } id="aa">로그아웃</a></li>
       		</c:otherwise>

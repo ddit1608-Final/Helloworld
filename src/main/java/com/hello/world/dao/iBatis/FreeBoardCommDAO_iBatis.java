@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.hello.world.dao.FreeBoardCommDAO;
 import com.hello.world.dto.FreeBoardCommVO;
+import com.hello.world.dto.IsBoardCommVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class FreeBoardCommDAO_iBatis implements FreeBoardCommDAO {
@@ -46,6 +47,17 @@ public class FreeBoardCommDAO_iBatis implements FreeBoardCommDAO {
 	public void updateFreeBoardComm(FreeBoardCommVO freeBoardCommVO)
 			throws SQLException {
 		client.update("updateFreeBoardComm",freeBoardCommVO);
+	}
+	@Override
+	public int getMaxSeq() throws SQLException {
+		
+		return (int) client.queryForObject("getFreeMaxAnxCode");
+	}
+
+	@Override
+	public FreeBoardCommVO getFreeBoardComm(String freeboard_ans_code)
+			throws SQLException {
+		return (FreeBoardCommVO) client.queryForObject("getFreeBoardComm",freeboard_ans_code);
 	}
 
 }

@@ -75,4 +75,17 @@ public class MemberDAO_iBatis implements MemberDAO {
 		return res;
 	}
 
+	@Override
+	public int totalMember(String key) throws SQLException {
+		int total_pages = 0;
+		
+		if (key.equals("")) {
+			key = "%";
+		}
+		
+		total_pages = (int) client.queryForObject("totalMember", key);
+		
+		return total_pages;
+	}
+
 }

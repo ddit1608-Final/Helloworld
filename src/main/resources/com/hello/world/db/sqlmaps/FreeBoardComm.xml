@@ -33,6 +33,19 @@
 			FREEBOARD_COMM_CONT = #freeboard_comm_cont#
 		WHERE freeboard_ans_code= #freeboard_ans_code#
 	</update>
+	
+	
+	<select id="getFreeBoardComm"  parameterClass="str" resultClass="freecomm">
+		select *
+		from freeboard_comm
+		where freeboard_ans_code= #freeboard_ans_code#
+	</select>
+	
+	<select id="getFreeMaxAnxCode" resultClass="int">
+		select max(to_number(freeboard_ans_code)) from freeboard_comm
+	</select>
+	
+	
 
 
 </sqlMap>

@@ -25,8 +25,7 @@
 
 	<select id="listMem" parameterClass="str" resultClass="mem">
 		select *
-		from mem where mem_nm like '%'||#mem_nm#||'%' order by mem_join_date
-		desc
+		from mem where mem_nm like '%'||#mem_nm#||'%' order by mem_nm asc
 	</select>
 
 	<select id="getMem" parameterClass="str" resultClass="mem">
@@ -45,5 +44,9 @@
 		mem_pw=#mem_pw#
 		where mem_mail=#mem_mail#
 	</update>
+	
+	<select id="totalMember" parameterClass="str" resultClass="int">
+		select count(*) from mem where mem_nm like '%'||#key#||'%'
+	</select>
 
 </sqlMap>

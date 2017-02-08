@@ -35,7 +35,7 @@
 	</select>
 
 	<select id="freeDetail" parameterClass="str" resultClass="freeboard">
-		select * from memfree where freeboard_posting_no=#freeboard_posting_no# 
+		select * from memfreee where freeboard_posting_no=#freeboard_posting_no# 
 	</select>
 	
 	<delete id="deleteFreeBoard" parameterClass="str">
