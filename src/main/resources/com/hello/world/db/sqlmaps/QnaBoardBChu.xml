@@ -25,5 +25,9 @@
 		* from qnaboard_bchu where qnaboard_posting_no =
 		#qnaboard_posting_no#
 	</select>
+	
+	<select id="listAllQnaBoardBChu" resultClass="qnabchu">
+		select * from qnaboard_bchu
+	</select>
 		
 </sqlMap>

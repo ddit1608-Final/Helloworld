@@ -21,6 +21,8 @@
 				<td style="text-align: center;">NAME</td>
 				<!-- <th>작성자</th> -->
 				<td style="text-align: center;">DATE</td>
+				<td style="text-align: center;">추천</td>
+				<td style="text-align: center;">비추천</td>
 			</tr>
 			<c:choose>
 				<c:when test="${qnaBoardListSize<=0}">
@@ -42,10 +44,18 @@
 							<%-- <td>${loginUser.mem_nick}</td> --%>
 							<td style="text-align: center;"><fmt:formatDate
 									value="${qnaBoardVO.qnaboard_wridate}" type="date" /></td>
+							
+							<c:forEach items="${qnaBChuList}" var="qnaBChuVo">
+								<c:if test="${qnaBoardVO.qnaboard_posting_no == qnaBChuVo.qnaboard_posting_no }">
+									<td style="text-align: center;">${qnaBChuVo.qnaboard_board_chu}</td>
+									<td style="text-align: center;">${qnaBChuVo.qnaboard_board_bchu}</td>	
+								</c:if>
+							</c:forEach>	
+							
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="5" style="text-align: center;">${paging}</td>
+						<td colspan="6" style="text-align: center;">${paging}</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>

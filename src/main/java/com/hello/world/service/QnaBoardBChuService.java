@@ -1,6 +1,7 @@
 package com.hello.world.service;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -37,6 +38,14 @@ public class QnaBoardBChuService {
 		QnaBoardBChuVO qnaBoardBChuVO = qnaboardBChuDAO.listQnaBoardBChu(qnaboard_posting_no);
 
 		return qnaBoardBChuVO;
+	}
+	
+	public ArrayList<QnaBoardBChuVO> listAllQnaBoardBChu() throws SQLException {
+
+		ArrayList<QnaBoardBChuVO> qnaBoardBChuList = null;
+		qnaBoardBChuList = qnaboardBChuDAO.listAllQnaBChuBoard();
+
+		return qnaBoardBChuList;
 	}
 
 }
