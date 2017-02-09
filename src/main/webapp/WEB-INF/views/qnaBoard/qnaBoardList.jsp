@@ -23,6 +23,7 @@
 				<td style="text-align: center;">DATE</td>
 				<td style="text-align: center;">추천</td>
 				<td style="text-align: center;">비추천</td>
+				<td style="text-align: center;">조회수</td>
 			</tr>
 			<c:choose>
 				<c:when test="${qnaBoardListSize<=0}">
@@ -39,9 +40,7 @@
 								href="/world/qna/qnaBoardDetail.do?qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}">${qnaBoardVO.qnaboard_title}</a>
 							</td>
 							
-							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
 							<td style="text-align: center;">${qnaBoardVO.mem_nick}</td>
-							<%-- <td>${loginUser.mem_nick}</td> --%>
 							<td style="text-align: center;"><fmt:formatDate
 									value="${qnaBoardVO.qnaboard_wridate}" type="date" /></td>
 							
@@ -51,7 +50,7 @@
 									<td style="text-align: center;">${qnaBChuVo.qnaboard_board_bchu}</td>	
 								</c:if>
 							</c:forEach>	
-							
+							<td style="text-align: center;">${qnaBoardVO.qnaboard_hits}</td>
 						</tr>
 					</c:forEach>
 					<tr>

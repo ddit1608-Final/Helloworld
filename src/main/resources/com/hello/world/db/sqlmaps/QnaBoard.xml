@@ -22,7 +22,7 @@
 	</select>
 	
 	<select id="totalQnaBoard" parameterClass="testVO" resultClass="int">
-		select count(*) from qnaboard where $type$ like '%'||#key#||'%'
+		select count(*) from memqna where $type$ like '%'||#key#||'%'
 	</select>
 	
 	<select id="getQnaBoardList" parameterClass="testVO" resultClass="qnaboard">

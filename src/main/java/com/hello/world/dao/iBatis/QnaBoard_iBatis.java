@@ -71,13 +71,13 @@ public class QnaBoard_iBatis implements QnaBoardDAO {
 	@Override
 	public int getTotal(testVO testVO) throws SQLException {
 		
-		return (int) client.queryForObject("totalFreeBoard",testVO);
+		return (int) client.queryForObject("totalQnaBoard",testVO);
 		
 	}
 
 	@Override
 	public void updateQnaHits(QnaBoardVO qnaBoardVO) throws SQLException {
-		client.update("updateQreeHits",qnaBoardVO);		
+		client.update("updateQnaHits",qnaBoardVO);		
 	}
 
 

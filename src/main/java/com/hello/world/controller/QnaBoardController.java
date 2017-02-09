@@ -140,6 +140,7 @@ public class QnaBoardController {
 
 		ArrayList<QnaBoardCommVO> qnaBoardCommList = new ArrayList<QnaBoardCommVO>();
 		QnaBoardVO qnaBoardVO = qnaBoardService.getQnaDetail(qnaboard_posting_no);
+		qnaBoardService.updateQnaHits(qnaBoardVO);
 		
 		ArrayList<QnaBoardChuVO> qnaBoardChuList = new ArrayList<QnaBoardChuVO>(); 
 		QnaBoardBChuVO qnaBoardBChuList = new QnaBoardBChuVO();
@@ -176,7 +177,6 @@ public class QnaBoardController {
 		model.addAttribute("qnaBoardCommListCnt", qnaBoardCommList.size());
 		model.addAttribute("qnaBoardChuList", qnaBoardChuList);
 		model.addAttribute("qnaBoardBChuList", qnaBoardBChuList);
-		//model.addAttribute("qnaBoardChooseList", qnaBoardChooseList);
 		
 		return url;
 	}
@@ -361,6 +361,7 @@ public class QnaBoardController {
 		String paging = null;
 		
 		testVO testVO = new testVO();
+		ArrayList<QnaBoardBChuVO> qnaBChuList = null;
 		
 		testVO.setKey(key);
 		testVO.setType(type);
@@ -373,10 +374,8 @@ public class QnaBoardController {
 		}
 
 		try {
-			/*isBoardList = ifShrBoardService.getIsBoardList(
-					Integer.parseInt(tpage), key);*/
 			qnaBoardList = qnaBoardService.getQnaBoardList(Integer.parseInt(tpage),testVO); 
-
+			qnaBChuList = qnaBoardBChuService.listAllQnaBoardBChu();
 			paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 
 		} catch (SQLException e) {
@@ -387,6 +386,7 @@ public class QnaBoardController {
 		int n = qnaBoardList.size();
 		model.addAttribute("searchCnt",total);
 		model.addAttribute("paging", paging);
+		model.addAttribute("qnaBChuList", qnaBChuList);
 
 		return url;
 	}

@@ -16,9 +16,11 @@
 				<tr
 					style="background-color: #8bdb69; border-bottom: 2px solid #c9c9c9;">
 					<th style="width: 20%;">SUBJECT</th>
-					<td style="width: 60%;">${qnaBoardVO.qnaboard_title }</td>
-					<th style="width: 5%;" onclick="qnaboardchu()">추천<input type="button" id=boardchu value=${qnaBoardBChuList.qnaboard_board_chu }></th>
-					<th style="width: 5%;" onclick="qnaboardbchu()">/ 비추천<input type="button" id=boardbchu value="${qnaBoardBChuList.qnaboard_board_bchu }"></th>
+					<td style="width: 50%;">${qnaBoardVO.qnaboard_title }</td>
+					<th style="width: 10%;" onclick="qnaboardchu()">추천<input type="button" id=boardchu value=${qnaBoardBChuList.qnaboard_board_chu }></th>
+					<th style="width: 10%;" onclick="qnaboardbchu()">/ 비추천<input type="button" id=boardbchu value="${qnaBoardBChuList.qnaboard_board_bchu }"></th>
+					<th style="width: 10%;">조회수(${qnaBoardVO.qnaboard_hits })</th>
+					
 
 				</tr>
 			</thead>
