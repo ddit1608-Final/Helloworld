@@ -7,6 +7,7 @@ import com.hello.world.dao.JobhtBoardDAO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.JobhtBoardVO;
 import com.hello.world.dto.ResmVO;
+import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class JobhtBoardDAO_iBatis implements JobhtBoardDAO {
@@ -27,13 +28,13 @@ public class JobhtBoardDAO_iBatis implements JobhtBoardDAO {
 
 	@Override
 	public ArrayList<JobhtBoardVO> listAllJobhtBoard(int startRow,
-			String jobhtboard_title, int counts) throws SQLException {
+			testVO testVO, int counts) throws SQLException {
 		
 		ArrayList<JobhtBoardVO> jobhtBoardList = new ArrayList<JobhtBoardVO>();
 		
 		// 게시판 데이터 가지오 오는 쿼리
 		jobhtBoardList = (ArrayList<JobhtBoardVO>) client.queryForList(
-				"listAllJobhtBoard", startRow, counts);
+				"listAllJobhtBoard",testVO, startRow, counts);
 
 		return jobhtBoardList;
 
@@ -41,13 +42,15 @@ public class JobhtBoardDAO_iBatis implements JobhtBoardDAO {
 
 
 	@Override
-	public int totalRecord(String product_name) throws SQLException {
+	public int totalRecord(testVO testVO) throws SQLException {
 		int total_pages = 0;
-		if (product_name.equals("")) {
-			product_name = "%";
+		String key = testVO.getKey();
+		if (key.equals("")) {
+			//product_name = "%";
+			testVO.setKey("%");
 		}
-		total_pages = (Integer) client.queryForObject("totalFreeBoard",
-				product_name);
+		total_pages = (Integer) client.queryForObject("totalJobhtBoard",
+				testVO);
 		return total_pages;
 	}
 	

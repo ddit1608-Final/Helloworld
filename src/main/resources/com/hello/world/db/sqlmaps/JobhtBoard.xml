@@ -12,8 +12,12 @@
 		values(#mem_mail#, #jobhtboard_homep#, #jobhtboard_hope_sal#, #jobhtboard_hope_workp#, #jobhtboard_vltr_kind#, #jobhtboard_posting_no#, #resm_id#, #com_use_abil_code#, #lang_abil_code#) 
 	</insert>
 	
-	<select id="listAllJobhtBoard" parameterClass="str" resultClass="jobhtBoard" >
-		select * from jobhtboard
+	<select id="listAllJobhtBoard" parameterClass="testVO" resultClass="jobhtBoard" >
+		select * from jobhtboard where $type$ like '%'||#key#||'%' order by JOBHTBOARD_POSTING_NO desc
 	</select>	
+	
+	<select id="totalJobhtBoard" parameterClass="testVO" resultClass="int">
+		select count(*) from jobhtboard where $type$ like '%'||#key#||'%'
+	</select>
 
 </sqlMap>
