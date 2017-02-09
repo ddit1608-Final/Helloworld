@@ -65,6 +65,17 @@ public class AdminController {
 	public void setPoingService(PointService poingService) {
 		this.poingService = poingService;
 	}
+	
+	@RequestMapping(value = "/memberDetail", method = RequestMethod.GET)
+	public String memberDetail(String mem_mail, Model model) {
+		
+		MemVO memVO = new MemVO();
+		memVO = memService.getMember(mem_mail);
+		
+		model.addAttribute("memVO", memVO);
+		
+		return "admin/memberDetail";
+	}
 
 	@RequestMapping(value = "/memberManage", method = RequestMethod.GET)
 	public String memberManageList(String key, String tpage, Model model) {
@@ -116,6 +127,13 @@ public class AdminController {
 			url = "admin/adminMain";
 		else 
 			url = "redirect:enter?result=pwMismatch";
+		return url;
+	}
+	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String mainAdminGet() {
+		String url = "";
+			url = "admin/adminMain";
 		return url;
 	}
 

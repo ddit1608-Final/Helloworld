@@ -127,6 +127,7 @@
 						        </div>
 						      </div>
 						    </div>
+						    </div>
 						    <!-- 쪽지 모달 끝 -->
 						    <td style="width:70%;  word-break:break-all;" id="freeBoardComm_cont${status.count}" name="freeBoardComm_cont${status.count}">${ freeBoardComm.freeboard_comm_cont}
 							<input type="button" value="추천">
@@ -140,10 +141,10 @@
 							<c:set value="freeboard_ans_code${status.count}" var="indexTdd"/>
 							
 							<td>
-								<a href="#" onclick="updateFreeComm('${indexTd }', event )">수정</a>
+								<a href="#" onclick="updateFreeCommForm($('#freeboard_posting_no').val(),'${indexTd }','${indexTdd }', event )" id="aa">수정</a>
 							/
 							<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
-								<a href="#" onclick="deleteFreeComm('${freeboard_ans_code}','${indexTdd }',event )">삭제</a>
+								<a href="#" onclick="deleteFreeComm('${freeboard_ans_code}','${indexTdd }',event )"id="aa">삭제</a>
 							</td>
 							<td></td>
 							</c:if>
@@ -155,7 +156,7 @@
 		<textarea rows="2" cols="150" id="freeboard_comm_contt" name="freeboard_comm_cont"></textarea>
 		<input type="hidden" id="freeboard_posting_no" name="freeboard_posting_no" value="${freeBoardVO.freeboard_posting_no }">
 		<input type="hidden" id="mem_nick" name="mem_nick" value="${loginUser.mem_nick}">
-		<input type="button" value="댓글등록" onclick="freeWriteComm_go($('#mem_nick').val(),$('#freeboard_posting_no').val(),$('#freeboard_comm_contt').val(),event)">
+		<input type="button" value="댓글등록" onclick="freeWriteComm_go($('#mem_nick').val(),$('#freeboard_posting_no').val(),$('#freeboard_comm_contt').val(),'${indexTd}','${indexTdd}',event)">
 		</c:if>
 		</div> <!-- result div  -->
 	</form>

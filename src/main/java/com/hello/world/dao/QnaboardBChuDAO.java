@@ -12,3 +12,4 @@ public interface QnaboardBChuDAO {
 	public QnaBoardBChuVO listQnaBoardBChu(String qnaboard_posting_no)throws SQLException;
 	public ArrayList<QnaBoardBChuVO> listAllQnaBChuBoard()throws SQLException;
 }
+

@@ -141,12 +141,13 @@
 						          <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
 						        </div>
 						      </div>
+						    </div>
 						    </div>	
 						 <!--  -->  
 						 
 						<td style="width:70%;  word-break:break-all;" id="isBoardComm_cont${status.count}" name="isBoardComm_cont${status.count}">${ ifShrBoardComm.ifshrboard_comm_cont}
-						<input type="button" value="추천">
-						<input type="button" value="비추천"></td>
+						<input type="button" value="추천" id="cc">
+						<input type="button" value="비추천" id="ccc"></td>
 						<td>${ ifShrBoardComm.ifshrboard_comm_wridate }</td>
 						<c:if test="${loginUser.mem_nick ==ifShrBoardComm.ifshrboard_comm_wri }">
 						
@@ -156,10 +157,10 @@
 						<c:set value="ifshrboard_ans_code${status.count}" var="indexTdd"/>
 						
 						<td>
-							<a href="#" onclick="updateIsCommForm('${indexTd }', event )">수정</a>
+							<a href="#" onclick="updateIsCommForm('${indexTd }', event )" id="updateIs">수정</a>
 						/
 						<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
-							<a href="#" onclick="deleteIsComm('${ifshrboard_ans_code}','${indexTdd }',event )">삭제</a>
+							<a href="#" onclick="deleteIsComm('${ifshrboard_ans_code}','${indexTdd }',event )"id="deleteIs">삭제</a>
 						</td>
 						<td></td>
 						</c:if>

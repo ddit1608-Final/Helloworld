@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
 <article>
 	<div class="container">
 		<h3 class="text-center">MEMBER LIST</h3>
@@ -39,7 +39,8 @@
 							<tr>
 								<td>${status.count }</td>
 								<td class="name">${memberVO.mem_nm}</td>
-								<td class="id">${memberVO.mem_mail}
+								<td class="id"><a
+									href="<%=request.getContextPath()%>/admin/memberDetail?mem_mail=${memberVO.mem_mail}">${memberVO.mem_mail}</a>
 								</td>
 								<td class="email">${memberVO.mem_phn}</td>
 								<td class="phone">${memberVO.mem_nick}</td>
@@ -52,7 +53,7 @@
 				</c:choose>
 			</tbody>
 		</table>
-		
+
 
 	</div>
 </article>

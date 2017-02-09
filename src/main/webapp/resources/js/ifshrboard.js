@@ -118,7 +118,7 @@ function updateIsComm(indexTd, event) {
 	event.preventDefault();
 	var ifshrboard_ans_code = $('#ifshrboard_ans_code'+indexTd).val();
 	var ifshrboard_comm_cont = $('#ifshrboard_comm_cont').val();
-	
+	alert(ifshrboard_comm_cont);
 	var arr = {
 			"ifshrboard_ans_code" : ifshrboard_ans_code,
 			"ifshrboard_comm_cont" : ifshrboard_comm_cont
@@ -138,7 +138,6 @@ function updateIsComm(indexTd, event) {
 	})
 }
 function deleteIsComm(ifshrboard_ans_code, indexTdd, event){
-	alert("code값 test >>"+ifshrboard_ans_code);
 	event.preventDefault();
 	var code ={
 		"ifshrboard_ans_code" : ifshrboard_ans_code	
