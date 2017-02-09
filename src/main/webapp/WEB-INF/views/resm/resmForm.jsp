@@ -11,16 +11,16 @@
 </head>
 <body>
 <form name="formm" method="post" action="resmWrite.do"><br>
-	resm_id : <input type="text" name="resm_id"><br>/
-	mem_mail : <input type="text" name="mem_mail"><br>/
-	sidn_code : <input type="text" name="sidn_code"><br>/
-	lcse_code : <input type="text" name="lcse_code"><br>/
-	acdmcr_code : <input type="text" name="acdmcr_code"><br>/
-	idpic_code : <input type="text" name="idpic_code"><br>/
-	resm_regno : <input type="text" name="resm_regno"><br>/
-	resm_milit : <input type="text" name="milt_code"><br>/
-	resm_hob : <input type="text" name="resm_hob"><br>/
-	resm_like : <input type="text" name="resm_like"><br>/
+	아이디(resm_id) : <input type="text" name="resm_id"><br>/
+	이메일(mem_mail) : <input type="text" name="mem_mail"><br>/
+	자기소개서(sidn_code) : <input type="text" name="sidn_code"><br>/
+	자격증코드(lcse_code) : <input type="text" name="lcse_code"><br>/
+	학력코드(acdmcr_Code) : <input type="text" name="acdmcr_code"><br>/
+	증명사진(idpic_code) : <input type="text" name="idpic_code"><br>/
+	주민등록번호(resm_regno) : <input type="text" name="resm_regno"><br>/
+	병역사항(resm_milit) : <input type="text" name="milt_code"><br>/
+	취미(resm_hob) : <input type="text" name="resm_hob"><br>/
+	특기(resm_like) : <input type="text" name="resm_like"><br>/
 	<input type="submit" value="이력서 등록">
 </form>
 </body>
