@@ -107,6 +107,7 @@ public class QnaBoardController {
 		/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
 
 		ArrayList<QnaBoardVO> qnaBoardList = null;
+		ArrayList<QnaBoardBChuVO> qnaBChuList = null;
 		String paging = null;
 		
 		
@@ -114,6 +115,7 @@ public class QnaBoardController {
 		try {
 			qnaBoardList = qnaBoardService.listAllQnaBoard(
 					Integer.parseInt(tpage), testVO);
+			qnaBChuList = qnaBoardBChuService.listAllQnaBoardBChu();
 			paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 			// System.out.println("테스트용 컨트롤러");
 			// System.out.println(freeBoardList);
@@ -123,6 +125,7 @@ public class QnaBoardController {
 		}
 
 		model.addAttribute("qnaBoardList", qnaBoardList);
+		model.addAttribute("qnaBChuList", qnaBChuList);
 		int n = qnaBoardList.size();
 		model.addAttribute("qnaBoardListSize", n);
 		model.addAttribute("paging", paging);

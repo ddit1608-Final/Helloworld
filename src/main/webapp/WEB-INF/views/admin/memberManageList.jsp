@@ -39,20 +39,21 @@
 							<tr>
 								<td>${status.count }</td>
 								<td class="name">${memberVO.mem_nm}</td>
-								<td class="id">${memberVO.mem_mail}
+								<td class="id"><a
+									href="<%=request.getContextPath()%>/admin/memberDetail?mem_mail=${memberVO.mem_mail}">${memberVO.mem_mail}</a>
 								</td>
 								<td class="email">${memberVO.mem_phn}</td>
 								<td class="phone">${memberVO.mem_nick}</td>
 							</tr>
 						</c:forEach>
 						<tr>
-							<td colspan="4" style="text-align: center;">${paging}</td>
+							<td colspan="5" style="text-align: center;">${paging}</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
 			</tbody>
 		</table>
-		
+
 
 	</div>
 </article>

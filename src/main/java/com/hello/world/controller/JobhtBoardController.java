@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hello.world.dto.JobhtBoardVO;
+import com.hello.world.dto.testVO;
 import com.hello.world.service.JobhtBoardService;
 
 @Controller
@@ -60,6 +61,7 @@ public class JobhtBoardController {
 		String url = "jobhtBoard/jobBoardList";
 		String key=request.getParameter("key");
 	    String tpage=request.getParameter("tpage");
+	    String type = request.getParameter("type");
 
 		if (key == null) {
 			key = "";
@@ -69,9 +71,16 @@ public class JobhtBoardController {
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
+		if(type == null) {
+			type = "JOBHTBOARD_TITLE";
+		}
 		
 		model.addAttribute("key",key);
 		model.addAttribute("tpage",tpage);
+		
+		testVO testVO = new testVO();
+		testVO.setKey(key);
+		testVO.setType(type);
 
 		/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
 
@@ -79,9 +88,9 @@ public class JobhtBoardController {
 		String paging=null;
 		
 		try {
-			jobhtBoardList = jobhtBoardService.listAllJobhtBoard(Integer.parseInt(tpage), key);
+			jobhtBoardList = jobhtBoardService.listAllJobhtBoard(Integer.parseInt(tpage), testVO);
 			
-			paging = jobhtBoardService.pageNumber(Integer.parseInt(tpage), key);
+			paging = jobhtBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
