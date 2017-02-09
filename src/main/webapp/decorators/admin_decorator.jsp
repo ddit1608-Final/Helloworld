@@ -34,7 +34,6 @@
 <link href="<%=request.getContextPath()%>/resources/css/hw.css"
 	rel="stylesheet">
 
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/mypage.css">
 </head>
 
 
@@ -228,10 +227,6 @@ footer {
 }
 
 
-.mypageMemu button{
-border-radius:5px;
-}
-
 </style>
 
 <script>
@@ -338,9 +333,9 @@ border-radius:5px;
         <li><a href="<%=request.getContextPath()%>/qna/qnaBoardList.do">QnA게시판</a></li>
          <li><a href="<%=request.getContextPath()%>/meet/meetBoardList.do">모임게시판</a></li>
         <li><a href="<%=request.getContextPath()%>/is/ifShrBoardList.do">정보공유</a></li>
-	<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
-        <li><a href="#">개소리</a></li>
-    	
+		<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
+        <li><a href="<%=request.getContextPath()%>/dog/dogBoardList">개소리</a></li>
+        <li><a href="#"></a></li>
     </ul>
     </div>
     
@@ -356,7 +351,7 @@ border-radius:5px;
       	<c:choose>
       		<c:when test="${loginUser eq null }">
       			<li><input class="login" id="login_mem_mail" name="login_mem_mail" type="text" placeholder=" 이메일"></li>
-				<li><input class="login" id="login_mem_pw" name="login_mem_pw" type="password" placeholder=" 비밀번호"></li>
+				<li><input class="login" id="login_mem_pw" name="login_mem_pw" type="password" placeholder=" 비밀번호" onkeyup="key_enter(event);"></li>
 		        <li><input type="button" value="로그인" id="loginbtn" onclick="login_go();"></li>
 				<li id="check" style="margin: 13px auto; width: 5%;"><label
 					style="vertical-align: text-botom;" for="check2" id="auto">
@@ -408,35 +403,19 @@ border-radius:5px;
 			</div>
 			<!-- 컨텐트내용 -->
 			<div class="col-sm-8 text-left">
-		
-		
-		<div>
-		<a href="<%=request.getContextPath()%>/mypage/main"><img
-			id="freeLogo"
-			src="<%=request.getContextPath()%>/resources/images/mylogo.png"></a>
-	</div>
 
-	<!-- <h2>myPage</h2>
-	<hr> -->
+	<div>
+		<a href="<%=request.getContextPath()%>/admin/main">
+		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/adminLogo.png"></a>
+	</div> 
 
-	<table class="mypageMemu">
+	<table>
 		<tr>
-			<td><button
-					onclick="location.href='<%=request.getContextPath()%>/mypage/updateInfo'">개인정보
-					수정</button></td>	
-			<td><button
-					onclick="location.href='<%=request.getContextPath()%>/resm/resmList.do'">이력서
-					수정</button></td>
-			<td><button>컨설팅 내역 조회</button></td>
-			<td><button>스크랩게시물 조회</button></td>
-			<td><button
-					onclick="location.href='<%=request.getContextPath()%>/mypage/myBoard'">작성한게시물 조회</button></td>
-			<td><button>구직입찰조회</buttodn></td>
+			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/memberManage'">회원관리</button></td>
+			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/memberManage'">머시기머시기</button></td>
+			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/memberManage'">저시기저식이</button></td>
 		</tr>
 	</table>
-		
-		
-
 				<decorator:body />
 			</div>
 			<!-- 컨텐트내용 END -->

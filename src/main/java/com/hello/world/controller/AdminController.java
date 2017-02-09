@@ -118,5 +118,12 @@ public class AdminController {
 			url = "redirect:enter?result=pwMismatch";
 		return url;
 	}
+	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public String mainAdminGet() {
+		String url = "";
+			url = "admin/adminMain";
+		return url;
+	}
 
 }
