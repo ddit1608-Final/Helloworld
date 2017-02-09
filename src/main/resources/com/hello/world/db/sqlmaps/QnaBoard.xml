@@ -14,7 +14,6 @@
 	</insert>
 	
 	<select id="listAllQnaBoard" parameterClass="testVO" resultClass="qnaboard" >
-		<!-- select * from freeboard order by freeboard_posting_no desc -->
 		select * from memqna where $type$ like '%'||#key#||'%' order by qnaboard_posting_no desc
 	</select>
 	
@@ -25,6 +24,19 @@
 	<select id="totalQnaBoard" parameterClass="testVO" resultClass="int">
 		select count(*) from qnaboard where $type$ like '%'||#key#||'%'
 	</select>
+	
+	<select id="getQnaBoardList" parameterClass="testVO" resultClass="qnaboard">
+		select * from searchqna where $type$ like'%'||#key#||'%' order by TO_NUMBER(qnaboard_posting_no) asc
+	</select>
+	
+	<update id="updateQnaHits" parameterClass="qnaboard">
+	UPDATE 
+		qnaboard 
+	SET 
+		qnaboard_hits = #qnaboard_hits#+1 
+	WHERE 
+		qnaboard_posting_no=#qnaboard_posting_no#
+	</update>	
 	
 	
 </sqlMap>

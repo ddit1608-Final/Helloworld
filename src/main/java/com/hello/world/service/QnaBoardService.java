@@ -29,7 +29,6 @@ public class QnaBoardService {
 	
 	public ArrayList<QnaBoardVO> listAllQnaBoard(int tpage,
 			testVO testVO) throws SQLException {
-		// ArrayList<FreeBoardVO> list = freeBoardDAO.listAllFreeBoard();
 		ArrayList<QnaBoardVO> list = new ArrayList<QnaBoardVO>();
 		int startRow = -1;
 		int endRow = -1;
@@ -41,7 +40,6 @@ public class QnaBoardService {
 		}
 
 		int totalRecord = qnaBoardDAO.totalRecord(testVO); 
-				//freeBoardDAO.totalRecord(qnaboard_title);
 
 		startRow = (tpage - 1) * counts;
 		endRow = startRow + counts - 1;
@@ -49,7 +47,6 @@ public class QnaBoardService {
 			endRow = totalRecord;
 
 		list =  qnaBoardDAO.listAllQnaBoard(startRow, testVO, counts);
-				//freeBoardDAO.listAllFreeBoard(startRow, freeboard_title, counts);
 
 		return list;
 	}
@@ -110,6 +107,45 @@ public class QnaBoardService {
 					+ testVO.getKey() + "'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 		return str;
+	}
+	
+	public ArrayList<QnaBoardVO> getQnaBoardList(int tpage, testVO testVO )throws SQLException{
+		ArrayList<QnaBoardVO> list = new ArrayList<QnaBoardVO>();
+		int startRow = -1;
+		int endRow = -1;
+		
+		String key = testVO.getKey(); 
+		
+		if (key.equals("")) {
+			key = "%";
+		}
+
+		int totalRecord = qnaBoardDAO.totalRecord(testVO); 
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+
+		list = (ArrayList<QnaBoardVO>) qnaBoardDAO.getQnaBoardList(startRow, testVO, counts); 
+
+		return list;
+	}
+	public int getTotal(testVO testVO)throws SQLException{
+		
+		return qnaBoardDAO.getTotal(testVO);
+		
+	}
+	
+	public void updateQnaHits(QnaBoardVO qnaBoardVO){
+		try {
+			//freeBoardDAO.
+			qnaBoardDAO.updateQnaHits(qnaBoardVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
 }

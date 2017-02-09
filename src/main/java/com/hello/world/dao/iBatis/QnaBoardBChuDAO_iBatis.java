@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.QnaboardBChuDAO;
-import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.QnaBoardBChuVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 

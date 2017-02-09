@@ -57,5 +57,28 @@ public class QnaBoard_iBatis implements QnaBoardDAO {
 		
 	}
 
+	@Override
+	public ArrayList<QnaBoardVO> getQnaBoardList(int startRow, testVO testVO,
+			int counts) throws SQLException {
+		ArrayList<QnaBoardVO> qnaBoardList = new ArrayList<QnaBoardVO>();
+
+		qnaBoardList = (ArrayList<QnaBoardVO>) client.queryForList(
+				"getQnaBoardList", testVO, startRow, counts);
+
+		return qnaBoardList;
+	}
+
+	@Override
+	public int getTotal(testVO testVO) throws SQLException {
+		
+		return (int) client.queryForObject("totalFreeBoard",testVO);
+		
+	}
+
+	@Override
+	public void updateQnaHits(QnaBoardVO qnaBoardVO) throws SQLException {
+		client.update("updateQreeHits",qnaBoardVO);		
+	}
+
 
 }

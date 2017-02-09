@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hello.world.dto.FreeBoardCommVO;
-import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.QnaBoardBChuVO;
 import com.hello.world.dto.QnaBoardChooseVO;
@@ -337,6 +335,60 @@ public class QnaBoardController {
 		
 		
 		return upBChu;
+	}
+	
+	@RequestMapping(value="/qnaBoardSearch.do",method=RequestMethod.POST)
+	public String getQnaBoardList(HttpServletRequest request,Model model)
+		throws ServletException,IOException{
+		String total = "";
+		String url = "qnaBoard/qnaBoardList";
+		String key = request.getParameter("key");
+		String tpage = request.getParameter("tpage");
+		String type= request.getParameter("type");
+		
+		if (key == null) {
+			key = "";
+		}
+		if (tpage == null) {
+			tpage = "1"; // 현재 페이지 (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		model.addAttribute("key", key);
+		model.addAttribute("type",type);
+		model.addAttribute("tpage", tpage);
+		ArrayList<QnaBoardVO> qnaBoardList = null;
+		String paging = null;
+		
+		testVO testVO = new testVO();
+		
+		testVO.setKey(key);
+		testVO.setType(type);
+		
+		try {
+			total= qnaBoardService.getTotal(testVO)+"";
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			/*isBoardList = ifShrBoardService.getIsBoardList(
+					Integer.parseInt(tpage), key);*/
+			qnaBoardList = qnaBoardService.getQnaBoardList(Integer.parseInt(tpage),testVO); 
+
+			paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), testVO);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("qnaBoardList", qnaBoardList);
+		int n = qnaBoardList.size();
+		model.addAttribute("searchCnt",total);
+		model.addAttribute("paging", paging);
+
+		return url;
 	}
 	
 }
