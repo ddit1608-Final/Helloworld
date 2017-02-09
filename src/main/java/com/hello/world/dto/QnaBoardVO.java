@@ -64,16 +64,4 @@ public class QnaBoardVO {
 	}
 	
 	
-	@Override
-	public String toString() {
-		return "QnaBoardVO [qnaboard_posting_no=" + qnaboard_posting_no
-				+ ", qnaboard_title=" + qnaboard_title + ", qnaboard_cont="
-				+ qnaboard_cont + ", qnaboard_wridate=" + qnaboard_wridate
-				+ ", qnaboard_hits=" + qnaboard_hits + ", qnaboard_pwd="
-				+ qnaboard_pwd + ", mem_mail=" + mem_mail + "]";
-	}
-	
-	
-	
-	
 }

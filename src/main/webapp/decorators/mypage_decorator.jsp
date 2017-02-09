@@ -27,6 +27,10 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/ifshrboard.js"></script>
 <script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/admin.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/mypage.js"></script>
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/push.min.js"></script>
@@ -427,7 +431,9 @@ border-radius:5px;
 			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/resm/resmList.do'">이력서
 					수정</button></td>
-			<td><button>컨설팅 내역 조회</button></td>
+			<td><button
+					onclick="location.href='<%=request.getContextPath()%>/mypage/cstBoardList'"
+			>컨설팅 내역 조회</button></td>
 			<td><button>스크랩게시물 조회</button></td>
 			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/mypage/myBoard'">작성한게시물 조회</button></td>

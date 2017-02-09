@@ -33,6 +33,15 @@ public class CstBoardController {
 
 	@Autowired
 	FlowService flowService;
+	
+	@RequestMapping("/cstBoardList")
+	public String freeBoardList(HttpSession session,
+			HttpServletRequest request, Model model) {
+
+		String url = "cstBoard/cstBoardList";
+
+		return url;
+	}
 
 	@RequestMapping(value = "/CstBoardDetail", method = RequestMethod.GET)
 	public String freeBoardDetail(
@@ -121,57 +130,7 @@ public class CstBoardController {
 		return url;
 	}
 
-	@RequestMapping("/cstBoardList")
-	public String freeBoardList(HttpSession session,
-			HttpServletRequest request, Model model) {
-		String mem_mail = "";
-		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
-
-		try {
-			flowList = flowService.listFlowVO();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-		model.addAttribute("flowList", flowList);
-
-		if (session.getAttribute("loginUser") != null)
-			mem_mail = ((MemVO) session.getAttribute("loginUser"))
-					.getMem_mail();
-
-		String url = "cstBoard/cstBoardList";
-		String cstTpage = request.getParameter("cstTpage");
-
-		if (cstTpage == null) {
-			cstTpage = "1"; // 현재 페이지 (default 1)
-		} else if (cstTpage.equals("")) {
-			cstTpage = "1";
-		}
-
-		model.addAttribute("cstTpage", cstTpage);
-
-		ArrayList<CstBoardCounselVO> cstBoardList = null;
-		String cstPaging = null;
-
-		try {
-			cstBoardList = cstBoardService.listCstBoard(mem_mail);
-			cstPaging = cstBoardService.cstPageNumber(
-					Integer.parseInt(cstTpage), mem_mail);
-			// System.out.println("테스트용 컨트롤러");
-			// System.out.println(freeBoardList);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		model.addAttribute("cstBoardList", cstBoardList);
-		int n = cstBoardList.size();
-		model.addAttribute("CstBoardListSize", n);
-		model.addAttribute("paging", cstPaging);
-
-		return url;
-	}
+	
 
 	@RequestMapping(value = "/cstBoardWrite", method = RequestMethod.GET)
 	public String cstBoardWriteForm(HttpSession session, Model model) {
@@ -190,7 +149,7 @@ public class CstBoardController {
 	@RequestMapping(value = "/cstBoardWrite", method = RequestMethod.POST)
 	public String cstBoardWrite(CstBoardCounselVO cstBoard, Model model) {
 
-		String url = "redirect:cstBoardList";
+		String url = "redirect:/mypage/cstBoardList";
 
 		try {
 			if (cstBoardService.insertCstBoard(cstBoard) == 1) {
