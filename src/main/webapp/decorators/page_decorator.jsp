@@ -235,7 +235,7 @@ footer {
 	var wsocket;
     var sock = null;
 	  $(document).ready(function() {
-		  sock = new SockJS("/socket/echo-ws");
+		  sock = new SockJS("/world/echo-ws");
 		  sock.onopen = function(){
 			  sock.send("반가워");
 		  }
