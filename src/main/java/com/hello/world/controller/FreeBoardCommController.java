@@ -51,15 +51,18 @@ public class FreeBoardCommController {
 
 	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
 	@ResponseBody
-	public String writeComm(HttpServletRequest request,@RequestBody Map<String,Object>map,Model model) {
+	public CommWriterInfo writeComm(HttpServletRequest request,@RequestBody Map<String,Object>map,Model model) {
 		Map<String, String> users = sjs.getUsers();
 		
-		
+		String wsSession = "";
+		String writer = "";
 		String today = "";
 		String freeboard_comm_contt = (String) map.get("freeboard_comm_contt");
 		String mem_nick = (String) map.get("mem_nick");
 		String freeboard_posting_no = (String) map.get("freeboard_posting_no"); 
 		FreeBoardCommVO fbcVO = new FreeBoardCommVO();
+		FreeBoardVO fbVO = new FreeBoardVO();
+		CommWriterInfo cwi = new CommWriterInfo();
 		System.out.println("댓글 입력test>>"+map.toString());
 		//String aa = request.getParameter("ifshrboard_ans_code");
 		List<FreeBoardCommVO> freeBoardCommList = new ArrayList<FreeBoardCommVO>();
@@ -69,17 +72,25 @@ public class FreeBoardCommController {
 			fbcVO.setFreeboard_posting_no(freeboard_posting_no);
 			freeBoardCommService.insertComm(fbcVO);
 			fbcVO = freeBoardCommService.getFreeBoardComm(freeBoardCommService.getMaxSeq()+"");
-			
 			SimpleDateFormat sdfCurrent = new SimpleDateFormat ("yyyy-mm-dd hh:mm:ss"); 
 			Timestamp currentTime = fbcVO.getFreeboard_comm_wridate(); 
 			today = sdfCurrent.format(currentTime); 
+			
+			fbVO = freeService.getFreeDetail(freeboard_posting_no);
+			writer=fbVO.getMem_mail();
+			wsSession = sjs.getUsers().get(writer);
+			
+			cwi.setMem_mail(writer);
+			cwi.setWsSession(wsSession);
+			cwi.setToday(today);
+			
 			
 			//isBoardCommList = isBoardCommService.listIsBoardComm(ifshrboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return today;
+		return cwi;
 	}
 	@RequestMapping(value = "/deleteFreeBoardComm.do",method = RequestMethod.POST)
 	@ResponseBody
