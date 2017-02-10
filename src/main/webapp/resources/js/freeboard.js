@@ -71,12 +71,14 @@ function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,ind
 						a = '<tr><td>'+mem_nick+'</td>'+
 							'<td style="work-break:break-all;"id="freeBoardComm_cont'+aa+'">'+freeboard_comm_contt+'<input type="button" value="추천">'+
 							'<input type="button" value="비추천"></td>'+
-						 	'<td>'+data+'</td>'+
+						 	'<td>'+data.today+'</td>'+
 						 	'<td><a href="#" onclick="updateFreeCommForm('+aa+','+indexTdd+',event)">수정</a>/'+
 							'<a href="#" onclick="deleteFreeComm()">삭제</a></td></tr>'
 					
 					$('#freecomm_go').append(a);
 					$('#freeboard_comm_contt').val("");
+					alert("본문 작성자 : " +data.mem_mail);
+					alert("본문 작성자 session: " +data.wsSession);
 				},
 				error : function(error) {
 					alert("22");
