@@ -35,8 +35,11 @@
 
 	<beans:bean id="echoHandler" class="com.hello.world.websocket.EchoHandler" />
 	<beans:bean id="HandshakeInterceptor" class="com.hello.world.websocket.HandshakeInterceptor" />
-
+	<beans:bean id="echoHanler1" class="com.hello.world.controller.EchoHandler" />
+	<beans:bean id="socketController" class="com.hello.world.controller.SocketController" />
+		
 	<websocket:handlers>
+		<websocket:mapping handler="echoHanler1" path="/echo-ws"/>
 		<websocket:mapping handler="echoHandler" path="/chat.sockjs" />
 		<websocket:handshake-interceptors>
 			<beans:bean class="com.hello.world.websocket.HandshakeInterceptor" />
@@ -45,3 +48,6 @@
 	</websocket:handlers>
 
 </beans:beans>
+
+	
+		

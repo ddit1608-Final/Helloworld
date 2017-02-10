@@ -231,6 +231,31 @@ footer {
 
 <script>
 	var wsocket;
+    var sock = null;
+	  $(document).ready(function() {
+		  alert('접속');
+		  sock = new SockJS("/socket/echo-ws");
+		  alert('${pageContext.request.contextPath}');
+		  sock.onopen = function(){
+			  sock.send("반가워");
+		  }
+		 
+		  sock.onmessage = function(evt){
+			  $("#chatMessage").append(evt.data + "<br/>");
+		  }
+		
+		  sock.onclose= function(){
+			  sock.send("퇴장");
+		  }
+		
+		  $("#sendMessage").click(function(){
+			if($("#message").val() !=""){
+				sock.send($("#message").val());
+				$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
+				$("message").val("");
+			}
+		  })
+	  });
 
 	function connect() {
 		
