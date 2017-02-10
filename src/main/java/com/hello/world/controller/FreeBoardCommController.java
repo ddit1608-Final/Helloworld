@@ -45,13 +45,14 @@ public class FreeBoardCommController {
 
 	@Autowired
 	FreeBoardCommService freeBoardCommService;
+	
 	@Autowired
 	EchoHandler sjs;
 
 	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
 	@ResponseBody
 	public String writeComm(HttpServletRequest request,@RequestBody Map<String,Object>map,Model model) {
-		Map<String, WebSocketSession> users = sjs.getUsers();
+		Map<String, String> users = sjs.getUsers();
 		
 		
 		String today = "";

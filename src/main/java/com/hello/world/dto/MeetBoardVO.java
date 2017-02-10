@@ -62,14 +62,5 @@ public class MeetBoardVO {
 	public void setFlow_code(String flow_code) {
 		this.flow_code = flow_code;
 	}
-	@Override
-	public String toString() {
-		return "MeetBoardVO [meet_board_posting_no=" + meet_board_posting_no
-				+ ", mem_mail=" + mem_mail + ", meet_board_nick="
-				+ meet_board_nick + ", meet_board_title=" + meet_board_title
-				+ ", meet_hits=" + meet_hits + ", meet_board_cont="
-				+ meet_board_cont + ", meet_board_wri_date="
-				+ meet_board_wri_date + ", flow_code=" + flow_code + "]";
-	}
 	
 }
