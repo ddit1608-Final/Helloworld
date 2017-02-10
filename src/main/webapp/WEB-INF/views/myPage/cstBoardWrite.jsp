@@ -4,11 +4,6 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/cstBoard.css">
 <article>
-	<div>
-		<a href="<%=request.getContextPath()%>/cst/cstBoardList"><img
-			id="freeLogo"
-			src="<%=request.getContextPath()%>/resources/images/cstboard.png"></a>
-	</div>
 
 	<form id="cstWriteForm" name="cstWriteForm" method="post"
 		action="cstBoardWrite">

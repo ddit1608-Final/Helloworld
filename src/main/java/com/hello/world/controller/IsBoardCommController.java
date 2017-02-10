@@ -46,7 +46,7 @@ public class IsBoardCommController {
 		/*String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="
 				+ ibcVO.getIfshrboard_posting_no();*/
 		
-		Map<String, WebSocketSession> users = sjs.getUsers();
+		Map<String, String> users = sjs.getUsers();
 		
 		
 		String today = "";

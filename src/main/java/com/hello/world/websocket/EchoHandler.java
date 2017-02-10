@@ -12,25 +12,25 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class EchoHandler extends TextWebSocketHandler{
+public class EchoHandler extends TextWebSocketHandler {
 
-	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
+	private Map<String, String> users = new ConcurrentHashMap<String, String>();
 
-	public Map<String, WebSocketSession> getUsers() {
+	public Map<String, String> getUsers() {
 		return users;
 	}
 
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session)
 			throws Exception {
-		
+
 		super.afterConnectionEstablished(session);
 		log(session.getId() + " 연결 됨");
-		
+
 		Map<String, Object> map = session.getAttributes();
-        String id = (String)map.get("userId");
-		
-		users.put(session.getId(), session);
+		String id = (String) map.get("userId");
+
+		users.put(id, session.getId());
 	}
 
 	@Override
@@ -44,10 +44,7 @@ public class EchoHandler extends TextWebSocketHandler{
 	protected void handleTextMessage(WebSocketSession session,
 			TextMessage message) throws Exception {
 		log(session.getId() + "로부터 메시지 수신: " + message.getPayload());
-		for (WebSocketSession s : users.values()) {
-			s.sendMessage(message);
-			log(s.getId() + "에 메시지 발송: " + message.getPayload());
-		}
+
 	}
 
 	@Override
