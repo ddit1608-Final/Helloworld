@@ -235,7 +235,7 @@ footer {
 	var wsocket;
     var sock = null;
 	  $(document).ready(function() {
-		  sock = new SockJS("/world/echo-ws");
+		  sock = new SockJS("http://"+document.domain+":8181/world/echo-ws");
 		  sock.onopen = function(){
 			  sock.send("반가워");
 		  }
@@ -260,7 +260,8 @@ footer {
 	function connect() {
 
 		if (wsocket != 'undefined') {
-			wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
+			//wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
+			wsocket = new SockJS("http://"+document.domain+":8181/world/chat.sockjs");
 			wsocket.onopen;
 		}
 	}

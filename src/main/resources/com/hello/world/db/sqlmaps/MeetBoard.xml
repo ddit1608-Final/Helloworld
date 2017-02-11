@@ -6,6 +6,7 @@
 	<typeAlias alias ="int" type="java.lang.Integer"/>
 	<typeAlias alias="meetboard" type="com.hello.world.dto.MeetBoardVO"/>
 	<typeAlias alias="mem" type="com.hello.world.dto.MemVO"/>
+	<typeAlias alias="testVO" type="com.hello.world.dto.testVO" />
 
 	<select id="listMeetBoard" parameterClass="str" resultClass="meetboard">
 		select * from meet_board where mem_mail=#mem_mail#
@@ -16,8 +17,8 @@
 	</select>
 
 	<insert id="insertMeetBoard" parameterClass="meetboard">
-		insert into meet_board(meet_board_posting_no, mem_mail, meet_board_title, meet_board_cont, flow_code)
-		values(meet_board_posting_no.nextval,#mem_mail#,#meet_board_title#,#meet_board_cont#, #flow_code#)		
+		insert into meet_board(meet_board_posting_no, mem_mail, meet_board_title, meet_board_cont, flow_code, meet_board_pwd)
+		values(meet_board_posting_no.nextval,#mem_mail#,#meet_board_title#,#meet_board_cont#, #flow_code#, #meet_board_pwd#)		
 	</insert>
 	<update id="updateMeetBoard" parameterClass="meetboard">
 			update meet_board
@@ -26,8 +27,10 @@
 			where meet_board_posting_no=#meet_board_posting_no#
 	</update>
 	
-	 <select id="listAllMeetBoard" parameterClass="str" resultClass="meetboard">
-			select * from memmeet where meet_board_posting_no=#meet_board_posting_no#
+	 <select id="listAllMeetBoard" parameterClass="meetboard" resultClass="meetboard">
+			<!-- select * from memmeet where meet_board_posting_no=#meet_board_posting_no# -->
+			select * from memmeet where flow_code like '%'||#flow_code#||'%' and 
+			meet_board_title like '%'||#key#||'%'
 	</select> 
 	
 	<delete id="deleteMeetBoard" parameterClass="str">
@@ -35,8 +38,19 @@
 			from meet_board
 			where meet_board_posting_no=#meet_board_posting_no#
 	</delete>
-	<select id="totalMeetBoard" parameterClass="str" resultClass="int">
-		select count(*) from meet_Board where meet_board_title like '%'||#meet_board_title#||'%'
+	<select id="totalMeetBoard" parameterClass="meetboard" resultClass="int">
+		<!-- select count(*) from meet_Board where meet_board_title like '%'||#meet_board_title#||'%' -->
+		select count(*) from meet_Board where flow_code like '%'||#flow_code#||'%' and 
+		meet_board_title like '%'||#key#||'%'
+	</select>
+	
+	<select id="totalMeetBoardMyPage" parameterClass="testVO" resultClass="int">
+		<!-- select count(*) from meet_Board where meet_board_title like '%'||#meet_board_title#||'%' -->
+		select count(*) from meet_Board where $type$ like '%'||#key#||'%'
+	</select>
+	
+	<select id="listAllMeetBoardMyPage" parameterClass="testVO" resultClass="meetboard" >
+		select * from memmeet where $type$ like '%'||#key#||'%' order by meet_board_posting_no desc
 	</select>
 
 

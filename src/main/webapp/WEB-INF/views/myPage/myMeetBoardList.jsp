@@ -29,29 +29,29 @@
 			</tr>
 
 			<c:choose>
-				<c:when test="${qnaTotal<=0}">
+				<c:when test="${total<=0}">
 					<tr>
 						<td width="100%" colspan="6" align="center" height="23">
-							There are no registered qnaboard.</td>
+							There are no registered meetboard.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${qnaBoardList}" var="myBoardVO">
+					<c:forEach items="${meetBoardList}" var="myBoardVO">
 						<tr>
-							<td style="text-align: center;" colspan="2">QnA게시판</td>
+							<td style="text-align: center;" colspan="2">모임게시판</td>
 							<td style="text-align: center;"><a
-								href="/world/free/freeBoardDetail.do?freeboard_posting_no=${myBoardVO.qnaboard_posting_no}">${myBoardVO.qnaboard_title}</a>
+								href="/world/free/freeBoardDetail.do?freeboard_posting_no=${myBoardVO.meet_board_posting_no}">${myBoardVO.meet_board_title}</a>
 							</td>
 							<%-- <td>${myBoardVO.freeboard_cont}</td> --%>
 							<td style="text-align: center;">${myBoardVO.mem_nick}</td>
 							<%-- <td>${loginUser.mem_nick}</td> --%>
 							<td style="text-align: center;"><fmt:formatDate
-									value="${myBoardVO.qnaboard_wridate}" /></td>
-							<td style="text-align: center;">${ myBoardVO.qnaboard_hits}</td>
+									value="${myBoardVO.meet_board_wri_date}" /></td>
+							<td style="text-align: center;">${ myBoardVO.meet_hits}</td>
 						</tr>
 					</c:forEach>
 					<tr>
-						<td colspan="6" style="text-align: center;">${freePaging}</td>
+						<td colspan="6" style="text-align: center;">${meetPaging}</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>

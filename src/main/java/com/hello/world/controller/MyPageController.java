@@ -135,9 +135,9 @@ public class MyPageController {
 		case "Meet_Board":
 			ArrayList<MeetBoardVO> meetBoardList = null;
 			String meetPaging = null;
-			/*try {
+			try {
 				total = qnaBoardService.getTotal(testVO)+"";
-				meetBoardList = meetService.listAllMeetBoard(
+				meetBoardList = meetService.listAllMeetBoardMyPage(
 						Integer.parseInt(tpage), testVO);
 				meetPaging = qnaBoardService.pageNumber(Integer.parseInt(tpage),
 						testVO);
@@ -147,7 +147,7 @@ public class MyPageController {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}*/
+			}
 
 			model.addAttribute("meetBoardList", meetBoardList);
 			model.addAttribute("meetPaging", meetPaging);
