@@ -154,9 +154,11 @@ function deleteIsComm(ifshrboard_ans_code, indexTdd, event){
 		}
 		
 	})
+}
 
-	
-}	
+
+
+
 	
 function is_src(){
 

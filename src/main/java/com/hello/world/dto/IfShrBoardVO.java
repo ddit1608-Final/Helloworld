@@ -13,10 +13,14 @@ public class IfShrBoardVO {
 	private String mem_mail;			  // 작성자 메일
 	private String mem_nick;			  // 작성자 메일
 	private String mem_phn;				  // 작성자 연락처
+	private String ifshrboard_posting_type; // 게시글 말머리		  
 	
-	
-	
-	
+	public String getIfshrboard_posting_type() {
+		return ifshrboard_posting_type;
+	}
+	public void setIfshrboard_posting_type(String ifshrboard_posting_type) {
+		this.ifshrboard_posting_type = ifshrboard_posting_type;
+	}
 	public String getMem_phn() {
 		return mem_phn;
 	}

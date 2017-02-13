@@ -82,11 +82,10 @@
 	</form>
 	
 	<form action="writeComm" id="writeComm" name="formm" method="post">
-		<label>★★★★★★댓글★★★★★★</label> <br /> 
 		<table class="table table-condensed">
 			<thead>
 				<tr>
-					<td colspan="3">댓글이 ${freeBoardCommListCnt }개 달렸습니다.</td>
+					<td colspan="3"><span class="badge">댓글  ${freeBoardCommListCnt}</span></td>
 				</tr>
 			</thead>
 			<tbody>

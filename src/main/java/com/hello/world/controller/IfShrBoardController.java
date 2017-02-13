@@ -1,13 +1,13 @@
 package com.hello.world.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,7 +71,6 @@ public class IfShrBoardController {
 
 		ArrayList<IfShrBoardVO> ifShrBoardList = null;
 		String paging = null;
-
 		try {
 			ifShrBoardList = ifShrBoardService.getIsBoardList(
 					Integer.parseInt(tpage), testVO);
@@ -236,4 +235,9 @@ public class IfShrBoardController {
 
 		return url;
 	}
-}
+
+		
+	}
+	
+	
+	
