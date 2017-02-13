@@ -15,33 +15,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.hello.world.dto.IfShrBoardVO;
-import com.hello.world.dto.IsBoardCommVO;
+import com.hello.world.dto.DogBoardCommVO;
+import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
-import com.hello.world.service.IfShrBoardService;
-import com.hello.world.service.IsBoardCommService;
+import com.hello.world.service.DogBoardCommService;
+import com.hello.world.service.DogBoardService;
 import com.hello.world.service.PostingService;
 
 @Controller
-@RequestMapping("/is")
-public class IfShrBoardController {
+@RequestMapping("/dog")
+public class DogBoardController {
 
 	
 	@Autowired
-	IfShrBoardService ifShrBoardService;
+	DogBoardService dogBoardService;
 	
 	@Autowired
-	IsBoardCommService isBoardCommService;
+	DogBoardCommService dogBoardCommService;
 	@Autowired
 	PostingService postingService;
 	
-	@RequestMapping("/ifShrBoardList.do")
-	public String ifShareBoardList(HttpSession session, Model model,
+	@RequestMapping("/dogBoardList")
+	public String dsBoardList(HttpSession session, Model model,
 			HttpServletRequest request) throws ServletException, IOException {
 		String total="";
-		String url = "ifShrBoard/ifShrBoardList";
+		String url = "dogBoard/dogBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
 		
@@ -77,10 +77,10 @@ public class IfShrBoardController {
 		
 		testVO testVO = new testVO();
 		testVO.setKey(key);
-		testVO.setType("ifshrboard_title");
+		testVO.setType("dsboard_title");
 		
 			try {
-				total= ifShrBoardService.getTotal(testVO)+"";
+				total= dogBoardService.getTotal(testVO)+"";
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -88,29 +88,27 @@ public class IfShrBoardController {
 		
 		/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
 
-		ArrayList<IfShrBoardVO> ifShrBoardList = null;
+		ArrayList<DogBoardVO> dogBoardList = null;
 		String paging = null;
 		try {
-			ifShrBoardList = ifShrBoardService.getIsBoardList(
+			dogBoardList = dogBoardService.getDsBoardList(
 					Integer.parseInt(tpage), testVO);
-			//System.out.println("테스트입니다 "+ifShrBoardList);
-			paging = ifShrBoardService.pageNumber(Integer.parseInt(tpage), testVO);
+			//System.out.println("테스트입니다 "+dsboardList);
+			paging = dogBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		model.addAttribute("ifShrBoardList", ifShrBoardList);
-		//int n = ifShrBoardList.size();
-		//model.addAttribute("ifShrBoardListSize", n);
+		model.addAttribute("dogBoardList", dogBoardList);
 		model.addAttribute("paging", paging);
 		model.addAttribute("searchCnt",total);
 		return url;
 	}
 	
-	@RequestMapping(value="/ifShrBoardWriteForm.do",method=RequestMethod.GET)
-	public String ifShrBoardWriteForm(HttpSession session,Model model)throws ServletException,IOException{
-		String url="ifShrBoard/ifShrBoardWrite";
+	@RequestMapping(value="/dogBoardWrite",method=RequestMethod.GET)
+	public String dsBoardWriteForm(HttpSession session,Model model)throws ServletException,IOException{
+		String url="dogBoard/dogBoardWrite";
 		
 		MemVO loginUser=(MemVO)session.getAttribute("loginUser");
 		ArrayList<PostingTypeVO> typeList = new ArrayList<PostingTypeVO>();
@@ -125,14 +123,14 @@ public class IfShrBoardController {
 		return url;
 	}
 	
-	@RequestMapping(value="/ifShrBoardWrite.do",method=RequestMethod.POST)
-	public String ifShrBoardWrite(IfShrBoardVO ifShrBoardVO,HttpSession session) throws ServletException,IOException{
-		String url="redirect:ifShrBoardList.do";
+	@RequestMapping(value="/dogBoardWrite",method=RequestMethod.POST)
+	public String dsBoardWrite(DogBoardVO dogboardVO,HttpSession session) throws ServletException,IOException{
+		String url="redirect:dogBoardList";
 		MemVO loginUser = (MemVO)session.getAttribute("loginUser");
-		String a =ifShrBoardVO.getIfshrboard_cont().replace("\r\n","<br>");
-		ifShrBoardVO.setIfshrboard_cont(a);
+		String a =dogboardVO.getDsboard_cont().replace("\r\n","<br>");
+		dogboardVO.setDsboard_cont(a);
 		try {
-			if(ifShrBoardService.insertIfShrBoard(ifShrBoardVO)==1){
+			if(dogBoardService.insertDsBoard(dogboardVO)==1){
 				url+="?result:success";
 			}else{
 				url+="?result:fail";
@@ -145,16 +143,16 @@ public class IfShrBoardController {
 		return url;
 	}
 	
-	@RequestMapping(value="/ifShrBoardDetail.do",method=RequestMethod.GET)
-	public String ifShrBoardDetail(@RequestParam String ifshrboard_posting_no,HttpSession session,Model model
+	@RequestMapping(value="/dogBoardDetail",method=RequestMethod.GET)
+	public String dsBoardDetail(@RequestParam String dsboard_posting_no,HttpSession session,Model model
 			,HttpServletRequest request)
 		throws ServletException,IOException{
 			
-		String url = "ifShrBoard/ifShrBoardDetail";
+		String url = "dogBoard/dogBoardDetail";
 		
-		ArrayList<IsBoardCommVO> isBoardCommList = new ArrayList<IsBoardCommVO>();
-		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
-		ifShrBoardService.updateHits(ifShrBoardVO);
+		ArrayList<DogBoardCommVO> dogBoardCommList = new ArrayList<DogBoardCommVO>();
+		DogBoardVO dogBoardVO = dogBoardService.getDsBoardDetail(dsboard_posting_no);
+		dogBoardService.updateHits(dogBoardVO);
 		ArrayList<PostingTypeVO> typeList = new ArrayList<PostingTypeVO>();
 		try {
 			typeList=postingService.listPostingVO();
@@ -164,65 +162,65 @@ public class IfShrBoardController {
 		}
 		model.addAttribute("typeList",typeList);
 		try {
-			isBoardCommList = isBoardCommService.listIsBoardComm(ifshrboard_posting_no);
+			dogBoardCommList = dogBoardCommService.listDsBoardComm(dsboard_posting_no);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
-		model.addAttribute("isBoardCommList",isBoardCommList);
-		model.addAttribute("isBoardCommListCnt", isBoardCommList.size());
+		model.addAttribute("dogBoardVO",dogBoardVO);
+		model.addAttribute("dogBoardCommList",dogBoardCommList);
+		model.addAttribute("dogBoardCommListCnt", dogBoardCommList.size());
 		
 		return url;
 	}
 	
 	// 게시글 수정 폼 입장
-	@RequestMapping(value="/ifShrBoardUpdateForm.do",method=RequestMethod.GET)
-	public String ifShrBoardUpdateForm(@RequestParam String ifshrboard_posting_no,HttpSession session,Model model)
+	@RequestMapping(value="/dogBoardUpdate",method=RequestMethod.GET)
+	public String dsBoardUpdateForm(@RequestParam String dsboard_posting_no,HttpSession session,Model model)
 		throws ServletException,IOException{
-		String url="ifShrBoard/ifShrBoardUpdate";
+		String url="dogBoard/dogBoardUpdate";
 		
-		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
-		String a =ifShrBoardVO.getIfshrboard_cont().replace("<br>","\r\n");
-		ifShrBoardVO.setIfshrboard_cont(a);
-		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
+		DogBoardVO dogBoardVO = dogBoardService.getDsBoardDetail(dsboard_posting_no);
+		String a =dogBoardVO.getDsboard_cont().replace("<br>","\r\n");
+		dogBoardVO.setDsboard_cont(a);
+		model.addAttribute("dogBoardVO",dogBoardVO);
 		
 		
 		
 		return url;
 	}
 	// 게시글 수정 완료
-	@RequestMapping(value="/ifShrBoardUpdate.do",method=RequestMethod.POST)
-	public String ifShrBoardUpdate(IfShrBoardVO ifShrBoardVO,HttpSession session)
+	@RequestMapping(value="/dogBoardUpdate",method=RequestMethod.POST)
+	public String dsBoardUpdate(DogBoardVO dogBoardVO,HttpSession session)
 		throws ServletException,IOException{
-		String url = "redirect:ifShrBoardList.do";
+		String url = "redirect:dogBoardList";
 		
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
-		String a =ifShrBoardVO.getIfshrboard_cont().replace("\r\n","<br>");
-		ifShrBoardVO.setIfshrboard_cont(a);
-		ifShrBoardService.updateIfShrBoard(ifShrBoardVO);
+		String a =dogBoardVO.getDsboard_cont().replace("\r\n","<br>");
+		dogBoardVO.setDsboard_cont(a);
+		dogBoardService.updateDsBoard(dogBoardVO);
 		
 		return url;
 		
 	}
 	
-	@RequestMapping(value="/deleteIfShrBoard.do",method=RequestMethod.GET)
-	public String deleteIfShrBoard(@RequestParam String ifshrboard_posting_no,HttpSession session)
+	@RequestMapping(value="/deleteDogBoard",method=RequestMethod.GET)
+	public String deleteDsBoard(@RequestParam String dsboard_posting_no,HttpSession session)
 		throws ServletException,IOException{
 		
-		String url = "redirect:ifShrBoardList.do";
+		String url = "redirect:dogBoardList";
 		
-		ifShrBoardService.deleteIfShrBoard(ifshrboard_posting_no);
+		dogBoardService.deleteDsBoard(dsboard_posting_no);
 		
 		return url;
 		
 	}
 	// 검색기능 추가중
-	@RequestMapping(value="/ifShrBoardSearch.do",method = RequestMethod.POST)
-	public String getIsBoardList(HttpServletRequest request,Model model)
+	@RequestMapping(value="/dogBoardSearch",method = RequestMethod.POST)
+	public String getDsBoardList(HttpServletRequest request,Model model)
 			throws ServletException,IOException{
 		String total = "";
-		String url = "ifShrBoard/ifShrBoardList";
+		String url = "dogBoard/dogBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
 		String type= request.getParameter("type");
@@ -238,7 +236,7 @@ public class IfShrBoardController {
 		model.addAttribute("key", key);
 		model.addAttribute("type",type);
 		model.addAttribute("tpage", tpage);
-		ArrayList<IfShrBoardVO> isBoardList = null;
+		ArrayList<DogBoardVO> dogBoardList = null;
 		String paging = null;
 		
 		testVO testVO = new testVO();
@@ -247,24 +245,21 @@ public class IfShrBoardController {
 		testVO.setType(type);
 		
 		try {
-			total= ifShrBoardService.getTotal(testVO)+"";
+			total= dogBoardService.getTotal(testVO)+"";
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
 		try {
-			/*isBoardList = ifShrBoardService.getIsBoardList(
-					Integer.parseInt(tpage), key);*/
-			isBoardList = ifShrBoardService.getIsBoardList(
+			dogBoardList = dogBoardService.getDsBoardList(
 					Integer.parseInt(tpage), testVO);
-			paging = ifShrBoardService.pageNumber(Integer.parseInt(tpage), testVO);
+			paging = dogBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		model.addAttribute("ifShrBoardList", isBoardList);
-		int n = isBoardList.size();
+		model.addAttribute("dogBoardList", dogBoardList);
+		int n = dogBoardList.size();
 		model.addAttribute("searchCnt",total);
 		model.addAttribute("paging", paging);
 

@@ -25,7 +25,7 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 		ArrayList<IfShrBoardVO> ifShrBoardList = new ArrayList<IfShrBoardVO>();
 
 		ifShrBoardList = (ArrayList<IfShrBoardVO>) client.queryForList(
-				"ifAllIfShrBoard", startRow, counts);
+				"listAllIfShrBoard", startRow, counts);
 		System.out.println("test입니당" + ifShrBoardList);
 		return ifShrBoardList;
 	}

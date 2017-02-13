@@ -73,7 +73,7 @@ function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,ind
 							'<td style="work-break:break-all;"id="freeBoardComm_cont'+aa+'">'
 							+freeboard_comm_contt+'<input type="button" value="추천"id="chu'+indexTd+'">'+
 							'<input type="button" value="비추천" id="bchu"'+indexTd+'></td>'+
-						 	'<td>'+data+'</td>'+
+						 	'<td>'+data.today+'</td>'+
 						 	'<td><a href="#" onclick="updateFreeCommForm('+aa+','+indexTd+',event)" id="aa">수정</a>/'+
 							'<a href="#" onclick="deleteFreeComm('+aa+', '+indexTdd+', event)"id="aa">삭제</a></td></tr>'
 					

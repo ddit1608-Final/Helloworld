@@ -91,9 +91,9 @@
 			<tbody>
 				<tr>
 					<td style="width:100px">작성자</td>
-					<td style="width:800px">내용</td>
+					<td style="width:1000px">내용</td>
 					<td style="width:200px">작성날짜</td>
-					<td></td>
+					<td style="width:90px">비고</td>
 				</tr>
 			</tbody>
 			</table>
@@ -129,7 +129,8 @@
 						    </div>
 						    </div>
 						    <!-- 쪽지 모달 끝 -->
-						    <td style="width:70%;  word-break:break-all;" id="freeBoardComm_cont${status.count}" name="freeBoardComm_cont${status.count}">${ freeBoardComm.freeboard_comm_cont}
+						    <td style="width:70%;  word-break:break-all;" id="freeBoardComm_cont${status.count}" name="freeBoardComm_cont${status.count}">
+						    	${ freeBoardComm.freeboard_comm_cont}
 							<input type="button" value="추천">
 							<input type="button" value="비추천"></td>
 							<td>${ freeBoardComm.freeboard_comm_wridate }</td>
