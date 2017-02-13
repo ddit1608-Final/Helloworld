@@ -14,9 +14,30 @@ public class MeetBoardVO {
 	private String flow_code; // 말머리
 	private String meet_board_pwd;
 	private String key;
+	private String mem_phn;
+
+	@Override
+	public String toString() {
+		return "MeetBoardVO [meet_board_posting_no=" + meet_board_posting_no
+				+ ", mem_mail=" + mem_mail + ", mem_nick=" + mem_nick
+				+ ", meet_board_title=" + meet_board_title + ", meet_hits="
+				+ meet_hits + ", meet_board_cont=" + meet_board_cont
+				+ ", meet_board_wri_date=" + meet_board_wri_date
+				+ ", flow_code=" + flow_code + ", meet_board_pwd="
+				+ meet_board_pwd + ", key=" + key + ", mem_phn=" + mem_phn
+				+ "]";
+	}
 
 	public String getMem_nick() {
 		return mem_nick;
+	}
+
+	public String getMem_phn() {
+		return mem_phn;
+	}
+
+	public void setMem_phn(String mem_phn) {
+		this.mem_phn = mem_phn;
 	}
 
 	public void setMem_nick(String mem_nick) {

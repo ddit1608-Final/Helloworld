@@ -96,6 +96,9 @@ public class MeetBoardController {
 			IOException {
 		String url = "meetBoard/meetBoardDetail";
 
+		MeetBoardVO meetBoardVO = meetService.getMeetDetail(meet_board_posting_no);
+		/*meetService.updateMeetBoard(meetBoardVO);*/
+		
 		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
 
 		try {
@@ -106,8 +109,6 @@ public class MeetBoardController {
 		}
 		model.addAttribute("flowList", flowList);
 
-		MeetBoardVO meetBoardVO = meetService
-				.getMeetDetail(meet_board_posting_no);
 
 		model.addAttribute("meetBoardVO", meetBoardVO);
 

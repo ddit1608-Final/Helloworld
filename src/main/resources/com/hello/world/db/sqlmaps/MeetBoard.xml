@@ -9,11 +9,11 @@
 	<typeAlias alias="testVO" type="com.hello.world.dto.testVO" />
 
 	<select id="listMeetBoard" parameterClass="str" resultClass="meetboard">
-		select * from meet_board where mem_mail=#mem_mail#
+		select * from memmeet where meet_board_posting_no=#meet_board_posting_no#
 	</select>
 
 	<select id="getMeetBoard" parameterClass="str" resultClass="meetboard">
-		select * from meet_board where meet_board_posting_no=#meet_board_posting_no#
+		select * from memmeet where meet_board_posting_no=#meet_board_posting_no#
 	</select>
 
 	<insert id="insertMeetBoard" parameterClass="meetboard">
