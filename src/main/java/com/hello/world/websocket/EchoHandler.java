@@ -4,19 +4,18 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.hello.world.dto.MessageVO;
+
 public class EchoHandler extends TextWebSocketHandler {
 
-	private Map<String, String> users = new ConcurrentHashMap<String, String>();
+	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 
-	public Map<String, String> getUsers() {
+	public Map<String, WebSocketSession> getUsers() {
 		return users;
 	}
 
@@ -30,7 +29,7 @@ public class EchoHandler extends TextWebSocketHandler {
 		Map<String, Object> map = session.getAttributes();
 		String id = (String) map.get("userId");
 
-		users.put(id, session.getId());
+		users.put(id, session);
 	}
 
 	@Override
@@ -44,6 +43,12 @@ public class EchoHandler extends TextWebSocketHandler {
 	protected void handleTextMessage(WebSocketSession session,
 			TextMessage message) throws Exception {
 		log(session.getId() + "로부터 메시지 수신: " + message.getPayload());
+		MessageVO messageVO = MessageVO.converMessage(message.getPayload());
+		String user = messageVO.getTo();
+		System.err.println(users.get(user));
+		users.get(user).sendMessage(
+				new TextMessage(session.getRemoteAddress().getHostName()
+						+ " ->>" + messageVO.getMessage()));
 
 	}
 

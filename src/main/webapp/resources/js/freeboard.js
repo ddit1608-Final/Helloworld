@@ -79,6 +79,10 @@ function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,ind
 					
 					$('#freecomm_go').append(a);
 					$('#freeboard_comm_contt').val("");
+					var message = {};
+					message.to = data.mem_mail;
+					message.message = "작성하신글에 댓글이 달렸습니다."
+					wsocket.send(JSON.stringify(message));
 				},
 				error : function(error) {
 					alert("22");

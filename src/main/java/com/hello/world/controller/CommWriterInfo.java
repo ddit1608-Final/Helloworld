@@ -1,17 +1,11 @@
 package com.hello.world.controller;
 
+import org.springframework.web.socket.WebSocketSession;
+
 public class CommWriterInfo {
 	String mem_mail;
-	String wsSession;
 	String today;
 
-	public String getWsSession() {
-		return wsSession;
-	}
-
-	public void setWsSession(String wsSession) {
-		this.wsSession = wsSession;
-	}
 
 	public String getMem_mail() {
 		return mem_mail;

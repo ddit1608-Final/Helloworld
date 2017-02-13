@@ -253,43 +253,22 @@ footer {
 				$("message").val("");
 			}
 		  })
+		wsocket.onmessage = function appendMessage(msg) {
+					alert(msg.data);
+
+					Push.create('이런!', {
+						body : msg.data,
+						timeout : 5000
+					});
+
+				}
 	  });
 
 	function connect() {
-
-		if (wsocket != 'undefined') {
-			//wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
-			wsocket = new SockJS("http://"+document.domain+":8181/world/chat.sockjs");
-			wsocket.onopen;
-		}
+		wsocket = new SockJS("http://"+document.domain+":8181/world/chat.sockjs");
+		wsocket.onopen;
 	}
 
-	function onClose(evt) {
-		appendMessage("연결을 끊었습니다.");
-	}
-
-	function disconnect() {
-		wsocket.close();
-	}
-
-	function send(msg) {
-		var socket = wsocket;
-		socket.send(msg);
-	}
-
-	function onMessage(evt) {
-		appendMessage(evt);
-	}
-
-	function appendMessage(msg) {
-		function push() {
-			Push.create('이런!', {
-				body : msg,
-				timeout : 5000
-			});
-		}
-		;
-	}
 </script>
 
 <body>

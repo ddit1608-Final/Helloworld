@@ -52,9 +52,9 @@ public class FreeBoardCommController {
 	@RequestMapping(value = "/writeComm", method = RequestMethod.POST)
 	@ResponseBody
 	public CommWriterInfo writeComm(HttpServletRequest request,@RequestBody Map<String,Object>map,Model model) {
-		Map<String, String> users = sjs.getUsers();
+		Map<String, WebSocketSession> users = sjs.getUsers();
 		
-		String wsSession = "";
+		WebSocketSession wsSession = null;
 		String writer = "";
 		String today = "";
 		String freeboard_comm_contt = (String) map.get("freeboard_comm_contt");
@@ -81,7 +81,6 @@ public class FreeBoardCommController {
 			wsSession = sjs.getUsers().get(writer);
 			
 			cwi.setMem_mail(writer);
-			cwi.setWsSession(wsSession);
 			cwi.setToday(today);
 			
 			
