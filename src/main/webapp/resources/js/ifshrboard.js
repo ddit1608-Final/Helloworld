@@ -95,7 +95,7 @@ function updateIsCommForm(indexTd, event) {
 
 	$
 			.ajax({
-				url : "updateIsBoardCommForm.do",
+				url : "updateIsBoardCom1mForm.do",
 				type : "post",
 				data : arr,
 				success : function(data) {
@@ -154,9 +154,11 @@ function deleteIsComm(ifshrboard_ans_code, indexTdd, event){
 		}
 		
 	})
+}
 
-	
-}	
+
+
+
 	
 function is_src(){
 

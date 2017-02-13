@@ -7,11 +7,11 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/signup.css">
 <article>
-	<form action="join" method="post" id="joinForm" class="form-horizontal">
+	<form id="joinForm" class="form-horizontal">
 		<div style="margin: auto;" class="form-group">
 			<label class="control-label col-sm-2" for="mem_mail">이메일</label> <input
 				class="form-control" type="email" id="mem_mail" name="mem_mail"
-				value="${memVO.mem_mail }" readonly="readonly"> <label
+				value="${memVO.mem_mail }" readonly="readonly" onclick="edit('mem_mail');"> <label
 				class="control-label col-sm-2" for="mem_pw">패스워드</label> <input
 				class="form-control" type="text" id="mem_pw" name="mem_pw"
 				value="${memVO.mem_pw }" readonly="readonly"> <br /> <label
@@ -42,7 +42,7 @@
 			<input class="form-control" type="text" id="mem_addr" name="mem_addr" value="${memVO.mem_addr }" readonly="readonly">
 			<br />
 			
-			<input type="button" value="수정">
+			<input type="button" value="수정하기" onclick="memberUpdate();">
 			<input type="button" value="뒤로" onclick="history.back()">
 		</div>
 	</form>

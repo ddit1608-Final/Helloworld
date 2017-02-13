@@ -17,7 +17,6 @@
 		p:configLocation="classpath:com/hello/world/db/config/SqlMapConfig.xml"
 		p:dataSource-ref="dataSource" />
 
-
 </beans>
 
 

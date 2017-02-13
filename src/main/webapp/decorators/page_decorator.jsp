@@ -27,13 +27,15 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/ifshrboard.js"></script>
 <script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/admin.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/mypage.js"></script>
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/push.min.js"></script>
-
 <link href="<%=request.getContextPath()%>/resources/css/hw.css"
 	rel="stylesheet">
-
 </head>
 
 
@@ -225,52 +227,48 @@ footer {
 	font-size: 12pt;
 	color: #a31313;
 }
-
-
 </style>
 
 <script>
 	var wsocket;
+    var sock = null;
+	  $(document).ready(function() {
+		  sock = new SockJS("http://"+document.domain+":8181/world/echo-ws");
+		  sock.onopen = function(){
+			  sock.send("반가워");
+		  }
+		 
+		  sock.onmessage = function(evt){
+			  $("#chatMessage").append(evt.data + "<br/>");
+		  }
+		
+		  sock.onclose= function(){
+			  sock.send("퇴장");
+		  }
+		
+		  $("#sendMessage").click(function(){
+			if($("#message").val() !=""){
+				sock.send($("#message").val());
+				$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
+				$("message").val("");
+			}
+		  })
+		wsocket.onmessage = function appendMessage(msg) {
+					alert(msg.data);
+
+					Push.create('이런!', {
+						body : msg.data,
+						timeout : 5000
+					});
+
+				}
+	  });
 
 	function connect() {
-		
-		wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
+		wsocket = new SockJS("http://"+document.domain+":8181/world/chat.sockjs");
 		wsocket.onopen;
-		
-		wsocket.onmessage = onMessage("${loginUser.mem_mail }");
-		send("${loginUser.mem_mail }");
-		wsocket.onclose = onClose;
-	}
-	
-	function onClose(evt) {
-		appendMessage("연결을 끊었습니다.");
 	}
 
-	function disconnect() {
-		wsocket.close();
-	}
-
-	function send(msg) {
-		var socket = wsocket;
-		socket.send(msg);
-	}
-
-	function onMessage(evt) {
-		
-		
-		appendMessage(evt);
-	}
-	
-
-	function appendMessage(msg) {
-		function push() {
-			Push.create('이런!', {
-				body : msg,
-				timeout : 5000
-			});
-		}
-		;
-	}
 </script>
 
 <body>
@@ -278,13 +276,13 @@ footer {
 		<c:choose>
 			<c:when test="${param.loginResult == 'pwdMismatch' }">
 				<script>
-				alert("패스워드가 일치 하지 않습니다.");
-			</script>
+					alert("패스워드가 일치 하지 않습니다.");
+				</script>
 			</c:when>
 			<c:when test="${param.loginResult == 'notexist' }">
 				<script>
-				alert("아이디가 존재 하지 않습니다.");
-			</script>
+					alert("아이디가 존재 하지 않습니다.");
+				</script>
 			</c:when>
 		</c:choose>
 	</c:if>
@@ -326,68 +324,92 @@ footer {
           <span class="glyphicon glyphicon-home"></span>
         </a></li><br> -->
 
-		<li><a href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구인</a></li>
-        <li><a href="<%=request.getContextPath()%>/worknet/worknet.do">구직</a></li>
-        <li><a href="<%=request.getContextPath()%>/news/news?keyword=IT">IT소식</a></li>
-        <li><a href="<%=request.getContextPath()%>/free/freeBoardList.do">자유게시판</a></li>
-        <li><a href="<%=request.getContextPath()%>/qna/qnaBoardList.do">QnA게시판</a></li>
-         <li><a href="<%=request.getContextPath()%>/meet/meetBoardList.do">모임게시판</a></li>
-        <li><a href="<%=request.getContextPath()%>/is/ifShrBoardList.do">정보공유</a></li>
-		<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
-        <li><a href="<%=request.getContextPath()%>/dog/dogBoardList">개소리</a></li>
-        <li><a href="#"></a></li>
-    </ul>
-    </div>
-    
-    </div>
-    
-    
-	<div class="collapse navbar-collapse" id="myNavbar" style="background-color: #d9d9d9;">
-	<form method="post" id="login" name="login" style="margin: 0;" 
-			action="<%=request.getContextPath()%>/member/login">
-			<input name="prePage" hidden="hidden" value="<%=request.getRequestURL()%>">
-			<input name="param" id= "param" hidden="hidden" value="1">
-      <ul class="nav navbar-nav">
-      	<c:choose>
-      		<c:when test="${loginUser eq null }">
-      			<li><input class="login" id="login_mem_mail" name="login_mem_mail" type="text" placeholder=" 이메일"></li>
-				<li><input class="login" id="login_mem_pw" name="login_mem_pw" type="password" placeholder=" 비밀번호" onkeyup="key_enter(event);"></li>
-		        <li><input type="button" value="로그인" id="loginbtn" onclick="login_go();"></li>
-				<li id="check" style="margin: 13px auto; width: 5%;"><label
-					style="vertical-align: text-botom;" for="check2" id="auto">
-						<input id="check2" type="checkbox"
-						style="vertical-align: text-top;"> 자동
-				</label></li>
-		    	<li><a href="<%=request.getContextPath()%>/member/joinMenu" id="aa">회원가입</a></li>
-      		</c:when>
-      		<c:otherwise>
-      			<li id="mem_mail" name="mem_mail">(Level) ${loginUser.mem_nick } (POINT : ${myPoint }) </li>
-				<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
-				<li><a href="#" id="aa">반응 ()</a></li>
-				<li><a href="<%=request.getContextPath()%>/mypage/main" id="aa">마이페이지</a></li>
-				<c:if test="${loginUser.mem_mail == 'jihyunkkkk@nate.com' || 
+						<li><a
+							href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구인</a></li>
+						<li><a
+							href="<%=request.getContextPath()%>/worknet/worknet.do">구직</a></li>
+						<li><a
+							href="<%=request.getContextPath()%>/news/news?keyword=IT">IT소식</a></li>
+						<li><a
+							href="<%=request.getContextPath()%>/free/freeBoardList.do">자유게시판</a></li>
+						<li><a
+							href="<%=request.getContextPath()%>/qna/qnaBoardList.do">QnA게시판</a></li>
+						<li><a
+							href="<%=request.getContextPath()%>/meet/meetBoardList.do">모임게시판</a></li>
+						<li><a
+							href="<%=request.getContextPath()%>/is/ifShrBoardList.do">정보공유</a></li>
+						<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
+						<li><a href="<%=request.getContextPath()%>/dog/dogBoardList">개소리</a></li>
+						<li><a href="#"></a></li>
+					</ul>
+				</div>
+
+			</div>
+
+
+			<div class="collapse navbar-collapse" id="myNavbar"
+				style="background-color: #d9d9d9;">
+				<form method="post" id="login" name="login" style="margin: 0;"
+					action="<%=request.getContextPath()%>/member/login">
+					<input name="prePage" hidden="hidden"
+						value="<%=request.getRequestURL()%>"> <input name="param"
+						id="param" hidden="hidden" value="1">
+					<ul class="nav navbar-nav">
+						<c:choose>
+							<c:when test="${loginUser eq null }">
+								<li><input class="login" id="login_mem_mail"
+									name="login_mem_mail" type="text" placeholder=" 이메일"></li>
+								<li><input class="login" id="login_mem_pw"
+									name="login_mem_pw" type="password" placeholder=" 비밀번호"
+									onkeyup="key_enter(event);"></li>
+								<li><input type="button" value="로그인" id="loginbtn"
+									onclick="login_go();"></li>
+								<li id="check" style="margin: 13px auto; width: 5%;"><label
+									style="vertical-align: text-botom;" for="check2" id="auto">
+										<input id="check2" type="checkbox"
+										style="vertical-align: text-top;"> 자동
+								</label></li>
+								<li><a href="<%=request.getContextPath()%>/member/joinMenu"
+									id="aa">회원가입</a></li>
+							</c:when>
+							<c:otherwise>
+								<script>
+									connect();
+								</script>
+
+								<li id="mem_mail" name="mem_mail">(Level)
+									${loginUser.mem_nick } (POINT : ${myPoint })</li>
+								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
+								<li><a href="#" id="aa">반응 ()</a></li>
+								<li><a href="<%=request.getContextPath()%>/mypage/main"
+									id="aa">마이페이지</a></li>
+								<c:if
+									test="${loginUser.mem_mail == 'jihyunkkkk@nate.com' || 
 				loginUser.mem_mail == 'shm9166@gmail.com' ||
 				loginUser.mem_mail == 'a'
 				}">
-    				<li><a href="<%=request.getContextPath()%>/admin/enter" id="aa">관리자 페이지</a></li>
-    			</c:if>
-				<%-- <li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li> --%>
-				<li><a href="<%=request.getContextPath()%>/member/logout?"+${loginUser.mem_mail } id="aa">로그아웃</a></li>
-      		</c:otherwise>
-      	</c:choose>
-    	<li><a href="<%=request.getContextPath()%>/member/find" id="aa">아이디/비밀번호 찾기</a></li>
-    	<li><a href="#" id="aa">접속자수</a></li>
-    </ul>
-    </form>
-    
-    </div>
-     <!--  <ul class="nav navbar-nav navbar-right">
+									<li><a href="<%=request.getContextPath()%>/admin/enter"
+										id="aa">관리자 페이지</a></li>
+								</c:if>
+								<%-- <li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li> --%>
+								<li><a href="<%=request.getContextPath()%>/member/logout?"
+									+${loginUser.mem_mail } id="aa">로그아웃</a></li>
+							</c:otherwise>
+						</c:choose>
+						<li><a href="<%=request.getContextPath()%>/member/find"
+							id="aa">아이디/비밀번호 찾기</a></li>
+						<li><a href="#" id="aa">접속자수</a></li>
+					</ul>
+				</form>
+
+			</div>
+			<!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
-     <!--  <ul class="nav navbar-nav navbar-right">
+			<!--  <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul> -->
-   
+
 		</nav>
 	</header>
 

@@ -3,11 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/cstBoard.css">
 <article>
-	<div>
-		<a href="<%=request.getContextPath()%>/cst/cstBoardList"><img
-			id="freeLogo"
-			src="<%=request.getContextPath()%>/resources/images/cstboard.png"></a>
-	</div>
 
 	<form id="cstUpdateForm" name="cstUpdateForm" method="post"
 		action="cstBoardUpdate">

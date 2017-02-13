@@ -70,7 +70,9 @@
   	 
   <tr>
   <th>CONTENT</th>
-   <td></td>
+  <!-- 말머리 추가중 -->
+   <td>${ifShrBoardVO.ifshrboard_type }</td>
+   <!-- 말머리 추가중 -->
   <td></td>
    
   </tr>
@@ -85,7 +87,6 @@
 				onClick="location.href='/world/is/ifShrBoardUpdateForm.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}'">
 			<input class="btn" type="button" value="삭제"
 				onClick="location.href='/world/is/deleteIfShrBoard.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}'">
-			<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. -->
 		</c:if>
 		<input class="btn" type="button" value="목록"
 			onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardList.do'">
@@ -93,11 +94,10 @@
 	</form>
 	
 	<form action="writeComm" id="writeComm" name="formm" method="post">
-		<label>★★★★★★댓글★★★★★★</label> <br /> 
 		<table class="table table-condensed">
 			<thead>
 				<tr>
-					<td colspan="3">댓글이 ${isBoardCommListCnt }개 달렸습니다.</td>
+					<td colspan="3"><span class="badge">댓글  ${isBoardCommListCnt}</span></td>
 				</tr>
 			</thead>
 			<tbody>

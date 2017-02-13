@@ -22,174 +22,173 @@ import com.hello.world.service.FlowService;
 import com.hello.world.service.MeetBoardService;
 import com.hello.world.service.MemberService;
 
-
 @Controller
 @RequestMapping("/meet")
 public class MeetBoardController {
 
 	@Autowired
 	MemberService memberService;
-	
+
 	@Autowired
 	MeetBoardService meetService;
-	
+
 	@Autowired
 	FlowService flowService;
-	
+
 	@RequestMapping("/meetBoardList.do")
 	public String MeetBoardList(HttpSession session, Model model,
-			HttpServletRequest request) throws ServletException, IOException{
-		
-		String url="meetBoard/meetBoardList";
-		String key=request.getParameter("key");
-		String tpage=request.getParameter("tpage");
-				
-		if(key==null){
-			key="";
-		}
-		if(tpage==null){
-			tpage="1";
-		}else if(tpage.equals("")){
-			tpage="1";
-		}
-		model.addAttribute("key",key);
-		model.addAttribute("tpage",tpage);
-		
-		ArrayList<MeetBoardVO> meetBoardList=null;
-		String paging=null;
-		
-		try{
-		meetBoardList = meetService.listAllMeetBoard(Integer.parseInt(tpage), key);
-		paging = meetService.pageNumber(Integer.parseInt(tpage), key);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		model.addAttribute("meetBoardList",meetBoardList);
-		int n=meetBoardList.size();
-		model.addAttribute("meetBoardListSize",n);
-		model.addAttribute("paging",paging);
-		return url;
-	}
-	
-	@RequestMapping("/meetBoardDetail.do")
-	public String meetBoardDetail(@RequestParam String meet_board_posting_no, HttpSession session, Model model)throws ServletException, IOException{
-		String url = "meetBoard/meetBoardDetail";
-		
-		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
-		
-		try {
-			flowList=flowService.listFlowVO();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		model.addAttribute("flowList",flowList);
-		
-		MeetBoardVO meetBoardVO = meetService.getMeetDetail(meet_board_posting_no);
-		
-		model.addAttribute("meetBoardVO",meetBoardVO);
-		
-		
-		return url;
-	}
-	@RequestMapping("/meetBoardWriteForm.do")
-	public String meetBoardWriteForm(HttpSession session)
-	throws ServletException, IOException{
-		String url="meetBoard/meetBoardWrite";
-		MemVO loginUser=(MemVO) session.getAttribute("loginUser");
+			HttpServletRequest request) throws ServletException, IOException {
 
-		return url;
-	}
-	
-	@RequestMapping("/meetBoardWrite.do")
-	public String MeetBoardWrite(MeetBoardVO meetBoardVO, HttpSession session)
-		throws ServletException, IOException{
-		String url="redirect:meetBoardList.do";
-		MemVO loginUser=(MemVO) session.getAttribute("loginUser");
-		
-		meetService.insertMeetBoard(meetBoardVO);
-		
-		return url;
-	}
-	@RequestMapping("/meetBoardUpdateForm.do")
-	public String meetBoardUpdateForm(
-			@RequestParam String meet_board_posting_no, HttpSession session, Model model)throws ServletException, IOException{
-		
-		String url="meetBoard/meetBoardUpdate";
-		MeetBoardVO meetBoardVO = meetService.getMeetDetail(meet_board_posting_no);
-		model.addAttribute("meetBoardVo",meetBoardVO);
-		
-		return url;
-	}
-	
-	@RequestMapping(value="/meetBoardUpdate.do", method=RequestMethod.POST)
-	public String meetBoardUpdate(MeetBoardVO meetBoardVO, HttpSession session,Model model)throws ServletException, IOException{
-		String url="redirect:meetBoardList.do";
-		
-		ArrayList<FlowVO> flowList=new ArrayList<FlowVO>();
-		
+		String url = "meetBoard/meetBoardList";
+		String key = request.getParameter("key");
+		String tpage = request.getParameter("tpage");
+		String type = request.getParameter("type");
+
+		if (type == null) {
+			type = "";
+		}
+
+		if (key == null) {
+			key = "";
+		}
+		if (tpage == null) {
+			tpage = "1";
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
+
 		try {
 			flowList = flowService.listFlowVO();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		model.addAttribute("flowList", flowList);
 		
-		model.addAttribute("flowList",flowList);
+		model.addAttribute("key", key);
+		model.addAttribute("tpage", tpage);
+		model.addAttribute("type", type);
+
+		ArrayList<MeetBoardVO> meetBoardList = null;
+		String paging = null;
+		MeetBoardVO meetBoardVO = new MeetBoardVO();
+		meetBoardVO.setFlow_code(type);
+		meetBoardVO.setKey(key);
 		
-		
+		try {
+			meetBoardList = meetService.listAllMeetBoard(
+					Integer.parseInt(tpage), meetBoardVO);
+			paging = meetService.pageNumber(Integer.parseInt(tpage), meetBoardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("meetBoardList", meetBoardList);
+		int n = meetBoardList.size();
+		model.addAttribute("meetBoardListSize", n);
+		model.addAttribute("paging", paging);
+		return url;
+	}
+
+	@RequestMapping("/meetBoardDetail.do")
+	public String meetBoardDetail(@RequestParam String meet_board_posting_no,
+			HttpSession session, Model model) throws ServletException,
+			IOException {
+		String url = "meetBoard/meetBoardDetail";
+
+		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
+
+		try {
+			flowList = flowService.listFlowVO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("flowList", flowList);
+
+		MeetBoardVO meetBoardVO = meetService
+				.getMeetDetail(meet_board_posting_no);
+
+		model.addAttribute("meetBoardVO", meetBoardVO);
+
+		return url;
+	}
+
+	@RequestMapping("/meetBoardWriteForm.do")
+	public String meetBoardWriteForm(HttpSession session, Model model)
+			throws ServletException, IOException {
+		String url = "meetBoard/meetBoardWrite";
+		// MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+
+		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
+
+		try {
+			flowList = flowService.listFlowVO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("flowList", flowList);
+
+		return url;
+	}
+
+	@RequestMapping("/meetBoardWrite.do")
+	public String MeetBoardWrite(MeetBoardVO meetBoardVO, HttpSession session)
+			throws ServletException, IOException {
+		String url = "redirect:meetBoardList.do";
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
-		
+
+		meetService.insertMeetBoard(meetBoardVO);
+
+		return url;
+	}
+
+	@RequestMapping("/meetBoardUpdateForm.do")
+	public String meetBoardUpdateForm(
+			@RequestParam String meet_board_posting_no, HttpSession session,
+			Model model) throws ServletException, IOException {
+
+		String url = "meetBoard/meetBoardUpdate";
+		MeetBoardVO meetBoardVO = meetService
+				.getMeetDetail(meet_board_posting_no);
+		model.addAttribute("meetBoardVo", meetBoardVO);
+
+		return url;
+	}
+
+	@RequestMapping(value = "/meetBoardUpdate.do", method = RequestMethod.POST)
+	public String meetBoardUpdate(MeetBoardVO meetBoardVO, HttpSession session,
+			Model model) throws ServletException, IOException {
+		String url = "redirect:meetBoardList.do";
+
+		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
+
+		try {
+			flowList = flowService.listFlowVO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		model.addAttribute("flowList", flowList);
+
+		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+
 		meetService.updateMeetBoard(meetBoardVO);
-		
+
 		return url;
-		
+
 	}
-	@RequestMapping(value="/deleteMeetBoard.do")
+
+	@RequestMapping(value = "/deleteMeetBoard.do")
 	public String deleteMeetBoard(@RequestParam String meet_board_posting_no,
-			HttpSession session)throws ServletException, IOException{
-		String url="redirect:meetBoardList.do";
-		
+			HttpSession session) throws ServletException, IOException {
+		String url = "redirect:meetBoardList.do";
+
 		meetService.deleteMeetBoard(meet_board_posting_no);
-		
+
 		return url;
 	}
 
-	
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

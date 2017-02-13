@@ -24,13 +24,24 @@
       
       <tr>
       	<td style="text-align: center;">제목
-      	<input type="text" name="meetboard_title"></td>
+      	<input type="text" name="meet_board_title"></td>
+      	<td>지역
+      		<select name="flow_code">
+      			<c:forEach items="${flowList }" var="flow" varStatus="status">
+      				<c:if test="${status.count >= '6'}">
+      					<option value="${flow.flow_code}">${flow.flow_cont}</option>	
+      				</c:if>
+      					
+      			</c:forEach>
+      			
+      		</select>
+      	</td>
       </tr>
       <tr>
       	<td style="text-align: left;">&nbsp;&nbsp;&nbsp;내용</td>
       	
         	<td>
-      		<textarea rows="8" cols="65" name="meetboard_cont"></textarea>
+      		<textarea rows="8" cols="65" name="meet_board_cont"></textarea>
       	</td>
       </tr>
      </thead>

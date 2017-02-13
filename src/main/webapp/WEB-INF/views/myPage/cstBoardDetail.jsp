@@ -4,11 +4,6 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/cstBoard.css">
 <article>
-	<div>
-		<a href="<%=request.getContextPath()%>/cst/cstBoardList"><img
-			id="freeLogo"
-			src="<%=request.getContextPath()%>/resources/images/cstboard.png"></a>
-	</div>
 
 	<form id="fdf" name="form" method="post">
 		<table class="table .table-condensed">
@@ -40,9 +35,9 @@
 		<div id="divdiv">
 
 			<input class="btn" type="button" value="수정"
-				onClick="location.href='<%=request.getContextPath()%>/cst/cstBoardUpdate?cstboard_counsel_posting_no=${cstBoardVO.cstboard_counsel_posting_no}'">
+				onClick="location.href='<%=request.getContextPath()%>/mypage/cstBoardUpdate?cstboard_counsel_posting_no=${cstBoardVO.cstboard_counsel_posting_no}'">
 			<input class="btn" type="button" value="목록"
-				onclick="location.href='<%=request.getContextPath()%>/cst/cstBoardList'">
+				onclick="location.href='<%=request.getContextPath()%>/mypage/cstBoardList'">
 		</div>
 	</form>
 </article>

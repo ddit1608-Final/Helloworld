@@ -4,15 +4,14 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class EchoHandler extends TextWebSocketHandler{
+import com.hello.world.dto.MessageVO;
+
+public class EchoHandler extends TextWebSocketHandler {
 
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap<String, WebSocketSession>();
 
@@ -23,14 +22,14 @@ public class EchoHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session)
 			throws Exception {
-		
+
 		super.afterConnectionEstablished(session);
 		log(session.getId() + " 연결 됨");
-		
+
 		Map<String, Object> map = session.getAttributes();
-        String id = (String)map.get("userId");
-		
-		users.put(session.getId(), session);
+		String id = (String) map.get("userId");
+
+		users.put(id, session);
 	}
 
 	@Override
@@ -44,10 +43,13 @@ public class EchoHandler extends TextWebSocketHandler{
 	protected void handleTextMessage(WebSocketSession session,
 			TextMessage message) throws Exception {
 		log(session.getId() + "로부터 메시지 수신: " + message.getPayload());
-		for (WebSocketSession s : users.values()) {
-			s.sendMessage(message);
-			log(s.getId() + "에 메시지 발송: " + message.getPayload());
-		}
+		MessageVO messageVO = MessageVO.converMessage(message.getPayload());
+		String user = messageVO.getTo();
+		System.err.println(users.get(user));
+		users.get(user).sendMessage(
+				new TextMessage(session.getRemoteAddress().getHostName()
+						+ " ->>" + messageVO.getMessage()));
+
 	}
 
 	@Override

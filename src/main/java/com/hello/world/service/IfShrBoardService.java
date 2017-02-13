@@ -95,6 +95,7 @@ public class IfShrBoardService {
 	}
 	
 	public int insertIfShrBoard(IfShrBoardVO ifShrBoardVO)throws SQLException{
+		
 		return ifShrBoardDAO.insertIfShrBoard(ifShrBoardVO);
 	}
 	

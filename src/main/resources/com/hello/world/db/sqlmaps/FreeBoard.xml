@@ -31,7 +31,7 @@
 		select *
 		from memfree 
 		where freeboard_title like '%'||#freeboard_title#||'%' 
-			order by TO_NUMBER(freeboard_posting_no) asc;
+			order by TO_NUMBER(freeboard_posting_no) desc
 	</select>
 
 	<select id="freeDetail" parameterClass="str" resultClass="freeboard">
@@ -58,7 +58,7 @@
 	</update>	
 	
 	<select id="getFreeBoardList" parameterClass="testVO" resultClass="freeboard">
-		select * from memfreee where $type$ like'%'||#key#||'%' order by TO_NUMBER(freeboard_posting_no) asc
+		select * from memfreee where $type$ like'%'||#key#||'%' order by TO_NUMBER(freeboard_posting_no) desc
 	</select>
 	
 	

@@ -354,7 +354,6 @@ public class MemberController implements ServletContextAware {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				session.setAttribute("sockJS", "close");
 				session.setAttribute("loginUser", mem);
 				sessionId = RequestContextHolder.currentRequestAttributes()
 						.getSessionId();
