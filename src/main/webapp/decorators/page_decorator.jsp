@@ -256,7 +256,7 @@ footer {
 		wsocket.onmessage = function appendMessage(msg) {
 					alert(msg.data);
 
-					Push.create('이런!', {
+					Push.create('알림', {
 						body : msg.data,
 						timeout : 5000
 					});
@@ -357,6 +357,11 @@ footer {
 					<ul class="nav navbar-nav">
 						<c:choose>
 							<c:when test="${loginUser eq null }">
+							
+								<script>
+									wsocket.onclose();
+								</script>
+								
 								<li><input class="login" id="login_mem_mail"
 									name="login_mem_mail" type="text" placeholder=" 이메일"></li>
 								<li><input class="login" id="login_mem_pw"

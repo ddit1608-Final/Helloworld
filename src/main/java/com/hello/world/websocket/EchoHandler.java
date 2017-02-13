@@ -36,19 +36,29 @@ public class EchoHandler extends TextWebSocketHandler {
 	public void afterConnectionClosed(WebSocketSession session,
 			CloseStatus status) throws Exception {
 		log(session.getId() + " 연결 종료됨");
-		users.remove(session.getId());
+		
+		Map<String, Object> map = session.getAttributes();
+		String id = (String) map.get("userId");
+		
+		users.remove(id);
 	}
 
 	@Override
 	protected void handleTextMessage(WebSocketSession session,
 			TextMessage message) throws Exception {
 		log(session.getId() + "로부터 메시지 수신: " + message.getPayload());
+		String fromUser = "";
+		for(String commUser : users.keySet()) {
+			if(users.get(commUser).equals(session)) {
+				fromUser = commUser;
+			}
+		}
 		MessageVO messageVO = MessageVO.converMessage(message.getPayload());
 		String user = messageVO.getTo();
 		System.err.println(users.get(user));
 		users.get(user).sendMessage(
-				new TextMessage(session.getRemoteAddress().getHostName()
-						+ " ->>" + messageVO.getMessage()));
+				new TextMessage("회원 " +fromUser +"가 회원님이 작성하신 게시물에 댓글을 작성했습니다."
+						+ "\n" + messageVO.getMessage()));
 
 	}
 
