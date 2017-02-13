@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<a href="<%=request.getContextPath()%>/is/ifShrBoardList.do">
-		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/ifshrboard.png"></a>
+		<a href="<%=request.getContextPath()%>/is/dogBoardList.do">
+		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/dogboard.png"></a>
 	</div>
 	<form name="form" method="post" >
 		<table class="table table-condensed" id="blt">
@@ -22,23 +22,23 @@
 				<td style="text-align: center;">HITS</td>
 			</tr>
 			<c:choose>
-				<c:when test="${ifShrBoardListSize<=0}">
+				<c:when test="${dogBoardListSize<=0}">
 					<tr>
 						<td width="100%" colspan="6" align="center" height="23">
 							There are no registered ifShareboard.</td>
 					</tr>
 				</c:when>
 				<c:otherwise>
-					<c:forEach items="${ifShrBoardList}" var="ifShrBoardVO">
+					<c:forEach items="${dogBoardList}" var="dogBoardVO">
 						<tr>
-							<td style="text-align: center;">${ifShrBoardVO.ifshrboard_posting_no}</td>
+							<td style="text-align: center;">${dogBoardVO.dsboard_posting_no}</td>
 							<td style="text-align: center;">
-							<a href="/world/is/ifShrBoardDetail.do?ifshrboard_posting_no=
-								${ifShrBoardVO.ifshrboard_posting_no}"data-toggle="tooltip" data-placement="right"
-									title="${ifShrBoardVO.ifshrboard_cont}">
-								${ifShrBoardVO.ifshrboard_title}
+							<a href="/world/dog/dogBoardDetail?dsboard_posting_no=
+								${dogBoardVO.dsboard_posting_no}"data-toggle="tooltip" data-placement="right"
+									title="${dogBoardVO.dsboard_cont}">
+								${dogBoardVO.dsboard_title}
 								<c:forEach items="${typeList }" var="type" varStatus="status">
-									<c:if test="${type.type_key==ifShrBoardVO.type_key }">
+									<c:if test="${type.type_key==dogBoardVO.type_key }">
 										<span class="label label-default">${type.type_value}</span>
 									</c:if> 
 								</c:forEach>
@@ -50,11 +50,11 @@
 								
 							</td>
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
-							<td style="text-align: center;">${ifShrBoardVO.mem_nick}</td>
+							<td style="text-align: center;">${dogBoardVO.mem_nick}</td>
 							<%-- <td>${loginUser.mem_nick}</td> --%>
 							<td style="text-align: center;"><fmt:formatDate
-									value="${ifShrBoardVO.ifshrboard_wridate}"  /></td>
-							<td style="text-align: center;">${ ifShrBoardVO.ifshrboard_hits}</td>
+									value="${dogBoardVO.dsboard_wridate}"  /></td>
+							<td style="text-align: center;">${ dogBoardVO.dsboard_hits}</td>
 						</tr>
 					</c:forEach>
 					<tr>
@@ -69,7 +69,7 @@
 				<td>
 				<c:if test="${loginUser != null}"> 
 				<input type="button" class="btn btn-success btn-sm" value="글쓰기"
-					onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardWriteForm.do'">
+					onclick="location.href='<%=request.getContextPath()%>/dog/dogBoardWrite'">
 				</c:if>
 					<input type="button" class="btn btn-success btn-sm" value="메인"
 					onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
@@ -88,13 +88,13 @@
 			<tr >
 				<td>
 				<select id="type" name="type">
-					<option value="ifshrboard_title" selected="selected">제목</option>
-					<option value="ifshrboard_cont">내용</option>
+					<option value="dsboard_title" selected="selected">제목</option>
+					<option value="dsboard_cont">내용</option>
 					<option value="mem_nick">작성자</option>
 				</select>
 				<input type="text" name="key" id="key" placeholder="검색어를 입력해주세요"/>
 				<%-- <input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src('${is_key}',event)"> --%>
-				<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src()">
+				<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="ds_src()">
 				<marquee behavior=alternate width="300" scrollamount="5">
 				<span>
 				총 (${searchCnt})개의 게시물

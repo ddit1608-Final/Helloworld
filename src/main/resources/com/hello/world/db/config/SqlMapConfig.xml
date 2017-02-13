@@ -25,5 +25,8 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/IsBoardComm.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardChoose.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardBChu.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/Posting.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/DogBoard.xml" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/DogBoardComm.xml" />
 	
 </sqlMapConfig>

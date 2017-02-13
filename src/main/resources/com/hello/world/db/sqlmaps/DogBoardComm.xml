@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="DogBoardComm">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="dogcomm" type="com.hello.world.dto.DogBoardCommVO" />
+
+	<update id="insertDsBoardComm" parameterClass="dogcomm">
+		insert into
+		dsboard_comm
+		(dsboard_ans_code, dsboard_comm_cont,
+		dsboard_comm_wri, dsboard_posting_no)
+		values(dsboard_ans_code.nextval, #dsboard_comm_cont#,
+		#dsboard_comm_wri#, #dsboard_posting_no#)
+	</update>
+
+	<select id="listDsBoardComm" parameterClass="str" resultClass="dogcomm">
+		select
+		* from dsboard_comm where dsboard_POSTING_NO =
+		#dsboard_posting_no# order by dsboard_COMM_WRIDATE asc
+	</select>
+	
+	<delete id="deleteDsBoardComm" parameterClass="str">
+		delete
+		from dsboard_comm
+		where dsboard_ans_code=#dsboard_ans_code#
+	</delete>
+	
+	<update id="updateDsBoardComm" parameterClass="dogcomm">
+		UPDATE dsboard_comm
+		SET
+			dsboard_comm_cont = #dsboard_comm_cont#
+		WHERE dsboard_ans_code= #dsboard_ans_code#
+	</update>
+	
+	<select id="getDsBoardComm"  parameterClass="str" resultClass="dogcomm">
+		select *
+		from dsboard_comm
+		where dsboard_ans_code= #dsboard_ans_code#
+	</select>
+	
+	<select id="getDsMaxAnxCode" resultClass="int">
+		select max(to_number(dsboard_ANS_CODE)) from dsboard_COMM
+	</select>
+
+
+</sqlMap>

@@ -13,13 +13,23 @@ public class IfShrBoardVO {
 	private String mem_mail;			  // 작성자 메일
 	private String mem_nick;			  // 작성자 메일
 	private String mem_phn;				  // 작성자 연락처
-	private String ifshrboard_posting_type; // 게시글 말머리		  
+	private String type_key; 			  // 게시글 말머리
+	private String type_value;
 	
-	public String getIfshrboard_posting_type() {
-		return ifshrboard_posting_type;
+	
+	
+	
+	public String getType_value() {
+		return type_value;
 	}
-	public void setIfshrboard_posting_type(String ifshrboard_posting_type) {
-		this.ifshrboard_posting_type = ifshrboard_posting_type;
+	public void setType_value(String type_value) {
+		this.type_value = type_value;
+	}
+	public String getType_key() {
+		return type_key;
+	}
+	public void setType_key(String type_key) {
+		this.type_key = type_key;
 	}
 	public String getMem_phn() {
 		return mem_phn;

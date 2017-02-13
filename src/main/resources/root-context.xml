@@ -65,7 +65,15 @@
 	<bean id="qnaboardBChuDAO" class="com.hello.world.dao.iBatis.QnaBoardBChuDAO_iBatis" 
 		p:client-ref="sqlMapClient"	/>
 
-
+	<bean id="postingDAO" class="com.hello.world.dao.iBatis.PostingDAO_iBatis"
+		p:client-ref="sqlMapClient"/>
+		
+	<bean id="dogBoardDAO" class="com.hello.world.dao.iBatis.DogBoardDAO_iBatis"	
+		p:client-ref="sqlMapClient"/>
+	
+	<bean id="dogBoardCommDAO" class="com.hello.world.dao.iBatis.DogBoardCommDAO_iBatis"	
+		p:client-ref="sqlMapClient"/>
+	
 	<!-- Service -->
 	<bean id="ResmService" class="com.hello.world.service.ResmService">
 		<property name="resmDAO" ref="resmDAO" />
@@ -130,5 +138,14 @@
 	
 	<bean id="qnaBoardBchuService" class="com.hello.world.service.QnaBoardBChuService"
 		p:qnaboardBChuDAO-ref="qnaboardBChuDAO" />
+		
+	<bean id="postingService" class="com.hello.world.service.PostingService"
+		p:postingDAO-ref="postingDAO" />	
+		
+	<bean id="dogBoardService" class="com.hello.world.service.DogBoardService"
+		p:dogBoardDAO-ref="dogBoardDAO" />	
+	
+	<bean id="dogBoardCommService" class="com.hello.world.service.DogBoardCommService"
+		p:dogBoardCommDAO-ref="dogBoardCommDAO" />
 		
 </beans>
