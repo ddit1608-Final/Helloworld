@@ -34,10 +34,8 @@
 	src="<%=request.getContextPath()%>/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/push.min.js"></script>
-
 <link href="<%=request.getContextPath()%>/resources/css/hw.css"
 	rel="stylesheet">
-
 </head>
 
 

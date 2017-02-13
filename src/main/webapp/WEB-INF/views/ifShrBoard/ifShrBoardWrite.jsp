@@ -26,7 +26,13 @@
 		        <td style="width:10%;"></td>
       		</tr>
       		<tr>
-      			<td></td>
+      			<td><label for="sel1">말머리 (select one)</label>
+      				<select class="form-control" id="sel1">
+	        			<option value="ifshrboard_tip">꿀팁</option>
+	        			<option value="ifshrboard_os">오픈소스</option>
+	        			<option value="ifshrboard_com_epil">기업후기</option>
+      				</select>
+      			</td>
       			<td>
       			<div class="form-group">
       			<label id="ifshrboard_title">제목</label>

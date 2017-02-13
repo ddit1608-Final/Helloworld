@@ -68,17 +68,17 @@ function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,ind
 				success : function(data) {
 					var a;
 					
-						a = '<tr><td>'+mem_nick+'</td>'+
-							'<td style="work-break:break-all;"id="freeBoardComm_cont'+aa+'">'+freeboard_comm_contt+'<input type="button" value="추천">'+
-							'<input type="button" value="비추천"></td>'+
-						 	'<td>'+data.today+'</td>'+
-						 	'<td><a href="#" onclick="updateFreeCommForm('+aa+','+indexTdd+',event)">수정</a>/'+
-							'<a href="#" onclick="deleteFreeComm()">삭제</a></td></tr>'
+						a = '<tr><td style="width:100px;text-align:center;"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2">'
+							+mem_nick+'</button></td>'+
+							'<td style="work-break:break-all;"id="freeBoardComm_cont'+aa+'">'
+							+freeboard_comm_contt+'<input type="button" value="추천"id="chu'+indexTd+'">'+
+							'<input type="button" value="비추천" id="bchu"'+indexTd+'></td>'+
+						 	'<td>'+data+'</td>'+
+						 	'<td><a href="#" onclick="updateFreeCommForm('+aa+','+indexTd+',event)" id="aa">수정</a>/'+
+							'<a href="#" onclick="deleteFreeComm('+aa+', '+indexTdd+', event)"id="aa">삭제</a></td></tr>'
 					
 					$('#freecomm_go').append(a);
 					$('#freeboard_comm_contt').val("");
-					alert("본문 작성자 : " +data.mem_mail);
-					alert("본문 작성자 session: " +data.wsSession);
 				},
 				error : function(error) {
 					alert("22");
@@ -97,7 +97,7 @@ function deleteFreeComm(freeboard_ans_code, indexTdd, event){
 		type: "post",
 		data: code,
 		success: function(data){
-			$('#'+indexTdd).remove();
+			$(indexTdd).remove();
 		},
 		error : function(error){
 			alert("실패");
@@ -124,7 +124,7 @@ function updateFreeCommForm(indexTd,indexTdd , event) {
 									'<textarea rows="2" cols="150" id="freeboard_comm_cont" name="freeboard_comm_cont">'
 											+ data 
 											+ '</textarea>'
-											+ '<input type="button" value="댓글수정" onclick="updateFreeComm('+indexTd+','+indexTdd+'event)">');
+											+ '<input type="button" value="댓글수정" onclick="updateFreeComm('+indexTd+','+indexTdd+',event)">');
 				},
 				error : function(error) {
 					alert("22");
@@ -136,10 +136,9 @@ function updateFreeCommForm(indexTd,indexTdd , event) {
 
 function updateFreeComm(indexTd,indexTdd , event) {
 	event.preventDefault();
-	var freeboard_ans_code = $('#'+indexTdd).val();
+	var freeboard_ans_code = $('#freeboard_ans_code'+indexTdd).val();
 	var freeboard_comm_cont = $('#freeboard_comm_cont').val();
-	alert(freeboard_ans_code);
-	alert("123"+freeboard_comm_cont);
+	alert("수정되는내용"+freeboard_comm_cont);
 	
 	var arr = {
 			"freeboard_ans_code" : freeboard_ans_code,
@@ -151,11 +150,12 @@ function updateFreeComm(indexTd,indexTdd , event) {
 		type : "post",
 		data : arr,
 		success : function(data) {
-			$('#freeBoardComm_cont' + indexTd)
-			.html(data);
+			$('#freeBoardComm_cont' + indexTd).html(data+'<input type="button" value="추천"id="chu'+indexTd+'">'+
+					'<input type="button" value="비추천" id="bchu"'+indexTd+'>');
+			
 		},
 		error : function(error) {
-			alert("22");
+			alert("22");z	
 		}
 	})
 }

@@ -34,8 +34,13 @@
 					<c:forEach items="${freeBoardList}" var="freeBoardVO">
 						<tr>
 							<td style="text-align: center;">${freeBoardVO.freeboard_posting_no}</td>
-							<td style="text-align: center;"><a
-								href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}">${freeBoardVO.freeboard_title}</a>
+							<td style="text-align: center;">
+							<a href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}"
+							data-toggle="tooltip" data-placement="right"
+									title="${freeBoardVO.freeboard_cont}" class="test">
+								${freeBoardVO.freeboard_title}
+								<span class="label label-danger">new</span>
+								</a>
 							</td>
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
 							<td style="text-align: center;">${freeBoardVO.mem_nick}</td>

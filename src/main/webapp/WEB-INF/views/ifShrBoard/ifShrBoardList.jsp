@@ -32,8 +32,16 @@
 					<c:forEach items="${ifShrBoardList}" var="ifShrBoardVO">
 						<tr>
 							<td style="text-align: center;">${ifShrBoardVO.ifshrboard_posting_no}</td>
-							<td style="text-align: center;"><a
-								href="/world/is/ifShrBoardDetail.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}">${ifShrBoardVO.ifshrboard_title}</a>
+							<td style="text-align: center;">
+							<a href="/world/is/ifShrBoardDetail.do?ifshrboard_posting_no=
+								${ifShrBoardVO.ifshrboard_posting_no}"data-toggle="tooltip" data-placement="right"
+									title="${ifShrBoardVO.ifshrboard_cont}">
+								${ifShrBoardVO.ifshrboard_title}
+									<%-- 댓글 수 하고 싶음 
+									<span class="badge">${isBoardCommListCnt}</span> --%>
+									<span class="label label-default">new</span>
+								</a>
+								
 							</td>
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
 							<td style="text-align: center;">${ifShrBoardVO.mem_nick}</td>
