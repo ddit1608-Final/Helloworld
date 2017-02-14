@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -220,7 +221,8 @@ public class DogBoardController {
 	public String getDsBoardList(HttpServletRequest request,Model model)
 			throws ServletException,IOException{
 		String total = "";
-		String url = "dogBoard/dogBoardList";
+		// redirect 해야함 안그러면 posting sort select 날라감
+		String url = "redirect:dogBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
 		String type= request.getParameter("type");
@@ -265,7 +267,62 @@ public class DogBoardController {
 
 		return url;
 	}
+	
+	
+	// sort!!!!!!!!!
+	@RequestMapping(value="/typeDoggy",method=RequestMethod.GET)
+	public String typeDoggy(HttpServletRequest request, Model model,testVO testVO)throws IOException,ServletException{
+		
+		String total = "";
+		
+		String url="redirect: dogBoardList";
+		String key = request.getParameter("key");
+		String tpage = request.getParameter("tpage");
+		String type= request.getParameter("type");
+		
+		if (key == null) {
+			key = "";
+		}
+		if (tpage == null) {
+			tpage = "1"; // 현재 페이지 (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		model.addAttribute("key", key);
+		model.addAttribute("type",type);
+		model.addAttribute("tpage", tpage);
+		ArrayList<DogBoardVO> dogBoardList = null;
+		String paging = null;
+		
+		PostingTypeVO typeVO = new PostingTypeVO();
+		
+		typeVO.setType_key(key);
+		typeVO.setType_value(type);
+		
+		try {
+			total= dogBoardService.getTotall(typeVO)+"";
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
 
+		try {
+			dogBoardList = dogBoardService.getDogList(Integer.parseInt(tpage), typeVO);
+			paging = dogBoardService.pageNumber(Integer.parseInt(tpage), testVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		model.addAttribute("dogBoardList", dogBoardList);
+		//int n = dogBoardList.size();
+		model.addAttribute("searchCnt",total);
+		model.addAttribute("paging", paging);
+
+		return url;
+		
+	}
+	
+	
+	
 		
 	}
 	

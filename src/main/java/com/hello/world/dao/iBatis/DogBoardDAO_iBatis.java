@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.hello.world.dao.DogBoardDAO;
 import com.hello.world.dto.DogBoardVO;
-import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -90,6 +90,37 @@ public class DogBoardDAO_iBatis implements DogBoardDAO {
 	@Override
 	public int getTotal(testVO testVO) throws SQLException {
 		return (int) client.queryForObject("totalDsBoard", testVO);
+	}
+	
+	
+	/// 추가
+	@Override
+	public List<DogBoardVO> getDogList(int startRow, PostingTypeVO typeVO, int counts)
+			throws SQLException {
+		ArrayList<DogBoardVO> dogBoardList = new ArrayList<DogBoardVO>();
+
+		dogBoardList = (ArrayList<DogBoardVO>) client.queryForList(
+				"getTypeList", typeVO, startRow, counts);
+
+		return dogBoardList;
+	}
+	
+	@Override
+	public int totalRecordd(PostingTypeVO typeVO) throws SQLException {
+		int total_pages = 0;
+		String key = typeVO.getType_key();
+		if (key.equals("")) {
+			key = "%";
+		}
+		total_pages = (Integer) client.queryForObject("totalDsBoard",
+				typeVO);
+		return total_pages;
+	}
+
+
+	@Override
+	public int getTotall(PostingTypeVO typeVO) throws SQLException {
+		return (int) client.queryForObject("totalDsBoard", typeVO);
 	}
 
 

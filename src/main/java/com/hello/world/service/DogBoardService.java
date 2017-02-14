@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import com.hello.world.dao.DogBoardDAO;
 import com.hello.world.dto.DogBoardVO;
-import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 
 public class DogBoardService {
@@ -168,6 +168,39 @@ public class DogBoardService {
 		return dogBoardDAO.getTotal(testVO);
 		
 	}
+	/////////////////////////////////////////////
+	public ArrayList<DogBoardVO> getDogList(int tpage, PostingTypeVO typeVO )throws SQLException{
+		ArrayList<DogBoardVO> list = new ArrayList<DogBoardVO>();
+		int startRow = -1;
+		int endRow = -1;
+		
+		String key = typeVO.getType_key(); 
+		
+		if (key.equals("")) {
+			key = "%";
+		}
+
+		int totalRecord = dogBoardDAO.totalRecordd(typeVO);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+
+		//list = (ArrayList<IfShrBoardVO>) ifShrBoardDAO.getIsBoardList(startRow, key, counts);
+		list = (ArrayList<DogBoardVO>) dogBoardDAO.getDogList(startRow, typeVO, counts);
+
+		return list;
+	}
+	public int getTotall(PostingTypeVO typeVO)throws SQLException{
+		
+		return dogBoardDAO.getTotall(typeVO);
+		
+	}
+	
+	
+	
+	
 	
 	
 }
