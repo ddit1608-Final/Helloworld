@@ -6,11 +6,27 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<a href="<%=request.getContextPath()%>/is/dogBoardList.do">
-		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/dogboard.png"></a>
+		<a href="<%=request.getContextPath()%>/dog/dogBoardList">
+		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/dogboard.gif"></a>
 	</div>
 	<form name="form" method="post" >
 		<table class="table table-condensed" id="blt">
+			<tr>
+				<td style="text-align:center;">
+				<input type="button" class="btn btn-default btn-sm" value="전체보기"
+					onclick="location.href='<%=request.getContextPath()%>/dog/dogBoardList'">
+					게시글 분류
+				</td>
+				<td colspan="3">
+					<select class="form-control" id="board_type" name="board_type" onchange="select_board(this.value)">
+	        			<c:forEach items="${typeList }" var="posting" varStatus="status">
+      						<c:if test="${status.count >= '4'}">
+      							<option value="${posting.type_key}">${posting.type_value}</option>	
+      						</c:if>
+      					</c:forEach>
+      				</select>
+				</td>
+			</tr>
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
 				<td style="text-align: center;">NO</td>
@@ -72,14 +88,11 @@
 					onclick="location.href='<%=request.getContextPath()%>/dog/dogBoardWrite'">
 				</c:if>
 					<input type="button" class="btn btn-success btn-sm" value="메인"
-					onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
+					onclick="location.href='<%=request.getContextPath()%>/index'">
 					<%-- <input type="button" value="글쓰기" class="submit"onclick="location.href='<%=request.getContextPath()%>/free/freeBoardWriteForm.do'"> --%>
 				</td>
 			</tr>
 		</table>
-				<font color="red">
-				<center>♥하늘으l 별은 수도없ol 많지만..LH 사랑은..오직 너뿐Ol야..♥</center>
-				</font>
 		</div>
 	</form>
 	<form name="formm" id="formm" method="post">
@@ -95,12 +108,11 @@
 				<input type="text" name="key" id="key" placeholder="검색어를 입력해주세요"/>
 				<%-- <input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src('${is_key}',event)"> --%>
 				<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="ds_src()">
-				<marquee behavior=alternate width="300" scrollamount="5">
+				<marquee behavior=alternate width="200" scrollamount="1">
 				<span>
 				총 (${searchCnt})개의 게시물
 				</span>
 				</marquee>
-				<marquee width="300">←<font color="pink">♥</font>--&lt;</marquee><font size="5">{＼((￣<font color="red">■</font> ￣)</font>
 				</td>
 				</tr>
 				<tr>

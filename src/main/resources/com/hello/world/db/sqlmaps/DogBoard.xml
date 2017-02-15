@@ -48,11 +48,17 @@
 	</select> 	
 	
 	<!-- preView -->
-	<select id="getDsPreView" parameterClass="String" resultClass="String">
+	<select id="getDsPreView" parameterClass="str" resultClass="str">
 		select dsboard_cont from dsboard where dsboard_posting_no= #dsboard_posting_no#
 	</select> 
 	
-	
+	<!-- typeList -->
+	<select id="getTypeList" parameterClass="tVO" resultClass="dog">
+		select * from memdog where $type_key$ like'%'||#type_key#||'%' order by TO_NUMBER(dsboard_posting_no) desc
+	</select> 
+	<select id="totalDsBoardd" parameterClass="tVO" resultClass="int">
+		select count(*) from memdog where type_key like '%'||#type_key#||'%'
+	</select>
 	
 	
 
