@@ -13,7 +13,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/hw.css">	
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/hw.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">	
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -120,10 +121,9 @@
 					<h2 id="title">HOT CONTENTS</h2>
 
 					<table class="table table-striped">
-						
 						<tbody>
 							<tr>
-								<td class="n1">d</td>
+								<td class="n1">123</td>
 
 							</tr>
 							<tr>
@@ -153,32 +153,32 @@
 				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
 					<h2 id="title">HIT CONTENTS</h2>
 
-					<table class="table table-striped">
-						
+					<table class="table table-striped" id="blt">
+							<tr>
+								<th>NO</th>
+								<th>TITLE</th>
+								<th>WRI</th>
+								<th>DATE</th>
+							</tr>	
+						<c:forEach items="${freeBoardList}" var="free" begin="1" end="4">
 						<tbody>
 							<tr>
-								<td>d</td>
-
+								<td>
+								${free.freeboard_posting_no}</td>
+								<td>
+								<a href="/world/free/freeBoardDetail.do?freeboard_posting_no=${free.freeboard_posting_no}">
+								${free.freeboard_title }</a>
+								</td>
+								<td>${free.mem_nick }</td>
+								<td>
+								${free.freeboard_wridate }
+								</td>
 							</tr>
-							<tr>
-								<td>z</td>
-
-							</tr>
-							<tr>
-								<td>d</td>
-
-							</tr>
-							<tr>
-								<td>z</td>
-
-							</tr>
-							<tr>
-								<td>d</td>
-
-							</tr>
+							
 							
 							
 						</tbody>
+						</c:forEach>
 					</table>
 
 				</div>
@@ -191,31 +191,30 @@
 					<h2 id="title">NEW CONTENTS</h2>
 
 					<table class="table table-striped">
-						
+							<tr>
+								<th>NO</th>
+								<th>TITLE</th>
+								<th>WRI</th>
+								<th>DATE</th>
+							</tr>
+						<c:forEach items="${dogBoardList}" var="dog" begin="1" end="4">
 						<tbody>
 							<tr>
-								<td>d</td>
-
-							</tr>
-							<tr>
-								<td>z</td>
-
-							</tr>
-							<tr>
-								<td>d</td>
-
-							</tr>
-							<tr>
-								<td>z</td>
-
-							</tr>
-							<tr>
-								<td>d</td>
-
+								<td>
+								${dog.dsboard_posting_no}</td>
+								<td>
+								<a href="/world/dog/dogBoardDetail.do?dsboard_posting_no=${dog.dsboard_posting_no}">
+								${dog.dsboard_title }</a>
+								</td>
+								<td>${dog.mem_nick }</td>
+								<td>
+								${dog.dsboard_wridate }
+								</td>
 							</tr>
 							
 							
 						</tbody>
+						</c:forEach>
 					</table>
 
 				</div>
@@ -225,12 +224,11 @@
 				<!-- news -->
 				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 3% 0%; float:left;">
 					<h2 id="title">NEWS</h2>
-
 					<table class="table table-striped">
 						
 						<tbody>
 							<tr>
-								<td>d</td>
+								<td>123</td>
 
 							</tr>
 							<tr>

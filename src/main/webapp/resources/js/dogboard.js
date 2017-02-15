@@ -155,35 +155,14 @@ function deleteDsComm(dsboard_ans_code, indexTdd, event){
 		
 	})
 }
-
-
-
-
-	
 function ds_src(){
 
-	formm.action =  "dsBoardSearch";
+	formm.action =  "dogBoardSearch";
 	formm.submit();
 }
-	
-		/*}else{
-			$.ajax({
-				url:"isSearch.do",
-				type: "get",
-				data: is_key,
-				success: function(data){
-					document.getElementById("isert_key").innerHTML = "";
-					alert('data');
-				},
-				error : function(error){
-					document.getElementById("isert_key").innerHTML = "";
-					alert('실패');
-				}
-			})
-		}*/
-	
-			
-		
+function select_board(value) {
+	location.href='typeDoggy?type='+value;
+}		
 
 	
 	
