@@ -143,7 +143,7 @@
 							
 							<td>
 								<a href="#" onclick="updateFreeCommForm('${indexTd }','${indexTd }', event )" id="aa">수정</a>
-							/
+							
 							<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
 								<a href="#" onclick="deleteFreeComm('${freeboard_ans_code}','${indexTdd }',event )"id="aa">삭제</a>
 							</td>
