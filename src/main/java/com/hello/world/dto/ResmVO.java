@@ -2,6 +2,9 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("resm")
 public class ResmVO {
 	
 	private String resm_id; //이력서아이디

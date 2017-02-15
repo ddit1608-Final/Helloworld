@@ -412,7 +412,7 @@ footer {
 	<table>
 		<tr>
 			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/memberManage'">회원관리</button></td>
-			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/memberManage'">머시기머시기</button></td>
+			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/cstManage'">컨설팅관리</button></td>
 			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/memberManage'">저시기저식이</button></td>
 		</tr>
 	</table>

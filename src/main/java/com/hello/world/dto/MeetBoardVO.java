@@ -2,6 +2,9 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("meetboard")
 public class MeetBoardVO {
 
 	private String meet_board_posting_no; // 모임게시판 게시글 번호

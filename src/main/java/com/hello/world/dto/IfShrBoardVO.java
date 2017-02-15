@@ -2,6 +2,9 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("ifshrboard")
 public class IfShrBoardVO {
 	
 	private String ifshrboard_posting_no; // 게시글 번호

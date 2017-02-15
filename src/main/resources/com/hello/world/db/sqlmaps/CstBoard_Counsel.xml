@@ -3,11 +3,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="CstBoard_Counsel">
-
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="cstBoard_Counsel" type="com.hello.world.dto.CstBoardCounselVO" />
-
 	<update id="insertCstBoard" parameterClass="cstBoard_Counsel">
 		insert into
 		cstboardcounsel(cstboard_counsel_posting_no, cstboard_counsel_title,
@@ -20,12 +15,20 @@
 		select * from cstboardcounsel where mem_mail =#mem_mail# order by cstboard_counsel_posting_no desc
 	</select>
 	
+	<select id="selectCstBoardAdmin" parameterClass="str" resultClass="cstBoard_Counsel">
+		select * from cstboardcounsel order by cstboard_counsel_posting_no desc
+	</select>
+	
 	<select id="getCstBoard" parameterClass="str" resultClass="cstBoard_Counsel">
 		select * from cstboardcounsel where cstboard_counsel_posting_no=#cstboard_counsel_posting_no#
 	</select>
 	
 	<select id="totalCstBoard" parameterClass="str" resultClass="int">
 		select count(*) from cstboardcounsel where mem_mail =#mem_mail#
+	</select>
+	
+	<select id="totalCstBoardAdmin" resultClass="int">
+		select count(*) from cstboardcounsel
 	</select>
 	
 	<update id="updateCstBoard" parameterClass="cstBoard_Counsel">

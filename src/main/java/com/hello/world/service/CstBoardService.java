@@ -22,10 +22,45 @@ public class CstBoardService {
 		this.cstBoardDao = cstBoardDao;
 	}
 
-	public ArrayList<CstBoardCounselVO> listCstBoard(String mem_mail)
+	public ArrayList<CstBoardCounselVO> listCstBoard(String mem_mail, int tpage, String key)
 			throws SQLException {
 		ArrayList<CstBoardCounselVO> cstBoardList = new ArrayList<CstBoardCounselVO>();
-		cstBoardList = cstBoardDao.listCstBoard(mem_mail);
+		int startRow = -1;
+		int endRow = -1;
+		
+		if (key.equals("")) {
+			key = "%";
+		}
+		
+		int totalRecord = cstBoardDao.totalCstBoard(mem_mail);
+		
+		startRow = (tpage - 1) * COUNTS;
+		endRow = startRow + COUNTS - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+		
+		cstBoardList = cstBoardDao.listCstBoard(mem_mail, startRow, COUNTS);
+		return cstBoardList;
+	}
+	
+	public ArrayList<CstBoardCounselVO> listCstBoardAdmin(int tpage, String key)
+			throws SQLException {
+		ArrayList<CstBoardCounselVO> cstBoardList = new ArrayList<CstBoardCounselVO>();
+		int startRow = -1;
+		int endRow = -1;
+		
+		if (key.equals("")) {
+			key = "%";
+		}
+		
+		int totalRecord = cstBoardDao.totalCstBoardAdmin();
+		
+		startRow = (tpage - 1) * COUNTS;
+		endRow = startRow + COUNTS - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+		
+		cstBoardList = cstBoardDao.listCstBoardAdmin(startRow, COUNTS);
 		return cstBoardList;
 	}
 

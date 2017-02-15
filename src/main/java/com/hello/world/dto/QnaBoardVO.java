@@ -2,6 +2,9 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("qnaboard")
 public class QnaBoardVO {
 	
 	private String qnaboard_posting_no; //게시글 번호

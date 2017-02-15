@@ -2,6 +2,9 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("mem")
 public class MemVO {
 	private String mem_mail; // 이메일(아이디)
 	private String mem_nm; // 이름

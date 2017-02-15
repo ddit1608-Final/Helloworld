@@ -2,6 +2,8 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+@Alias("point")
 public class PointVO {
 	private String point_code;
 	private String point;

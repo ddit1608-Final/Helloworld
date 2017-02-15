@@ -1,5 +1,8 @@
 package com.hello.world.dto;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("flow")
 public class FlowVO {
 	private String flow_code;
 	private String flow_id;
