@@ -34,6 +34,8 @@
 	src="<%=request.getContextPath()%>/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/push.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/dogboard.js"></script>	
 <link href="<%=request.getContextPath()%>/resources/css/hw.css"
 	rel="stylesheet">
 </head>
@@ -296,7 +298,7 @@ footer {
 					<tr>
 						<td><a href="#"><img id="logo"
 								src="<%=request.getContextPath()%>/images/world2.png"
-								onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"></a></td>
+								onclick="location.href='<%=request.getContextPath()%>/index'"></a></td>
 						<td><input type="search" id="search"></td>
 						<td><a href="#"> <span class="glyphicon glyphicon-search"></span>
 						</a></td>
@@ -340,7 +342,7 @@ footer {
 						<li><a
 							href="<%=request.getContextPath()%>/is/ifShrBoardList.do">정보공유</a></li>
 						<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
-						<li><a href="<%=request.getContextPath()%>/dog/dogBoardList">개소리</a></li>
+						<li><a href="<%=request.getContextPath()%>/dog/dogBoardList">개발소리</a></li>
 						<li><a href="#"></a></li>
 					</ul>
 				</div>

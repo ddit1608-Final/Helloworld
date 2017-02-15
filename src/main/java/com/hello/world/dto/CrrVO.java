@@ -1,5 +1,8 @@
 package com.hello.world.dto;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("crr")
 public class CrrVO {
 	private String crr_id;
 	private String crr_nm;

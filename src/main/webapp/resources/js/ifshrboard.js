@@ -95,7 +95,7 @@ function updateIsCommForm(indexTd, event) {
 
 	$
 			.ajax({
-				url : "updateIsBoardCom1mForm.do",
+				url : "updateIsBoardCommForm.do",
 				type : "post",
 				data : arr,
 				success : function(data) {

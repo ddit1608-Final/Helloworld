@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="DogBoard">
+
+	<select id="listAllDsBoard" parameterClass="str" resultClass="dog">
+		select * from memdog where dsboard_posting_no order by TO_NUMBER(dsboard_posting_no) desc
+	</select>
+
+	<select id="totalDsBoard" parameterClass="testVo" resultClass="int">
+		select count(*) from memdog where $type$ like '%'||#key#||'%'
+	</select>
+	
+	<update id="insertDsBoard" parameterClass="dog">
+		insert into dsboard(dsboard_posting_no,mem_mail,dsboard_title,dsboard_cont,dsboard_pwd,type_key)
+			values(dsboard_posting_no.nextval,#mem_mail#,#dsboard_title#,#dsboard_cont#,#dsboard_pwd#,#type_key#)
+	</update>
+	<select id="dsBoardDetail" parameterClass="str" resultClass="dog">
+		select * from memdog where dsboard_posting_no=#dsboard_posting_no# 
+	</select>
+	
+	<update id="updateDsBoard" parameterClass="dog">
+		update 
+			dsboard
+		set 
+			dsboard_cont=#dsboard_cont#
+		where
+			dsboard_posting_no=#dsboard_posting_no# 
+	</update>
+	
+	<delete id="deleteDsBoard" parameterClass="str">
+		delete
+		from dsboard
+		where dsboard_posting_no=#dsboard_posting_no#
+	</delete>
+	
+	<update id="updateDogHits" parameterClass="dog">
+	UPDATE 
+		dsboard 
+	SET 
+		dsboard_hits = #dsboard_hits#+1 
+	WHERE 
+		dsboard_posting_no=#dsboard_posting_no#
+	</update>
+	
+	<select id="getDsBoard" parameterClass="testVo" resultClass="dog">
+		select * from memdog where $type$ like'%'||#key#||'%' order by TO_NUMBER(dsboard_posting_no) desc
+	</select> 	
+	
+	<!-- preView -->
+	<select id="getDsPreView" parameterClass="str" resultClass="str">
+		select dsboard_cont from dsboard where dsboard_posting_no= #dsboard_posting_no#
+	</select> 
+	
+	<!-- typeList -->
+	<select id="getTypeList" parameterClass="tVO" resultClass="dog">
+		select * from memdog where $type_key$ like'%'||#type_key#||'%' order by TO_NUMBER(dsboard_posting_no) desc
+	</select> 
+	<select id="totalDsBoardd" parameterClass="tVO" resultClass="int">
+		select count(*) from memdog where type_key like '%'||#type_key#||'%'
+	</select>
+	
+	
+
+</sqlMap>

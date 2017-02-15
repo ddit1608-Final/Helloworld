@@ -1,5 +1,8 @@
 package com.hello.world.dto;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("compMem")
 public class CompanyMemberVO {
 
 	private String compmem_bsnss_lcse_no; // 사업자 등록번호

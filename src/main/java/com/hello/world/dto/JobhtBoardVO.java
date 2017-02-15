@@ -2,6 +2,9 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("jobhtBoard")
 public class JobhtBoardVO {
 	
 	private String mem_mail; // 회원 메일

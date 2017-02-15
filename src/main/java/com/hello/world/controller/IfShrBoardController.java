@@ -1,13 +1,11 @@
 package com.hello.world.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.IfShrBoardService;
 import com.hello.world.service.IsBoardCommService;
+import com.hello.world.service.PostingService;
 
 @Controller
 @RequestMapping("/is")
@@ -34,6 +34,8 @@ public class IfShrBoardController {
 	
 	@Autowired
 	IsBoardCommService isBoardCommService;
+	@Autowired
+	PostingService postingService;
 	
 	@RequestMapping("/ifShrBoardList.do")
 	public String ifShareBoardList(HttpSession session, Model model,
@@ -52,6 +54,23 @@ public class IfShrBoardController {
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
+		ArrayList<PostingTypeVO> postingList = new ArrayList<PostingTypeVO>();
+		
+		try {
+			postingList =postingService.listPostingVO();
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		model.addAttribute("postingList",postingList);
+		ArrayList<PostingTypeVO> typeList = new ArrayList<PostingTypeVO>();
+		try {
+			typeList=postingService.listPostingVO();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		model.addAttribute("typeList",typeList);
 		
 		model.addAttribute("key", key);
 		model.addAttribute("tpage", tpage);
@@ -90,10 +109,18 @@ public class IfShrBoardController {
 	}
 	
 	@RequestMapping(value="/ifShrBoardWriteForm.do",method=RequestMethod.GET)
-	public String ifShrBoardWriteForm(HttpSession session)throws ServletException,IOException{
+	public String ifShrBoardWriteForm(HttpSession session,Model model)throws ServletException,IOException{
 		String url="ifShrBoard/ifShrBoardWrite";
 		
 		MemVO loginUser=(MemVO)session.getAttribute("loginUser");
+		ArrayList<PostingTypeVO> typeList = new ArrayList<PostingTypeVO>();
+		try {
+			typeList=postingService.listPostingVO();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.addAttribute("typeList",typeList);
 		
 		return url;
 	}
@@ -128,6 +155,14 @@ public class IfShrBoardController {
 		ArrayList<IsBoardCommVO> isBoardCommList = new ArrayList<IsBoardCommVO>();
 		IfShrBoardVO ifShrBoardVO = ifShrBoardService.getIfShrBoardDetail(ifshrboard_posting_no);
 		ifShrBoardService.updateHits(ifShrBoardVO);
+		ArrayList<PostingTypeVO> typeList = new ArrayList<PostingTypeVO>();
+		try {
+			typeList=postingService.listPostingVO();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		model.addAttribute("typeList",typeList);
 		try {
 			isBoardCommList = isBoardCommService.listIsBoardComm(ifshrboard_posting_no);
 		} catch (SQLException e) {

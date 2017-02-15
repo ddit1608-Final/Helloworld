@@ -4,10 +4,6 @@
 
 <sqlMap namespace="Flow">
 
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="flow" type="com.hello.world.dto.FlowVO" />
-
 	<select id="listFlow" resultClass="flow">
 		select * from flow order by flow_code asc
 	</select>

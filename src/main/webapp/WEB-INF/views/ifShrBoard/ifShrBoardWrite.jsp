@@ -27,10 +27,15 @@
       		</tr>
       		<tr>
       			<td><label for="sel1">말머리 (select one)</label>
-      				<select class="form-control" id="sel1">
-	        			<option value="ifshrboard_tip">꿀팁</option>
+      				<select class="form-control" id="sel1" name="type_key">
+	        			<!-- <option value="type_key">꿀팁</option>
 	        			<option value="ifshrboard_os">오픈소스</option>
-	        			<option value="ifshrboard_com_epil">기업후기</option>
+	        			<option value="ifshrboard_com_epil">기업후기</option> -->
+	        			<c:forEach items="${typeList }" var="posting" varStatus="status">
+      						<c:if test="${status.count < '4'}">
+      							<option value="${posting.type_key}">${posting.type_value}</option>	
+      						</c:if>
+      					</c:forEach>
       				</select>
       			</td>
       			<td>

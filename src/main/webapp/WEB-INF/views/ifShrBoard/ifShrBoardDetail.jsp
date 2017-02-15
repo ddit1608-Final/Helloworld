@@ -71,7 +71,12 @@
   <tr>
   <th>CONTENT</th>
   <!-- 말머리 추가중 -->
-   <td>${ifShrBoardVO.ifshrboard_type }</td>
+	<td>
+   		<c:forEach var="posting" items="${typeList }" varStatus="status">
+		<c:if test="${status.count == ifShrBoardVO.type_key}">${posting.type_value}
+		</c:if>
+		</c:forEach>
+	</td>
    <!-- 말머리 추가중 -->
   <td></td>
    
@@ -103,8 +108,9 @@
 			<tbody>
 				<tr>
 					<td style="width:100px;text-align:center;" >작성자</td>
-					<td style="width:800px;text-align:center;">내용</td>
-					<td style="width:200px;text-align:center;">작성날짜</td>
+					<td style="width:1000px;">내용</td>
+					<td style="width:200px;">작성날짜</td>
+					<td style="width:90px;">비고</td>
 					<td></td>
 				</tr>
 			</tbody>
@@ -119,18 +125,17 @@
 						<%-- <td style="width:100px;text-align:center;">${ ifShrBoardComm.ifshrboard_comm_wri}</td> --%>
 						
 						<td style="width:100px;text-align:center;">
-						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2">
+						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2${status.count }">
 	    					${ ifShrBoardComm.ifshrboard_comm_wri}</button></td>
 	    					
 	    				<!-- 일단 댓글에서는 쪽지 기능  -->
-	    				 <div class="modal fade" id="myModal2" role="dialog">
+	    				 <div class="modal fade" id="myModal2${status.count }" role="dialog">
 						    <div class="modal-dialog">
 						      <!-- Modal content-->
 						      <div class="modal-content">
 						        <div class="modal-header">
 						          <button type="button" class="close" data-dismiss="modal">&times;</button>
-						          <c:set value="${ifShrBoardCommVO.getIfshrboard_comm_wri}" var="ifshrboard_comm_wri"/>
-						          <h4 class="modal-title"> ifshrboard_comm_wri 님에게 쪽지 보내기</h4>
+						          <h4 class="modal-title"> ${ ifShrBoardComm.ifshrboard_comm_wri} 님에게 쪽지 보내기</h4>
 						        </div>
 						        <div class="modal-body">
 						          	<textarea class="form-control" rows="7" name="ifshrboard_cont" id="isboard_cont"></textarea>
@@ -157,10 +162,10 @@
 						<c:set value="ifshrboard_ans_code${status.count}" var="indexTdd"/>
 						
 						<td>
-							<a href="#" onclick="updateIsCommForm('${indexTd }', event )" id="updateIs">수정</a>
+							<a href="#" onclick="updateIsCommForm('${indexTd }', event )" id="aa">수정</a>
 						/
 						<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
-							<a href="#" onclick="deleteIsComm('${ifshrboard_ans_code}','${indexTdd }',event )"id="deleteIs">삭제</a>
+							<a href="#" onclick="deleteIsComm('${ifshrboard_ans_code}','${indexTdd }',event )"id="aa">삭제</a>
 						</td>
 						<td></td>
 						</c:if>

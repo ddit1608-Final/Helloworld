@@ -2,9 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="QnaBoardBChu">
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="qnabchu" type="com.hello.world.dto.QnaBoardBChuVO" />
 
 	<update id="updateqnaBoardBChu" parameterClass="qnabchu">
 		UPDATE qnaboard_bchu

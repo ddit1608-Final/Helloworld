@@ -308,6 +308,7 @@ public class MyPageController {
 	public String freeBoardList(HttpSession session,
 			HttpServletRequest request, Model model) {
 		String mem_mail = "";
+		String key = request.getParameter("key");
 		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
 
 		try {
@@ -324,23 +325,27 @@ public class MyPageController {
 					.getMem_mail();
 
 		String url = "myPage/cstBoardList";
-		String cstTpage = request.getParameter("cstTpage");
+		String tpage = request.getParameter("tpage");
 
-		if (cstTpage == null) {
-			cstTpage = "1"; // 현재 페이지 (default 1)
-		} else if (cstTpage.equals("")) {
-			cstTpage = "1";
+		
+		if (key == null) {
+			key = "";
+		}
+		if (tpage == null) {
+			tpage = "1"; // 현재 페이지 (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
 		}
 
-		model.addAttribute("cstTpage", cstTpage);
+		model.addAttribute("tpage", tpage);
 
 		ArrayList<CstBoardCounselVO> cstBoardList = null;
 		String cstPaging = null;
 
 		try {
-			cstBoardList = cstBoardService.listCstBoard(mem_mail);
+			cstBoardList = cstBoardService.listCstBoard(mem_mail, Integer.parseInt(tpage), key);
 			cstPaging = cstBoardService.cstPageNumber(
-					Integer.parseInt(cstTpage), mem_mail);
+					Integer.parseInt(tpage), mem_mail);
 			// System.out.println("테스트용 컨트롤러");
 			// System.out.println(freeBoardList);
 		} catch (SQLException e) {

@@ -37,7 +37,13 @@
 								${ifShrBoardVO.ifshrboard_posting_no}"data-toggle="tooltip" data-placement="right"
 									title="${ifShrBoardVO.ifshrboard_cont}">
 								${ifShrBoardVO.ifshrboard_title}
-									<%-- 댓글 수 하고 싶음 
+								<c:forEach items="${typeList }" var="type" varStatus="status">
+									<c:if test="${type.type_key==ifShrBoardVO.type_key }">
+										<span class="label label-default">${type.type_value}</span>
+									</c:if> 
+								</c:forEach>
+									<%-- 댓글 수 하고 싶음
+								
 									<span class="badge">${isBoardCommListCnt}</span> --%>
 									<span class="label label-default">new</span>
 								</a>

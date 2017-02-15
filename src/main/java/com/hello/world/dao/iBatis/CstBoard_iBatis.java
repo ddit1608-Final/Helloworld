@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.hello.world.dao.CstBoardDAO;
 import com.hello.world.dto.CstBoardCounselVO;
 import com.hello.world.dto.FreeBoardVO;
+import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class CstBoard_iBatis implements CstBoardDAO {
@@ -17,11 +18,11 @@ public class CstBoard_iBatis implements CstBoardDAO {
 	}
 
 	@Override
-	public ArrayList<CstBoardCounselVO> listCstBoard(String mem_mail)
+	public ArrayList<CstBoardCounselVO> listCstBoard(String mem_mail, int startRow, int counts)
 			throws SQLException {
 		ArrayList<CstBoardCounselVO> cstBoardList = new ArrayList<CstBoardCounselVO>();
 		cstBoardList = (ArrayList<CstBoardCounselVO>) client.queryForList(
-				"selectCstBoard", mem_mail);
+				"selectCstBoard", mem_mail, startRow, counts);
 		return cstBoardList;
 	}
 
@@ -37,17 +38,25 @@ public class CstBoard_iBatis implements CstBoardDAO {
 	@Override
 	public int totalCstBoard(String mem_mail) throws SQLException {
 		int total_pages = 0;
-		
-		total_pages = (Integer) client.queryForObject("totalCstBoard",
-				mem_mail);
+
+		total_pages = (Integer) client
+				.queryForObject("totalCstBoard", mem_mail);
+		return total_pages;
+	}
+
+	@Override
+	public int totalCstBoardAdmin() throws SQLException {
+		int total_pages = 0;
+
+		total_pages = (Integer) client.queryForObject("totalCstBoardAdmin");
 		return total_pages;
 	}
 
 	@Override
 	public CstBoardCounselVO getCstBoard(String cstboard_counsel_posting_no)
 			throws SQLException {
-		CstBoardCounselVO cstBoardVo = (CstBoardCounselVO) client.queryForObject(
-				"getCstBoard", cstboard_counsel_posting_no);
+		CstBoardCounselVO cstBoardVo = (CstBoardCounselVO) client
+				.queryForObject("getCstBoard", cstboard_counsel_posting_no);
 		return cstBoardVo;
 	}
 
@@ -55,7 +64,16 @@ public class CstBoard_iBatis implements CstBoardDAO {
 	public void updateCstBoard(CstBoardCounselVO cstBoardCounselVO)
 			throws SQLException {
 		client.update("updateCstBoard", cstBoardCounselVO);
-		
+
+	}
+
+	@Override
+	public ArrayList<CstBoardCounselVO> listCstBoardAdmin(int startRow,
+			int counts) throws SQLException {
+		ArrayList<CstBoardCounselVO> cstBoardList = new ArrayList<CstBoardCounselVO>();
+		cstBoardList = (ArrayList<CstBoardCounselVO>) client
+				.queryForList("selectCstBoardAdmin", startRow, counts);
+		return cstBoardList;
 	}
 
 }

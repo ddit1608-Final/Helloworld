@@ -5,6 +5,7 @@
 
 <sqlMapConfig>
 	<!-- 아래 수정해서 사용. -->
+<<<<<<< HEAD
 	<sqlMap resource="com/hello/world/db/sqlmaps/Address.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/Mem.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/FreeBoard.xml" />
@@ -27,4 +28,10 @@
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardBChu.xml" />
 	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardCheckChu.xml" />
 	
+=======
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/temp.xml" />
+
+>>>>>>> branch 'master' of https://github.com/ddit1608-Final/Helloworld.git
 </sqlMapConfig>

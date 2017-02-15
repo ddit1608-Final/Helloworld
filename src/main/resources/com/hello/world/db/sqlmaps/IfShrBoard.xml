@@ -2,10 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="IfShrBoard">
-	<typeAlias alias="str" type="java.lang.String" />
-	<typeAlias alias="int" type="java.lang.Integer" />
-	<typeAlias alias="ifshrboard" type="com.hello.world.dto.IfShrBoardVO" />
-	<typeAlias alias="testVo" type="com.hello.world.dto.testVO" />
 
 	<!-- <select id="listIfShrBoard" parameterClass="str" resultClass="ifshrboard">
 		select * from ifshrboard where mem_mail =#mem_mail#
@@ -25,8 +21,8 @@
 	</select>
 	
 	<update id="insertIfShrBoard" parameterClass="ifshrboard">
-		insert into ifshrboard(ifshrboard_posting_no,mem_mail,ifshrboard_title,ifshrboard_cont,ifshrboard_pwd)
-			values(ifshrboard_posting_no.nextval,#mem_mail#,#ifshrboard_title#,#ifshrboard_cont#,#ifshrboard_pwd#)
+		insert into ifshrboard(ifshrboard_posting_no,mem_mail,ifshrboard_title,ifshrboard_cont,ifshrboard_pwd,type_key)
+			values(ifshrboard_posting_no.nextval,#mem_mail#,#ifshrboard_title#,#ifshrboard_cont#,#ifshrboard_pwd#,#type_key#)
 	</update>
 	<select id="ifShrBoardDetail" parameterClass="str" resultClass="ifshrboard">
 		select * from memifshr where ifshrboard_posting_no=#ifshrboard_posting_no# 

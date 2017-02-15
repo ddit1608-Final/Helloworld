@@ -42,29 +42,9 @@ public class AdminController {
 	@Autowired
 	private PointService poingService;
 	
-	public void setCompMemService(CompMemberService compMemService) {
-		this.compMemService = compMemService;
-	}
-
-	public void setMemService(MemberService memService) {
-		this.memService = memService;
-	}
-
-	public void setAddressService(AddressService addressService) {
-		this.addressService = addressService;
-	}
-
-	public void setLangService(LangService langService) {
-		this.langService = langService;
-	}
-
-	public void setCrrService(CrrService crrService) {
-		this.crrService = crrService;
-	}
-
-	public void setPoingService(PointService poingService) {
-		this.poingService = poingService;
-	}
+	@Autowired
+	private CstBoardService cstBoardService;
+	
 	
 	@RequestMapping(value = "/memberDetail", method = RequestMethod.GET)
 	public String memberDetail(String mem_mail, Model model) {
@@ -75,6 +55,44 @@ public class AdminController {
 		model.addAttribute("memVO", memVO);
 		
 		return "admin/memberDetail";
+	}
+	
+	@RequestMapping(value = "/cstManage", method = RequestMethod.GET)
+	public String cstManageList(String key, String tpage, Model model) {
+		String url= "admin/cstManageList";
+		
+		if (key == null) {
+			key = "";
+		}
+		if (tpage == null) {
+			tpage = "1"; // 현재 페이지 (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		
+		model.addAttribute("key", key);
+		model.addAttribute("tpage", tpage);
+		
+		ArrayList<CstBoardCounselVO> cstList = null;
+		String paging = null;
+		
+		try {
+			cstList = cstBoardService.listCstBoardAdmin(Integer.parseInt(tpage), key);
+			paging = cstBoardService.cstPageNumber(Integer.parseInt(tpage), key);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("memberList", cstList);
+		int n = cstList.size();
+		model.addAttribute("memberListSize", n);
+		model.addAttribute("paging", paging);
+		
+		return url;
 	}
 
 	@RequestMapping(value = "/memberManage", method = RequestMethod.GET)

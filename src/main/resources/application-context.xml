@@ -13,9 +13,12 @@
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
 		p:username="${jdbc.username}" p:password="${jdbc.password}" />
 
-	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
+	<bean id="sqlMapClient" class="kr.or.ddit.commons.ibatis.CustomSqlMapClientFactoryBean"
 		p:configLocation="classpath:com/hello/world/db/config/SqlMapConfig.xml"
-		p:dataSource-ref="dataSource" />
+		p:dataSource-ref="dataSource"
+		p:typeAliasPackages="com.hello.world.dto"
+		p:mappingLocations="classpath:com/hello/world/db/sqlmaps/*.xml"
+		 />
 
 </beans>
 
