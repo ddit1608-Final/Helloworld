@@ -272,7 +272,7 @@ public class DogBoardController {
 	// sort!!!!!!!!!
 	@RequestMapping(value="/typeDoggy",method=RequestMethod.GET)
 	public String typeDoggy(HttpServletRequest request, Model model,testVO testVO)throws IOException,ServletException{
-		
+		System.out.println("들어왔다 123");
 		String total = "";
 		
 		String url="redirect: dogBoardList";

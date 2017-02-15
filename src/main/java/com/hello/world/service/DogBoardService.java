@@ -192,7 +192,7 @@ public class DogBoardService {
 
 		return list;
 	}
-	public int getTotall(PostingTypeVO typeVO)throws SQLException{
+	public ArrayList<DogBoardVO> getTotall(PostingTypeVO typeVO)throws SQLException{
 		
 		return dogBoardDAO.getTotall(typeVO);
 		

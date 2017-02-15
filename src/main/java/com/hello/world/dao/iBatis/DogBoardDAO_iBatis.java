@@ -112,15 +112,15 @@ public class DogBoardDAO_iBatis implements DogBoardDAO {
 		if (key.equals("")) {
 			key = "%";
 		}
-		total_pages = (Integer) client.queryForObject("totalDsBoard",
+		total_pages = (Integer) client.queryForObject("totalDsBoardd",
 				typeVO);
 		return total_pages;
 	}
 
 
 	@Override
-	public int getTotall(PostingTypeVO typeVO) throws SQLException {
-		return (int) client.queryForObject("totalDsBoard", typeVO);
+	public ArrayList<DogBoardVO> getTotall(PostingTypeVO typeVO) throws SQLException {
+		return (ArrayList<DogBoardVO>) client.queryForList("totalDsBoardd", typeVO);
 	}
 
 

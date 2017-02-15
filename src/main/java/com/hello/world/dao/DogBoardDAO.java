@@ -32,7 +32,7 @@ public interface DogBoardDAO {
 	// 솔트
 	public List<DogBoardVO> getDogList(int startRow,PostingTypeVO typeVO,int counts)throws SQLException;
 	public int totalRecordd(PostingTypeVO typeVO) throws SQLException;
-	public int getTotall(PostingTypeVO typeVO)throws SQLException;
+	public ArrayList<DogBoardVO> getTotall(PostingTypeVO typeVO)throws SQLException;
 	
 }
 
