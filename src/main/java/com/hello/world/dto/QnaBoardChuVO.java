@@ -1,5 +1,8 @@
 package com.hello.world.dto;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("qnachu")
 public class QnaBoardChuVO {
 	
 	private String qnaboard_ans_code;

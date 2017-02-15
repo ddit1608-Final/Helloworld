@@ -1,5 +1,8 @@
 package com.hello.world.dto;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("lang")
 public class LangVO {
 	private int mem_lang;
 	private String mem_lang_id;

@@ -3,6 +3,9 @@ package com.hello.world.dto;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("iscomm")
 public class IsBoardCommVO {
 	
 	private String ifshrboard_ans_code;			// 답변코드 seq 

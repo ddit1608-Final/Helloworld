@@ -2,6 +2,9 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("cstBoard_Counsel")
 public class CstBoardCounselVO {
 	private String cstboard_counsel_posting_no;
 	private String cstboard_counsel_title;

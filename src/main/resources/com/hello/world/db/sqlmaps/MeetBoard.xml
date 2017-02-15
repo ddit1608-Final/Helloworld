@@ -2,11 +2,6 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="MeetBoard">
-	<typeAlias alias ="str" type="java.lang.String"/>
-	<typeAlias alias ="int" type="java.lang.Integer"/>
-	<typeAlias alias="meetboard" type="com.hello.world.dto.MeetBoardVO"/>
-	<typeAlias alias="mem" type="com.hello.world.dto.MemVO"/>
-	<typeAlias alias="testVO" type="com.hello.world.dto.testVO" />
 
 	<select id="listMeetBoard" parameterClass="str" resultClass="meetboard">
 		select * from memmeet where meet_board_posting_no=#meet_board_posting_no#

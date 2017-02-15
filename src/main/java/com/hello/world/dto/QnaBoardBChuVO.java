@@ -1,5 +1,8 @@
 package com.hello.world.dto;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("qnabchu")
 public class QnaBoardBChuVO {
 	
 	private String qnaboard_board_chu;

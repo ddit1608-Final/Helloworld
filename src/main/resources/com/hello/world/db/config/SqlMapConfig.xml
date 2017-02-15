@@ -5,28 +5,8 @@
 
 <sqlMapConfig>
 	<!-- 아래 수정해서 사용. -->
-	<sqlMap resource="com/hello/world/db/sqlmaps/Address.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/Mem.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/FreeBoard.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/Lang.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/Resm.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/PointbfOwn.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/Crr.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/JobhtBoard.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/FreeBoardComm.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoard.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/CompMem.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardComm.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardChu.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/CstBoard_Counsel.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/Flow.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/MeetBoard.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/IfShrBoard.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/IsBoardComm.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardChoose.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/QnaBoardBChu.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/Posting.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/DogBoard.xml" />
-	<sqlMap resource="com/hello/world/db/sqlmaps/DogBoardComm.xml" />
-	
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<sqlMap resource="com/hello/world/db/sqlmaps/temp.xml" />
+
 </sqlMapConfig>

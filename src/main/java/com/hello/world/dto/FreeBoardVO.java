@@ -2,6 +2,9 @@ package com.hello.world.dto;
 
 import java.sql.Timestamp;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("freeboard")
 public class FreeBoardVO {
 
 	private String freeboard_posting_no; // 자유게시판 게시글 번호
