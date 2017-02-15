@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.WebSocketSession;
 
 import com.hello.world.dto.DogBoardCommVO;
 import com.hello.world.dto.IsBoardCommVO;
@@ -44,7 +45,7 @@ public class DogBoardCommController {
 		/*String url = "redirect:ifShrBoardDetail.do?ifshrboard_posting_no="
 				+ ibcVO.getIfshrboard_posting_no();*/
 		
-		Map<String, String> users = sjs.getUsers();
+		Map<String, WebSocketSession> users = sjs.getUsers();
 		
 		
 		String today = "";
