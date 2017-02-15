@@ -271,33 +271,32 @@ public class DogBoardController {
 	
 	// sort!!!!!!!!!
 	@RequestMapping(value="/typeDoggy",method=RequestMethod.GET)
-	public String typeDoggy(HttpServletRequest request, Model model,testVO testVO)throws IOException,ServletException{
+	public String typeDoggy(HttpServletRequest request, Model model,PostingTypeVO typeVO)throws IOException,ServletException{
 		System.out.println("들어왔다 123");
 		String total = "";
 		
-		String url="redirect: dogBoardList";
-		String key = request.getParameter("key");
+		String url="dogBoard/dogBoardList";
 		String tpage = request.getParameter("tpage");
-		String type= request.getParameter("type");
 		
-		if (key == null) {
-			key = "";
-		}
 		if (tpage == null) {
 			tpage = "1"; // 현재 페이지 (default 1)
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-		model.addAttribute("key", key);
-		model.addAttribute("type",type);
+		
+		ArrayList<PostingTypeVO> typeList = new ArrayList<PostingTypeVO>();
+		try {
+			typeList=postingService.listPostingVO();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		model.addAttribute("typeList",typeList);
+		
 		model.addAttribute("tpage", tpage);
 		ArrayList<DogBoardVO> dogBoardList = null;
 		String paging = null;
 		
-		PostingTypeVO typeVO = new PostingTypeVO();
-		
-		typeVO.setType_key(key);
-		typeVO.setType_value(type);
 		
 		try {
 			total= dogBoardService.getTotall(typeVO)+"";
@@ -307,7 +306,7 @@ public class DogBoardController {
 
 		try {
 			dogBoardList = dogBoardService.getDogList(Integer.parseInt(tpage), typeVO);
-			paging = dogBoardService.pageNumber(Integer.parseInt(tpage), testVO);
+			paging = dogBoardService.pageNumberr(Integer.parseInt(tpage), typeVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -161,7 +161,7 @@ function ds_src(){
 	formm.submit();
 }
 function select_board(value) {
-	location.href='typeDoggy?type='+value;
+	location.href='typeDoggy?type_key='+value;
 }		
 
 	
