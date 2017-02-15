@@ -13,18 +13,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/hw.css">
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">	
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/hw.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
 
-
-</style>
-</head> 
+</head>
 
 <body>
 	<%-- 
@@ -116,215 +115,260 @@
 			컨텐트내용
 			<div class="col-sm-8 text-left"> -->
 
-				<!-- hot -->
-				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 auto 0; float:left;">
-					<h2 id="title">HOT CONTENTS</h2>
-
-					<table class="table table-striped">
-						<tbody>
-							<tr>
-								<td class="n1">123</td>
-
-							</tr>
-							<tr>
-								<td>z</td>
-
-							</tr>
-							<tr>
-								<td>d</td>
-
-							</tr>
-							<tr>
-								<td>z</td>
-
-							</tr>
-							<tr>
-								<td>d</td>
-
-							</tr>
-							
-							
-						</tbody>
-					</table>
-
-				</div>
-				<!-- hot end -->
-				<!-- hit  -->
-				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 id="title">HIT CONTENTS</h2>
-
-					<table class="table table-striped" id="blt">
-							<tr>
-								<th>NO</th>
-								<th>TITLE</th>
-								<th>WRI</th>
-								<th>DATE</th>
-							</tr>	
-						<c:forEach items="${freeBoardList}" var="free" begin="1" end="4">
-						<tbody>
-							<tr>
-								<td>
-								${free.freeboard_posting_no}</td>
-								<td>
-								<a href="/world/free/freeBoardDetail.do?freeboard_posting_no=${free.freeboard_posting_no}">
-								${free.freeboard_title }</a>
-								</td>
-								<td>${free.mem_nick }</td>
-								<td>
+	<!-- hot -->
+ <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+    <!--   <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+      <li data-target="#myCarousel" data-slide-to="3"></li> -->
+    </ol>
+    
+    
+	<div class="carousel-inner" role="listbox"
+		style="width: 33%; border: 1px solid #9d9d9d; margin: 5px 0 auto 0; float: left;">
+		<div class="item active">
+			<h2 id="title">자유게시판 HOT</h2>
+			<table class="table table-striped">
+				<c:forEach items="${freeBoardList}" var="free" begin="1" end="10">
+					<tbody>
+						<tr>
+							<%-- <td>
+								${free.freeboard_posting_no}</td> --%>
+							<td colspan="4">●<a
+								href="/world/free/freeBoardDetail.do?freeboard_posting_no=${free.freeboard_posting_no}">
+									${free.freeboard_title }</a>
+							</td>
+							<%-- <td>${free.mem_nick }</td> --%>
+							<%-- <td>
 								${free.freeboard_wridate }
-								</td>
-							</tr>
-							
-							
-							
-						</tbody>
-						</c:forEach>
-					</table>
+								</td> --%>
+						</tr>
+					</tbody>
+				</c:forEach>
+			</table>
 
-				</div>
-
-				<!-- hit end -->
-
-
-				<!-- new -->
-				<div style="width:33.1%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 id="title">NEW CONTENTS</h2>
-
-					<table class="table table-striped">
-							<tr>
-								<th>NO</th>
-								<th>TITLE</th>
-								<th>WRI</th>
-								<th>DATE</th>
-							</tr>
-						<c:forEach items="${dogBoardList}" var="dog" begin="1" end="4">
-						<tbody>
-							<tr>
-								<td>
-								${dog.dsboard_posting_no}</td>
-								<td>
-								<a href="/world/dog/dogBoardDetail.do?dsboard_posting_no=${dog.dsboard_posting_no}">
+			<a class="left carousel-control" href="#myCarousel" role="button"
+				data-slide="prev" style="margin-top:-5%; height:15%;"> <span
+				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#myCarousel" role="button"
+				data-slide="next" style="margin-top:-5%; height:15%;"> <span
+				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+		
+		<!-- 두번쨰 캐러샐 -->
+		 <div class="item">
+        		<div class="item active">
+			<h2 id="title">개소리게시판 HOT</h2>
+			<table class="table table-striped">
+			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="10">
+				<tbody>
+					<tr>
+						<td>●<a
+							href="/world/dog/dogBoardDetail.do?dsboard_posting_no=${dog.dsboard_posting_no}">
 								${dog.dsboard_title }</a>
-								</td>
-								<td>${dog.mem_nick }</td>
-								<td>
-								${dog.dsboard_wridate }
-								</td>
-							</tr>
-							
-							
-						</tbody>
-						</c:forEach>
-					</table>
+						</td>
+					</tr>
 
-				</div>
-				
-				<!-- new end -->
-				
-				<!-- news -->
-				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 3% 0%; float:left;">
-					<h2 id="title">NEWS</h2>
-					<table class="table table-striped">
-						
-						<tbody>
-							<tr>
-								<td>123</td>
 
-							</tr>
-							<tr>
-								<td>z</td>
+				</tbody>
+			</c:forEach>
+		</table>
 
-							</tr>
-							<tr>
-								<td>d</td>
+			<a class="left carousel-control" href="#myCarousel" role="button"
+				data-slide="prev" style="margin-top:-5%; height:15%;"> <span
+				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#myCarousel" role="button"
+				data-slide="next" style="margin-top:-5%; height:15%;"> <span
+				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
 
-							</tr>
-							<tr>
-								<td>z</td>
 
-							</tr>
-							<tr>
-								<td>d</td>
 
-							</tr>
-							
-							
-						</tbody>
-					</table>
+      </div>
+		
+		
+		
+		
+	</div>
+	</div>
+	<!-- hot end -->
 
-				</div>
-				<!-- news end -->
-				
-				<!-- 구인 -->
-				<div style="width:33%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 id="title">구인</h2>
 
-					<table class="table table-striped">
-						
-						<tbody>
-							<tr>
-								<td>d</td>
 
-							</tr>
-							<tr>
-								<td>z</td>
 
-							</tr>
-							<tr>
-								<td>d</td>
 
-							</tr>
-							<tr>
-								<td>z</td>
 
-							</tr>
-							<tr>
-								<td>d</td> 
 
-							</tr>
-							
-							
-						</tbody>
-					</table>
+	<!-- hit  -->
+	<div
+		style="width: 33%; border: 1px solid #9d9d9d; margin: 5px 0 auto 5px; float: left;">
+		<h2 id="title">HIT CONTENTS</h2>
+		<table class="table table-striped" id="maint">
+			<c:forEach items="${freeBoardList}" var="free" begin="1" end="10">
+				<tbody>
+					<tr>
+						<%-- <td>
+								${free.freeboard_posting_no}</td> --%>
+						<td colspan="4">●<a
+							href="/world/free/freeBoardDetail.do?freeboard_posting_no=${free.freeboard_posting_no}">
+								${free.freeboard_title }</a>
+						</td>
+						<%-- <td>${free.mem_nick }</td> --%>
+						<%-- <td>
+								${free.freeboard_wridate }
+								</td> --%>
+					</tr>
 
-				</div>
-				<!-- 구인end -->
-				<!-- 구직 -->
-				<div style="width:33.1%; border:1px solid #9d9d9d; margin:5px 0 auto 5px; float:left;">
-					<h2 id="title">구직</h2>
 
-					<table class="table table-striped">
-						
-						<tbody>
-							<tr>
-								<td>d</td>
 
-							</tr>
-							<tr>
-								<td>z</td>
+				</tbody>
+			</c:forEach>
+		</table>
 
-							</tr>
-							<tr>
-								<td>d</td>
+	</div>
 
-							</tr>
-							<tr>
-								<td>z</td>
+	<!-- hit end -->
 
-							</tr>
-							<tr>
-								<td>d</td>
 
-							</tr>
-							
-							
-						</tbody>
-					</table>
+	<!-- new -->
+	<div
+		style="width: 33.1%; border: 1px solid #9d9d9d; margin: 5px 0 auto 5px; float: left;">
+		<h2 id="title">NEW CONTENTS</h2>
 
-				</div>
-				
-				<!-- 구직end -->
-		<!-- 	</div>
+		<table class="table table-striped">
+			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="10">
+				<tbody>
+					<tr>
+						<td>●<a
+							href="/world/dog/dogBoardDetail.do?dsboard_posting_no=${dog.dsboard_posting_no}">
+								${dog.dsboard_title }</a>
+						</td>
+					</tr>
+
+
+				</tbody>
+			</c:forEach>
+		</table>
+
+	</div>
+
+	<!-- new end -->
+
+	<!-- news -->
+	<div
+		style="width: 33%; border: 1px solid #9d9d9d; margin: 5px 0 3% 0%; float: left;">
+		<h2 id="title">NEWS</h2>
+		<table class="table table-striped">
+
+			<tbody>
+				<tr>
+					<td>123</td>
+
+				</tr>
+				<tr>
+					<td>z</td>
+
+				</tr>
+				<tr>
+					<td>d</td>
+
+				</tr>
+				<tr>
+					<td>z</td>
+
+				</tr>
+				<tr>
+					<td>d</td>
+
+				</tr>
+
+
+			</tbody>
+		</table>
+
+	</div>
+	<!-- news end -->
+
+	<!-- 구인 -->
+	<div
+		style="width: 33%; border: 1px solid #9d9d9d; margin: 5px 0 auto 5px; float: left;">
+		<h2 id="title">구인</h2>
+
+		<table class="table table-striped">
+
+			<tbody>
+				<tr>
+					<td>d</td>
+
+				</tr>
+				<tr>
+					<td>z</td>
+
+				</tr>
+				<tr>
+					<td>d</td>
+
+				</tr>
+				<tr>
+					<td>z</td>
+
+				</tr>
+				<tr>
+					<td>d</td>
+
+				</tr>
+
+
+			</tbody>
+		</table>
+
+	</div>
+	<!-- 구인end -->
+	<!-- 구직 -->
+	<div
+		style="width: 33.1%; border: 1px solid #9d9d9d; margin: 5px 0 auto 5px; float: left;">
+		<h2 id="title">구직</h2>
+
+		<table class="table table-striped">
+
+			<tbody>
+				<tr>
+					<td>d</td>
+
+				</tr>
+				<tr>
+					<td>z</td>
+
+				</tr>
+				<tr>
+					<td>d</td>
+
+				</tr>
+				<tr>
+					<td>z</td>
+
+				</tr>
+				<tr>
+					<td>d</td>
+
+				</tr>
+
+
+			</tbody>
+		</table>
+
+	</div>
+
+	<!-- 구직end -->
+	<!-- 	</div>
 			컨텐트내용 END
 
 			<div class="col-sm-2 sidenav" style="background-color: white;">
