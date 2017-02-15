@@ -1,5 +1,8 @@
 package com.hello.world.dto;
 
+import kr.or.ddit.commons.ibatis.Alias;
+
+@Alias("tVO")
 public class PostingTypeVO {
 	
 	

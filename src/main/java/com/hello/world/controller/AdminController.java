@@ -9,11 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.hello.world.dto.CstBoardCounselVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.service.AddressService;
 import com.hello.world.service.CompMemberService;
 import com.hello.world.service.CrrService;
+import com.hello.world.service.CstBoardService;
 import com.hello.world.service.LangService;
 import com.hello.world.service.MemberService;
 import com.hello.world.service.PointService;
