@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hello.world.dao.QnaBoardChuDAO;
 import com.hello.world.dto.FreeBoardVO;
+import com.hello.world.dto.JobhtBoardVO;
+import com.hello.world.dto.QnaBoardCheckChuVO;
 import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 
@@ -41,5 +43,20 @@ public class QnaBoardChuService {
 
 		return qnaBoardChuVO;
 	}
-
+	
+	public void insertCheckChu(QnaBoardCheckChuVO qnaBoardCheckChuVO){		
+		try {
+			qnaBoardChuDAO.insertCheckChu(qnaBoardCheckChuVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public QnaBoardCheckChuVO CheckChu(
+			String qnaboard_ans_code) throws SQLException {
+		QnaBoardCheckChuVO qnaBoardCheckChuVO = qnaBoardChuDAO.CheckChu(qnaboard_ans_code);
+		
+		return qnaBoardCheckChuVO;
+	}
+	
 }

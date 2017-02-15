@@ -86,7 +86,7 @@
 								<td onclick="bchu_go('${status.count }');">비추천<input
 									type="button" id="bchu${status.count }"
 									value="${ qnaBoardChuList.qnaboard_bchu }"></td>
-
+								<td><input type="hidden" id="mem_mail2" value="${loginUser.mem_mail }"></td>
 
 								<c:if test="${empty qnaBoardChooseList.qnaboard_comm_choose }">
 									<td onclick="choose_go('${status.count }')"><input
@@ -122,7 +122,7 @@
 		<input type="text" id="qnaboard_comm_cont" name="qnaboard_comm_cont">
 		<input type="hidden" id="qnaboard_posting_no"
 			name="qnaboard_posting_no" value="${qnaBoardVO.qnaboard_posting_no }">
-		<input type="hidden" id="mem_mail" name="mem_mail"
+		<input type="text" id="mem_mail" name="mem_mail"
 			value="${loginUser.mem_mail}"> <input type="submit"
 			value="댓글등록">
 	</form>
@@ -135,10 +135,16 @@
 			type : "post",
 			data : {
 				chu : $('#chu' + index).val(),
-				qnaboard_ans_code : $('#qnaboard_ans_code' + index).val()
+				qnaboard_ans_code : $('#qnaboard_ans_code' + index).val(),
+				mem_mail : $('#mem_mail2').val()
 			},
 			success : function(data) {
+				if(data != null){
 				$('#chu' + index).val(data);
+				}
+				else{
+					alert('이미추천하셨습니다.');
+				}
 			}
 		});
 	}

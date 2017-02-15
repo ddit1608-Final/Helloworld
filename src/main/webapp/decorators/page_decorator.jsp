@@ -250,7 +250,8 @@ footer {
 			if($("#message").val() !=""){
 				sock.send($("#message").val());
 				$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
-				$("message").val("");
+				$("#message").val("");
+				$("#message").focus();
 			}
 		  })
 		wsocket.onmessage = function appendMessage(msg) {

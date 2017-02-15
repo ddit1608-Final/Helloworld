@@ -3,6 +3,8 @@ package com.hello.world.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.CloseStatus;
@@ -32,7 +34,7 @@ public class EchoHandler extends TextWebSocketHandler{
 	
 	@Override//접속관련이벤트 메소드, WebSocketSession접속한 사용자
 	public void afterConnectionEstablished(WebSocketSession session)throws Exception {
-		logger.info(session.getId()+"님 접속");
+		/*logger.info(session.getId()+"님 접속");*/
 		logger.info("연결IP: "+session.getRemoteAddress().getHostName());
 		connectsUsers.add(session); //접속담당 이벤트 메소드에 세션을 추가하는 구문을 추가한다.
 	}

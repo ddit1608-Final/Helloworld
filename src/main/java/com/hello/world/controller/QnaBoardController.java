@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.QnaBoardBChuVO;
+import com.hello.world.dto.QnaBoardCheckChuVO;
 import com.hello.world.dto.QnaBoardChooseVO;
 import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
@@ -209,22 +210,32 @@ public class QnaBoardController {
 	
 	@RequestMapping(value = "/chu", method = RequestMethod.POST)
 	@ResponseBody
-	public String boardChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, Model model, HttpServletRequest request){
+	public String boardChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, QnaBoardCheckChuVO qnaBoardCheckChuVO,
+			Model model, HttpServletRequest request){
 		
 		String chu = request.getParameter("chu");
+		
+		String mem_mail = request.getParameter("mem_mail");
 		
 		qnaBoardChuVO.setQnaboard_chu(chu);
 		
 		qnaBoardChuVO.setQnaboard_ans_code(qnaboard_ans_code);
 		
-		qnaBoardChuService.updateQnaBoardChuComm(qnaBoardChuVO);
+		qnaBoardCheckChuVO.setMem_mail(mem_mail);
 		
-		String upChu ="";
+		qnaBoardCheckChuVO.setQnaboard_ans_code(qnaboard_ans_code);
+		
+		
+		String upChu = chu;
 		try {
+			qnaBoardChuService.insertCheckChu(qnaBoardCheckChuVO);
+			if(qnaBoardChuService.CheckChu(qnaboard_ans_code).getMem_mail() != mem_mail){
+			qnaBoardChuService.updateQnaBoardChuComm(qnaBoardChuVO);
 			upChu = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_chu();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		
 		

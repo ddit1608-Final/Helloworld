@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.QnaBoardChuDAO;
+import com.hello.world.dto.QnaBoardBChuVO;
+import com.hello.world.dto.QnaBoardCheckChuVO;
 import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -37,6 +39,24 @@ public class QnaBoardChuDAO_iBatis implements QnaBoardChuDAO {
 				.queryForObject("listQnaBoardChu", qnaboard_ans_code);
 		
 		return qnaBoardChuVO;
+	}
+
+	@Override
+	public void insertCheckChu(QnaBoardCheckChuVO qnaBoardCheckChuVO)
+			throws SQLException {
+		
+		client.insert("insertCheckChu", qnaBoardCheckChuVO);
+		
+	}
+
+	@Override
+	public QnaBoardCheckChuVO CheckChu(String qnaboard_ans_code)
+			throws SQLException {
+		
+		QnaBoardCheckChuVO qnaBoardCheckChuVO = (QnaBoardCheckChuVO) client
+				.queryForObject("CheckChu", qnaboard_ans_code);
+		
+		return qnaBoardCheckChuVO;
 	}
 
 	
