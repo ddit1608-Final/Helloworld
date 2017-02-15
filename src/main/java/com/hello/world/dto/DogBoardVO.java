@@ -22,4 +22,6 @@ public class DogBoardVO {
 	private String type_value;
 		
 	
+	
+	
 }
