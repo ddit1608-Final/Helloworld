@@ -185,7 +185,8 @@
 			type : "post",
 			data : {
 				boardchu : $('#boardchu').val(),
-				qnaboard_posting_no : $('#qnaboard_posting_no').val()
+				qnaboard_posting_no : $('#qnaboard_posting_no').val(),
+				mem_mail : $('#mem_mail').val()
 			},
 			success : function(data) {
 				$('#boardchu').val(data);
@@ -199,7 +200,7 @@
 			data : {
 				boardbchu : $('#boardbchu').val(),
 				qnaboard_posting_no : $('#qnaboard_posting_no').val(),
-				mem_mail : $('#mem_mail2').val()
+				mem_mail : $('#mem_mail').val()
 			},
 			success : function(data) {
 				$('#boardbchu').val(data);

@@ -52,7 +52,7 @@ public class QnaBoardBChuDAO_iBatis implements QnaboardBChuDAO {
 	public void insertCheckBChu(QnaboardBCheckChuVO qnaboardBCheckChuVO)
 			throws SQLException {
 		
-		client.insert("insertCheckBChu", qnaboardBCheckChuVO);
+		client.insert("insertBCheckChu", qnaboardBCheckChuVO);
 	}
 
 	@Override

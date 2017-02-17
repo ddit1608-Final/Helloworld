@@ -330,7 +330,7 @@ public class QnaBoardController {
 		String upChu =boardchu;
 		try {
 			if(qnaBoardBChuService.countBChu(qnaboardBCheckChuVO) == 0){
-			qnaBoardBChuService.insertCheckChu(qnaboardBCheckChuVO);
+			qnaBoardBChuService.insertBCheckChu(qnaboardBCheckChuVO);
 			qnaBoardBChuService.updateQnaBoardBChu(qnaBoardBChuVO);		
 			upChu = qnaBoardBChuService.listQnaBoardBChu(qnaboard_posting_no).getQnaboard_board_chu();
 			}
@@ -344,19 +344,30 @@ public class QnaBoardController {
 	
 	@RequestMapping(value = "/boardbchu", method = RequestMethod.POST)
 	@ResponseBody
-	public String qnaboardBChu(@RequestParam String qnaboard_posting_no, QnaBoardBChuVO qnaBoardBChuVO, Model model, HttpServletRequest request){
+	public String qnaboardBChu(@RequestParam String qnaboard_posting_no, QnaBoardBChuVO qnaBoardBChuVO, QnaboardBCheckChuVO qnaboardBCheckChuVO,
+			Model model, HttpServletRequest request){
 		
 		String boardbchu = request.getParameter("boardbchu");
+		
+		String mem_mail = request.getParameter("mem_mail");
 		
 		qnaBoardBChuVO.setQnaboard_board_bchu(boardbchu);
 		
 		qnaBoardBChuVO.setQnaboard_posting_no(qnaboard_posting_no);
 		
-		qnaBoardBChuService.updateQnaBoardBBChu(qnaBoardBChuVO);
+		qnaboardBCheckChuVO.setMem_mail(mem_mail);
 		
-		String upBChu ="";
+		qnaboardBCheckChuVO.setQnaboard_posting_no(qnaboard_posting_no);
+		
+		
+		
+		String upBChu = boardbchu;
 		try {
+			if(qnaBoardBChuService.countBChu(qnaboardBCheckChuVO) == 0){
+			qnaBoardBChuService.insertBCheckChu(qnaboardBCheckChuVO);
+			qnaBoardBChuService.updateQnaBoardBBChu(qnaBoardBChuVO);
 			upBChu = qnaBoardBChuService.listQnaBoardBChu(qnaboard_posting_no).getQnaboard_board_bchu();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

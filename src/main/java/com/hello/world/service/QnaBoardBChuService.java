@@ -52,7 +52,7 @@ public class QnaBoardBChuService {
 		return qnaBoardBChuList;
 	}
 
-	public void insertCheckChu(QnaboardBCheckChuVO qnaboardBCheckChuVO){		
+	public void insertBCheckChu(QnaboardBCheckChuVO qnaboardBCheckChuVO){		
 		try {
 			qnaboardBChuDAO.insertCheckBChu(qnaboardBCheckChuVO);
 		} catch (SQLException e) {
