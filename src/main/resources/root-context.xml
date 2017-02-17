@@ -18,6 +18,9 @@
 	</bean>
 	<bean id="freeBoardCommDAO" class="com.hello.world.dao.iBatis.FreeBoardCommDAO_iBatis"
 		p:client-ref="sqlMapClient" />
+		
+	<bean id="meetBoardCommDAO" class="com.hello.world.dao.iBatis.MeetBoardCommDAO_iBatis"
+		p:client-ref="sqlMapClient"/>
 
 	<bean id="ifShrBoardDAO" class="com.hello.world.dao.iBatis.IfShrBoardDAO_iBatis"
 		p:client-ref="sqlMapClient" />
@@ -88,7 +91,9 @@
 		p:ifShrBoardDAO-ref="ifShrBoardDAO" />
 	<bean id="isBoardCommService" class="com.hello.world.service.IsBoardCommService"
 		p:isBoardCommDAO-ref="isBoardCommDAO" />
-
+		
+	<bean id="MeetBoardCommService" class="com.hello.world.service.MeetBoardCommService"
+		p:meetBoardCommDAO-ref="meetBoardCommDAO"/>
 
 	<bean id="MeetBoardService" class="com.hello.world.service.MeetBoardService">
 		<property name="meetBoardDAO" ref="meetBoardDAO" />

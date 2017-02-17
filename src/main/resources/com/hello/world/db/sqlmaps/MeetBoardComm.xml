@@ -19,7 +19,7 @@
 	<select id="listMeetBoardComm" parameterClass="str" resultClass="meetcomm">
 		select
 		* from meet_board_comm where MEET_BOARD_POSTING_NO =
-		#meet_board_posting_no# order by MEET_BOARD_COMM_WRIDATE asc
+		#meet_board_posting_no# order by MEET_BOARD_COMM_WRIDATE desc
 	</select>
 	
 	<delete id="deleteMeetBoardComm" parameterClass="str">

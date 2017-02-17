@@ -237,7 +237,6 @@
 
 	<!-- hit end -->
 
-
 	<!-- new -->
 	<div
 		style="width: 33.1%; border: 1px solid #9d9d9d; margin: 5px 0 auto 5px; float: left;">

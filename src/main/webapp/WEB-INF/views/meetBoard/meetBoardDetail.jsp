@@ -2,10 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/css/meetBoard.css">
 <article>
 <div>
-		<a href="<%=request.getContextPath()%>/free/freeBoardList.do"><img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/freeboard3.png"></a>
+		<a href="<%=request.getContextPath()%>/meet/meetBoardList.do"><img
+			id="meetLogo"
+			src="<%=request.getContextPath()%>/resources/images/meetLogo.png"></a>
 	</div> 
 	
 <form id="fdf" name="form" method="post">
@@ -78,23 +81,23 @@
 			<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. -->
 		</c:if>
 		<input class="btn" type="button" value="목록"
-			onclick="location.href='<%=request.getContextPath()%>/free/freeBoardList.do'">
+			onclick="location.href='<%=request.getContextPath()%>/meet/meetBoardList.do'">
 			</div>
 	</form>
 	<!-- 댓글 -->
 	<form action="writeComm" id="writeComm" name="formm" method="post">
-		<table class="table table-condensed">
+		<table class="table table-condensed" style="margin-bottom:0px;">
 			<thead>
 				<tr>
 					<td colspan="3"><span class="badge">댓글  ${meetBoardCommListCnt}</span></td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td style="width:100px">작성자</td>
+				<tr id="contents">
+					<td style="width:100px; text-align:center;">작성자</td>
 					<td style="width:1000px">내용</td>
-					<td style="width:200px">작성날짜</td>
-					<td style="width:90px">비고</td>
+					<td style="width:200px;">작성날짜</td>
+					<td style="width:90px; text-align:center;">비고</td>
 				</tr>
 			</tbody>
 			</table>
@@ -132,8 +135,8 @@
 						    <!-- 쪽지 모달 끝 -->
 						    <td style="width:70%;  word-break:break-all;" id="meet_BoardComm_cont${status.count}" name="meetBoardComm_cont${status.count}">
 						    	${ meetBoardComm.meet_board_comm_cont}
-							<input type="button" value="추천">
-							<input type="button" value="비추천"></td>
+							<input style="float:right;"type="button" value="비추천">
+							<input style="float:right;"type="button" value="추천"></td>
 							<td>${ meetBoardComm.meet_board_comm_wridate }</td>
 							<c:if test="${loginUser.mem_nick ==meetBoardComm.meet_board_comm_wri }">
 							
@@ -171,3 +174,49 @@
 	
 	</article>
 	
+	
+	<script>
+	function meetWriteComm_go(mem_nick,meet_board_posting_no,meet_board_comm_contt,indexTd,indexTdd,event) {
+		event.preventDefault();
+		var aa=Number(indexTd)+1;	
+		var cont={
+				"meet_board_comm_contt" : meet_board_comm_contt,
+				"mem_nick": mem_nick,
+				"meet_board_posting_no":meet_board_posting_no
+			};
+			if (document.formm.meet_board_comm_cont.value == "") {
+				alert("댓글을 입력해주세요");
+				document.formm.meet_board_comm_cont.focus();
+				return false;
+			}else{
+				$.ajax({
+					url:"writeComm",
+					type:"post",
+					contentType:'application/json',
+					data: JSON.stringify(cont),
+					success : function(data) {
+						var a;
+						
+							a = '<tr><td style="width:100px;text-align:center;"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2">'
+								+mem_nick+'</button></td>'+
+								'<td style="work-break:break-all;"id="meet_BoardComm_cont'+aa+'">'
+								+meet_board_comm_contt+'<input type="button" value="추천"id="chu'+indexTd+'">'+
+								'<input type="button" value="비추천" id="bchu"'+indexTd+'></td>'+
+							 	'<td>'+data.today+'</td>'+
+							 	'<td><a href="#" onclick="updateMeetCommForm('+aa+','+indexTd+',event)" id="aa">수정</a>/'+
+								'<a href="#" onclick="deleteMeetComm('+aa+', '+indexTdd+', event)"id="aa">삭제</a></td></tr>'
+						
+						$('#meetcomm_go').append(a);
+						$('#meet_board_comm_contt').val("");
+						var message = {};
+						message.to = data.mem_mail;
+						message.message = "댓글 내용 : "+meet_board_comm_contt;
+						wsocket.send(JSON.stringify(message));
+					},
+					error : function(error) {
+						alert("22");
+					}
+				})
+			}
+		}
+	</script>

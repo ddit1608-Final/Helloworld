@@ -13,7 +13,7 @@ public class MeetBoardVO {
 	private String meet_board_title; // 모임게시판 제목
 	private int meet_hits; // 모임게시판 조회수
 	private String meet_board_cont; // 모임게시판 내용
-	private Timestamp meet_board_wri_date; // 모임게시판 작성 일자
+	private Timestamp meet_board_wridate; // 모임게시판 작성 일자
 	private String flow_code; // 말머리
 	private String meet_board_pwd;
 	private String key;
@@ -25,7 +25,7 @@ public class MeetBoardVO {
 				+ ", mem_mail=" + mem_mail + ", mem_nick=" + mem_nick
 				+ ", meet_board_title=" + meet_board_title + ", meet_hits="
 				+ meet_hits + ", meet_board_cont=" + meet_board_cont
-				+ ", meet_board_wri_date=" + meet_board_wri_date
+				+ ", meet_board_wridate=" + meet_board_wridate
 				+ ", flow_code=" + flow_code + ", meet_board_pwd="
 				+ meet_board_pwd + ", key=" + key + ", mem_phn=" + mem_phn
 				+ "]";
@@ -104,11 +104,11 @@ public class MeetBoardVO {
 	}
 
 	public Timestamp getMeet_board_wri_date() {
-		return meet_board_wri_date;
+		return meet_board_wridate;
 	}
 
 	public void setMeet_board_wri_date(Timestamp meet_board_wri_date) {
-		this.meet_board_wri_date = meet_board_wri_date;
+		this.meet_board_wridate = meet_board_wri_date;
 	}
 
 	public String getFlow_code() {
