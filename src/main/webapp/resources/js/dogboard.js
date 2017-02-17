@@ -17,32 +17,32 @@ function ds_write_ok(form) {
 	}
 }
 function ds_cont() {
-	if (document.form.dsboard_cont.value == "") {
-		document.getElementById("dsboard_cont").innerHTML = "내용을 입력해주세요";
+	if (document.form.dsboard_cont.value == "      				") {
+		document.getElementById("dsboard_cont").innerHTML = "<font color='red'>내용을 입력해주세요</font>";
 		document.form.dsboard_cont.focus();
 		return false;
 	} else {
-		document.getElementById("dsboard_cont").innerHTML = "";
+		document.getElementById("dsboard_cont").innerHTML = "Comment";
 		return true;
 	}
 }
 function ds_title() {
 	if (document.form.dsboard_title.value == "") {
-		document.getElementById("dsboard_title").innerHTML = "제목을 입력해주세요";
+		document.getElementById("dsboard_title").innerHTML = "<font color='red'>제목을 입력해주세요</font>";
 		document.form.dsboard_title.focus();
 		return false;
 	} else {
-		document.getElementById("dsboard_title").innerHTML = "";
+		document.getElementById("dsboard_title").innerHTML = "제목";
 		return true;
 	}
 }
 function ds_pwd() {
 	if (document.form.dsboard_pwd.value == "") {
-		document.getElementById("dsboard_pwd").innerHTML = "비밀번호를 입력해주세요";
+		document.getElementById("dsboard_pwd").innerHTML = "<font color='red'>비밀번호를 입력해주세요</font>";
 		document.form.dsboard_pwd.focus();
 		return false;
 	} else {
-		document.getElementById("dsboard_pwd").innerHTML = "";
+		document.getElementById("dsboard_pwd").innerHTML = "비밀번호";
 		return true;
 	}
 }
@@ -161,9 +161,21 @@ function ds_src(){
 	formm.submit();
 }
 function select_board(value) {
-	location.href='typeDoggy?type='+value;
+	location.href='typeDoggy?type_key='+value;
 }		
 
+
+// 입력가능한 글자수 확인하기
+function dogTextCounter(field,countfield,maxlimit){
+	if(field.value.length>maxlimit){
+		field.value=field.value.substring(0,maxlimit);
+		document.getElementById("dsboard_cont").innerHTML = "<font color='red'>2000자를 초과할수 없습니다.</font>";
+	}
+	if(field.value.length<maxlimit){
+		countfield.value=maxlimit-field.value.length;
+		document.getElementById("dsboard_cont").innerHTML = "Comment";
+	}
+}
 	
 	
 	

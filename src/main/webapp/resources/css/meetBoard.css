@@ -45,7 +45,7 @@
 
 
 #blt{
-	width:90%;
+	width:100%;
 	margin:1% auto;
 	font-family:한나;
 	font-size:12pt;
@@ -60,4 +60,13 @@
 #blt tr td a{
 	text-decoration: none;
 	color:black;
+}
+
+.meetcoment:hover{
+background-color: #ccffbb;
+}
+
+#contents{
+font-family:한나;	
+font-size:12pt;
 }

@@ -5,6 +5,7 @@
 <%@ taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 
+
 <!DOCTYPE html>
 
 <html>
@@ -245,11 +246,32 @@ footer {
 							if ($("#message").val() != "") {
 								wsocket.send(JSON.stringify(message));
 								$("#chatMessage").append(
-										"나->" + $("#message").val() + "<br/>");
+										"나 ▶ " + $("#message").val() + "<br/>");
 								$("#message").val("");
 								$("#message").focus();
+								$('#chatMessage').animate({scrollTop: $('#chatMessage').prop("scrollHeight")}, 1);
 							}
 						})
+						$("#message").keydown(
+                  function(key) {
+
+                     if (key.keyCode == 13) {//키가 13이면 실행 (엔터는 13)
+                        var message = {};
+                        message.to = "";
+                        message.message = $("#message").val();
+
+                        if ($("#message").val() != "") {
+                           wsocket.send(JSON.stringify(message));
+                           $("#chatMessage").append(
+                                 "나 ▶ " + $("#message").val()
+                                       + "<br/>");
+                           $("#message").val("");
+                           $("#message").focus();
+                           $('#chatMessage').animate({scrollTop: $('#chatMessage').prop("scrollHeight")}, 1);
+                        }
+                     }
+
+                  });
 				wsocket.onmessage = function appendMessage(msg) {
 					if (msg.data.indexOf("알림") == "0") {
 						alert(msg.data);
@@ -269,6 +291,7 @@ footer {
 				+ ":8181/world/chat.sockjs");
 		wsocket.onopen;
 	}
+	
 </script>
 
 <body>
@@ -423,14 +446,15 @@ footer {
 
 	<div class="container-fluid text-center">
 		<div class="row content">
-			<div class="col-sm-2 sidenav" style="background-color: white;">
-				<!-- <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p>
-      <p><a href="#">Link</a></p> -->
+			<!--  채팅 -->
+			<div class="col-sm-2 sidenav" style="background-color: white; border-left:14px solid white;">
+			<c:if test="${loginUser.mem_nick != null}">
+				<jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
+			</c:if>
 			</div>
+			<!--  채팅 END-->
 			<!-- 컨텐트내용 -->
 			<div class="col-sm-8 text-left">
-
 
 				<decorator:body />
 			</div>
@@ -443,7 +467,7 @@ footer {
 
 	<!-- 컨텐트end -->
 	<!-- 풋터 -->
-	<footer class="container-fluid text-center2">
+	<footer class="container-fluid text-center2" style="bottom: 0;">
 		<p style="float: right">Copyright © 2016 Apple Inc. 모든 권리 보유</p>
 	</footer>
 	<!-- 풋터 END-->

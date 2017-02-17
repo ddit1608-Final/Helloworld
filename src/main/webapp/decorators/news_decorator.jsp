@@ -31,7 +31,7 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/push.min.js"></script>
 
-<link href="<%=request.getContextPath()%>/resources/css/hw.css"
+<link href="<%=request.getContextPath()%>/resources/css/news.css"
 	rel="stylesheet">
 
 </head>
@@ -322,6 +322,8 @@ text-decoration: none;
 	function sience(){
 		location.href="<%=request.getContextPath()%>/news/news?keyword=sience";
 	}
+	
+	
 </script>
 
 <body>
@@ -433,6 +435,9 @@ text-decoration: none;
       <p><a href="#">Link</a></p> -->
 			</div>
 			<!-- 컨텐트내용 -->
+			<a href="<%=request.getContextPath()%>/qna/qnaBoardList.do"><img
+			id="newsLogo"
+			src="<%=request.getContextPath()%>/resources/images/qnaLogo.png"></a>
 		<div class="col-sm-8 text-left">
 			<table id="newsListTable">
 			<tr>

@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hello.world.dto.FlowVO;
+import com.hello.world.dto.MeetBoardCommVO;
 import com.hello.world.dto.MeetBoardVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.service.FlowService;
+import com.hello.world.service.MeetBoardCommService;
 import com.hello.world.service.MeetBoardService;
 import com.hello.world.service.MemberService;
 
@@ -34,6 +36,9 @@ public class MeetBoardController {
 
 	@Autowired
 	FlowService flowService;
+	
+	@Autowired
+	MeetBoardCommService meetBoardCommService;
 
 	@RequestMapping("/meetBoardList.do")
 	public String MeetBoardList(HttpSession session, Model model,
@@ -95,7 +100,16 @@ public class MeetBoardController {
 			HttpSession session, Model model) throws ServletException,
 			IOException {
 		String url = "meetBoard/meetBoardDetail";
+		ArrayList<MeetBoardCommVO> meetBoardCommList= new ArrayList<MeetBoardCommVO>();
 
+		
+		try {
+			meetBoardCommList = meetBoardCommService.listMeetBoardComm(meet_board_posting_no);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		MeetBoardVO meetBoardVO = meetService.getMeetDetail(meet_board_posting_no);
 		/*meetService.updateMeetBoard(meetBoardVO);*/
 		
@@ -108,10 +122,10 @@ public class MeetBoardController {
 			e.printStackTrace();
 		}
 		model.addAttribute("flowList", flowList);
-
-
+		model.addAttribute("meetBoardCommList",meetBoardCommList);
 		model.addAttribute("meetBoardVO", meetBoardVO);
-
+		model.addAttribute("meetBoardCommListCnt",meetBoardCommList.size());
+		
 		return url;
 	}
 

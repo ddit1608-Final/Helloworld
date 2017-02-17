@@ -3,6 +3,7 @@ package com.hello.world.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hello.world.dao.MeetBoardCommDAO;
@@ -11,6 +12,7 @@ import com.hello.world.dto.MeetBoardCommVO;
 @Service
 public class MeetBoardCommService {
 	
+	@Autowired
 	private MeetBoardCommDAO meetBoardCommDAO;
 	
 	public void setMeetBoardCommDAO(MeetBoardCommDAO meetBoardCommDAO){

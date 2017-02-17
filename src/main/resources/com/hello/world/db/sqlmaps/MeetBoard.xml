@@ -26,6 +26,7 @@
 			<!-- select * from memmeet where meet_board_posting_no=#meet_board_posting_no# -->
 			select * from memmeet where flow_code like '%'||#flow_code#||'%' and 
 			meet_board_title like '%'||#key#||'%'
+			order by TO_NUMBER(meet_board_posting_no) desc
 	</select> 
 	
 	<delete id="deleteMeetBoard" parameterClass="str">

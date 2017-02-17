@@ -21,7 +21,11 @@
 					<select class="form-control" id="board_type" name="board_type" onchange="select_board(this.value)">
 	        			<c:forEach items="${typeList }" var="posting" varStatus="status">
       						<c:if test="${status.count >= '4'}">
-      							<option value="${posting.type_key}">${posting.type_value}</option>	
+      							<option value="${posting.type_key}"
+								<c:if test="${posting.type_key==param.type_key }">
+									selected
+								</c:if> 
+      							>${posting.type_value}</option>	
       						</c:if>
       					</c:forEach>
       				</select>

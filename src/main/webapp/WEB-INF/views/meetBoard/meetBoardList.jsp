@@ -17,13 +17,13 @@
 		<table class="table table-condensed" id="blt">
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
-				<td style="text-align: center;">NO</td>
-				<td style="text-align: center;">LOCATION</td>
-				<td style="text-align: center;">SUBJECT</td>
+				<td style="text-align: center;">번호</td>
+				<td style="text-align: center; width:7%;">지역</td>
+				<td style="text-align: center; width:55%; float:left;">제목</td>
 				<!-- <th>내용</th> -->
-				<td style="text-align: center;">NAME</td>
+				<td style="text-align: center;">작성자</td>
 				<!-- <th>작성자</th> -->
-				<td style="text-align: center;">DATE</td>
+				<td style="text-align: center;">날짜</td>
 			</tr>
 			<c:choose>
 				<c:when test="${meetBoardListSize<=0}">
@@ -43,8 +43,9 @@
 										${flow.flow_cont }
 									</c:if>
 								</c:forEach></td>
-							<td style="text-align: center;"><a
-								href="/world/meet/meetBoardDetail.do?meet_board_posting_no=${meetBoardVO.meet_board_posting_no}">${meetBoardVO.meet_board_title}</a>
+							<td style="text-align: left; padding-left:5%;"><a
+								href="/world/meet/meetBoardDetail.do?meet_board_posting_no=${meetBoardVO.meet_board_posting_no}">
+								${meetBoardVO.meet_board_title}</a>
 							</td>
 							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
 							<td style="text-align: center;">${meetBoardVO.mem_nick}</td>

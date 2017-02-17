@@ -11,6 +11,29 @@
 	</div>
 	<form name="form" method="post" >
 		<table class="table table-condensed" id="blt">
+			<!-- sort 기능 추가  -->
+				<tr>
+				<td style="text-align:center;">
+				<input type="button" class="btn btn-default btn-sm" value="전체보기"
+					onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardList.do'">
+					게시글 분류
+				</td>
+				<td colspan="3">
+					<select class="form-control" id="board_type" name="board_type" onchange="select_is(this.value)">
+	        			<c:forEach items="${typeList }" var="posting" varStatus="status">
+      						<c:if test="${status.count <= '3'}">
+      							<option value="${posting.type_key}"
+								<c:if test="${posting.type_key==param.type_key }">
+									selected
+								</c:if> 
+      							>${posting.type_value}</option>	
+      						</c:if>
+      					</c:forEach>
+      				</select>
+				</td>
+			</tr>
+			<!-- sort -->
+		
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
 				<td style="text-align: center;">NO</td>

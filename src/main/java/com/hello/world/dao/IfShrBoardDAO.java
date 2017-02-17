@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 
 
@@ -26,10 +28,14 @@ public interface IfShrBoardDAO {
 	// 조회수
 	public void updateHits(IfShrBoardVO ifShrBoardVO)throws SQLException;
 	// 검색
-	//public List<IfShrBoardVO> getIsBoardList(int startRow,String key,int counts)throws SQLException;
 	public List<IfShrBoardVO> getIsBoardList(int startRow,testVO testVO,int counts)throws SQLException;
 	// 카운트
 	public int getTotal(testVO testVO)throws SQLException;
+	
+	// 솔트
+	public List<IfShrBoardVO> getIsList(int startRow,PostingTypeVO typeVO,int counts)throws SQLException;
+	public int totalRecordd(PostingTypeVO typeVO) throws SQLException;
+	public ArrayList<IfShrBoardVO> getTotall(PostingTypeVO typeVO)throws SQLException;
 	
 	
 }

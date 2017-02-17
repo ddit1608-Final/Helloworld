@@ -11,6 +11,7 @@ import com.ibatis.sqlmap.client.SqlMapClient;
 public class MeetBoardCommDAO_iBatis implements MeetBoardCommDAO{
 
 	private SqlMapClient client;
+	
 	public void setClient(SqlMapClient client){
 		this.client=client;
 	}
