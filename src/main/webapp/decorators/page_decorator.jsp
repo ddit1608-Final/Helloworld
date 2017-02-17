@@ -246,7 +246,7 @@ footer {
 							if ($("#message").val() != "") {
 								wsocket.send(JSON.stringify(message));
 								$("#chatMessage").append(
-										"나 ▶ " + $("#message").val() + "<br/>");
+										"<font color='red'>나 ▶ " + $("#message").val() + "</font><br/>");
 								$("#message").val("");
 								$("#message").focus();
 								$('#chatMessage').animate({scrollTop: $('#chatMessage').prop("scrollHeight")}, 1);
@@ -263,8 +263,8 @@ footer {
                         if ($("#message").val() != "") {
                            wsocket.send(JSON.stringify(message));
                            $("#chatMessage").append(
-                                 "나 ▶ " + $("#message").val()
-                                       + "<br/>");
+                                 "<font color='red'>나 ▶ " + $("#message").val()
+                                       + "</font><br/>");
                            $("#message").val("");
                            $("#message").focus();
                            $('#chatMessage').animate({scrollTop: $('#chatMessage').prop("scrollHeight")}, 1);
@@ -281,6 +281,7 @@ footer {
 						});
 					} else {
 						$("#chatMessage").append(msg.data + "<br/>");
+						$('#chatMessage').animate({scrollTop: $('#chatMessage').prop("scrollHeight")}, 1);
 					}
 
 				}
