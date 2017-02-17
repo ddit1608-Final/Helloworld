@@ -28,7 +28,9 @@ color:black;
 </style>
 
 <article>
+
 <div style="margin-top:1%;">
+
 <table class="table table-hover">
 	<tbody>
 		<c:forEach items="${newsList}" var="b">

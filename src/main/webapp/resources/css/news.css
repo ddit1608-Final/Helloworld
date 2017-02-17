@@ -1,2 +1,8 @@
 @CHARSET "UTF-8";
 
+
+#newsLogo{
+	margin: 0.6% 17% 0% 0.3%;
+    border: 1px solid #5d5d5d;
+    width: 65%;
+}
