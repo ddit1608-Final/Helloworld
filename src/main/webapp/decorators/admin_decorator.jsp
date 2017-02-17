@@ -26,6 +26,8 @@
 	src="<%=request.getContextPath()%>/js/freeboard.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/ifshrboard.js"></script>
+	<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/admin.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript"
@@ -231,46 +233,44 @@ footer {
 
 <script>
 	var wsocket;
+    var sock = null;
+	  $(document).ready(function() {
+		  sock = new SockJS("http://"+document.domain+":8181/world/echo-ws");
+		  sock.onopen = function(){
+			  sock.send("반가워");
+		  }
+		 
+		  sock.onmessage = function(evt){
+			  $("#chatMessage").append(evt.data + "<br/>");
+		  }
+		
+		  sock.onclose= function(){
+			  sock.send("퇴장");
+		  }
+		
+		  $("#sendMessage").click(function(){
+			if($("#message").val() !=""){
+				sock.send($("#message").val());
+				$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
+				$("message").val("");
+			}
+		  })
+		wsocket.onmessage = function appendMessage(msg) {
+					alert(msg.data);
+
+					Push.create('알림', {
+						body : msg.data,
+						timeout : 5000
+					});
+
+				}
+	  });
 
 	function connect() {
-		
-		wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
+		wsocket = new SockJS("http://"+document.domain+":8181/world/chat.sockjs");
 		wsocket.onopen;
-		
-		wsocket.onmessage = onMessage("${loginUser.mem_mail }");
-		send("${loginUser.mem_mail }");
-		wsocket.onclose = onClose;
-	}
-	
-	function onClose(evt) {
-		appendMessage("연결을 끊었습니다.");
 	}
 
-	function disconnect() {
-		wsocket.close();
-	}
-
-	function send(msg) {
-		var socket = wsocket;
-		socket.send(msg);
-	}
-
-	function onMessage(evt) {
-		
-		
-		appendMessage(evt);
-	}
-	
-
-	function appendMessage(msg) {
-		function push() {
-			Push.create('이런!', {
-				body : msg,
-				timeout : 5000
-			});
-		}
-		;
-	}
 </script>
 
 <body>
@@ -297,7 +297,7 @@ footer {
 					<tr>
 						<td><a href="#"><img id="logo"
 								src="<%=request.getContextPath()%>/images/world2.png"
-								onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"></a></td>
+								onclick="location.href='<%=request.getContextPath()%>/index'"></a></td>
 						<td><input type="search" id="search"></td>
 						<td><a href="#"> <span class="glyphicon glyphicon-search"></span>
 						</a></td>

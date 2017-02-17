@@ -127,5 +127,49 @@ public class CstBoardService {
 		}
 		return str;
 	}
+	
+	public String cstPageNumberAdmin(int tpage) throws SQLException {
+		String str = "";
+		String hrefStr = "cstManage";
+
+		int total_pages = cstBoardDao.totalCstBoardAdmin();
+		int page_count = total_pages / COUNTS + 1;
+
+		if (total_pages % COUNTS == 0) {
+			page_count--;
+		}
+		if (tpage < 1) {
+			tpage = 1;
+		}
+
+		int start_page = tpage - (tpage % VIEW_ROWS) + 1;
+		int end_page = start_page + (COUNTS - 1);
+
+		if (end_page > page_count) {
+			end_page = page_count;
+		}
+		if (start_page > VIEW_ROWS) {
+			str += "<a href='" + hrefStr + "?tpage=1'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='" + hrefStr + "?tpage=" + (start_page - 1);
+			str += "'>&lt;</a>&nbsp;&nbsp;";
+		}
+
+		for (int i = start_page; i <= end_page; i++) {
+			if (i == tpage) {
+				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
+			} else {
+				str += "<a href='" + hrefStr + "?tpage=" + i + "'>[" + i
+						+ "]</a>&nbsp;&nbsp;";
+			}
+		}
+
+		if (page_count > end_page) {
+			str += "<a href='" + hrefStr + "?tpage=" + (end_page + 1)
+					+ "'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='" + hrefStr + "?tpage=" + page_count
+					+ "'> &gt; &gt; </a>&nbsp;&nbsp;";
+		}
+		return str;
+	}
 
 }
