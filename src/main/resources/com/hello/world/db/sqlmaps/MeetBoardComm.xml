@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="MeetBoardComm">
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="meetcomm" type="com.hello.world.dto.MeetBoardCommVO" />
+
+
+	<update id="insertMeetBoardComm" parameterClass="meetcomm">
+		insert into
+		meet_board_comm
+		(meet_board_ans_code, meet_board_comm_cont,
+		meet_board_comm_wri, meet_board_posting_no)
+		values(meet_board_ans_code.nextval, #meet_board_comm_cont#,
+		#meet_board_comm_wri#,#meet_board_posting_no#)
+	</update>
+	
+	<select id="listMeetBoardComm" parameterClass="str" resultClass="meetcomm">
+		select
+		* from meet_board_comm where MEET_BOARD_POSTING_NO =
+		#meet_board_posting_no# order by MEET_BOARD_COMM_WRIDATE desc
+	</select>
+	
+	<delete id="deleteMeetBoardComm" parameterClass="str">
+		delete
+		from meet_board_comm
+		where meet_board_ans_code=#meet_board_ans_code#
+	</delete>
+	<update id="updateMeetBoardComm" parameterClass="meetcomm">
+	UPDATE meet_board_comm
+	SET
+	meet_board_comm_cont=#meet_board_comm_cont#
+	where meet_board_ans_code=#meet_board_ans_code#
+	</update>
+	
+	<select id="getMeetBoardComm" parameterClass="str" resultClass="meetcomm">
+		select *
+		from meet_board_comm
+		where meet_board_ans_code=#meet_board_ans_code#
+	</select>
+	<select id="getMeetMaxAnxCode" resultClass="int">
+		select max(to_number(meet_board_ans_code)) from meet_board_comm
+	</select>
+</sqlMap>

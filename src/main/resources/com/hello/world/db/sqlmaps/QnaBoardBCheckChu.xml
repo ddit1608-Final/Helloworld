@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="QnaBoardBChu">
+	
+	<insert id="insertBCheckChu" parameterClass="qnabcheckchu">
+		insert into
+		qnaboard_bcheck_chu(qnaboard_posting_no, mem_mail)
+		values(#qnaboard_posting_no#,#mem_mail#)
+	</insert>
+	
+	<insert id="insertBCheckBChu" parameterClass="qnabcheckchu">
+		insert into
+		qnaboard_bcheck_bchu(qnaboard_posting_no, mem_mail)
+		values(#qnaboard_posting_no#,#mem_mail#)
+	</insert>
+
+	<select id="CheckBChu" parameterClass="str" resultClass="qnabcheckchu">
+		select *
+		from qnaboard_bcheck_chu where qnaboard_posting_no = #qnaboard_posting_no#
+	</select>
+
+	<select id="CountBChu" parameterClass="qnabcheckchu" resultClass="int">
+		select count(*) from qnaboard_bcheck_chu where qnaboard_posting_no =
+		#qnaboard_posting_no# and mem_mail = #mem_mail#
+	</select>
+</sqlMap>
