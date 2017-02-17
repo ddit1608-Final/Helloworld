@@ -94,7 +94,7 @@
 				onClick="location.href='/world/dog/deleteDogBoard?dsboard_posting_no=${dogBoardVO.dsboard_posting_no}'">
 		</c:if>
 		<input class="btn" type="button" value="목록"
-			onclick="location.href='<%=request.getContextPath()%>/dog/dsBoardList'">
+			onclick="location.href='<%=request.getContextPath()%>/dog/dogBoardList'">
 			</div>
 	</form>
 	
