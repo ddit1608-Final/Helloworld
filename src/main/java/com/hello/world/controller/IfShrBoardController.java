@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
 import com.hello.world.dto.MemVO;
@@ -270,6 +271,58 @@ public class IfShrBoardController {
 
 		return url;
 	}
+	
+	// sort!!!!!!!!!
+		@RequestMapping(value="/typeIs",method=RequestMethod.GET)
+		public String typeIs(HttpServletRequest request, Model model,PostingTypeVO typeVO)throws IOException,ServletException{
+			String total = "";
+			
+			String url="ifShrBoard/ifShrBoardList";
+			String tpage = request.getParameter("tpage");
+			
+			if (tpage == null) {
+				tpage = "1"; // 현재 페이지 (default 1)
+			} else if (tpage.equals("")) {
+				tpage = "1";
+			}
+			
+			ArrayList<PostingTypeVO> typeList = new ArrayList<PostingTypeVO>();
+			try {
+				typeList=postingService.listPostingVO();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			model.addAttribute("typeList",typeList);
+			
+			model.addAttribute("tpage", tpage);
+			ArrayList<IfShrBoardVO> isBoardList = null;
+			String paging = null;
+			
+			
+			try {
+				total= ifShrBoardService.getTotall(typeVO)+"";
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+
+			try {
+				isBoardList = ifShrBoardService.getIsList(Integer.parseInt(tpage), typeVO);
+				paging = ifShrBoardService.pageNumberr(Integer.parseInt(tpage), typeVO);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			model.addAttribute("ifShrBoardList", isBoardList);
+			model.addAttribute("searchCnt",total);
+			model.addAttribute("paging", paging);
+
+			return url;
+			
+		}
+	
+	
+	
 
 		
 	}
