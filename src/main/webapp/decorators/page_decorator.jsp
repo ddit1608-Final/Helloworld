@@ -35,7 +35,7 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/push.min.js"></script>
 <script type="text/javascript"
-	src="<%=request.getContextPath()%>/js/dogboard.js"></script>	
+	src="<%=request.getContextPath()%>/js/dogboard.js"></script>
 <link href="<%=request.getContextPath()%>/resources/css/hw.css"
 	rel="stylesheet">
 </head>
@@ -233,45 +233,42 @@ footer {
 
 <script>
 	var wsocket;
-    var sock = null;
-	  $(document).ready(function() {
-		  sock = new SockJS("http://"+document.domain+":8181/world/echo-ws");
-		  sock.onopen = function(){
-			  sock.send("반가워");
-		  }
-		 
-		  sock.onmessage = function(evt){
-			  $("#chatMessage").append(evt.data + "<br/>");
-		  }
-		
-		  sock.onclose= function(){
-			  sock.send("퇴장");
-		  }
-		
-		  $("#sendMessage").click(function(){
-			if($("#message").val() !=""){
-				sock.send($("#message").val());
-				$("#chatMessage").append("나->" + $("#message").val()+"<br/>");
-				$("#message").val("");
-				$("#message").focus();
-			}
-		  })
-		wsocket.onmessage = function appendMessage(msg) {
-					alert(msg.data);
+	var sock = null;
+	$(document).ready(
+			function() {
+				$("#sendMessage").click(
+						function() {
+							var message = {};
+							message.to = "";
+							message.message = $("#message").val();
 
-					Push.create('알림', {
-						body : msg.data,
-						timeout : 5000
-					});
+							if ($("#message").val() != "") {
+								wsocket.send(JSON.stringify(message));
+								$("#chatMessage").append(
+										"나->" + $("#message").val() + "<br/>");
+								$("#message").val("");
+								$("#message").focus();
+							}
+						})
+				wsocket.onmessage = function appendMessage(msg) {
+					if (msg.data.indexOf("알림") == "0") {
+						alert(msg.data);
+						Push.create('알림', {
+							body : msg.data,
+							timeout : 5000
+						});
+					} else {
+						$("#chatMessage").append(msg.data + "<br/>");
+					}
 
 				}
-	  });
+			});
 
 	function connect() {
-		wsocket = new SockJS("http://"+document.domain+":8181/world/chat.sockjs");
+		wsocket = new SockJS("http://" + document.domain
+				+ ":8181/world/chat.sockjs");
 		wsocket.onopen;
 	}
-
 </script>
 
 <body>
@@ -360,11 +357,11 @@ footer {
 					<ul class="nav navbar-nav">
 						<c:choose>
 							<c:when test="${loginUser eq null }">
-							
+
 								<script>
 									wsocket.onclose();
 								</script>
-								
+
 								<li><input class="login" id="login_mem_mail"
 									name="login_mem_mail" type="text" placeholder=" 이메일"></li>
 								<li><input class="login" id="login_mem_pw"
@@ -385,8 +382,8 @@ footer {
 									connect();
 								</script>
 
-								<li class="mem_mail">(Level)
-									${loginUser.mem_nick } (POINT : ${myPoint })</li>
+								<li class="mem_mail">(Level) ${loginUser.mem_nick } (POINT
+									: ${myPoint })</li>
 								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 								<li><a href="#" id="aa">반응 ()</a></li>
 								<li><a href="<%=request.getContextPath()%>/mypage/main"
