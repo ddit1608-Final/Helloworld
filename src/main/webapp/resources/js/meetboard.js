@@ -70,9 +70,9 @@ function meetWriteComm_go(mem_nick,meet_board_posting_no,meet_board_comm_contt,i
 					
 						a = '<tr><td style="width:100px;text-align:center;"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2">'
 							+mem_nick+'</button></td>'+
-							'<td style="work-break:break-all;"id="meet_BoardComm_cont'+aa+'">'
-							+meet_board_comm_contt+'<input type="button" value="추천"id="chu'+indexTd+'">'+
-							'<input type="button" value="비추천" id="bchu"'+indexTd+'></td>'+
+							'<td style="width:70%; work-break:break-all;"id="meet_BoardComm_cont'+aa+'">'
+							+meet_board_comm_contt+'<input style="float:right;" type="button" value="추천"id="chu'+indexTd+'">'+
+							'<input style="float:right;" type="button" value="비추천" id="bchu"'+indexTd+'></td>'+
 						 	'<td>'+data.today+'</td>'+
 						 	'<td><a href="#" onclick="updateMeetCommForm('+aa+','+indexTd+',event)" id="aa">수정</a>/'+
 							'<a href="#" onclick="deleteMeetComm('+aa+', '+indexTdd+', event)"id="aa">삭제</a></td></tr>'
