@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.hello.world.dao.IfShrBoardDAO;
+import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
@@ -106,6 +108,35 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 
 		
 		return (int) client.queryForObject("totalIfShrBoard", testVO);
+	}
+	///////////////////sort/
+	@Override
+	public List<IfShrBoardVO> getIsList(int startRow, PostingTypeVO typeVO,
+			int counts) throws SQLException {
+		ArrayList<IfShrBoardVO> isBoardList = new ArrayList<IfShrBoardVO>();
+
+		isBoardList = (ArrayList<IfShrBoardVO>) client.queryForList(
+				"getIsTypeList", typeVO, startRow, counts);
+
+		return isBoardList;
+	}
+
+	@Override
+	public int totalRecordd(PostingTypeVO typeVO) throws SQLException {
+		int total_pages = 0;
+		String key = typeVO.getType_key();
+		if (key.equals("")) {
+			key = "%";
+		}
+		total_pages = (Integer) client.queryForObject("totalIsBoard",
+				typeVO);
+		return total_pages;
+	}
+
+	@Override
+	public ArrayList<IfShrBoardVO> getTotall(PostingTypeVO typeVO)
+			throws SQLException {
+		return (ArrayList<IfShrBoardVO>) client.queryForList("totalIsBoard", typeVO);
 	}
 
 

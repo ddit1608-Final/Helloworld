@@ -40,7 +40,7 @@
       			</td>
       			<td>
       			<div class="col-xs-10">
-      			<label id="dogboard_title">제목</label>
+      			<label id="dsboard_title">제목</label>
       			<input type="text" class="form-control" id="dsboard_title" name="dsboard_title">
 		    	</div>
 		      	</td>
@@ -48,15 +48,27 @@
 		      	<td></td>
 		      	<td></td>
 		    </tr>
+		    <tr>
+		    	<td></td>
+		    	<td></td>
+		    	<td></td>
+      			<td></td>
+      			<td></td>
+		    </tr>
       		<tr>
       			<td><h2>내용</h2>
   					<p>한글 2000자 이내</p>
-  					<p><label id="dsboard_cont" class="cec" ></label></p>
+  					<input readonly type="text" name="remLen" size=3 maxlength=3 value="2000" style="background-color:#f3f3f3;border:0px;">
+  					<span class="label label-default">글자가 남았습니다.</span>
   					</td>
   				<td>	
     			<div class="form-group">
-      			<label for="comment">Comment:</label>
-      			<textarea class="form-control" rows="7" name="dsboard_cont" id="dsboard_cont"></textarea>
+      			<label for="comment" id="dsboard_cont">Comment</label>
+      			<!-- <input class="form-control" type="text" name="dsboard_cont" id="dsboard_cont" size="100"  style="height:300px;"> -->
+      			<textarea class="form-control" rows="7" name="dsboard_cont" id="dsboard_cont" 
+      				onKeyDown="dogTextCounter(this.form.dsboard_cont,this.form.remLen,2000);" 
+      				onKeyUp="dogTextCounter(this.form.dsboard_cont,this.form.remLen,2000);">
+      				</textarea>
     			</div>
       			</td>
       			<td></td>

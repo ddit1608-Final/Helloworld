@@ -51,12 +51,16 @@
       		<tr>
       			<td><h2>내용</h2>
   					<p>한글 2000자 이내</p>
-  					<p><label id="ifshrboard_cont" class="cec" ></label></p>
+  					<input readonly type="text" name="remLen" size=3 maxlength=3 value="2000" style="background-color:#f3f3f3;border:0px;">
+  					<span class="label label-default">글자가 남았습니다.</span>
   					</td>
   				<td>	
     			<div class="form-group">
-      			<label for="comment">Comment:</label>
-      			<textarea class="form-control" rows="7" name="ifshrboard_cont" id="isboard_cont"></textarea>
+      			<label for="comment" id="ifshrboard_cont">Comment:</label>
+      			<textarea class="form-control" rows="7" name="ifshrboard_cont" id="ifshrboard_cont" 
+      				onKeyDown="isTextCounter(this.form.ifshrboard_cont,this.form.remLen,2000);" 
+      				onKeyUp="isTextCounter(this.form.ifshrboard_cont,this.form.remLen,2000);">
+      				</textarea>
     			</div>
       			</td>
       			<td></td>

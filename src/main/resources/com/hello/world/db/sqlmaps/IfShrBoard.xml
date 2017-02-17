@@ -2,6 +2,14 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="IfShrBoard">
+<<<<<<< HEAD
+=======
+	<typeAlias alias="str" type="java.lang.String" />
+	<typeAlias alias="int" type="java.lang.Integer" />
+	<typeAlias alias="ifshrboard" type="com.hello.world.dto.IfShrBoardVO" />
+	<typeAlias alias="testVo" type="com.hello.world.dto.testVO" />
+	<typeAlias alias="tVO" type="com.hello.world.dto.PostingTypeVO" />
+>>>>>>> refs/heads/DA
 
 	<!-- <select id="listIfShrBoard" parameterClass="str" resultClass="ifshrboard">
 		select * from ifshrboard where mem_mail =#mem_mail#
@@ -64,6 +72,12 @@
 	<select id="getIsPreView" parameterClass="String" resultClass="String">
 		select ifshrboard_cont from ifshrboard where ifshrboard_posting_no= #ifshrboard_posting_no#
 	</select> 
+	<select id="getIsTypeList" parameterClass="tVO" resultClass="ifshrboard">
+		select * from memifshr where type_key like'%'||#type_key#||'%' order by TO_NUMBER(ifshrboard_posting_no) desc
+	</select> 
+	<select id="totalIsBoard" parameterClass="tVO" resultClass="int">
+		select count(*) from memifshr where type_key like '%'||#type_key#||'%'
+	</select>
 	
 	
 	

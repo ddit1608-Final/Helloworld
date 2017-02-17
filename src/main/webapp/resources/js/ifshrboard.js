@@ -17,32 +17,32 @@ function is_write_ok(form) {
 	}
 }
 function is_cont() {
-	if (document.form.ifshrboard_cont.value == "") {
-		document.getElementById("ifshrboard_cont").innerHTML = "내용을 입력해주세요";
+	if (document.form.ifshrboard_cont.value == "      				") {
+		document.getElementById("ifshrboard_cont").innerHTML = "<font color='red'>내용을 입력해주세요</font>";
 		document.form.ifshrboard_cont.focus();
 		return false;
 	} else {
-		document.getElementById("ifshrboard_cont").innerHTML = "";
+		document.getElementById("ifshrboard_cont").innerHTML = "Comment";
 		return true;
 	}
 }
 function is_title() {
 	if (document.form.ifshrboard_title.value == "") {
-		document.getElementById("ifshrboard_title").innerHTML = "제목을 입력해주세요";
+		document.getElementById("ifshrboard_title").innerHTML = "<font color='red'>제목을 입력해주세요</font>";
 		document.form.ifshrboard_title.focus();
 		return false;
 	} else {
-		document.getElementById("ifshrboard_title").innerHTML = "";
+		document.getElementById("ifshrboard_title").innerHTML = "제목";
 		return true;
 	}
 }
 function is_pwd() {
 	if (document.form.ifshrboard_pwd.value == "") {
-		document.getElementById("ifshrboard_pwd").innerHTML = "비밀번호를 입력해주세요";
+		document.getElementById("ifshrboard_pwd").innerHTML = "<font color='red'>비밀번호를 입력해주세요</font>";
 		document.form.ifshrboard_pwd.focus();
 		return false;
 	} else {
-		document.getElementById("ifshrboard_pwd").innerHTML = "";
+		document.getElementById("ifshrboard_pwd").innerHTML = "비밀번호";
 		return true;
 	}
 }
@@ -166,24 +166,20 @@ function is_src(){
 	formm.submit();
 }
 	
-		/*}else{
-			$.ajax({
-				url:"isSearch.do",
-				type: "get",
-				data: is_key,
-				success: function(data){
-					document.getElementById("isert_key").innerHTML = "";
-					alert('data');
-				},
-				error : function(error){
-					document.getElementById("isert_key").innerHTML = "";
-					alert('실패');
-				}
-			})
-		}*/
-	
-			
-		
+function select_is(value) {
+	location.href='typeIs?type_key='+value;
+}		
+
+// 글자수
+function isTextCounter(field,countfield,maxlimit){
+	if(field.value.length>maxlimit){
+		field.value=field.value.substring(0,maxlimit);
+	}else if(field.value.length<1){
+		countfield.value=maxlimit-field.value.length;
+		document.getElementById("ifshrboard_cont").innerHTML = "<font color='red'>내용을 입력해dsd주세요</font>";
+	}
+}
+
 
 	
 	

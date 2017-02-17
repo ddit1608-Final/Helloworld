@@ -16,32 +16,32 @@ function free_write_ok(form) {
 	}
 }	
 function free_cont(){
-	if (document.form.freeboard_cont.value == "") {
-		document.getElementById("freeboard_cont").innerHTML = "내용을 입력해주세요";
+	if (document.form.freeboard_cont.value == "      				") {
+		document.getElementById("freeboard_cont").innerHTML = "<font color='red'>내용을 입력해주세요</font>";
 		document.form.freeboard_cont.focus();
 		return false;
 	}else{
-		document.getElementById("freeboard_cont").innerHTML = "";
+		document.getElementById("freeboard_cont").innerHTML = "Comment";
 		return true;
 	}
 }
 function free_title(){
 	if (document.form.freeboard_title.value == "") {
-		document.getElementById("freeboard_title").innerHTML = "제목을 입력해주세요";
+		document.getElementById("freeboard_title").innerHTML = "<font color='red'>제목을 입력해주세요</font>";
 		document.form.freeboard_title.focus();
 		return false;
 	}else{
-			document.getElementById("freeboard_title").innerHTML = "";
+			document.getElementById("freeboard_title").innerHTML = "제목";
 			return true;
 	}
 }
 function free_pwd(){
 	if (document.form.freeboard_pwd.value == "") {
-		document.getElementById("freeboard_pwd").innerHTML = "비밀번호를 입력해주세요";
+		document.getElementById("freeboard_pwd").innerHTML = "<font color='red'>비밀번호를 입력해주세요</font>";
 		document.form.freeboard_pwd.focus();
 		return false;
 	}else{
-		document.getElementById("freeboard_pwd").innerHTML = "";
+		document.getElementById("freeboard_pwd").innerHTML = "비밀번호";
 		return true;
 	}
 }
