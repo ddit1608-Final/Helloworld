@@ -12,6 +12,8 @@ public interface QnaBoardChuDAO {
 	public void updateQnaBoardBChuComm(QnaBoardChuVO qnaBoardChuVO)throws SQLException;
 	public QnaBoardChuVO listQnaBoardChu(String qnaboard_ans_code)throws SQLException;
 	public void insertCheckChu(QnaBoardCheckChuVO qnaBoardCheckChuVO)throws SQLException;
+	public void insertCheckBChu(QnaBoardCheckChuVO qnaBoardCheckChuVO)throws SQLException;
 	public QnaBoardCheckChuVO CheckChu(String qnaboard_ans_code)throws SQLException;
+	public int countChu(QnaBoardCheckChuVO vo)throws SQLException;
 
 }

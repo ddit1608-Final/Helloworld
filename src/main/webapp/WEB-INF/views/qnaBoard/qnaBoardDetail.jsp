@@ -139,12 +139,7 @@
 				mem_mail : $('#mem_mail2').val()
 			},
 			success : function(data) {
-				if(data != null){
 				$('#chu' + index).val(data);
-				}
-				else{
-					alert('이미추천하셨습니다.');
-				}
 			}
 		});
 	}
@@ -155,7 +150,8 @@
 			type : "post",
 			data : {
 				bchu : $('#bchu' + index).val(),
-				qnaboard_ans_code : $('#qnaboard_ans_code' + index).val()
+				qnaboard_ans_code : $('#qnaboard_ans_code' + index).val(),
+				mem_mail : $('#mem_mail2').val()
 			},
 			success : function(data) {
 				$('#bchu' + index).val(data);
@@ -202,7 +198,8 @@
 			type : "post",
 			data : {
 				boardbchu : $('#boardbchu').val(),
-				qnaboard_posting_no : $('#qnaboard_posting_no').val()
+				qnaboard_posting_no : $('#qnaboard_posting_no').val(),
+				mem_mail : $('#mem_mail2').val()
 			},
 			success : function(data) {
 				$('#boardbchu').val(data);

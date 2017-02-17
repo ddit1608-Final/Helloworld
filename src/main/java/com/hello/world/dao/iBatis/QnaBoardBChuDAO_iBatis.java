@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.hello.world.dao.QnaboardBChuDAO;
 import com.hello.world.dto.QnaBoardBChuVO;
+import com.hello.world.dto.QnaboardBCheckChuVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 public class QnaBoardBChuDAO_iBatis implements QnaboardBChuDAO {
@@ -45,6 +46,31 @@ public class QnaBoardBChuDAO_iBatis implements QnaboardBChuDAO {
 				"listAllQnaBoardBChu");
 
 		return qnaBoardList;
+	}
+
+	@Override
+	public void insertCheckBChu(QnaboardBCheckChuVO qnaboardBCheckChuVO)
+			throws SQLException {
+		
+		client.insert("insertCheckBChu", qnaboardBCheckChuVO);
+	}
+
+	@Override
+	public int countBChu(QnaboardBCheckChuVO vo) throws SQLException {
+		int cnt = (int) client
+				.queryForObject("CountBChu", vo);
+		
+		return cnt;
+	}
+
+	@Override
+	public QnaboardBCheckChuVO CheckBChu(String qnaboard_posting_no)
+			throws SQLException {
+		
+		QnaboardBCheckChuVO qnaboardBCheckChuVO = (QnaboardBCheckChuVO)client
+				.queryForObject("CheckBChu", qnaboard_posting_no);
+		
+		return qnaboardBCheckChuVO;
 	}
 
 }

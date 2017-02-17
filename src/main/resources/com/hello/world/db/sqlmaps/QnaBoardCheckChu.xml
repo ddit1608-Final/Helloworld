@@ -5,13 +5,26 @@
 	<typeAlias alias="str" type="java.lang.String" />
 	<typeAlias alias="int" type="java.lang.Integer" />
 	<typeAlias alias="qnacheckchu" type="com.hello.world.dto.QnaBoardCheckChuVO" />
-	
+
 	<insert id="insertCheckChu" parameterClass="qnacheckchu">
-		insert into qnaboard_check_chu(qnaboard_ans_code, mem_mail)
-			values(#qnaboard_ans_code#,#mem_mail#)
+		insert into
+		qnaboard_check_chu(qnaboard_ans_code, mem_mail)
+		values(#qnaboard_ans_code#,#mem_mail#)
+	</insert>
+	
+	<insert id="insertCheckBChu" parameterClass="qnacheckchu">
+		insert into
+		qnaboard_check_bchu(qnaboard_ans_code, mem_mail)
+		values(#qnaboard_ans_code#,#mem_mail#)
 	</insert>
 
 	<select id="CheckChu" parameterClass="str" resultClass="qnacheckchu">
-		select * from qnaboard_check_chu where qnaboard_ans_code = #qnaboard_ans_code#
+		select *
+		from qnaboard_check_chu where qnaboard_ans_code = #qnaboard_ans_code#
+	</select>
+
+	<select id="CountChu" parameterClass="qnacheckchu" resultClass="int">
+		select count(*) from qnaboard_check_chu where qnaboard_ans_code =
+		#qnaboard_ans_code# and mem_mail = #mem_mail#
 	</select>
 </sqlMap>

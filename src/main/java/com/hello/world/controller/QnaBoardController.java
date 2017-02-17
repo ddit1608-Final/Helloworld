@@ -23,6 +23,7 @@ import com.hello.world.dto.QnaBoardChooseVO;
 import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
+import com.hello.world.dto.QnaboardBCheckChuVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.QnaBoardBChuService;
 import com.hello.world.service.QnaBoardChooseService;
@@ -116,8 +117,6 @@ public class QnaBoardController {
 					Integer.parseInt(tpage), testVO);
 			qnaBChuList = qnaBoardBChuService.listAllQnaBoardBChu();
 			paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), testVO);
-			// System.out.println("테스트용 컨트롤러");
-			// System.out.println(freeBoardList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -228,14 +227,13 @@ public class QnaBoardController {
 		
 		String upChu = chu;
 		try {
-			qnaBoardChuService.insertCheckChu(qnaBoardCheckChuVO);
-			if(qnaBoardChuService.CheckChu(qnaboard_ans_code).getMem_mail() != mem_mail){
-			qnaBoardChuService.updateQnaBoardChuComm(qnaBoardChuVO);
-			upChu = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_chu();
+			if(qnaBoardChuService.countChu(qnaBoardCheckChuVO) == 0) {
+				qnaBoardChuService.insertCheckChu(qnaBoardCheckChuVO);
+				qnaBoardChuService.updateQnaBoardChuComm(qnaBoardChuVO);
+				upChu = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_chu();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-//			e.printStackTrace();
+			e.printStackTrace();
 		}
 		
 		
@@ -244,19 +242,30 @@ public class QnaBoardController {
 	
 	@RequestMapping(value = "/bchu", method = RequestMethod.POST)
 	@ResponseBody
-	public String boardBChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, Model model, HttpServletRequest request){
+	public String boardBChu(@RequestParam String qnaboard_ans_code, QnaBoardChuVO qnaBoardChuVO, QnaBoardCheckChuVO qnaBoardCheckChuVO, 
+			Model model, HttpServletRequest request){
 		
 		String bchu = request.getParameter("bchu");
+		
+		String mem_mail = request.getParameter("mem_mail");
 		
 		qnaBoardChuVO.setQnaboard_bchu(bchu);
 		
 		qnaBoardChuVO.setQnaboard_ans_code(qnaboard_ans_code);
 		
-		qnaBoardChuService.updateQnaBoardBChuComm(qnaBoardChuVO);
+		qnaBoardCheckChuVO.setMem_mail(mem_mail);
 		
-		String upBChu ="";
+		qnaBoardCheckChuVO.setQnaboard_ans_code(qnaboard_ans_code);
+		
+		
+		
+		String upBChu = bchu;
 		try {
+			if(qnaBoardChuService.countChu(qnaBoardCheckChuVO) == 0){
+			qnaBoardChuService.insertCheckBChu(qnaBoardCheckChuVO);
+			qnaBoardChuService.updateQnaBoardBChuComm(qnaBoardChuVO);
 			upBChu = qnaBoardChuService.listQnaBoardChu(qnaboard_ans_code).getQnaboard_bchu();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -303,19 +312,28 @@ public class QnaBoardController {
 	
 	@RequestMapping(value = "/boardchu", method = RequestMethod.POST)
 	@ResponseBody
-	public String qnaboardChu(@RequestParam String qnaboard_posting_no, QnaBoardBChuVO qnaBoardBChuVO, Model model, HttpServletRequest request){
+	public String qnaboardChu(@RequestParam String qnaboard_posting_no, QnaBoardBChuVO qnaBoardBChuVO, QnaboardBCheckChuVO qnaboardBCheckChuVO,
+			Model model, HttpServletRequest request){
 		
 		String boardchu = request.getParameter("boardchu");
+		String mem_mail = request.getParameter("mem_mail");
 		
 		qnaBoardBChuVO.setQnaboard_board_chu(boardchu);
 		
 		qnaBoardBChuVO.setQnaboard_posting_no(qnaboard_posting_no);
 		
-		qnaBoardBChuService.updateQnaBoardBChu(qnaBoardBChuVO);		
+		qnaboardBCheckChuVO.setMem_mail(mem_mail);
 		
-		String upChu ="";
+		qnaboardBCheckChuVO.setQnaboard_posting_no(qnaboard_posting_no);
+		
+		
+		String upChu =boardchu;
 		try {
+			if(qnaBoardBChuService.countBChu(qnaboardBCheckChuVO) == 0){
+			qnaBoardBChuService.insertCheckChu(qnaboardBCheckChuVO);
+			qnaBoardBChuService.updateQnaBoardBChu(qnaBoardBChuVO);		
 			upChu = qnaBoardBChuService.listQnaBoardBChu(qnaboard_posting_no).getQnaboard_board_chu();
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

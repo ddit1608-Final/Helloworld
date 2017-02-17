@@ -52,11 +52,26 @@ public class QnaBoardChuService {
 		}
 	}
 	
+	public void insertCheckBChu(QnaBoardCheckChuVO qnaBoardCheckChuVO){		
+		try {
+			qnaBoardChuDAO.insertCheckChu(qnaBoardCheckChuVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public QnaBoardCheckChuVO CheckChu(
 			String qnaboard_ans_code) throws SQLException {
 		QnaBoardCheckChuVO qnaBoardCheckChuVO = qnaBoardChuDAO.CheckChu(qnaboard_ans_code);
 		
 		return qnaBoardCheckChuVO;
+	}
+	
+	public int countChu(
+			QnaBoardCheckChuVO vo) throws SQLException {
+		int cnt = qnaBoardChuDAO.countChu(vo);
+		
+		return cnt;
 	}
 	
 }

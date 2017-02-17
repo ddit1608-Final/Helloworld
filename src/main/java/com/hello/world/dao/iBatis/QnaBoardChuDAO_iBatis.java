@@ -59,6 +59,22 @@ public class QnaBoardChuDAO_iBatis implements QnaBoardChuDAO {
 		return qnaBoardCheckChuVO;
 	}
 
+	@Override
+	public int countChu(QnaBoardCheckChuVO vo) throws SQLException {
+		int cnt = (int) client
+				.queryForObject("CountChu", vo);
+		
+		return cnt;
+	}
+
+	@Override
+	public void insertCheckBChu(QnaBoardCheckChuVO qnaBoardCheckChuVO)
+			throws SQLException {
+		
+		client.insert("insertCheckBChu", qnaBoardCheckChuVO);
+		
+	}
+
 	
 	
 
