@@ -1,5 +1,6 @@
 package com.hello.world.websocket;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -54,6 +55,7 @@ public class EchoHandler extends TextWebSocketHandler {
 			}
 		}
 		MessageVO messageVO = MessageVO.converMessage(message.getPayload());
+		
 		String user = messageVO.getTo();
 		System.err.println(users.get(user));
 		users.get(user).sendMessage(

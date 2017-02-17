@@ -223,7 +223,7 @@ footer {
 	color: #3EAF0E;
 }
 
-#mem_mail {
+.mem_mail {
 	padding-top: 13px;
 	font-family: 한나;
 	font-size: 12pt;
@@ -385,7 +385,7 @@ footer {
 									connect();
 								</script>
 
-								<li id="mem_mail" name="mem_mail">(Level)
+								<li class="mem_mail">(Level)
 									${loginUser.mem_nick } (POINT : ${myPoint })</li>
 								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 								<li><a href="#" id="aa">반응 ()</a></li>
