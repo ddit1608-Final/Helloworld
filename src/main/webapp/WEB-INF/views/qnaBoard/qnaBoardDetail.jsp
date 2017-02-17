@@ -56,7 +56,7 @@
 				<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. -->
 			</c:if>
 			<input class="btn" type="button" value="목록"
-				onclick="location.href='<%=request.getContextPath()%>/free/freeBoardList.do'">
+				onclick="location.href='<%=request.getContextPath()%>/qna/qnaBoardList.do'">
 		</div>
 	</form>
 
