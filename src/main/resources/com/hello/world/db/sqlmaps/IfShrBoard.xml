@@ -21,8 +21,8 @@
 	</select>
 	
 	<update id="insertIfShrBoard" parameterClass="ifshrboard">
-		insert into ifshrboard(ifshrboard_posting_no,mem_mail,ifshrboard_title,ifshrboard_cont,ifshrboard_pwd,type_key)
-			values(ifshrboard_posting_no.nextval,#mem_mail#,#ifshrboard_title#,#ifshrboard_cont#,#ifshrboard_pwd#,#type_key#)
+		insert into ifshrboard(ifshrboard_posting_no,mem_mail,ifshrboard_title,ifshrboard_cont,ifshrboard_pwd,type_key,crr_key)
+			values(ifshrboard_posting_no.nextval,#mem_mail#,#ifshrboard_title#,#ifshrboard_cont#,#ifshrboard_pwd#,#type_key#,#crr_key#)
 	</update>
 	<select id="ifShrBoardDetail" parameterClass="str" resultClass="ifshrboard">
 		select * from memifshr where ifshrboard_posting_no=#ifshrboard_posting_no# 
@@ -69,6 +69,11 @@
 	</select> 
 	<select id="totalIsBoard" parameterClass="tVO" resultClass="int">
 		select count(*) from memifshr where type_key like '%'||#type_key#||'%'
+	</select>
+	
+	
+	<select id="getLevel" parameterClass="level" resultClass="ifshrboard">
+		select * from crr_type order by crr_key asc
 	</select>
 	
 	

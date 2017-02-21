@@ -147,4 +147,11 @@ public class IndexController {
 		
 		
 	}
+	@RequestMapping(value="googleAPI",method=RequestMethod.GET)
+	public String test(HttpSession session, Model model,
+			HttpServletRequest request) throws ServletException, IOException {
+	 String url= "../../googleAPI";
+	 
+	 return url;
+	}
 }

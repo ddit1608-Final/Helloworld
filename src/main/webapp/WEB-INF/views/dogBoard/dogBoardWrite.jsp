@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<a href="<%=request.getContextPath()%>/is/dogBoardList">
+		<a href="<%=request.getContextPath()%>/dog/dogBoardList">
 		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/dogboard.png"></a>
 	</div> 
 	
@@ -50,11 +50,17 @@
 		    </tr>
 		    <tr>
 		    	<td></td>
-		    	<td></td>
-		    	<td></td>
+		    	<td>
+		    	<a data-toggle="modal" data-target="#myModal">
+		    	<img id="file" src="<%=request.getContextPath()%>/resources/images/file.png">
+		    	</a>
+		    	<input type="text" readonly="readonly" value="추가될 파일 경로명.jsp">
+		    	</td>
+      			<td></td>
       			<td></td>
       			<td></td>
 		    </tr>
+		    
       		<tr>
       			<td><h2>내용</h2>
   					<p>한글 2000자 이내</p>
@@ -83,5 +89,26 @@
 				<input class="btn" type="reset" value="지우기"> 
 				<input class="btn" type="button" value="뒤로가기" onclick="location.href='<%=request.getContextPath()%>/dog/dogBoardList'">
 				</div>
+				
+		    	
 </form>
 </article>
+
+<div class="modal fade" id="myModal" role="dialog">
+				    <div class="modal-dialog">
+				      <!-- Modal content-->
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">파일 업로드</h4>
+				        </div>
+				        <div class="modal-body">
+				        	<input type="text" placeholder="파일을 등록하세요" readonly="readonly">
+				        	<input type="button" class="btn btn-default btn-xs" value="찾기">
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+				        </div>
+				      </div>
+				    </div>
+				  </div>

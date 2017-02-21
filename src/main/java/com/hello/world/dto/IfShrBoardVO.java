@@ -18,10 +18,22 @@ public class IfShrBoardVO {
 	private String mem_phn;				  // 작성자 연락처
 	private String type_key; 			  // 게시글 말머리
 	private String type_value;
+	private String crr_key;				  // 정보공유 게시글 난이도 
+	private String crr_value;
 	
 	
-	
-	
+	public String getCrr_key() {
+		return crr_key;
+	}
+	public void setCrr_key(String crr_key) {
+		this.crr_key = crr_key;
+	}
+	public String getCrr_value() {
+		return crr_value;
+	}
+	public void setCrr_value(String crr_value) {
+		this.crr_value = crr_value;
+	}
 	public String getType_value() {
 		return type_value;
 	}
