@@ -103,4 +103,9 @@ public class MeetBoardDAO_iBatis implements MeetBoardDAO {
 		return meetBoardList;
 	}
 
+	@Override
+	public int getTotal(testVO testVO) throws SQLException {
+		return (int) client.queryForObject("totalDsBoard", testVO);
+	}
+
 }

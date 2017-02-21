@@ -13,6 +13,7 @@
 			id="meetLogo"
 			src="<%=request.getContextPath()%>/resources/images/meetLogo.png"></a>
 	</div>
+	<div style="overflow-y:auto; overflow-x:hidden; width:100%; height:700px;">
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
 			<tr
@@ -60,7 +61,7 @@
 				</c:otherwise>
 			</c:choose>
 		</table>
-		<div id="divdiv">
+		<div id="divdiv" >
 			<table style="margin: 0 auto;">
 				<tr>
 					<td><c:if test="${loginUser != null}">
@@ -78,4 +79,5 @@
 			</table>
 		</div>
 	</form>
+	</div>
 </article>

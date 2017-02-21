@@ -55,7 +55,7 @@
 					<c:forEach items="${ifShrBoardList}" var="ifShrBoardVO">
 						<tr>
 							<td style="text-align: center;">${ifShrBoardVO.ifshrboard_posting_no}</td>
-							<td style="text-align: center;">
+							<td style="text-align: center; font-family:굴림; font-weight:bold;">
 							<a href="/world/is/ifShrBoardDetail.do?ifshrboard_posting_no=
 								${ifShrBoardVO.ifshrboard_posting_no}"data-toggle="tooltip" data-placement="right"
 									title="${ifShrBoardVO.ifshrboard_cont}">

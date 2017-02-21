@@ -70,7 +70,7 @@ function meetWriteComm_go(mem_nick,meet_board_posting_no,meet_board_comm_contt,i
 					
 						a = '<tr><td style="width:100px;text-align:center;"><button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2">'
 							+mem_nick+'</button></td>'+
-							'<td style="work-break:break-all;"id="meet_BoardComm_cont'+aa+'">'
+							'<td style="work-break:break-all;"id="meet_board_comm_cont'+aa+'">'
 							+meet_board_comm_contt+'<input type="button" value="추천"id="chu'+indexTd+'">'+
 							'<input type="button" value="비추천" id="bchu"'+indexTd+'></td>'+
 						 	'<td>'+data.today+'</td>'+
@@ -112,7 +112,7 @@ function deletemeetComm(meet_board_ans_code, indexTdd, event){
 function updateMeetCommForm(indexTd,indexTdd , event) {
 	event.preventDefault();
 	
-	var meet_board_comm_cont = $('#meeytBoardComm_cont'+indexTd).text();
+	var meet_board_comm_cont = $('#meetBoardComm_cont'+indexTd).text();
 	var arr = {
 		"meet_board_comm_cont" : meet_board_comm_cont
 	};
@@ -131,7 +131,7 @@ function updateMeetCommForm(indexTd,indexTdd , event) {
 											+ '<input type="button" value="댓글수정" onclick="updateMeetComm('+indexTd+','+indexTdd+',event)">');
 				},
 				error : function(error) {
-					alert("22");
+					alert("안됌");
 				}
 			})
 }
@@ -154,7 +154,7 @@ function updateMeetComm(indexTd,indexTdd , event) {
 		type : "post",
 		data : arr,
 		success : function(data) {
-			$('#meet_BoardComm_cont' + indexTd).html(data+'<input type="button" value="추천"id="chu'+indexTd+'">'+
+			$('#meet_board_comm_cont' + indexTd).html(data+'<input type="button" value="추천"id="chu'+indexTd+'">'+
 					'<input type="button" value="비추천" id="bchu"'+indexTd+'>');
 			
 		},
