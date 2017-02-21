@@ -9,6 +9,9 @@
 
 <html>
 <head>
+<!-- google api 확인용 지우지마시오 -->
+<meta name="google-site-verification" content="AvUOBRHYz0xPy2twmaJhZbGUSi7eYoKlJTseCv1VxJ4" />
+<!-- google api 확인용 지우지마시오 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"

@@ -22,7 +22,7 @@
   	 <tr> 
 	    <th>NAME</th>
 	    <td>
-	    	<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
+	    	<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal">
 	    		${ifShrBoardVO.mem_nick}</button>
 	    </td>
 	    <td><b>DATE</b> &nbsp;${ifShrBoardVO.ifshrboard_wridate }</td>

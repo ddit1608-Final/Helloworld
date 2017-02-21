@@ -2,11 +2,10 @@ package com.hello.world.service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import com.hello.world.dao.IfShrBoardDAO;
-import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.IsBoardLevelVO;
 import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 
@@ -259,5 +258,11 @@ public class IfShrBoardService {
 		}
 		return str;
 	}
+	public ArrayList<IsBoardLevelVO> getLevel() throws SQLException{
+	
+		ArrayList<IsBoardLevelVO> levelList = ifShrBoardDAO.getLevel();
+		
+		return levelList;
 
+}
 }
