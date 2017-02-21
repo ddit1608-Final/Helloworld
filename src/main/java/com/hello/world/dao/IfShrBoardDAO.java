@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.IsBoardLevelVO;
 import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 
@@ -37,6 +38,8 @@ public interface IfShrBoardDAO {
 	public int totalRecordd(PostingTypeVO typeVO) throws SQLException;
 	public ArrayList<IfShrBoardVO> getTotall(PostingTypeVO typeVO)throws SQLException;
 	
+	// 게시글 난이도
+	public ArrayList<IsBoardLevelVO> getLevel() throws SQLException;
 	
 }
 
