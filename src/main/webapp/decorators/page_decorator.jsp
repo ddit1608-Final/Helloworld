@@ -83,6 +83,7 @@ footer {
 	background-color: #555;
 	color: white;
 	padding: 15px;
+	bottom: 0;
 }
 
 /* On small screens, set height to 'auto' for sidenav and grid */
@@ -110,15 +111,21 @@ footer {
 	float: right;
 	border: 4px solid #3EAF0E;
 	margin: 3% auto auto auto;
+	border-right: none;
 }
 
 .glyphicon-search {
+	padding-top: 19%;
+	padding-bottom: 19%;
+	margin-top: 11%;
 	color: white;
-	font-size: 15pt;
+	font-size: 14pt;
+	border: none;
 	background-color: #3EAF0E;
-	margin: 3% auto auto auto;
-	padding: 16%;
-	padding-bottom: 16%;
+}
+
+.glyphicon-search:hover {
+	background-color: #006f00;
 }
 
 .navbar-nav {
@@ -144,6 +151,10 @@ footer {
 
 .navbar-nav input {
 	margin: 7% auto;
+}
+
+.nav-pills {
+	width: 100%;
 }
 
 .nav-pills li a {
@@ -198,6 +209,8 @@ footer {
 	background-color: #d9d9d9;
 	color: black;
 	font-family: 한나;
+	/* position:absolute; */
+	bottom: 0;
 }
 
 #aa {
@@ -249,10 +262,16 @@ footer {
 							if ($("#message").val() != "") {
 								wsocket.send(JSON.stringify(message));
 								$("#chatMessage").append(
-										"<font color='red'>나 ▶ " + $("#message").val() + "</font><br/>");
+										"<font color='red'>나 ▶ "
+												+ $("#message").val()
+												+ "</font><br/>");
 								$("#message").val("");
 								$("#message").focus();
-								$('#chatMessage').animate({scrollTop: $('#chatMessage').prop("scrollHeight")}, 1);
+								$('#chatMessage').animate(
+										{
+											scrollTop : $('#chatMessage').prop(
+													"scrollHeight")
+										}, 1);
 							}
 						})
 						$("#message").keydown(
@@ -266,13 +285,18 @@ footer {
                         if ($("#message").val() != "") {
                            wsocket.send(JSON.stringify(message));
                            $("#chatMessage").append(
-                                 "<font color='red'>나 ▶ " + $("#message").val()
-                                       + "</font><br/>");
-                           $("#message").val("");
-                           $("#message").focus();
-                           $('#chatMessage').animate({scrollTop: $('#chatMessage').prop("scrollHeight")}, 1);
-                        }
-                     }
+                               "<font color='red'>나 ▶ "
+													+ $("#message").val()
+													+ "</font><br/>");
+									$("#message").val("");
+									$("#message").focus();
+									$('#chatMessage').animate(
+											{
+												scrollTop : $('#chatMessage')
+														.prop("scrollHeight")
+											}, 1);
+								}
+							}
 
                   });
 				wsocket.onmessage = function appendMessage(msg) {
@@ -284,7 +308,9 @@ footer {
 						});
 					} else {
 						$("#chatMessage").append(msg.data + "<br/>");
-						$('#chatMessage').animate({scrollTop: $('#chatMessage').prop("scrollHeight")}, 1);
+						$('#chatMessage').animate({
+							scrollTop : $('#chatMessage').prop("scrollHeight")
+						}, 1);
 					}
 
 				}
@@ -324,8 +350,8 @@ footer {
 								src="<%=request.getContextPath()%>/images/world2.png"
 								onclick="location.href='<%=request.getContextPath()%>/index'"></a></td>
 						<td><input type="search" id="search"></td>
-						<td><a href="#"> <span class="glyphicon glyphicon-search"></span>
-						</a></td>
+						<td><a href="#"><button
+									class="glyphicon glyphicon-search"></button></a></td>
 					</tr>
 				</table>
 			</div>
@@ -451,10 +477,11 @@ footer {
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<!--  채팅 -->
-			<div class="col-sm-2 sidenav" style="background-color: white; border-left:14px solid white;">
-			<c:if test="${loginUser.mem_nick != null}">
-				<jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
-			</c:if>
+			<div class="col-sm-2 sidenav"
+				style="background-color: white; border-left: 14px solid white;">
+				<c:if test="${loginUser.mem_nick != null}">
+					<jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
+				</c:if>
 			</div>
 			<!--  채팅 END-->
 			<!-- 컨텐트내용 -->
@@ -463,8 +490,51 @@ footer {
 				<decorator:body />
 			</div>
 			<!-- 컨텐트내용 END -->
+			<!-- 광고 캐러셀 -->
+			<div class="col-sm-2 sidenav"
+				style="background-color: white; margin-left: -0.5%;">
+				<div id="myCarousel1" class="carousel slide" data-ride="carousel">
+					<!-- Indicators -->
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel1" data-slide-to="1"></li>
+						<!-- 	<li data-target="#myCarousel1" data-slide-to="2"></li>
+						<li data-target="#myCarousel1" data-slide-to="3"></li> -->
+					</ol>
 
-			<div class="col-sm-2 sidenav" style="background-color: white;">
+					<!-- Wrapper for slides -->
+					<div class="carousel-inner" role="listbox">
+						<div class="item active">
+							<img src="<%=request.getContextPath()%>/images/main2.jpg"
+								alt="Chania">
+						</div>
+
+						<div class="item">
+							<img src="<%=request.getContextPath()%>/images/main3.jpg"
+								alt="Chania">
+						</div>
+
+						<!-- <div class="item">
+							<img src="img_flower.jpg" alt="Flower">
+						</div>
+
+						<div class="item">
+							<img src="img_flower2.jpg" alt="Flower">
+						</div> -->
+					</div>
+
+					<!-- Left and right controls -->
+					<a class="left carousel-control" href="#myCarousel1" role="button"
+						data-slide="prev"> <span
+						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+						<span class="sr-only">Previous</span>
+					</a> <a class="right carousel-control" href="#myCarousel1"
+						role="button" data-slide="next"> <span
+						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+						<span class="sr-only">Next</span>
+					</a>
+				</div>
+				<!-- 광고캐러셀END -->
 			</div>
 		</div>
 	</div>

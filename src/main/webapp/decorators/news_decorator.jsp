@@ -105,12 +105,13 @@ footer {
 }
 
 .glyphicon-search {
-	color: white;
-	font-size: 15pt;
-	background-color: #3EAF0E;
-	margin: 3% auto auto auto;
-	padding: 16%;
-	padding-bottom: 16%;
+	padding-top: 19%;
+    padding-bottom: 19%;
+    margin-top: 11%;
+    color:white;
+    font-size:14pt;
+    border:none;
+    background-color: #3EAF0E;
 }
 
 .navbar-nav {
@@ -233,8 +234,9 @@ text-align: center;
 background-color: #3EAF0E;
 font-family: 한나;
 color:white;
-font-size:14pt;
+font-size:16pt;
 cursor:pointer;
+height:45px;
 
 }
 
@@ -243,14 +245,13 @@ background-color: #006f00;
 }
 
 #newsListTable{
-width:90%;
-margin:1% auto 1% 5%;
+width:100%;
+margin:1% auto auto auto;
+
 }
 
-#newsListTd a{
-color:white;
-text-decoration: none;
-
+#newsListTable th{
+font-weight:normal;
 }
 </style>
 
@@ -322,6 +323,9 @@ text-decoration: none;
 	function sience(){
 		location.href="<%=request.getContextPath()%>/news/news?keyword=sience";
 	}
+	function sports(){
+		location.href="<%=request.getContextPath()%>/news/news?keyword=sports";
+	}
 	
 	
 </script>
@@ -338,10 +342,9 @@ text-decoration: none;
 								src="<%=request.getContextPath()%>/images/world2.png"
 								onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"></a></td>
 						<td><input type="search" id="search"></td>
-						<td><a href="#"> <span class="glyphicon glyphicon-search"></span>
-						</a></td>
+					<td><a href="#"><button class="glyphicon glyphicon-search"></button></a></td>
 					</tr>
-				</table>
+					</table>
 			</div>
 		</nav>
 		<!-- 최상단 로고 및 검색바END -->
@@ -435,20 +438,21 @@ text-decoration: none;
       <p><a href="#">Link</a></p> -->
 			</div>
 			<!-- 컨텐트내용 -->
-			<a href="<%=request.getContextPath()%>/qna/qnaBoardList.do"><img
+			<a href="<%=request.getContextPath()%>/news/news?keyword=IT"><img
 			id="newsLogo"
-			src="<%=request.getContextPath()%>/resources/images/qnaLogo.png"></a>
+			src="<%=request.getContextPath()%>/resources/images/newsLogo.png"></a>
 		<div class="col-sm-8 text-left">
 			<table id="newsListTable">
 			<tr>
-				<td id="newsListTd" onclick="mobile()">모바일</td>
-				<td id="newsListTd" onclick="sns()">인터넷/SNS</td>
-				<td id="newsListTd" onclick="media()">통신/뉴미디어</td>
-				<td id="newsListTd" onclick="IT()">IT일반</td>
-				<td id="newsListTd" onclick="hacking()">보안/해킹</td>
-				<td id="newsListTd" onclick="computer()">컴퓨터</td>
-				<td id="newsListTd" onclick="game()">게임/리뷰</td>
-				<td id="newsListTd" onclick="sience()">과학 일반</td>
+				<th id="newsListTd" onclick="mobile()">모바일</th>
+				<th id="newsListTd" onclick="sns()">인터넷/SNS</th>
+				<th id="newsListTd" onclick="media()">통신/뉴미디어</th>
+				<th id="newsListTd" onclick="IT()">IT일반</th>
+				<th id="newsListTd" onclick="hacking()">보안/해킹</th>
+				<th id="newsListTd" onclick="computer()">컴퓨터</th>
+				<th id="newsListTd" onclick="game()">게임/리뷰</th>
+				<th id="newsListTd" onclick="sience()">과학 일반</th>
+				<th id="newsListTd" onclick="sports()">스포츠</th>
 			</tr>
 			
 			</table>

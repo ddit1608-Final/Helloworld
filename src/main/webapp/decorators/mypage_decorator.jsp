@@ -110,12 +110,13 @@ footer {
 }
 
 .glyphicon-search {
-	color: white;
-	font-size: 15pt;
-	background-color: #3EAF0E;
-	margin: 3% auto auto auto;
-	padding: 16%;
-	padding-bottom: 16%;
+	padding-top: 19%;
+    padding-bottom: 19%;
+    margin-top: 11%;
+    color:white;
+    font-size:14pt;
+    border:none;
+    background-color: #3EAF0E;
 }
 
 .navbar-nav {
@@ -308,8 +309,7 @@ border-radius:5px;
 								src="<%=request.getContextPath()%>/images/world2.png"
 								onclick="location.href='<%=request.getContextPath()%>/index'"></a></td>
 						<td><input type="search" id="search"></td>
-						<td><a href="#"> <span class="glyphicon glyphicon-search"></span>
-						</a></td>
+						<td><a href="#"><button class="glyphicon glyphicon-search"></button></a></td>
 					</tr>
 				</table>
 			</div>

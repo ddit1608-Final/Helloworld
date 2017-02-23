@@ -75,7 +75,7 @@
 	<div id="divdiv">
 		<c:if test="${loginUser.mem_mail ==meetBoardVO.mem_mail }">
 			<input class="btn" type="button" value="수정"
-				onClick="location.href='/world/meet/meetBoardUpdateForm.do?meetboard_posting_no=${meetBoardVO.meet_board_posting_no}'">
+				onClick="location.href='/world/meet/meetBoardUpdateForm.do?meet_board_posting_no=${meetBoardVO.meet_board_posting_no}'">
 			<input class="btn" type="button" value="삭제"
 				onClick="location.href='/world/meet/deleteMeetBoard.do?meet_board_posting_no=${meetBoardVO.meet_board_posting_no}'">
 			<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. -->
@@ -147,7 +147,7 @@
 							
 							<td>
 								<a href="#" onclick="updateMeetCommForm('${indexTd }','${indexTd }', event )" id="aa">수정</a>
-							/
+							
 							<%-- id=${ifShrBoardComm.ifshrboard_ans_code}; --%>
 								<a href="#" onclick="deleteMeetComm('${meet_board_ans_code}','${indexTdd }',event )"id="aa">삭제</a>
 							</td>

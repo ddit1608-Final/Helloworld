@@ -153,11 +153,11 @@
 			</table>
 
 			<a class="left carousel-control" href="#myCarousel" role="button"
-				data-slide="prev" style="margin-top:-5%; height:15%;"> <span
+				data-slide="prev" style="margin-top:-5%; height:15%; color:#3EAF0E;"> <span
 				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
 			</a> <a class="right carousel-control" href="#myCarousel" role="button"
-				data-slide="next" style="margin-top:-5%; height:15%;"> <span
+				data-slide="next" style="margin-top:-5%; height:15%; color:#3EAF0E;"> <span
 				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
@@ -183,6 +183,40 @@
 		</table>
 
 			<a class="left carousel-control" href="#myCarousel" role="button"
+				data-slide="prev" style="margin-top:-5%; height:15%; color:#3EAF0E;"> <span
+				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#myCarousel" role="button"
+				data-slide="next" style="margin-top:-5%; height:15%; color:#3EAF0E;"> <span
+				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+
+
+
+      </div>
+      
+      <!-- QnA게시판 핫 -->
+		<div class="item">
+        		<div class="item active">
+			<a href="<%=request.getContextPath()%>/qna/qnaBoardList.do"><h2 id="title">QnA게시판 HOT</h2></a>
+			<table class="table table-striped">
+			<c:forEach items="${qnaBoardList}" var="dog" begin="1" end="10">
+				<tbody>
+					<tr>
+						<td>●<a
+							href="/world/qna/qnaBoardList.do?qnaboard_posting_no=${qna.qnaqnaboard_posting_no}">
+								${qna.qnaboard_title }</a>
+						</td>
+					</tr>
+
+
+				</tbody>
+			</c:forEach>
+		</table>
+
+			<a class="left carousel-control" href="#myCarousel" role="button"
 				data-slide="prev" style="margin-top:-5%; height:15%;"> <span
 				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
@@ -197,6 +231,7 @@
 
       </div>
 		
+		<!-- qna게시판 핫 end -->
 		
 		
 		
