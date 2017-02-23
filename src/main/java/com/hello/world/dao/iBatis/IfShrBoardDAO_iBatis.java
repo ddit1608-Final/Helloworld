@@ -47,8 +47,6 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 
 	@Override
 	public int insertIfShrBoard(IfShrBoardVO ifShrBoardVO) throws SQLException {
-		System.out.println("다오들어왔다");
-		System.out.println(ifShrBoardVO);
 
 		int result = -1;
 		if (client.insert("insertIfShrBoard", ifShrBoardVO) == null)

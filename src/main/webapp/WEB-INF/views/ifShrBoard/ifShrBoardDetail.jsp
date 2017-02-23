@@ -44,7 +44,7 @@
 		        </div>
 		        <div class="modal-body">
 		          <p>이메일:${ifShrBoardVO.mem_mail} <a href="#">메일보내기</a></p>
-		          <p>연락처:01*-**${ifShrBoardVO.mem_phn}*-**** <a href="#">문자보내기</a> </p>
+		          <p>연락처:${ifShrBoardVO.mem_phn} <a href="#">문자보내기</a> </p>
 		        </div>
 		        <div class="modal-footer">
 		          <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
@@ -76,9 +76,17 @@
 		<c:if test="${status.count == ifShrBoardVO.type_key}">${posting.type_value}
 		</c:if>
 		</c:forEach>
+		이거슨 >>${ifShrBoardVO.crr_key }
+		
 	</td>
+		
    <!-- 말머리 추가중 -->
-  <td></td>
+  <td>
+  <c:forEach var="level" items="${levelList }" varStatus="status">
+		<c:if test="${status.count==ifShrBoardVO.crr_key}">${level.crr_value }
+		</c:if>
+		</c:forEach>
+  </td>
    
   </tr>
   <tr>
