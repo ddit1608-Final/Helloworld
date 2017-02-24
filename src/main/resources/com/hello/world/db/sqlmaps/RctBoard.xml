@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="RctBoard">
+   
+   <insert id="insertRctBoard" parameterClass="RctBoard">
+      insert into rctboard(rctboard_posting_no, rctboard_crr, rctboard_acdmcr, rctboard_year_sal, rctboard_emp_kind, rctboard_sal, 
+      rctboard_workp, rctboard_work_time, rctboard_det_cont, rctboard_welf_benefit, rctboard_phn, rctboard_respsbt, rctboard_comp_homep,
+      rctboard_hope_emp, rctboard_wri_date, compmem_bsnss_lcse_no)
+      values(rctboard_posting_no.nextval,#rctboard_crr#,#rctboard_acdmcr#,#rctboard_year_sal#,#rctboard_emp_kind#,#rctboard_sal#,
+      #rctboard_workp#, #rctboard_work_time#, #rctboard_det_cont#, #rctboard_welf_benefit#, #rctboard_phn#, #rctboard_respsbt#, #rctboard_comp_homep#,
+      #rctboard_hope_emp#, #rctboard_wri_date#, #compmem_bsnss_lcse_no#) 
+   </insert>
+   
+   <select id="totalRctBoard" parameterClass="rctSearchVO" resultClass="int">
+      select count(*) from cmemrct 
+      where rctboard_title like '%'||#title#||'%'
+      and rctboard_workp like '%'||#area#||'%'
+      <!-- and comp_name like '%'||#comp_name#||'%'
+      and grade like '%'||#grade#||'%'
+      and lan like '%'||#lan#||'%'
+      and sal like '%'||#sal#||'%'
+      and comg like '%'||#comg#||'%' -->
+      
+   </select>
+   
+   <select id="listAllRctBoard" parameterClass="rctSearchVO" resultClass="RctBoard" >
+      select * from cmemrct 
+      where rctboard_title like '%'||#title#||'%'
+      and rctboard_workp like '%'||#area#||'%'
+   </select>
+   
+   <select id="rctDetail" parameterClass="str" resultClass="RctBoard">
+      select * from rctboard where rctboard_posting_no=#rctboard_posting_no#
+   </select>
+
+</sqlMap>

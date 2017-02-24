@@ -76,6 +76,9 @@
 	
 	<bean id="dogBoardCommDAO" class="com.hello.world.dao.iBatis.DogBoardCommDAO_iBatis"	
 		p:client-ref="sqlMapClient"/>
+		
+	<bean id="rctBoardDAO" class="com.hello.world.dao.iBatis.RctBoardDAO_iBatis" 
+		p:client-ref="sqlMapClient"/>
 	
 	<!-- Service -->
 	<bean id="ResmService" class="com.hello.world.service.ResmService">
@@ -152,5 +155,8 @@
 	
 	<bean id="dogBoardCommService" class="com.hello.world.service.DogBoardCommService"
 		p:dogBoardCommDAO-ref="dogBoardCommDAO" />
+	
+	<bean id="rctBoardService" class="com.hello.world.service.RctBoardService"
+		p:rctBoardDAO-ref="rctBoardDAO" />
 		
 </beans>

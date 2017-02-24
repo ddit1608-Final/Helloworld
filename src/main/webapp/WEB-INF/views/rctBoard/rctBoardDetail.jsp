@@ -16,10 +16,8 @@
 				<tr
 					style="background-color: #8bdb69; border-bottom: 2px solid #c9c9c9;">
 					<th style="width: 20%;">SUBJECT</th>
-					<td style="width: 50%;">${qnaBoardVO.qnaboard_title }</td>
-					<th style="width: 10%;" onclick="qnaboardchu()">추천<input type="button" id=boardchu value=${qnaBoardBChuList.qnaboard_board_chu }></th>
-					<th style="width: 10%;" onclick="qnaboardbchu()">/ 비추천<input type="button" id=boardbchu value="${qnaBoardBChuList.qnaboard_board_bchu }"></th>
-					<th style="width: 10%;">조회수(${qnaBoardVO.qnaboard_hits })</th>
+					<td style="width: 50%;">${rctBoardVO.rctboard_title }</td>
+<%-- 					<th style="width: 10%;">조회수(${qnaBoardVO.qnaboard_hits })</th> --%>
 					
 
 				</tr>
@@ -27,8 +25,8 @@
 
 			<tr>
 				<th>NAME</th>
-				<td>${qnaBoardVO.mem_nick }</td>
-				<td colspan="2"><b>DATE</b> &nbsp;${qnaBoardVO.qnaboard_wridate }</td>
+				<td>${rctBoardVO.compmem_comp_nm }</td>
+				<td colspan="2"><b>DATE</b> &nbsp;${rctBoardVO.rctboard_wri_date }</td>
 
 			</tr>
 
@@ -42,7 +40,7 @@
 
 			</tr>
 			<tr>
-				<td colspan="4">${qnaBoardVO.qnaboard_cont }</td>
+				<td colspan="4">${rctBoardVO.rctboard_det_cont }</td>
 
 			</tr>
 		</table>
@@ -50,9 +48,9 @@
 		<div id="divdiv">
 			<c:if test="${loginUser.mem_mail ==qnaBoardVO.mem_mail }">
 				<input class="btn" type="button" value="수정"
-					onClick="location.href='/world/qna/qnaBoardUpdateForm.do?qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}'">
+					onClick="location.href='/world/free/freeBoardUpdateForm.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}'">
 				<input class="btn" type="button" value="삭제"
-					onClick="location.href='/world/qna/deleteQnaBoard.do?qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}'">
+					onClick="location.href='/world/free/deleteFreeBoard.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}'">
 				<!--[9] 목록 버튼이 눌리면 상품 리스트 페이지로 이동하되 현재 페이지를 전달해 준다. -->
 			</c:if>
 			<input class="btn" type="button" value="목록"
@@ -77,7 +75,7 @@
 					<tr>
 						<td>${ qnaBoardComm.qnaboard_comm_wri}</td>
 						<td>${ qnaBoardComm.qnaboard_comm_cont}</td>
-						<c:forEach items="${ qnaBoardChuList }" var="qnaBoardChuList">
+						<%-- <c:forEach items="${ qnaBoardChuList }" var="qnaBoardChuList">
 							<c:if
 								test="${qnaBoardComm.qnaboard_ans_code == qnaBoardChuList.qnaboard_ans_code }">
 								<td onclick="chu_go('${status.count }');">추천<input
@@ -98,7 +96,7 @@
 									<td>채택된글입니다.</td>
 								</c:if>
 							</c:if>
-						</c:forEach>
+						</c:forEach> --%>
 						<td><input type="hidden"
 							id="qnaboard_ans_code${status.count }"
 							value="${qnaBoardComm.qnaboard_ans_code}"></td>
