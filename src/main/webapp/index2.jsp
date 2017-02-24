@@ -8,6 +8,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- google api 확인용 지우지 마시오  -->
+<meta name="google-site-verification" content="AvUOBRHYz0xPy2twmaJhZbGUSi7eYoKlJTseCv1VxJ4" />
+<!-- google api 확인용 지우지 마시오  -->
 <title>Bootstrap Example</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -150,11 +153,11 @@
 			</table>
 
 			<a class="left carousel-control" href="#myCarousel" role="button"
-				data-slide="prev" style="margin-top:-5%; height:15%;"> <span
+				data-slide="prev" style="margin-top:-5%; height:15%; color:#3EAF0E;"> <span
 				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
 			</a> <a class="right carousel-control" href="#myCarousel" role="button"
-				data-slide="next" style="margin-top:-5%; height:15%;"> <span
+				data-slide="next" style="margin-top:-5%; height:15%; color:#3EAF0E;"> <span
 				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
@@ -163,7 +166,7 @@
 		<!-- 두번쨰 캐러샐 -->
 		 <div class="item">
         		<div class="item active">
-			<h2 id="title">개소리게시판 HOT</h2>
+			<a href="<%=request.getContextPath()%>/dog/dogBoardList"><h2 id="title">개소리게시판 HOT</h2></a>
 			<table class="table table-striped">
 			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="10">
 				<tbody>
@@ -171,6 +174,40 @@
 						<td>●<a
 							href="/world/dog/dogBoardDetail.do?dsboard_posting_no=${dog.dsboard_posting_no}">
 								${dog.dsboard_title }</a>
+						</td>
+					</tr>
+
+
+				</tbody>
+			</c:forEach>
+		</table>
+
+			<a class="left carousel-control" href="#myCarousel" role="button"
+				data-slide="prev" style="margin-top:-5%; height:15%; color:#3EAF0E;"> <span
+				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a> <a class="right carousel-control" href="#myCarousel" role="button"
+				data-slide="next" style="margin-top:-5%; height:15%; color:#3EAF0E;"> <span
+				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+
+
+
+      </div>
+      
+      <!-- QnA게시판 핫 -->
+		<div class="item">
+        		<div class="item active">
+			<a href="<%=request.getContextPath()%>/qna/qnaBoardList.do"><h2 id="title">QnA게시판 HOT</h2></a>
+			<table class="table table-striped">
+			<c:forEach items="${qnaBoardList}" var="dog" begin="1" end="10">
+				<tbody>
+					<tr>
+						<td>●<a
+							href="/world/qna/qnaBoardList.do?qnaboard_posting_no=${qna.qnaqnaboard_posting_no}">
+								${qna.qnaboard_title }</a>
 						</td>
 					</tr>
 
@@ -194,6 +231,7 @@
 
       </div>
 		
+		<!-- qna게시판 핫 end -->
 		
 		
 		

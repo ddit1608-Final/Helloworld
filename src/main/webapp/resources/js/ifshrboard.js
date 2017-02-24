@@ -1,18 +1,14 @@
 function is_write_ok(form) {
 	var result = true;
 
-	if (is_cont() == false) {
+	//if (is_cont() == false) {
+	//}
+	//if (is_title() == false) {
 		result = is_cont();
-	}
-	if (is_title() == false) {
-		result = is_title();
-	}
-	if (is_pwd() == false) {
-		result = is_pwd();
-	}
-
+		result &= is_title();
+		result &= is_pwd();
+		result &= is_level();
 	if (result == true) {
-		// $('#isboard_cont').val().replace("\r\n","<br>")
 		form.submit();
 	}
 }
@@ -46,7 +42,29 @@ function is_pwd() {
 		return true;
 	}
 }
+// 오픈소스 난이도 라디오 체크 
+function is_level(){
+	var a = document.form.sel1.value;
+	var b = document.form.crr_key.value;
+	if(a=='2'){
+		if(b == '7'){
+			alert('하이');
+			alert(b);
+			document.getElementById("check_radio").innerHTML = "<font color='red'>난이도를 선택해주세요</font>";
+			return false;
+		}
+		else{
+			alert('바이');
+			alert(b);
+			document.getElementById("check_radio").innerHTML = "";
+			return true;
+	}
+	
+	}
+	}
+	
 
+	
 	
 function iswriteComm_go(mem_nick,ifshrboard_posting_no,ifshrboard_comm_contt,event) {
 	event.preventDefault();
@@ -168,7 +186,7 @@ function is_src(){
 	
 function select_is(value) {
 	location.href='typeIs?type_key='+value;
-}		
+}
 
 // 글자수
 function isTextCounter(field,countfield,maxlimit){
@@ -181,8 +199,92 @@ function isTextCounter(field,countfield,maxlimit){
 }
 
 
+
+function select_level(value,event){
+	event.preventDefault();
+
+	var tt = $("#sel1 option:selected").val();
+	//alert(tt); //==> 2
 	
+	if(tt == '1'||tt=='3'){
+		$.ajax({
+			url : "level",
+			type : "post",
+			data : tt,
+			success : function(data) {
+				    $('#comboo').remove();
+					$('#combo span').html(
+						"<span id='check_radio'>" +
+						"<input type='radio' id='check_lv' name='crr_key' value='7' checked='checked' hidden='hidden'>"+  
+						"</span>"+
+						"<div id='comboo'>"+
+						"<input type='radio' id='crr_key' name='crr_key' value='4'>下"+
+						"<input type='radio' id='crr_key' name='crr_key' value='5'>中"+
+						"<input type='radio' id='crr_key' name='crr_key' value='6'>上"+
+						"</div>"
+					);
+					
+					$('#comboo').remove();
+					alert('1번째');
+				},
+				error : function(error) {
+					alert("메뉴에러!!!!!!!!");
+				}
+			})
+	}
 	
+	if(tt=='2'){
+	$.ajax({
+			url : "level",
+			type : "post",
+			data : tt,
+			success : function(data) {
+					/*$('#combo').show();
+					$('#dio').removeAttr( "disabled" );
+					$('#dio4').removeAttr("checked");*/
+					$('#comboo').remove();
+					$('#check_radio').remove();
+					$('#combo span').html(
+					"<span id='check_radio'>" +
+					"<input type='radio' id='check_lv' name='crr_key' value='7' checked='checked' hidden='hidden'>"+  
+					"</span>"+
+					"<div id='comboo'>"+
+					"<input type='radio' id='crr_key' name='crr_key' value='4'>下"+
+					"<input type='radio' id='crr_key' name='crr_key' value='5'>中"+
+					"<input type='radio' id='crr_key' name='crr_key' value='6'>上"+
+					"</div>"
+					);
+					alert('2번째');
+				},
+				error : function(error) {
+					alert("메뉴에러!!!!!!!!");
+				}
+			})
+		}
+	/*else if(tt !='2'){
+			$.ajax({
+				url : "level",
+				type : "post",
+				data : tt,
+				success : function(data) {
+					$('#combo').append(
+							"<div id='comboo'>"+
+							"<input type='radio' id='crr_key' name='crr_key' value='4'>下"+
+							"<input type='radio' id='crr_key' name='crr_key' value='5'>中"+
+							"<input type='radio' id='crr_key' name='crr_key' value='6'>上"+
+							"</div>"
+							);
+							alert('3번째');
+					},
+					error : function(error) {
+						alert("select 메뉴 에러!!");
+					}
+				})
+			
+			}*/
+	
+}
+
 	
 	
 	

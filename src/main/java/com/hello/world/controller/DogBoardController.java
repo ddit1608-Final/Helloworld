@@ -130,6 +130,9 @@ public class DogBoardController {
 		MemVO loginUser = (MemVO)session.getAttribute("loginUser");
 		String a =dogboardVO.getDsboard_cont().replace("\r\n","<br>");
 		dogboardVO.setDsboard_cont(a);
+		/*String b =dogboardVO.getDsboard_cont().replace("<","&lt;");
+		String c =dogboardVO.getDsboard_cont().replace(">","&gt;");
+		dogboardVO.setDsboard_cont(a+b+c);*/
 		try {
 			if(dogBoardService.insertDsBoard(dogboardVO)==1){
 				url+="?result:success";
@@ -184,6 +187,9 @@ public class DogBoardController {
 		DogBoardVO dogBoardVO = dogBoardService.getDsBoardDetail(dsboard_posting_no);
 		String a =dogBoardVO.getDsboard_cont().replace("<br>","\r\n");
 		dogBoardVO.setDsboard_cont(a);
+		/*String b =dogBoardVO.getDsboard_cont().replace("&lt;","<");
+		String c =dogBoardVO.getDsboard_cont().replace("&gt;",">");
+		dogBoardVO.setDsboard_cont(a+b+c);*/
 		model.addAttribute("dogBoardVO",dogBoardVO);
 		
 		

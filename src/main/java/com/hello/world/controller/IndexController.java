@@ -19,11 +19,14 @@ import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.PostingTypeVO;
+import com.hello.world.dto.QnaBoardBChuVO;
+import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.DogBoardService;
 import com.hello.world.service.FreeBoardService;
 import com.hello.world.service.NaverNewsService;
 import com.hello.world.service.PostingService;
+import com.hello.world.service.QnaBoardService;
 
 
 @Controller
@@ -32,7 +35,10 @@ public class IndexController {
 	
 	@Autowired
 	FreeBoardService freeService;
-
+	
+	@Autowired
+	QnaBoardService qnaBoardService;
+	
 	@Autowired
 	DogBoardService dogBoardService;
 	
@@ -49,6 +55,7 @@ public class IndexController {
 		String url= "../../index2";
 		FreeBoardVO free = new FreeBoardVO();
 		IfShrBoardVO is = new IfShrBoardVO(); 
+		QnaBoardVO qna = new QnaBoardVO();
 		
 		// 뉴스 영역 구현중
 		ModelAndView mav = new ModelAndView();
@@ -141,10 +148,18 @@ public class IndexController {
 		model.addAttribute("paging", paging);
 		model.addAttribute("searchCnt",total);
 		
+		/*qna*/
 		
 		
 		return url;
 		
 		
+	}
+	@RequestMapping(value="googleAPI",method=RequestMethod.GET)
+	public String test(HttpSession session, Model model,
+			HttpServletRequest request) throws ServletException, IOException {
+	 String url= "../../googleAPI";
+	 
+	 return url;
 	}
 }

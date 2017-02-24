@@ -27,16 +27,39 @@
       		</tr>
       		<tr>
       			<td><label for="sel1">말머리 (select one)</label>
-      				<select class="form-control" id="sel1" name="type_key">
-	        			<!-- <option value="type_key">꿀팁</option>
-	        			<option value="ifshrboard_os">오픈소스</option>
-	        			<option value="ifshrboard_com_epil">기업후기</option> -->
+      				<select class="form-control" id="sel1" name="type_key" onchange="select_level(this.value,event)">
 	        			<c:forEach items="${typeList }" var="posting" varStatus="status">
       						<c:if test="${status.count < '4'}">
       							<option value="${posting.type_key}">${posting.type_value}</option>	
       						</c:if>
       					</c:forEach>
       				</select>
+      				<div id="combo">
+      					<%-- <c:forEach items="${levelList }" var="level" varStatus="status">
+						</c:forEach> --%>
+						<%-- <c:if test="${status.count < '4'}">
+			      				<input type='radio' id='dio${status.count }' name='crr_key' value='${ level.crr_key}' disabled="disabled">
+			      					${level.crr_value}
+							</c:if> --%>
+						<span id="check_radio"></span>
+						<input type='radio' id="check_lv" name='crr_key' value='7' checked='checked' hidden="hidden">
+						<span></span>  
+      				</div>
+      				<div>
+      				
+					</div>
+						
+      			<%-- 	<input type="hidden" id="levelT">
+      				<c:if test="${levelT eq '2'}">
+  						<select class="form-control" id="sel2" name="crr_key">
+      						<c:forEach items="${levelList }" var="level" varStatus="status">
+	      						<c:if test="${status.count >= '4'}">
+	      							<option value="${level.crr_key}">${level.crr_value}</option>
+	      						</c:if>
+      						</c:forEach>
+   	  				</select>
+   	  				</c:if>	 --%>
+      				
       			</td>
       			<td>
       			<div class="form-group">

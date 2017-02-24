@@ -18,6 +18,7 @@ public interface MeetBoardDAO {
 	public void deleteMeetBoard(String meetBoardVO)throws SQLException;
 	public int totalRecord(MeetBoardVO meetBoardVO)throws SQLException;
 	public int totalRecordMyPage(testVO testVO)throws SQLException;
+	public int getTotal(testVO testVO)throws SQLException;
 	
 	
 }

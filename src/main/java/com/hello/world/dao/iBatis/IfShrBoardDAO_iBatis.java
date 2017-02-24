@@ -9,6 +9,7 @@ import com.hello.world.dao.IfShrBoardDAO;
 import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.IsBoardLevelVO;
 import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -46,8 +47,6 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 
 	@Override
 	public int insertIfShrBoard(IfShrBoardVO ifShrBoardVO) throws SQLException {
-		System.out.println("다오들어왔다");
-		System.out.println(ifShrBoardVO);
 
 		int result = -1;
 		if (client.insert("insertIfShrBoard", ifShrBoardVO) == null)
@@ -138,6 +137,15 @@ public class IfShrBoardDAO_iBatis implements IfShrBoardDAO {
 			throws SQLException {
 		return (ArrayList<IfShrBoardVO>) client.queryForList("totalIsBoard", typeVO);
 	}
+
+	@Override
+	public ArrayList<IsBoardLevelVO> getLevel() throws SQLException {
+		ArrayList<IsBoardLevelVO> levelList = 
+				(ArrayList<IsBoardLevelVO>) client.queryForList("getLevel", null);
+		return levelList;
+	}
+
+	
 
 
 

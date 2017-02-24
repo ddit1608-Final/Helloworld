@@ -19,6 +19,7 @@ import com.hello.world.dto.FlowVO;
 import com.hello.world.dto.MeetBoardCommVO;
 import com.hello.world.dto.MeetBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.testVO;
 import com.hello.world.service.FlowService;
 import com.hello.world.service.MeetBoardCommService;
 import com.hello.world.service.MeetBoardService;
@@ -167,7 +168,7 @@ public class MeetBoardController {
 		String url = "meetBoard/meetBoardUpdate";
 		MeetBoardVO meetBoardVO = meetService
 				.getMeetDetail(meet_board_posting_no);
-		model.addAttribute("meetBoardVo", meetBoardVO);
+		model.addAttribute("meetBoardVO", meetBoardVO);
 
 		return url;
 	}
@@ -177,6 +178,7 @@ public class MeetBoardController {
 			Model model) throws ServletException, IOException {
 		String url = "redirect:meetBoardList.do";
 
+		
 		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
 
 		try {
@@ -205,5 +207,46 @@ public class MeetBoardController {
 
 		return url;
 	}
+	
+	public String getMeetBoardList(HttpServletRequest request, Model model) throws ServletException, IOException{
+		String total ="";
+		String url = "redirect:meetBoardList";
+		String key = request.getParameter("key");
+		String tpage = request.getParameter("tpage");
+		String type= request.getParameter("type");
+		
+		if(key == null){
+			key= "";
+		}
+		if(tpage == null){
+			tpage ="1";
+		}else if(tpage.equals("")){
+			tpage="1";
+		}
+		model.addAttribute("key", key);
+		model.addAttribute("type",type);
+		model.addAttribute("tpage", tpage);
+		ArrayList<MeetBoardVO> meetBoardList=null;
+		String paging=null;
+		
+		testVO testVO = new testVO();
+		
+		testVO.setKey(key);
+		testVO.setType(type);
+		
+		try {
+			total = meetService.getTotal(testVO)+"";
+		} catch (SQLException e2) {
+			e2.printStackTrace();
+		}
+		
+		model.addAttribute("meetBoardList", meetBoardList);
+		int n=meetBoardList.size();
+		model.addAttribute("serchCnt",total);
+		model.addAttribute("paging",paging);
+		return url;
+		
+	}
+	
 
 }

@@ -76,7 +76,11 @@ public class MeetBoardService {
 		}
 		return meetBoardList;
 	}
-	
+	public int getTotal(testVO testVO)throws SQLException{
+		
+		return meetBoardDAO.getTotal(testVO);
+		
+	}
 	
 	public MeetBoardVO getMeetBoardVO(String meet_board_posting_no){
 		MeetBoardVO meetBoardVO = null;

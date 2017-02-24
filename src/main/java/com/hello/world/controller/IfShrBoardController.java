@@ -11,13 +11,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
+import com.hello.world.dto.IsBoardLevelVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
@@ -123,6 +125,15 @@ public class IfShrBoardController {
 		}
 		model.addAttribute("typeList",typeList);
 		
+		ArrayList<IsBoardLevelVO> levelList = new ArrayList<IsBoardLevelVO>();
+		try {
+			levelList=ifShrBoardService.getLevel();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		model.addAttribute("levelList",levelList);
+		
 		return url;
 	}
 	
@@ -173,6 +184,14 @@ public class IfShrBoardController {
 		model.addAttribute("ifShrBoardVO",ifShrBoardVO);
 		model.addAttribute("isBoardCommList",isBoardCommList);
 		model.addAttribute("isBoardCommListCnt", isBoardCommList.size());
+		ArrayList<IsBoardLevelVO> levelList = new ArrayList<IsBoardLevelVO>();
+		try {
+			levelList=ifShrBoardService.getLevel();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		model.addAttribute("levelList",levelList);
 		
 		return url;
 	}
@@ -321,7 +340,20 @@ public class IfShrBoardController {
 			
 		}
 	
-	
+	@RequestMapping(value="/level",method=RequestMethod.POST)
+	@ResponseBody
+	public String level(HttpServletRequest request,@RequestBody String tt){
+		String tt1 = tt.replace("=", "");
+		String a ="";
+		if(tt1.equals("2")){
+			 a = tt1;
+		}else{
+			System.out.println("실패");
+		}
+		return a;
+			
+		
+	}
 	
 
 		
