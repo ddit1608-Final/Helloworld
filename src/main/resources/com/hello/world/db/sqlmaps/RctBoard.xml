@@ -42,7 +42,7 @@
 		and rctboard_acdmcr like '%'||#grade#||'%'
 		and rctboard_crr like '%'||#comg#||'%'
 		and rctboard_acdmcr like '%'||#grade#||'%'
-		and rctboard_emp_kind like '%'||#emp_kind||'%'
+		and rctboard_emp_kind like '%'||#emp_kind#||'%'
 		order by TO_NUMBER(rctboard_posting_no) asc
 	</select>
 
