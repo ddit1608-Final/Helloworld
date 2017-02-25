@@ -11,8 +11,17 @@ public class rctSearchVO {
 	private String grade; // 학력 ㅇ
 	private String sal; // 연봉 ㅇ
 	private String comp_name; // 회사이름 ㅇ
-	private String title; // 제목 
+	private String title; // 제목
+	private String emp_kind; // 고용형태
 	
+
+	public String getEmp_kind() {
+		return emp_kind;
+	}
+
+	public void setEmp_kind(String emp_kind) {
+		this.emp_kind = emp_kind;
+	}
 
 	public String getComp_name() {
 		return comp_name;

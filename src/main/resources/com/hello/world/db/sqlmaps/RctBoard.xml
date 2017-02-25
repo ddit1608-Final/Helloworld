@@ -33,5 +33,17 @@
    <select id="rctDetail" parameterClass="str" resultClass="RctBoard">
       select * from rctboard where rctboard_posting_no=#rctboard_posting_no#
    </select>
+   
+   <select id="getRctBoardList" parameterClass="rctSearchVO" resultClass="RctBoard">
+		select * from cmemrct 
+		where rctboard_title like '%'||#title#||'%'
+		and rctboard_workp like '%'||#area#||'%'
+		and rctboard_year_sal like '%'||#sal#||'%'
+		and rctboard_acdmcr like '%'||#grade#||'%'
+		and rctboard_crr like '%'||#comg#||'%'
+		and rctboard_acdmcr like '%'||#grade#||'%'
+		and rctboard_emp_kind like '%'||#emp_kind||'%'
+		order by TO_NUMBER(rctboard_posting_no) asc
+	</select>
 
 </sqlMap>
