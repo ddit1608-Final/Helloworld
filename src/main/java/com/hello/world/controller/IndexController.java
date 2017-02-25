@@ -15,15 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hello.world.dto.AllBoardVO;
 import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.PostingTypeVO;
-import com.hello.world.dto.QnaBoardBChuVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.testVO;
+import com.hello.world.service.AllBoardService;
 import com.hello.world.service.DogBoardService;
 import com.hello.world.service.FreeBoardService;
+import com.hello.world.service.IfShrBoardService;
 import com.hello.world.service.NaverNewsService;
 import com.hello.world.service.PostingService;
 import com.hello.world.service.QnaBoardService;
@@ -44,6 +46,13 @@ public class IndexController {
 	
 	@Autowired
 	PostingService postingService;
+	
+	@Autowired
+	IfShrBoardService ifShrBoardService;
+	
+	@Autowired
+	AllBoardService allBoardService;
+	
 
 	@Autowired
 	private NaverNewsService service;
@@ -162,4 +171,63 @@ public class IndexController {
 	 
 	 return url;
 	}
+	
+	@RequestMapping(value="allBoardList",method=RequestMethod.POST)
+	public String getAllSearch(HttpServletRequest request,Model model)throws ServletException, IOException{
+		// jsp page는 분리된 상태
+		String url="search/allSearchPage";
+		
+		String total = "";
+		String key = request.getParameter("key");
+		String tpage = request.getParameter("tpage");
+		
+		if (key == null) {
+			key = "";
+		}
+		if (tpage == null) {
+			tpage = "1"; // 현재 페이지 (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+		model.addAttribute("key", key);
+		model.addAttribute("tpage", tpage);
+		ArrayList<AllBoardVO> allBoardList = null;
+		String paging = null;
+		
+		testVO testVO = new testVO();
+		
+		testVO.setKey(key);
+		
+		try {
+			total= allBoardService.getTotal(testVO)+"";
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			allBoardList = allBoardService.getAllBoardList(
+					Integer.parseInt(tpage), testVO);
+			paging = allBoardService.pageNumber(Integer.parseInt(tpage), testVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("allBoardList", allBoardList);
+		int n = allBoardList.size();
+		model.addAttribute("searchCnt",total);
+		model.addAttribute("paging", paging);
+
+		return url;
+	}
+	// 달력
+	@RequestMapping(value="calendar",method=RequestMethod.GET)
+	public String Calendar(HttpSession session, Model model,
+			HttpServletRequest request) throws ServletException, IOException {
+	 String url="calendar/Calendar";
+	 
+	 return url;
+	}
+	
+	
+	
+	
 }

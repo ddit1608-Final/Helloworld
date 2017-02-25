@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="AllBoard">
+	<!-- 쿼리 질의 확인결과 이상없음  -->
+	<!-- 전체 게시판에 대한 쿼리질의 뷰를 통해서 testVO의 get,set을 이용하여 작성된 AllBoardVO에 담은뒤 뿌려줄예정 -->
+	<select id="getAllBoard" parameterClass="testVO" resultClass="AllBoard">
+		select * from VW_ALL_BOARD where title like '%'||#key#||'%' or cont like '%'||#key#||'%'
+			order by wridate desc
+	</select>
+	<!-- 쿼리 질의 확인결과 이상없음  -->
+	<select id="totalAllBoard" parameterClass="testVo" resultClass="int">
+		select count(*) from VW_ALL_BOARD where title like '%'||#key#||'%' or cont like '%'||#key#||'%'
+	</select>
+	
+	
+</sqlMap>

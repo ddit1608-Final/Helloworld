@@ -42,6 +42,9 @@
 	src="<%=request.getContextPath()%>/js/dogboard.js"></script>
 <link href="<%=request.getContextPath()%>/resources/css/hw.css"
 	rel="stylesheet">
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/allboard.js"></script>
+<link href="<%=request.getContextPath()%>/resources/css/calendar.css" rel="stylesheet">
 </head>
 
 
@@ -344,16 +347,25 @@ footer {
 	<header>
 		<nav class="navbar navbar-inverse" style="border: none;">
 			<div style="background-color: white;">
+				<form name="formmm" id="formmm" method="post">
 				<table>
 					<tr>
-						<td><a href="#"><img id="logo"
-								src="<%=request.getContextPath()%>/images/world2.png"
-								onclick="location.href='<%=request.getContextPath()%>/index'"></a></td>
-						<td><input type="search" id="search"></td>
-						<td><a href="#"><button
-									class="glyphicon glyphicon-search"></button></a></td>
+						<td>
+							<img id="logo"src="<%=request.getContextPath()%>/images/world2.png"	onclick="location.href='<%=request.getContextPath()%>/index'">
+						</td>
+						<td>
+							<img id="" src="<%=request.getContextPath() %>/images/cal.png" onclick="mycalendar_go()">
+						</td>
+						<td>
+							<input type="text" name="key" id="key">
+						</td>
+						<td>
+							<!-- <a href="all_src()"><button class="glyphicon glyphicon-search"></button></a> -->
+							<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="all_src()">
+						</td>
 					</tr>
 				</table>
+				</form>
 			</div>
 		</nav>
 		<!-- 최상단 로고 및 검색바END -->

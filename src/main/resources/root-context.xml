@@ -79,6 +79,9 @@
 		
 	<bean id="rctBoardDAO" class="com.hello.world.dao.iBatis.RctBoardDAO_iBatis" 
 		p:client-ref="sqlMapClient"/>
+	<bean id="allBoardDAO" class="com.hello.world.dao.iBatis.AllBoardDAO_iBatis"	
+		p:client-ref="sqlMapClient"/>	
+		
 	
 	<!-- Service -->
 	<bean id="ResmService" class="com.hello.world.service.ResmService">
@@ -158,5 +161,8 @@
 	
 	<bean id="rctBoardService" class="com.hello.world.service.RctBoardService"
 		p:rctBoardDAO-ref="rctBoardDAO" />
+		
+	<bean id="allBoardService" class="com.hello.world.service.AllBoardService"
+		p:allBoardDAO-ref="allBoardDAO" />	
 		
 </beans>
