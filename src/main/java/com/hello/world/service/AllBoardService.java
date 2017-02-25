@@ -44,7 +44,7 @@ public class AllBoardService {
 			end_page = page_count;
 		}
 		if (start_page > view_rows) {
-			str += "<a href='allBoardList?tpage=1&key=" //+ testVO.getKey()
+			str += "<a href='allBoardList?tpage=1&key=" + testVO.getKey()
 					+ "'>&lt;&lt;</a>&nbsp;&nbsp;";
 			str += "<a href='allBoardList?tpage=" + (start_page - 1);
 			str += "&key=<%=product_name%>'>&lt;</a>&nbsp;&nbsp;";
@@ -54,7 +54,7 @@ public class AllBoardService {
 			if (i == tpage) {
 				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
 			} else {
-				str += "<a href='allBoardList?tpage=" + i + "&key=" //+ testVO.getKey()
+				str += "<a href='allBoardList?tpage=" + i + "&key=" + testVO.getKey()
 						+ "'>[" + i + "]</a>&nbsp;&nbsp;";
 			}
 		}
@@ -63,7 +63,7 @@ public class AllBoardService {
 			str += "<a href='allBoardList?tpage=" + (end_page + 1)
 					+ "&key=" + testVO.getKey() + "'> &gt; </a>&nbsp;&nbsp;";
 			str += "<a href='allBoardList?tpage=" + page_count + "&key="
-					//+ testVO.getKey() 
+					+ testVO.getKey() 
 					+ "'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 		return str;

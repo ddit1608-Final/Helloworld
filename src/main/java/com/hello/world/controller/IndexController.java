@@ -172,7 +172,7 @@ public class IndexController {
 	 return url;
 	}
 	
-	@RequestMapping(value="allBoardList",method=RequestMethod.POST)
+	@RequestMapping(value="allBoardList",method=RequestMethod.GET)
 	public String getAllSearch(HttpServletRequest request,Model model)throws ServletException, IOException{
 		// jsp page는 분리된 상태
 		String url="search/allSearchPage";

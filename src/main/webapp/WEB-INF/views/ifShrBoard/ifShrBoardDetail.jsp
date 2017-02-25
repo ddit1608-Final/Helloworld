@@ -76,7 +76,11 @@
 		<c:if test="${status.count == ifShrBoardVO.type_key}">${posting.type_value}
 		</c:if>
 		</c:forEach>
-		이거슨 >>${ifShrBoardVO.crr_key }
+		
+		<c:forEach var="levelList" items="${levelList }" varStatus="status">
+		<c:if test="${ifShrBoardVO.crr_key == levelList.crr_key}">${levelList.crr_value}
+		</c:if>
+		</c:forEach>
 		
 	</td>
 		

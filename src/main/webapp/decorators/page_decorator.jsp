@@ -347,7 +347,7 @@ footer {
 	<header>
 		<nav class="navbar navbar-inverse" style="border: none;">
 			<div style="background-color: white;">
-				<form name="formmm" id="formmm" method="post">
+				<form name="formmm" id="formmm" method="get">
 				<table>
 					<tr>
 						<td>
