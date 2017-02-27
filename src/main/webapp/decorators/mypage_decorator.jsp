@@ -426,6 +426,8 @@ border-radius:5px;
 	<table class="mypageMemu">
 		<tr>
 			<td><button
+					onclick="location.href='<%=request.getContextPath()%>/mypage/main'">포인트</button></td>
+			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/mypage/updateInfo'">개인정보
 					수정</button></td>	
 			<td><button

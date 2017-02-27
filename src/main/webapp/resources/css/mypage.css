@@ -26,3 +26,23 @@
 .mypageMemu button:hover{
 	background-color: #006f00;
 }
+
+*{
+font-family:한나;
+}
+
+article{
+border:1px solid #c1c1c1;
+margin-top:1%;
+margin-bottom:1%;
+}
+#pointhover{
+font-size:12pt;
+}
+#pointhover:hover{
+background-color: #8bdb69;
+}
+
+.table>tbody>tr>th{
+border-top:none;
+}

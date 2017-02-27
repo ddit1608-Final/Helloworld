@@ -2,28 +2,62 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
+<style>
+
+
+#memberList tr:hover{
+background-color: #abe693;
+}
+
+#nonhover:hover{
+background-color: #c1c1c1 !important;
+}
+#nonhover{
+background-color: #c1c1c1;
+}
+*{
+font-family:한나;
+}
+.container{
+width:100%;
+}
+#th{
+font-size:16pt !important;
+}
+#memberList td{
+font-size:13pt;
+}
+label{
+font-size:13pt;
+}
+#paging:hover{
+background-color: white !important;
+}
+</style>
 <article>
 	<div class="container">
-		<h3 class="text-center">MEMBER LIST</h3>
+		<h1 class="text-center">회원 리스트</h1>
+		<hr>
 
-		<form class="form-inline" action="memberManage" id="memberSearch"
+		<form style="margin-left:70%;"class="form-inline" action="memberManage" id="memberSearch"
 			method="get">
 			<div class="form-group">
-				<label for="pwd">Member Name :</label> <input type="text"
+				<label for="pwd">회원 이름 :</label> <input type="text"
 					class="form-control" id="key" name="key">
 			</div>
-			<input type="submit" class="btn btn-default" value="Search">
+			<input type="submit" class="btn btn-default" value="검색">
 		</form>
+			<hr>
 
 
 		<table id="memberList" class="table table-striped">
 			<thead>
-				<tr>
-					<th>Number</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Phone</th>
-					<th>NickName</th>
+				<tr id="nonhover">
+					<td id="th">번호</td>
+					<td id="th">이름</td>
+					<td id="th">이메일</td>
+					<td id="th">연락처</td>
+					<td id="th">닉네임</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -46,7 +80,7 @@
 								<td class="phone">${memberVO.mem_nick}</td>
 							</tr>
 						</c:forEach>
-						<tr>
+						<tr id="paging">
 							<td colspan="5" style="text-align: center;">${paging}</td>
 						</tr>
 					</c:otherwise>
