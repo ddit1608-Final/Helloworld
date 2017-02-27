@@ -125,6 +125,7 @@ footer {
 
 #logo {
 	width: 60%;
+	cursor:pointer;
 }
 
 #search {
@@ -266,6 +267,15 @@ footer {
 	font-size: 12pt;
 	color: #a31313;
 }
+.btn-sm{
+background-color: #3EAF0E; 
+color:white;
+font-family:한나;
+}
+/* .btn-sm:hover{
+background-color: #006f00;
+border: 3px solid #006f00;
+} */
 </style>
 
 <script>
@@ -374,7 +384,7 @@ footer {
 							<img id="" src="<%=request.getContextPath() %>/images/cal.png" onclick="mycalendar_go()">
 						</td>
 						<td>
-							<input type="text" name="key" id="key">
+							<input type="text" name="key" id="key" style="border:3px solid #3EAF0E;">
 						</td>
 						<td>
 							<!-- <a href="all_src()"><button class="glyphicon glyphicon-search"></button></a> -->
