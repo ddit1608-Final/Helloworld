@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.hello.world.dao.MeetBoardDAO;
+import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MeetBoardVO;
 import com.hello.world.dto.testVO;
@@ -43,7 +44,7 @@ public class MeetBoardService {
 	}
 	
 	
-	public ArrayList<MeetBoardVO> listAllMeetBoard(int tpage, 
+/*	public ArrayList<MeetBoardVO> listAllMeetBoard(int tpage, 
 			MeetBoardVO meetBoardVO)throws SQLException{
 		
 		ArrayList<MeetBoardVO> list = new ArrayList<MeetBoardVO>();
@@ -63,7 +64,33 @@ public class MeetBoardService {
 		list=meetBoardDAO.listAllMeetBoard(startRow, meetBoardVO, totalRecord);
 				
 		return list;
+	}*/
+	public ArrayList<MeetBoardVO> listAllMeetBoard(int tpage,String key) throws SQLException {
+		ArrayList<MeetBoardVO> list = new ArrayList<MeetBoardVO>();
+		int startRow = -1;
+		int endRow = -1;
+
+		if (key.equals("")) {
+			key = "%";
+		}
+		
+		testVO testVO = new testVO();
+		testVO.setKey(key);
+		testVO.setType("meet_board_title");
+
+		int totalRecord = meetBoardDAO.totalRecord(testVO);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+
+		list = meetBoardDAO.listAllMeetBoard(startRow, key, counts);
+
+		return list;
 	}
+	
+	
 	
 	public ArrayList<MeetBoardVO> getMeetBoardList(String logID){
 		ArrayList<MeetBoardVO> meetBoardList=null;
@@ -132,10 +159,13 @@ public class MeetBoardService {
 			e.printStackTrace();
 		}
 	}
-	public String pageNumber(int tpage, MeetBoardVO meetBoardVO) throws SQLException{
+	public String pageNumber(int tpage,testVO testVO) throws SQLException{
 		String str="";
 		
-		int total_pages = meetBoardDAO.totalRecord(meetBoardVO);
+		testVO.setKey(testVO.getKey());
+		testVO.setType(testVO.getType());
+		
+		int total_pages = meetBoardDAO.totalRecord(testVO);
 		int page_count = total_pages/counts+1;
 		
 		if(total_pages%counts==0){
@@ -151,10 +181,10 @@ public class MeetBoardService {
 			end_page=page_count;
 		}
 		if(start_page>view_rows){
-			str+="<a href='meetBoardList.do?tpage=1&key="+meetBoardVO.getKey()
+			str+="<a href='meetBoardList.do?tpage=1&key="+testVO.getKey()
 					+"'>&lt;&lt;</a>&nbsp;&nbsp;";
 			str+="<a href='meetBoardList.do?tpage="+(start_page-1);
-			str+="&key=<%="+meetBoardVO.getKey()+"%>'>&lt;</a>&nbsp;&nbsp;";
+			str+="&key=<%="+testVO.getKey()+"%>'>&lt;</a>&nbsp;&nbsp;";
 			
 		}
 		for(int i=start_page; i<= end_page; i++){
@@ -162,18 +192,52 @@ public class MeetBoardService {
 				str="<font color=red>["+i+"]&nbsp;&nbsp;</font>";
 				
 			}else{
-				str+="<a href='meetBoardList.do?tpage="+i+"&key="+meetBoardVO.getKey()
+				str+="<a href='meetBoardList.do?tpage="+i+"&key="+testVO.getKey()
 					 +"'>["+i+"]</a>&nbsp;&nbsp;";
 			}
 		}
 		if(page_count>end_page){
 			str+="<a href='meetBoardList.do?tpage="+(end_page+1)
-					+"&key="+meetBoardVO.getKey()+"'> &gt; </a>&nbsp;&nbsp;";
+					+"&key="+testVO.getKey()+"'> &gt; </a>&nbsp;&nbsp;";
 			str+="<a href='meetBoardList.do?tpage="+page_count + "&key="
-					+meetBoardVO.getKey()+"'> &gt; &gt; </a>&nbsp;&nbsp;";
+					+testVO.getKey()+"'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 	return str;	
 	}
+	// 검색 svc
+	public ArrayList<MeetBoardVO> getMtBoardList(int tpage, testVO testVO )throws SQLException{
+		ArrayList<MeetBoardVO> list = new ArrayList<MeetBoardVO>();
+		int startRow = -1;
+		int endRow = -1;
+		
+		String key = testVO.getKey(); 
+		
+		if (key.equals("")) {
+			key = "%";
+		}
+
+		int totalRecord = meetBoardDAO.totalRecord(testVO);
+
+		startRow = (tpage - 1) * counts;
+		endRow = startRow + counts - 1;
+		if (endRow > totalRecord)
+			endRow = totalRecord;
+
+		list = (ArrayList<MeetBoardVO>) meetBoardDAO.getMtBoardList(startRow, testVO, counts);
+
+		return list;
+	}
+	
+	// 조회수
+	public void updateHits(MeetBoardVO meetBoardVO){
+		try {
+			meetBoardDAO.updateHits(meetBoardVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
 
 

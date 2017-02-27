@@ -18,13 +18,11 @@
 		<table class="table table-condensed" id="blt">
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
-				<td style="text-align: center;">번호</td>
-				<td style="text-align: center; width:7%;">지역</td>
-				<td style="text-align: center; width:55%; float:left;">제목</td>
-				<!-- <th>내용</th> -->
-				<td style="text-align: center;">작성자</td>
-				<!-- <th>작성자</th> -->
-				<td style="text-align: center;">날짜</td>
+				<td style="text-align: center;">NO</td>
+				<td style="text-align: center;">SUBJECT</td>
+				<td style="text-align: center;">NAME</td>
+				<td style="text-align: center;">DATE</td>
+				<td style="text-align: center;">HITS</td>
 			</tr>
 			<c:choose>
 				<c:when test="${meetBoardListSize<=0}">
@@ -37,24 +35,25 @@
 					<c:forEach items="${meetBoardList}" var="meetBoardVO">
 						<tr>
 							<td style="text-align: center;">${meetBoardVO.meet_board_posting_no}</td>
-							<td style="text-align: center;"><c:forEach var="flow"
-									items="${flowList }" varStatus="status">
-									<c:if test="${status.count == meetBoardVO.flow_code}">
-										<%-- <c:set value="${flow.flow_cont }" var="flow_cont" /> --%>
-										${flow.flow_cont }
+							<td style="text-align: center;">
+								<a href="/world/meet/meetBoardDetail.do?meet_board_posting_no=
+									${meetBoardVO.meet_board_posting_no}"data-toggle="tooltip" data-placement="right"
+									title="${meetBoardVO.meet_board_cont}">${meetBoardVO.meet_board_title}
+								<c:forEach var="flow" items="${flowList }" varStatus="status">
+									<c:if test="${flow.flow_code == meetBoardVO.flow_code}">
+										<span class="label label-default">${flow.flow_cont }</span>
 									</c:if>
-								</c:forEach></td>
-							<td style="text-align: left; padding-left:5%;"><a
-								href="/world/meet/meetBoardDetail.do?meet_board_posting_no=${meetBoardVO.meet_board_posting_no}">
-								${meetBoardVO.meet_board_title}</a>
-							</td>
-							<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
-							<td style="text-align: center;">${meetBoardVO.mem_nick}</td>
-							<%-- <td>${loginUser.mem_nick}</td> --%>
-							<td style="text-align: center;"><fmt:formatDate
-									value="${meetBoardVO.meet_board_wri_date}" type="date" /></td>
-						</tr>
-					</c:forEach>
+								</c:forEach>
+								</a>
+								</td>
+								<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
+								<td style="text-align: center;">${meetBoardVO.mem_nick}</td>
+								<%-- <td>${loginUser.mem_nick}</td> --%>
+								<td style="text-align: center;"><fmt:formatDate
+										value="${meetBoardVO.meet_board_wridate}" type="date" /></td>
+								<td style="text-align: center;">${ meetBoardVO.meet_board_hits}</td>
+							</tr>
+						</c:forEach>
 					<tr>
 						<td colspan="5" style="text-align: center;">${paging}</td>
 					</tr>
@@ -80,4 +79,34 @@
 		</div>
 	</form>
 	</div>
+	<form name="formm" id="formm" method="post">
+		<div id="divdiv">
+		<table class="table table-condensed" id="blt" style="margin: 0 auto;">
+			<tr >
+				<td>
+				<select id="type" name="type">
+					<option value="meet_board_title" selected="selected">제목</option>
+					<option value="meet_board_cont">내용</option>
+					<option value="mem_nick">작성자</option>
+				</select>
+				<input type="text" name="key" id="key" placeholder="검색어를 입력해주세요"/>
+				<%-- <input type="button" class="btn btn-success btn-sm" value="검색"	onclick="is_src('${is_key}',event)"> --%>
+				<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="meet_src()">
+				<marquee behavior=alternate width="200" scrollamount="1">
+				<span>
+				총 (${searchCnt})개의 게시물
+				</span>
+				</marquee>
+				</td>
+				</tr>
+				<tr>
+					<td style="background: white;">
+						<label id="isert_key" style="color:red;"></label>
+					</td>
+					<td></td>
+			</tr>
+		</table>
+		</div>
+	</form>
+	
 </article>

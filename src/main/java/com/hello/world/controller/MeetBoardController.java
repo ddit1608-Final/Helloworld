@@ -23,14 +23,10 @@ import com.hello.world.dto.testVO;
 import com.hello.world.service.FlowService;
 import com.hello.world.service.MeetBoardCommService;
 import com.hello.world.service.MeetBoardService;
-import com.hello.world.service.MemberService;
 
 @Controller
 @RequestMapping("/meet")
 public class MeetBoardController {
-
-	@Autowired
-	MemberService memberService;
 
 	@Autowired
 	MeetBoardService meetService;
@@ -44,7 +40,7 @@ public class MeetBoardController {
 	@RequestMapping("/meetBoardList.do")
 	public String MeetBoardList(HttpSession session, Model model,
 			HttpServletRequest request) throws ServletException, IOException {
-
+		String total="";
 		String url = "meetBoard/meetBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
@@ -75,17 +71,26 @@ public class MeetBoardController {
 		model.addAttribute("key", key);
 		model.addAttribute("tpage", tpage);
 		model.addAttribute("type", type);
-
+		
+		testVO testVO = new testVO();
+		testVO.setKey(key);
+		testVO.setType("meet_board_title");
+		
 		ArrayList<MeetBoardVO> meetBoardList = null;
 		String paging = null;
 		MeetBoardVO meetBoardVO = new MeetBoardVO();
 		meetBoardVO.setFlow_code(type);
 		meetBoardVO.setKey(key);
-		
 		try {
-			meetBoardList = meetService.listAllMeetBoard(
-					Integer.parseInt(tpage), meetBoardVO);
-			paging = meetService.pageNumber(Integer.parseInt(tpage), meetBoardVO);
+			total= meetService.getTotal(testVO)+"";
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	
+		try {
+			meetBoardList = meetService.getMtBoardList(Integer.parseInt(tpage), testVO);
+			paging = meetService.pageNumber(Integer.parseInt(tpage), testVO);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -93,6 +98,7 @@ public class MeetBoardController {
 		int n = meetBoardList.size();
 		model.addAttribute("meetBoardListSize", n);
 		model.addAttribute("paging", paging);
+		model.addAttribute("searchCnt",total);
 		return url;
 	}
 
@@ -112,8 +118,7 @@ public class MeetBoardController {
 		}
 		
 		MeetBoardVO meetBoardVO = meetService.getMeetDetail(meet_board_posting_no);
-		/*meetService.updateMeetBoard(meetBoardVO);*/
-		
+		meetService.updateHits(meetBoardVO);
 		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
 
 		try {
@@ -207,10 +212,10 @@ public class MeetBoardController {
 
 		return url;
 	}
-	
+	@RequestMapping(value="/meetBoardSearch",method=RequestMethod.POST)
 	public String getMeetBoardList(HttpServletRequest request, Model model) throws ServletException, IOException{
 		String total ="";
-		String url = "redirect:meetBoardList";
+		String url = "redirect:meetBoardList.do";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
 		String type= request.getParameter("type");
@@ -240,9 +245,17 @@ public class MeetBoardController {
 			e2.printStackTrace();
 		}
 		
+		try {
+			meetBoardList = meetService.getMtBoardList(
+					Integer.parseInt(tpage), testVO);
+			paging = meetService.pageNumber(Integer.parseInt(tpage), testVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		model.addAttribute("meetBoardList", meetBoardList);
 		int n=meetBoardList.size();
-		model.addAttribute("serchCnt",total);
+		model.addAttribute("searchCnt",total);
 		model.addAttribute("paging",paging);
 		return url;
 		

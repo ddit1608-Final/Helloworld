@@ -34,10 +34,10 @@
 			from meet_board
 			where meet_board_posting_no=#meet_board_posting_no#
 	</delete>
-	<select id="totalMeetBoard" parameterClass="meetboard" resultClass="int">
-		<!-- select count(*) from meet_Board where meet_board_title like '%'||#meet_board_title#||'%' -->
-		select count(*) from meet_Board where flow_code like '%'||#flow_code#||'%' and 
-		meet_board_title like '%'||#key#||'%'
+	<select id="totalMeetBoard" parameterClass="testVO" resultClass="int">
+		<!-- select count(*) from meet_Board where flow_code like '%'||#flow_code#||'%' and 
+		meet_board_title like '%'||#key#||'%' -->
+		select count(*) from memmeet where $type$ like '%'||#key#||'%'
 	</select>
 	
 	<select id="totalMeetBoardMyPage" parameterClass="testVO" resultClass="int">
@@ -48,6 +48,22 @@
 	<select id="listAllMeetBoardMyPage" parameterClass="testVO" resultClass="meetboard" >
 		select * from memmeet where $type$ like '%'||#key#||'%' order by meet_board_posting_no desc
 	</select>
+	
+	<!-- 검색 -->
+	<select id="searchMeetBoard" parameterClass="testVO" resultClass="meetboard">
+		select * from memmeet where $type$ like'%'||#key#||'%' order by TO_NUMBER(meet_board_posting_no) desc
+	</select> 
+	<!-- 조회수 -->
+	<update id="updateMeetHits" parameterClass="meetboard">
+		UPDATE 
+			meet_board 
+		SET 
+			meet_board_hits = #meet_board_hits#+1 
+		WHERE 
+			meet_board_posting_no=#meet_board_posting_no#
+	</update>
+	
+	
 
 
 </sqlMap>

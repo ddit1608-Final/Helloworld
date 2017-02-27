@@ -17,7 +17,7 @@
       <tr style="background-color: #8bdb69; border-bottom:2px solid #c9c9c9;">
         <th style="width:20%;">SUBJECT</th>
         <td style="width:60%;">${meetBoardVO.meet_board_title }</td>
-        <%-- <th style="width:20%;"><a href="#">추천</a>(#)/ <a href="#">비추천</a>(#)조회수(${ meetBoardVO.meet_board_hits})</th> --%>
+        <th style="width:20%;"><a href="#">추천</a>(#)/ <a href="#">비추천</a>(#)조회수(${ meetBoardVO.meet_board_hits})</th>
        
       </tr>
     </thead>
@@ -28,7 +28,7 @@
 	    	<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
 	    	${meetBoardVO.mem_nick}</button>
 	    </td>
-	    <td><b>DATE</b> &nbsp;${meetBoardVO.meet_board_wri_date }</td>
+	    <td><b>DATE</b> &nbsp;${meetBoardVO.meet_board_wridate }</td>
   	 </tr>
      <tr>
      	<td>	

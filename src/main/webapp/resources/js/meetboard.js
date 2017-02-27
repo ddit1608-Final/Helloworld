@@ -164,12 +164,8 @@ function updateMeetComm(indexTd,indexTdd , event) {
 	})
 }
 
-
-
-
-
 function meet_src(){
-	formm.action =  "meetBoardSearch.do";
+	formm.action =  "meetBoardSearch";
 	formm.submit();
 }
 

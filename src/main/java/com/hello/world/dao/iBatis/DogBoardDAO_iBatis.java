@@ -61,7 +61,7 @@ public class DogBoardDAO_iBatis implements DogBoardDAO {
 		client.update("updateDogHits",dogBoardVO);
 		
 	}
-
+	// 검색
 	@Override
 	public List<DogBoardVO> getDsBoardList(int startRow, testVO testVO,
 			int counts) throws SQLException {

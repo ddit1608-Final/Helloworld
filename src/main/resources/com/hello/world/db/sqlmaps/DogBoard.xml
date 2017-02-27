@@ -7,7 +7,7 @@
 		select * from memdog where dsboard_posting_no order by TO_NUMBER(dsboard_posting_no) desc
 	</select>
 
-	<select id="totalDsBoard" parameterClass="testVo" resultClass="int">
+	<select id="totalDsBoard" parameterClass="testVO" resultClass="int">
 		select count(*) from memdog where $type$ like '%'||#key#||'%'
 	</select>
 	
