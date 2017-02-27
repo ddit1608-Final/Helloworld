@@ -228,7 +228,21 @@ footer {
 	font-size: 12pt;
 	color: #a31313;
 }
-
+#adminmenu button{
+	background-color: #3EAF0E;
+	font-family:한나;
+	font-size:15pt;
+	color:white;
+	width:100%;
+	height:40px;
+	border-radius:5px;
+}
+#adminmenu button:hover{
+background-color: #006f00;
+}
+#adminmenu{
+width:100%;
+}
 
 </style>
 
@@ -409,7 +423,7 @@ footer {
 		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/adminLogo.png"></a>
 	</div> 
 
-	<table>
+	<table id="adminmenu">
 		<tr>
 			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/memberManage'">회원관리</button></td>
 			<td><button onclick="location.href='<%=request.getContextPath()%>/admin/cstManage'">컨설팅관리</button></td>

@@ -4,7 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/mypage.css">
+<style>
 
+</style>
 <article>
 	<%-- <div>
 		<a href="<%=request.getContextPath()%>/mypage/main"><img
@@ -31,11 +33,11 @@
 		</tr>
 	</table>
  --%>
-	<table class="table table-striped" border="1px;">
+	<table class="table table-striped">
 		<th colspan="3">
-			<h4>포인트적립내역</h4>
+			<h1 class="text-center">포인트적립내역</h1>
 		</th>
-		<tr>
+		<tr class="text-center" style="font-size:16pt;">
 			<td>날짜</td>
 			<td>내용</td>
 			<td>적립 변동</td>
@@ -49,7 +51,7 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${myPointList}" var="pointVo">
-					<tr>
+					<tr id="pointhover">
 						<td style="text-align: center;"><fmt:formatDate
 								value="${pointVo.point_save_date}" /></td>
 						<td style="text-align: center;">${pointVo.point_cont}</td>

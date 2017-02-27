@@ -3,28 +3,58 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
+<style>
+#memberList tr:hover{
+background-color: #abe693;
+}
+*{
+font-family:한나;
+}
+.container{
+width:100%;
+}
+label{
+font-size:13pt;
+}
+#nonhover:hover{
+background-color: #c1c1c1 !important;
+}
+#nonhover{
+background-color: #c1c1c1;
+}
+#memberList td{
+font-size:13pt;
+}
+#th{
+font-size:16pt !important;
+}
+#paging:hover{
+background-color: white !important;
+}
+</style>
 <article>
 	<div class="container">
-		<h3 class="text-center">컨설팅 게시물</h3>
+		<h1 class="text-center">컨설팅 게시물 관리</h1>
+		<hr>
 
-		<form class="form-inline" action="memberManage" id="memberSearch"
+		<form style="margin-left:70%;" class="form-inline" action="memberManage" id="memberSearch"
 			method="get">
 			<div class="form-group">
-				<label for="pwd">Member ID(E-MAIL) :</label> <input type="text"
+				<label for="pwd">회원 이메일 :</label> <input type="text"
 					class="form-control" id="key" name="key">
 			</div>
-			<input type="submit" class="btn btn-default" value="Search">
+			<input type="submit" class="btn btn-default" value="검색">
 		</form>
-
+		<hr>
 
 		<table id="memberList" class="table table-striped">
 			<thead>
-				<tr>
-					<th>NO</th>
-					<th>STATUS</th>
-					<th>ID</th>
-					<th>TITLE</th>
-					<th>DATE</th>
+				<tr id="nonhover">
+					<td id="th">번호</td>
+					<td id="th">상태</td>
+					<td id="th">이메일</td>
+					<td id="th">제목</td>
+					<td id="th">날짜</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -55,7 +85,7 @@
 								
 							</tr>
 						</c:forEach>
-						<tr>
+						<tr id="paging">
 							<td colspan="5" style="text-align: center;">${paging}</td>
 						</tr>
 					</c:otherwise>

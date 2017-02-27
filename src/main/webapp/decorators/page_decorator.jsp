@@ -63,6 +63,21 @@
 	font-family: "한나";
 	src: url(fonts/BM-HANNA.ttf) format("truetype");
 }
+ 
+@font-face{
+	font-family: "나눔고뒥";
+	src: url(../resources/fonts/NanumBarunGothic.ttf) format("truetype");
+}
+
+@font-face{
+	font-family: "나눔고뒥";
+	src: url(fonts/NanumBarunGothic.ttf) format("truetype");
+}
+
+ 
+
+
+
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
 	margin-bottom: 0;
