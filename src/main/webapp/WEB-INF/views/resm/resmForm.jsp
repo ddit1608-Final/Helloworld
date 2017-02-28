@@ -5,7 +5,12 @@
 
 
 <style>
-
+article{
+border:1px solid #b7cbd9;
+padding-top:2%;
+margin-top:1%;
+margin-bottom:1%;
+}
 form{
 font-family:나눔고뒥 !important;
 font-size:12pt;
@@ -14,9 +19,6 @@ font-size:12pt;
 background-color: gray;
 }
 
-div input[type=button]{
-height:30px;
-}
 input[type=radio]{
 font-family:돋움;
 }
@@ -48,7 +50,25 @@ color:#466d53;
 input[type=checkbox]{
 margin-left:10%;
 }
-
+.btn-success{
+background-color: #3EAF0E;
+font-family:한나;
+font-size:12pt;
+}
+.btn-success:hover{
+background-color: #006f00;
+}
+#sc{
+background-color: #3EAF0E;
+font-family:한나;
+font-size:15pt;
+border:none;
+border-radius:5px;
+color:white;
+}
+#sc:hover{
+background-color: #006f00;
+}
 </style>
 
 <script language="javascript"> 
@@ -101,9 +121,9 @@ margin-left:10%;
 			<tr>
 				<td style="background-color: #f5f9ed; color:#466d53; border:1px solid #b7cbd9; text-align:center; font-weight:bold;"><font color="red">＊</font>주소</td>
 				<td><!-- <label class="control-label col-sm-2" for="addr_zipnum" hidden="hidden"></label> --> 
-					<input class="form-control" type="text"	id="addr_zipnum" name="addr_zipnum" style="width:50%;">
-					<input class="form-control" type="text" id="mem_addr" name="mem_addr" style="width:100%;">
+					<input class="form-control" type="text"	id="addr_zipnum" name="addr_zipnum" style="width:50%; display: inline-block;">
 					<input type="button" value="주소 찾기" class="btn btn-success" onclick="post_zip()">
+					<input class="form-control" type="text" id="mem_addr" name="mem_addr" style="width:70.5%; margin-top:2%;">
 					<!-- <label class="cec" for="addr_zipnum"	id="addrCheck"></label> --></td>
 			</tr>
 			
@@ -286,9 +306,9 @@ margin-left:10%;
 			</table>
 		</div><br>
 		<!-- 사용가능언어END -->
-		<div style="margin-left:72.9%;">
-		<input type="button" value="완료">
-		<input type="button" value="취소">
+		<div style="margin-left:72.5%;">
+		<input type="button" value="완료" id="sc">
+		<input type="button" value="취소" id="sc">
 		</div>
 		<br><br><br>
 </form>
