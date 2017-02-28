@@ -222,7 +222,8 @@ public class IndexController {
 	@RequestMapping(value="calendar",method=RequestMethod.GET)
 	public String Calendar(HttpSession session, Model model,
 			HttpServletRequest request) throws ServletException, IOException {
-	 String url="calendar/Calendar";
+/*	 String url="calendar/Calendar";*/
+	 String url="calendar/Calen";
 	 
 	 return url;
 	}

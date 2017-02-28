@@ -47,9 +47,9 @@
 <link href="<%=request.getContextPath()%>/resources/css/calendar.css" rel="stylesheet">
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/meetboard.js"></script>
+<!-- 캘린더  -->
+
 </head>
-
-
 <style>
 ::selection {
 	/* background: #68e234; */
