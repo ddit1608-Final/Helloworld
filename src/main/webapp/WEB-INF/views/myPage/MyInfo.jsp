@@ -3,18 +3,35 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+<style>
+.form-group label{
+padding:0;
+padding-right:1%;
+font-family:나눔고뒥;
+}
+.btn-success{
+border:none !important;
+}
+.btn-success:hover{
+background-color: #006f00 !important;
+}
+#idsubmit:hover{
+background-color: #006f00 !important;
+}
+
+</style>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/signup.css">
 
 <article>
-	<h2>개인정보 수정</h2>
+	<h2 style="text-align:center; font-size:36px;">개인정보 수정</h2>
 	<hr>
 
 	<div class="jfbg">
 
-		<form action="updateInfo" method="post" id="updateForm"
+		<form style="height:580px;"action="updateInfo" method="post" id="updateForm"
 			class="form-horizontal">
-			<div style="margin: auto;" class="form-group">
+			<div style="margin:3% auto auto 35%;" class="form-group">
 				<label class="control-label col-sm-2" for="mem_mail">이메일</label> <input
 					class="form-control" type="email" id="mem_mail" name="mem_mail"
 					value="${loginUser.mem_mail }" readonly="readonly"> <br />
@@ -51,10 +68,12 @@
 					class="control-label col-sm-2" for="addr_zipnum">주소</label> <input
 					class="form-control" type="text" id="addr_zipnum"
 					name="addr_zipnum" value="${loginUser.addr_zipnum }"> <input class="form-control" type="text"
-					id="mem_addr" name="mem_addr" value="${loginUser.mem_addr }"> <label class="cec"
-					for="addr_zipnum" id="addrCheck"></label> <input type="button"
-					value="주소 찾기" class="btn btn-success" onclick="post_zip()">
-				<br /> <input type="button" onclick="go_update();" value="수정">
+					id="mem_addr" name="mem_addr" value="${loginUser.mem_addr }">
+					<input style="margin-left:25.5%; background-color:#3EAF0E; font-size:13pt;" type="button" value="주소 찾기" class="btn btn-success" onclick="post_zip()"><br><br> 
+					<label class="cec" for="addr_zipnum" id="addrCheck"></label> 
+				<br /> <input id="idsubmit" type="button" style="margin-left:23%; background-color: #3EAF0E; font-size:18pt; color:white;" class="btn" 
+				onclick="go_update();" value="수정완료">
+				
 			</div>
 		</form>
 	</div>
