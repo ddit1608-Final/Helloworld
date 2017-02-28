@@ -407,9 +407,9 @@ footer {
         </a></li><br> -->
 
 						<li><a
-							href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구인</a></li>
+							href="<%=request.getContextPath()%>/worknet/worknet.do">구인</a></li>
 						<li><a
-							href="<%=request.getContextPath()%>/worknet/worknet.do">구직</a></li>
+							href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구직</a></li>
 						<li><a
 							href="<%=request.getContextPath()%>/news/news?keyword=IT">IT소식</a></li>
 						<li><a

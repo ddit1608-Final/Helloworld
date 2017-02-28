@@ -2,11 +2,10 @@
 	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/freeBoard.css">
 <article>
 	<div>
-		<a href="<%=request.getContextPath()%>/free/freeBoardList.do">
+		<a href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do"> 
 		<img id="freeLogo" src="<%= request.getContextPath() %>/resources/images/guin.png	"></a>
 	</div> 
 	<form name="form" method="post">
