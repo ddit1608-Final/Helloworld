@@ -17,8 +17,14 @@
 					style="background-color: #8bdb69; border-bottom: 2px solid #c9c9c9;">
 					<th style="width: 20%;">SUBJECT</th>
 					<td style="width: 50%;">${qnaBoardVO.qnaboard_title }</td>
-					<th style="width: 10%;" onclick="qnaboardchu()">추천<input type="button" id=boardchu value=${qnaBoardBChuList.qnaboard_board_chu }></th>
-					<th style="width: 10%;" onclick="qnaboardbchu()">/ 비추천<input type="button" id=boardbchu value="${qnaBoardBChuList.qnaboard_board_bchu }"></th>
+					<c:if test="${loginUser!=null}">
+					<th style="width: 10%;" onclick="qnaboardchu()">추천<input type="button" class="btn btn-success btn-xs" id=boardchu value=${qnaBoardBChuList.qnaboard_board_chu }></th>
+					<th style="width: 10%;" onclick="qnaboardbchu()">/ 비추천<input type="button" class="btn btn-success btn-xs" id=boardbchu value="${qnaBoardBChuList.qnaboard_board_bchu }"></th>
+					</c:if>
+					<c:if test="${loginUser ==null}">
+					<th style="width: 10%;" onclick="qnaboardchu()">추천<input type="button" class="btn btn-success btn-xs" id=boardchu value=${qnaBoardBChuList.qnaboard_board_chu } disabled="disabled"></th>
+					<th style="width: 10%;" onclick="qnaboardbchu()">/ 비추천<input type="button" class="btn btn-success btn-xs" id=boardbchu value="${qnaBoardBChuList.qnaboard_board_bchu }" disabled="disabled"></th>
+					</c:if>
 					<th style="width: 10%;">조회수(${qnaBoardVO.qnaboard_hits })</th>
 					
 
