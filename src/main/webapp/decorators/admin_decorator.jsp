@@ -340,8 +340,8 @@ width:100%;
           <span class="glyphicon glyphicon-home"></span>
         </a></li><br> -->
 
-		<li><a href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구인</a></li>
-        <li><a href="<%=request.getContextPath()%>/worknet/worknet.do">구직</a></li>
+        <li><a href="<%=request.getContextPath()%>/worknet/worknet.do">구인</a></li>
+		<li><a href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구직</a></li>
         <li><a href="<%=request.getContextPath()%>/news/news?keyword=IT">IT소식</a></li>
         <li><a href="<%=request.getContextPath()%>/free/freeBoardList.do">자유게시판</a></li>
         <li><a href="<%=request.getContextPath()%>/qna/qnaBoardList.do">QnA게시판</a></li>

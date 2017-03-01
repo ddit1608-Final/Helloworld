@@ -340,7 +340,7 @@ font-weight:normal;
 					<tr>
 						<td><a href="#"><img id="logo"
 								src="<%=request.getContextPath()%>/images/world2.png"
-								onclick="location.href='<%=request.getContextPath()%>/index2.jsp'"></a></td>
+								onclick="location.href='<%=request.getContextPath()%>/index'"></a></td>
 						<td><input type="search" id="search"></td>
 					<td><a href="#"><button class="glyphicon glyphicon-search"></button></a></td>
 					</tr>
@@ -368,8 +368,8 @@ font-weight:normal;
           <span class="glyphicon glyphicon-home"></span>
         </a></li><br> -->
 
-		<li><a href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구인</a></li>
-        <li><a href="<%=request.getContextPath()%>/worknet/worknet.do">구직</a></li>
+        <li><a href="<%=request.getContextPath()%>/worknet/worknet.do">구인</a></li>
+		<li><a href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구직</a></li>
         <li><a href="<%=request.getContextPath()%>/news/news?keyword=IT">IT소식</a></li>
         <li><a href="<%=request.getContextPath()%>/free/freeBoardList.do">자유게시판</a></li>
         <li><a href="<%=request.getContextPath()%>/qna/qnaBoardList.do">QnA게시판</a></li>
