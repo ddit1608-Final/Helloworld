@@ -82,8 +82,8 @@ background-color: #006f00;
 				<c:otherwise>
 					<c:choose>
 						<c:when test="${param.cetifi == 'success'}">
-							<input type="button" disabled="disabled" value="인증완료">
-							<br />
+							<input type="button" disabled="disabled" value="인증완료" style="font-family:한나; background-color: blue; color:white; border-radius:5px; border:none; font-size:14pt;">
+							<br><br />
 						</c:when>
 						<c:otherwise>
 							<input style="margin:auto auto auto 37%;" type="button" onclick="go_certification()" value="인증">

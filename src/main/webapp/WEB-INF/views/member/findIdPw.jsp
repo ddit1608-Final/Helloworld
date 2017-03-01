@@ -8,9 +8,25 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/signup.css">
 
-
+<style>
+.btn{
+background-color: #3EAF0E;
+color:white;
+font-size:14pt;
+font-family:한나;
+}
+.btn:hover{
+background-color: #006f00;
+color:white;
+}
+</style>
 <div>
-	<h2>아이디/패스워드 찾기</h2>
-	<button onclick="location.href='<%=request.getContextPath()%>/member/join'">아이디 찾기</button>
-	<button onclick="location.href='<%=request.getContextPath()%>/member/findPw'">패스워드 찾기</button>
+		<a href="#"></a><img id="joinLogo" src="<%= request.getContextPath() %>/resources/images/joinlogo.png"></a>
+	</div> 
+
+<div style="width:100%;">
+	<h2 style="text-align:center; font-family:한나;">아이디/패스워드 찾기</h2><hr style="border:1px solid gray; width:20%;">
+	<div style="margin-left:41%;">
+	<button class="btn" onclick="location.href='<%=request.getContextPath()%>/member/join'">아이디 찾기</button>
+	<button class="btn" onclick="location.href='<%=request.getContextPath()%>/member/findPw'">패스워드 찾기</button></div>
 </div>
