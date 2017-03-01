@@ -434,4 +434,6 @@ public class MyPageController {
 
 		return url;
 	}
+	
+	
 }

@@ -436,7 +436,7 @@ border-radius:5px;
 			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/mypage/cstBoardList'"
 			>컨설팅 내역 조회</button></td>
-			<td><button>스크랩게시물 조회</button></td>
+			<td><button onclick="location.href='<%=request.getContextPath()%>/mypage/scrapList'">스크랩게시물 조회</button></td>
 			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/mypage/myBoard'">작성한게시물 조회</button></td>
 			<td><button>구직입찰조회</buttodn></td>
