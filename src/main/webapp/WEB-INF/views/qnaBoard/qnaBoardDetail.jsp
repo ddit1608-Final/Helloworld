@@ -27,11 +27,37 @@
 
 			<tr>
 				<th>NAME</th>
-				<td>${qnaBoardVO.mem_nick }</td>
+				<td>
+					<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal">
+						${qnaBoardVO.mem_nick }</button>
+				</td>
 				<td colspan="2"><b>DATE</b> &nbsp;${qnaBoardVO.qnaboard_wridate }</td>
-
 			</tr>
-
+			 
+		  	 <tr>
+		      	<td>
+		      	
+				  <!-- Modal -->
+				  <div class="modal fade" id="myModal" role="dialog">
+				    <div class="modal-dialog">
+				      <!-- Modal content-->
+				      <div class="modal-content">
+				        <div class="modal-header">
+				          <button type="button" class="close" data-dismiss="modal">&times;</button>
+				          <h4 class="modal-title">${qnaBoardVO.mem_nick} 님의 정보입니다.</h4>
+				        </div>
+				        <div class="modal-body">
+				          <p>이메일:${qnaBoardVO.mem_mail} <a href="#">메일보내기</a></p>
+				          <p>연락처:${qnaBoardVO.mem_phn} <a href="#">문자보내기</a> </p>
+				        </div>
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+				        </div>
+				      </div>
+				    </div>
+				  </div>
+		   		</td>
+		      </tr>
 
 
 

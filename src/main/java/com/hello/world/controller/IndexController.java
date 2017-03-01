@@ -20,6 +20,7 @@ import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.PostingTypeVO;
+import com.hello.world.dto.QnaBoardBChuVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.AllBoardService;
@@ -158,7 +159,31 @@ public class IndexController {
 		model.addAttribute("searchCnt",total);
 		
 		/*qna*/
-		
+			String type = request.getParameter("type");
+			if(type == null) {
+				type = "qnaboard_title";
+			}
+
+			model.addAttribute("key", key);
+			model.addAttribute("tpage", tpage);
+			
+			testVO.setKey(key);
+			testVO.setType(type);
+
+			/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
+
+			ArrayList<QnaBoardVO> qnaBoardList = null;
+			try {
+				qnaBoardList = qnaBoardService.listAllQnaBoard(
+						Integer.parseInt(tpage), testVO);
+				paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), testVO);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			model.addAttribute("qnaBoardList", qnaBoardList);
+			int n = qnaBoardList.size();
 		
 		return url;
 		
@@ -222,8 +247,8 @@ public class IndexController {
 	@RequestMapping(value="calendar",method=RequestMethod.GET)
 	public String Calendar(HttpSession session, Model model,
 			HttpServletRequest request) throws ServletException, IOException {
-/*	 String url="calendar/Calendar";*/
-	 String url="calendar/Calen";
+	 String url="calendar/Calendar";
+	 /*String url="calendar/Calen";*/
 	 
 	 return url;
 	}

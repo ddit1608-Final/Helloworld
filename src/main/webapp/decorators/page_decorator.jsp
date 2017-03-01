@@ -48,7 +48,9 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/meetboard.js"></script>
 <!-- 캘린더  -->
-
+<link href="<%=request.getContextPath()%>/resources/css/cal/fullcalendar.min.css" rel="stylesheet" />
+<link href="<%=request.getContextPath()%>/resources/css/cal/fullcalendar.css" rel="stylesheet" />
+<script src="<%=request.getContextPath()%>/js/cal/fullcalendar.min.js"></script>
 </head>
 <style>
 ::selection {
@@ -125,7 +127,6 @@ footer {
 
 #logo {
 	width: 60%;
-	cursor:pointer;
 }
 
 #search {
@@ -267,15 +268,6 @@ footer {
 	font-size: 12pt;
 	color: #a31313;
 }
-.btn-sm{
-background-color: #3EAF0E; 
-color:white;
-font-family:한나;
-}
-/* .btn-sm:hover{
-background-color: #006f00;
-border: 3px solid #006f00;
-} */
 </style>
 
 <script>
@@ -384,7 +376,7 @@ border: 3px solid #006f00;
 							<img id="" src="<%=request.getContextPath() %>/images/cal.png" onclick="mycalendar_go()">
 						</td>
 						<td>
-							<input type="text" name="key" id="key" style="border:3px solid #3EAF0E;">
+							<input type="text" name="key" id="key">
 						</td>
 						<td>
 							<!-- <a href="all_src()"><button class="glyphicon glyphicon-search"></button></a> -->

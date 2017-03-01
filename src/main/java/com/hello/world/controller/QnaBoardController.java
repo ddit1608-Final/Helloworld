@@ -68,6 +68,8 @@ public class QnaBoardController {
 		String url = "redirect:qnaBoardList.do";
 
 		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+		String a =qnaBoardVO.getQnaboard_cont().replace("\r\n","<br>");
+		qnaBoardVO.setQnaboard_cont(a);
 		
 		
 		System.out.println(qnaBoardVO);

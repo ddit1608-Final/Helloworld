@@ -40,7 +40,7 @@
 			<div id="divdiv">
 				<input class="btn" type="submit" value="수정" >
 				<input class="btn" type="reset" value="수정취소" onclick="javascript:history.back()"> 
-				<input class="btn" type="button" value="메인" onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
+				<input class="btn" type="button" value="메인" onclick="location.href='<%=request.getContextPath()%>/index'">
 			</div>
 			</form>
 </article>

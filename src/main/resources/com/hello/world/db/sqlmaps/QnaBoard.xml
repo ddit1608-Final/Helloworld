@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="qnaDetail" parameterClass="str" resultClass="qnaboard">
-		select * from qnaboard where qnaboard_posting_no=#qnaboard_posting_no#
+		select * from memqna where qnaboard_posting_no=#qnaboard_posting_no#
 	</select>
 	
 	<select id="totalQnaBoard" parameterClass="testVO" resultClass="int">

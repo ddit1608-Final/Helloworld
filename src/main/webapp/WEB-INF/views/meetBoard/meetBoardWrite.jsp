@@ -52,7 +52,7 @@
 				<div id="divdiv">
 				<input class="btn" type="submit" value="글쓰기"> 
 				<input class="btn" type="reset" value="취소"> 
-				<input class="btn" type="button" value="메인" onclick="location.href='<%=request.getContextPath()%>/index2.jsp'">
+				<input class="btn" type="button" value="메인" onclick="location.href='<%=request.getContextPath()%>/index'">
 				</div>
 </form>
 </article>
