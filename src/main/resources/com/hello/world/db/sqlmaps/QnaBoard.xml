@@ -23,7 +23,8 @@
 	<select id="getQnaBoardList" parameterClass="testVO" resultClass="qnaboard">
 		select * from searchqna where $type$ like'%'||#key#||'%' order by TO_NUMBER(qnaboard_posting_no) asc
 	</select>
-	
+	<!-- 병현추가  -->
+	<!-- 조회수 -->
 	<update id="updateQnaHits" parameterClass="qnaboard">
 	UPDATE 
 		qnaboard 
@@ -31,7 +32,17 @@
 		qnaboard_hits = #qnaboard_hits#+1 
 	WHERE 
 		qnaboard_posting_no=#qnaboard_posting_no#
+	</update>
+	<!-- 수정 -->
+	<update id="updateQnaBoard" parameterClass="qnaboard">
+		update 
+			qnaboard
+		set 
+			qnaboard_cont=#qnaboard_cont#
+		where
+			qnaboard_posting_no=#qnaboard_posting_no# 
 	</update>	
+	
 	
 	
 </sqlMap>

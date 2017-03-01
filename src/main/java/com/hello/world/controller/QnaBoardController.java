@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.QnaBoardBChuVO;
 import com.hello.world.dto.QnaBoardCheckChuVO;
@@ -81,7 +82,7 @@ public class QnaBoardController {
 	@RequestMapping("/qnaBoardList.do")
 	public String freeBoardList(HttpSession session, Model model,
 			HttpServletRequest request) throws ServletException, IOException {
-
+		String total="";
 		String url = "qnaBoard/qnaBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
@@ -123,12 +124,19 @@ public class QnaBoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		try {
+			total= qnaBoardService.getTotal(testVO)+"";
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		model.addAttribute("qnaBoardList", qnaBoardList);
 		model.addAttribute("qnaBChuList", qnaBChuList);
 		int n = qnaBoardList.size();
 		model.addAttribute("qnaBoardListSize", n);
 		model.addAttribute("paging", paging);
+		model.addAttribute("searchCnt",total);
 
 		return url;
 	}
@@ -432,5 +440,34 @@ public class QnaBoardController {
 
 		return url;
 	}
+		// 게시글 수정 폼 입장
+		@RequestMapping(value="/qnaBoardUpdateForm.do",method=RequestMethod.GET)
+		public String qnaBoardUpdateForm(@RequestParam String qnaboard_posting_no,HttpSession session,Model model)
+			throws ServletException,IOException{
+			String url="qnaBoard/qnaBoardUpdate";
+			
+			QnaBoardVO qnaBoardVO = qnaBoardService.getQnaDetail(qnaboard_posting_no);
+			String a =qnaBoardVO.getQnaboard_cont().replace("<br>","\r\n");
+			qnaBoardVO.setQnaboard_cont(a);
+			model.addAttribute("qnaBoardVO",qnaBoardVO);
+			
+			return url;
+		}
+		// 게시글 수정 완료
+		@RequestMapping(value="/qnaBoardUpdate.do",method=RequestMethod.POST)
+		public String qnaBoardUpdate(QnaBoardVO qnaBoardVO,HttpSession session)
+			throws ServletException,IOException{
+			String url = "redirect:qnaBoardList.do";
+			
+			MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+			String a =qnaBoardVO.getQnaboard_cont().replace("\r\n","<br>");
+			qnaBoardVO.setQnaboard_cont(a);
+			qnaBoardService.updateQnaBoard(qnaBoardVO);
+			
+			return url;
+			
+		}
+	
+	
 	
 }

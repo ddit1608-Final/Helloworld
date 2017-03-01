@@ -150,13 +150,14 @@
 				</c:forEach>
 			</tbody>
 		</table>
-
+		<c:if test="${loginUser!=null}">
 		<input type="text" id="qnaboard_comm_cont" name="qnaboard_comm_cont">
 		<input type="hidden" id="qnaboard_posting_no"
 			name="qnaboard_posting_no" value="${qnaBoardVO.qnaboard_posting_no }">
 		<input type="hidden" id="mem_mail" name="mem_mail"
-			value="${loginUser.mem_mail}"> <input type="submit"
-			value="댓글등록">
+			value="${loginUser.mem_mail}">
+	    <input type="submit" value="댓글등록">
+		</c:if>
 	</form>
 </article>
 

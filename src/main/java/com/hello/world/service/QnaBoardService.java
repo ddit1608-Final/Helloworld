@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.hello.world.dao.QnaBoardDAO;
 import com.hello.world.dto.FreeBoardVO;
+import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.testVO;
 
@@ -136,7 +137,7 @@ public class QnaBoardService {
 		return qnaBoardDAO.getTotal(testVO);
 		
 	}
-	
+	//////////////////////// 병현추가
 	public void updateQnaHits(QnaBoardVO qnaBoardVO){
 		try {
 			//freeBoardDAO.
@@ -146,6 +147,15 @@ public class QnaBoardService {
 			e.printStackTrace();
 		}
 		
+	}
+	public void updateQnaBoard(QnaBoardVO qnaBoardVO) {
+
+		try {
+			qnaBoardDAO.updateQnaBoard(qnaBoardVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

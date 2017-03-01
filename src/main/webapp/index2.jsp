@@ -166,7 +166,7 @@
 		<!-- 두번쨰 캐러샐 -->
 		 <div class="item">
         		<div class="item active">
-			<a href="<%=request.getContextPath()%>/dog/dogBoardList"><h2 id="title">개소리게시판 HOT</h2></a>
+			<a href="<%=request.getContextPath()%>/dog/dogBoardList"><h2 id="title">개발소리게시판 HOT</h2></a>
 			<table class="table table-striped">
 			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="10">
 				<tbody>

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.hello.world.dao.QnaBoardDAO;
 import com.hello.world.dto.FreeBoardVO;
+import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -79,6 +80,9 @@ public class QnaBoard_iBatis implements QnaBoardDAO {
 	public void updateQnaHits(QnaBoardVO qnaBoardVO) throws SQLException {
 		client.update("updateQnaHits",qnaBoardVO);		
 	}
-
+	@Override
+	public void updateQnaBoard(QnaBoardVO qnaBoardVO) throws SQLException {
+		client.update("updateQnaBoard",qnaBoardVO);
+	}
 
 }
