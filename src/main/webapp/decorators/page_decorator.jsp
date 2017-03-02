@@ -127,6 +127,7 @@ footer {
 
 #logo {
 	width: 60%;
+	cursor:pointer;
 }
 
 #search {

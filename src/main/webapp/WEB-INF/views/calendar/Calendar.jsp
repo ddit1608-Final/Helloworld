@@ -3,7 +3,11 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<style>
+hr{
+border:1px solid #5e5e5e;
+}
+</style>
 <article>
 <!--
 ========================================================  
