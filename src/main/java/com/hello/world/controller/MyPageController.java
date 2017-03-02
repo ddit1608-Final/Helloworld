@@ -395,7 +395,7 @@ public class MyPageController {
 			HttpServletRequest request) {
 
 		if (session.getAttribute("loginUser") == null) {
-			return "redirect:/index2.jsp";
+			return "redirect:/index";
 		}
 
 		String mem_mail = ((MemVO) session.getAttribute("loginUser"))

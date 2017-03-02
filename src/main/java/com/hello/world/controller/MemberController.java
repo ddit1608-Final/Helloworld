@@ -116,7 +116,7 @@ public class MemberController implements ServletContextAware {
 	
 	@RequestMapping(value = "/changePw", method = RequestMethod.POST)
 	public String changePw(String mem_mail, String mem_pw) {
-		String url = "redirect:/index2.jsp";
+		String url = "redirect:/index";
 		
 		MemVO memVO = new MemVO();
 		memVO.setMem_mail(mem_mail);
@@ -134,7 +134,7 @@ public class MemberController implements ServletContextAware {
 
 	@RequestMapping(value = "/findPw", method = RequestMethod.POST)
 	public String find(String mem_mail) {
-		String url = "redirect:/index2.jsp";
+		String url = "redirect:/index";
 
 		InetAddress ip = null;
 
@@ -186,7 +186,7 @@ public class MemberController implements ServletContextAware {
 		String url = "member/JoinForm";
 
 		if (session.getAttribute("loginUser") != null) {
-			url = "redirect:/index2.jsp";
+			url = "redirect:/index";
 			return url;
 		}
 
@@ -212,7 +212,7 @@ public class MemberController implements ServletContextAware {
 		String url = "member/JoinMenu";
 
 		if (session.getAttribute("loginUser") != null) {
-			url = "redirect:/index2.jsp";
+			url = "redirect:/index";
 		}
 
 		return url;
@@ -223,7 +223,7 @@ public class MemberController implements ServletContextAware {
 		String url = "member/JoinCompForm";
 
 		if (session.getAttribute("loginUser") != null) {
-			url = "redirect:/index2.jsp";
+			url = "redirect:/index";
 		}
 
 		return url;
@@ -232,11 +232,11 @@ public class MemberController implements ServletContextAware {
 	@RequestMapping(value = "/joinCompany", method = RequestMethod.POST)
 	public String JoinCompany(CompanyMemberVO compMemVo, Model model,
 			HttpSession session) {
-		String url = "redirect:/index2.jsp";
+		String url = "redirect:/index";
 		int result = 0;
 
 		if (session.getAttribute("loginUser") != null) {
-			url = "redirect:/index2.jsp";
+			url = "redirect:/index";
 			return url;
 		}
 
@@ -261,11 +261,11 @@ public class MemberController implements ServletContextAware {
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String joinMember(MemVO memVO, Model model, HttpSession session) {
-		String url = "redirect:/index2.jsp";
+		String url = "redirect:/index";
 		int result = 0;
 
 		if (session.getAttribute("loginUser") != null) {
-			url = "redirect:/index2.jsp";
+			url = "redirect:/index";
 			return url;
 		}
 
@@ -413,7 +413,7 @@ public class MemberController implements ServletContextAware {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, String mem_mail) {
-		String url = "redirect:/index2.jsp";
+		String url = "redirect:/index";
 
 		session.removeAttribute("loginUser");
 		removeSessionMap(mem_mail);
