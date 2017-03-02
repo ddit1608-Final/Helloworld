@@ -4,13 +4,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/mypage.css">
-<style>
 
-</style>
 <article>
+	
 	<table class="table table-striped">
 		<th colspan="3">
-			<h1 class="text-center">스크랩 내역</h1>
+			<h1 class="text-center">${loginUser.mem_nick}님의 스크랩 내역</h1>
 		</th>
 		<tr class="text-center" style="font-size:16pt;">
 			<td colspan="3">내용</td>
@@ -25,12 +24,13 @@
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${scrapList}" var="scrap">
+					<c:if test="${loginUser.mem_mail ==scrap.mem_mail}"> 
 					<tr id="pointhover">
-						<td style="text-align: center;"><fmt:formatDate
-								value="${scrap.scrap_no}" /></td>
+						<td style="text-align: center;">${scrap.scrap_no}</td>
 						<td style="text-align: center;">${scrap.scrap_cont}</td>
 						<td style="text-align: center;">${scrap.mem_mail}</td>
 					</tr>
+					</c:if>
 				</c:forEach>
 				<tr>
 					<td colspan="4" style="text-align: center;">${paging}</td>

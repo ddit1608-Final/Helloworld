@@ -18,7 +18,7 @@ public class ScrapService {
 		this.scrapDAO = scrapDAO;
 	}
 	
-	public ArrayList<ScrapVO> listAllScrap(int tpage, String key)
+/*	public ArrayList<ScrapVO> listAllScrap(int tpage, String key)
 			throws SQLException {
 		ArrayList<ScrapVO> list = new ArrayList<ScrapVO>();
 		int startRow = -1;
@@ -43,7 +43,7 @@ public class ScrapService {
 
 		return list;
 	}
-
+*/
 	public String pageNumber(int tpage, testVO testVO) throws SQLException {
 		String str = "";
 
@@ -106,7 +106,7 @@ public class ScrapService {
 		String key = testVO.getKey();
 
 		if (key.equals("")) {
-			key = "%";
+			testVO.setKey("%");
 		}
 
 		int totalRecord = scrapDAO.totalRecord(testVO);
@@ -116,10 +116,7 @@ public class ScrapService {
 		if (endRow > totalRecord)
 			endRow = totalRecord;
 
-		// list = (ArrayList<IfShrBoardVO>)
-		// ifShrBoardDAO.getIsBoardList(startRow, key, counts);
-		list = (ArrayList<ScrapVO>) scrapDAO.getScrapList(startRow,
-				testVO, counts);
+		list = (ArrayList<ScrapVO>) scrapDAO.getScrapList(startRow,testVO, counts);
 
 		return list;
 	}
