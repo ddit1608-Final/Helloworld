@@ -37,6 +37,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${freeBoardList}" var="myBoardVO">
+					<c:if test="${ loginUser.mem_mail==myBoardVO.mem_mail}">
 						<tr>
 							<td style="text-align: center;" colspan="2">자유게시판</td>
 							<td style="text-align: center;"><a
@@ -49,6 +50,7 @@
 									value="${myBoardVO.freeboard_wridate}" /></td>
 							<td style="text-align: center;">${ myBoardVO.freeboard_hits}</td>
 						</tr>
+					</c:if>
 					</c:forEach>
 					<tr>
 						<td colspan="6" style="text-align: center;">${freePaging}</td>
