@@ -516,7 +516,7 @@ div.invisibleClass{
 		<div class="row content">
 			<!--  채팅 -->
 			<div class="col-sm-2 sidenav"
-				style="background-color: white; border-left: 14px solid white;">
+				style="background-color: white; border-left: 14px solid white; position: fixed;">
 				<c:if test="${loginUser.mem_nick != null}">
 					<input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="▼" />
 					<div id="chatDetailBtn" class="invisibleClass">
@@ -526,7 +526,7 @@ div.invisibleClass{
 			</div>
 			<!--  채팅 END-->
 			<!-- 컨텐트내용 -->
-			<div class="col-sm-8 text-left">
+			<div class="col-sm-8 text-left" style="margin-left:16.6666%;">
 
 				<decorator:body />
 			</div>
