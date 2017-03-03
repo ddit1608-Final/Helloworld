@@ -13,6 +13,7 @@ import com.hello.world.dao.iBatis.MemberDAO_iBatis;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.PointVO;
+import com.hello.world.dto.QnaBoardBChuVO;
 
 @Service
 public class PointService {
@@ -37,6 +38,14 @@ public class PointService {
 
 		return sum;
 	}
+	
+	public void ChoosePoint(PointVO pointVO) {
+		try {
+			this.pointDAO.ChoosePoint(pointVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<PointVO> listMyPoint(String mem_mail, int tpage)
 			throws SQLException {
@@ -55,6 +64,13 @@ public class PointService {
 		listMyPoint = pointDAO.listMyPoint(startRow, mem_mail, COUNTS);
 
 		return listMyPoint;
+	}
+	
+	public int totalMyPoint2(String mem_mail) throws SQLException {
+		
+		int totalMyPoint = pointDAO.totalMyPoint2(mem_mail);
+		
+		return totalMyPoint;
 	}
 	
 	public String pageNumber(int tpage, String mem_mail) throws SQLException {

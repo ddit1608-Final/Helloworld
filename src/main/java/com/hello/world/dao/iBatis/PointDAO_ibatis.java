@@ -47,11 +47,21 @@ public class PointDAO_ibatis implements PointDAO {
 	}
 
 	@Override
-	public int totalMyPoint(String mem_mail) throws SQLException {
+	public int totalMyPoint2(String mem_mail) throws SQLException {
 		int total_pages = 0;
-		total_pages = (Integer) client.queryForObject("totalMyPoint",
+		total_pages = (Integer) client.queryForObject("totalMyPoint2",
 				mem_mail);
 		return total_pages;
 	}
 
+	@Override
+	public void ChoosePoint(PointVO pointVO) throws SQLException {
+		client.update("ChoosePoint", pointVO);
+	}
+
+	@Override
+	public int totalMyPoint(String mem_mail) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

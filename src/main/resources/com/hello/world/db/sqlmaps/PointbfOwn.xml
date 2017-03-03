@@ -20,4 +20,15 @@
 	<select id="totalMyPoint" parameterClass="str" resultClass="int">
 		select count(*) from pointbfown where mem_mail = #mem_mail#
 	</select>
+	
+	<select id="totalMyPoint2" parameterClass="str" resultClass="int">
+		select point from pointbfown where mem_mail = #mem_mail#
+	</select>
+	
+	<update id="ChoosePoint" parameterClass="point">
+		UPDATE pointbfown
+		SET
+			point = #point#+10
+		WHERE mem_mail=#mem_mail#
+	</update>
 </sqlMap>

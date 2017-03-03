@@ -121,9 +121,11 @@
 								
 
 								<c:if test="${empty qnaBoardChooseList.qnaboard_comm_choose }">
+								<c:if test="${loginUser.mem_mail == qnaBoardVO.mem_mail }">
 									<td onclick="choose_go('${status.count }')"><input
 										type="button" id="cchoo${status.count}"
 										value="채택"></td>
+									</c:if>
 								</c:if>
 								<c:if
 									test="${qnaBoardComm.qnaboard_ans_code == qnaBoardChooseList.qnaboard_ans_code }">
@@ -156,6 +158,7 @@
 			name="qnaboard_posting_no" value="${qnaBoardVO.qnaboard_posting_no }">
 		<input type="hidden" id="mem_mail" name="mem_mail"
 			value="${loginUser.mem_mail}">
+		<input type="hidden" id="qnaboard_mail2" name="qnaboard_mail2" value="${qnaBoardVO.mem_mail}">
 	    <input type="submit" value="댓글등록">
 		</c:if>
 	</form>
@@ -198,15 +201,13 @@
 			type : "post",
 			data : {
 				choose : $('#cchoo' + index).val(),
-				qnaboard_ans_code : $('#qnaboard_ans_code' + index).val()
+				qnaboard_ans_code : $('#qnaboard_ans_code' + index).val(),
+				mem_mail : $('#qnaboard_mail2').val()
 			},
 			success : function(data) {
 				alert(data);
 				alert(document.getElementById("choose2"+ index));
 				if (data != null) {
-					//$("#choose2" + index).append('채택된글입니다.');
-					//document.getElementById("choose2").innerHTML = "채택된글입니다.";
-					//$('#choose2').val(data);
 					document.getElementById("choose2"+ index).innerHTML = "채택된글입니다";
 				}
 			}

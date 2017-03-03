@@ -12,4 +12,6 @@ public interface PointDAO {
 	public int sumPoint(String mem_mail) throws SQLException;
 	public ArrayList<PointVO> listMyPoint(int startRow, String mem_mail, int counts) throws SQLException;
 	public int totalMyPoint(String mem_mail)throws SQLException;
+	public void ChoosePoint(PointVO pointVO) throws SQLException;
+	public int totalMyPoint2(String mem_mail)throws SQLException;
 }

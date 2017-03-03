@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.PointVO;
 import com.hello.world.dto.QnaBoardBChuVO;
 import com.hello.world.dto.QnaBoardCheckChuVO;
 import com.hello.world.dto.QnaBoardChooseVO;
@@ -26,6 +27,7 @@ import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.QnaboardBCheckChuVO;
 import com.hello.world.dto.testVO;
+import com.hello.world.service.PointService;
 import com.hello.world.service.QnaBoardBChuService;
 import com.hello.world.service.QnaBoardChooseService;
 import com.hello.world.service.QnaBoardChuService;
@@ -51,6 +53,9 @@ public class QnaBoardController {
 	
 	@Autowired
 	QnaBoardBChuService qnaBoardBChuService;
+	
+	@Autowired
+	PointService pointService;
 	
 	
 	@RequestMapping("/qnaBoardWriteForm.do")
@@ -287,18 +292,33 @@ public class QnaBoardController {
 	
 	@RequestMapping(value="/choose", method=RequestMethod.POST, produces="application/text;charset=utf8")
 	@ResponseBody
-	public String boardChoose(@RequestParam String qnaboard_ans_code, QnaBoardChooseVO qnaBoardChooseVO, Model model, HttpServletRequest request){
+	public String boardChoose(@RequestParam String qnaboard_ans_code, QnaBoardChooseVO qnaBoardChooseVO, PointVO pointVO, QnaBoardVO qnaBoardVO,
+			Model model, HttpServletRequest request){
 		
 		String choose = request.getParameter("choose");
+		String mem_mail = request.getParameter("mem_mail");
+		int totalpoint = 0;
 		
 		if(choose != null){
 			qnaBoardChooseVO.setQnaboard_comm_choose("1");
 		}
 		
 		qnaBoardChooseVO.setQnaboard_ans_code(qnaboard_ans_code);
+		pointVO.setMem_mail(mem_mail);
+		
+		try {
+			totalpoint = pointService.totalMyPoint2(mem_mail);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		String totalpoint2 = String.valueOf(totalpoint);
+		
+		pointVO.setPoint(totalpoint2);
 		
 		try {
 			qnaBoardChooseService.insertQnaBoardChoose(qnaBoardChooseVO);
+			pointService.ChoosePoint(pointVO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
