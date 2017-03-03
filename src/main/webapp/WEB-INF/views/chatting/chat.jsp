@@ -20,6 +20,7 @@ font-family:한나;
  <input type="text" id="message"/>
  <input type="button" id="sendMessage" value="전송"/>
  <div id="chatMessage" style="overflow: auto; max-height: 400px; text-align:left; font-family:한나; font-size:12pt"></div>
+ <input class="btn" type="button" id="detailBtn" value="▲" onClick="chat_detail()"/><br />
 </body>
 
 

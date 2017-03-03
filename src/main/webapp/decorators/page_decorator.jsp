@@ -269,6 +269,9 @@ footer {
 	font-size: 12pt;
 	color: #a31313;
 }
+div.invisibleClass{
+	display : none;
+}
 </style>
 
 <script>
@@ -344,7 +347,10 @@ footer {
 				+ ":8181/world/chat.sockjs");
 		wsocket.onopen;
 	}
-	
+	function chat_detail(){
+		$('.invisibleClass').toggle();
+		$('#detailBtn').toggle();
+	}	
 </script>
 
 <body>
@@ -512,7 +518,10 @@ footer {
 			<div class="col-sm-2 sidenav"
 				style="background-color: white; border-left: 14px solid white;">
 				<c:if test="${loginUser.mem_nick != null}">
-					<jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
+					<input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="▼" />
+					<div id="chatDetailBtn" class="invisibleClass">
+					 <jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
+					</div>
 				</c:if>
 			</div>
 			<!--  채팅 END-->
