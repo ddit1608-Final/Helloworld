@@ -35,8 +35,7 @@ public class ScrapDAO_iBatis implements ScrapDAO{
 		if (key.equals("")) {
 			key = "%";
 		}
-		total_pages = (Integer) client.queryForObject("totalScrap",
-				testVO);
+		total_pages = (Integer) client.queryForObject("totalScrap",testVO);
 		return total_pages;
 	}
 
@@ -56,8 +55,7 @@ public class ScrapDAO_iBatis implements ScrapDAO{
 			throws SQLException {
 		ArrayList<ScrapVO> scrapList = new ArrayList<ScrapVO>();
 
-		scrapList = (ArrayList<ScrapVO>) client.queryForList(
-				"listAllScrap", testVO, startRow, counts);
+		scrapList = (ArrayList<ScrapVO>) client.queryForList("listAllScrap", testVO, startRow, counts);
 
 		return scrapList;
 	}

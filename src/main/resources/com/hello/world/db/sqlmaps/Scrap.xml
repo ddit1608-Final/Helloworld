@@ -3,14 +3,14 @@
 
 <sqlMap namespace="Scrap">
 	
-	<select id="listAllScrap" parameterClass="str" resultClass="Scrap" >
+	<select id="listAllScrap" parameterClass="testVO" resultClass="Scrap" >
 		select *
-		from scrap 
-		<!-- where scrap_no like '%'||#scrap_no#||'%' order by TO_NUMBER(scrap_no) desc -->
+		from memscrap 
+		where $type$ like '%'||#key#||'%'  order by TO_NUMBER(scrap_no) desc
 	</select>
 	
 	<select id="totalScrap" parameterClass="testVO" resultClass="int">
-		select count(*) from scrap where $type$ like '%'||#key#||'%'
+		select count(*) from memscrap where $type$ like '%'||#key#||'%'
 	</select>
 	
 	<!-- 스크랩 -->

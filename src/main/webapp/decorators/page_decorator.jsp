@@ -4,10 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
-
-
 <!DOCTYPE html>
-
 <html>
 <head>
 <!-- google api 확인용 지우지마시오 -->
@@ -51,6 +48,9 @@
 <link href="<%=request.getContextPath()%>/resources/css/cal/fullcalendar.min.css" rel="stylesheet" />
 <link href="<%=request.getContextPath()%>/resources/css/cal/fullcalendar.css" rel="stylesheet" />
 <script src="<%=request.getContextPath()%>/js/cal/fullcalendar.min.js"></script>
+<!-- 스크롤링  -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="<%=request.getContextPath()%>/js/sideNav.js"></script>
 </head>
 <style>
 ::selection {
