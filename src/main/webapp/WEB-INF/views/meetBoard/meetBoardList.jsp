@@ -3,7 +3,11 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<style>
+#pagingg:hover{
+background-color: white !important;
+}
+</style>
 
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/meetBoard.css">
@@ -19,6 +23,7 @@
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
 				<td style="text-align: center;">NO</td>
+				<td style="text-align: center;">LOCATION</td>
 				<td style="text-align: center;">SUBJECT</td>
 				<td style="text-align: center;">NAME</td>
 				<td style="text-align: center;">DATE</td>
@@ -36,14 +41,16 @@
 						<tr>
 							<td style="text-align: center;">${meetBoardVO.meet_board_posting_no}</td>
 							<td style="text-align: center;">
+							<c:forEach var="flow" items="${flowList }" varStatus="status">
+									<c:if test="${flow.flow_code == meetBoardVO.flow_code}">
+										<span class="label label-default" style="font-size:12pt; padding:4px; font-weight:100;">${flow.flow_cont }</span>
+									</c:if>
+								</c:forEach></td>
+							<td style="text-align: center;">
 								<a href="/world/meet/meetBoardDetail.do?meet_board_posting_no=
 									${meetBoardVO.meet_board_posting_no}"data-toggle="tooltip" data-placement="right"
 									title="${meetBoardVO.meet_board_cont}">${meetBoardVO.meet_board_title}
-								<c:forEach var="flow" items="${flowList }" varStatus="status">
-									<c:if test="${flow.flow_code == meetBoardVO.flow_code}">
-										<span class="label label-default">${flow.flow_cont }</span>
-									</c:if>
-								</c:forEach>
+								
 								</a>
 								</td>
 								<%-- <td>${freeBoardVO.freeboard_cont}</td> --%>
@@ -55,7 +62,7 @@
 							</tr>
 						</c:forEach>
 					<tr>
-						<td colspan="5" style="text-align: center;">${paging}</td>
+						<td id="pagingg" colspan="5" style="text-align: center;">${paging}</td>
 					</tr>
 				</c:otherwise>
 			</c:choose>

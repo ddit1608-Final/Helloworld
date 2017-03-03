@@ -9,7 +9,7 @@
 		<a href="<%=request.getContextPath()%>/is/ifShrBoardList.do">
 		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/ifshrboard.png"></a>
 	</div>
-	<form name="form" method="post" >
+	<form name="form" method="post" style="background-color: #f3f3f3">
 		<table class="table table-condensed" id="blt">
 			<!-- sort 기능 추가  -->
 				<tr>
@@ -55,7 +55,7 @@
 					<c:forEach items="${ifShrBoardList}" var="ifShrBoardVO">
 						<tr>
 							<td style="text-align: center;">${ifShrBoardVO.ifshrboard_posting_no}</td>
-							<td style="text-align: center; font-family:굴림; font-weight:bold;">
+							<td style="text-align: center; font-family:한나;">
 							<a href="/world/is/ifShrBoardDetail.do?ifshrboard_posting_no=
 								${ifShrBoardVO.ifshrboard_posting_no}"data-toggle="tooltip" data-placement="right"
 									title="${ifShrBoardVO.ifshrboard_cont}">

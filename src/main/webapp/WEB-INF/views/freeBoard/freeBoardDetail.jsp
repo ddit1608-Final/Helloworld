@@ -119,7 +119,7 @@
 						<td style="width: 100px; text-align: center;">
 							<button type="button" class="btn btn-default btn-xs"
 								data-toggle="modal" data-target="#myModal2">${ freeBoardComm.freeboard_comm_wri}</button>
-						</td>
+						
 
 						<!-- 일단 댓글에서는 쪽지 기능  -->
 						<div class="modal fade" id="myModal2" role="dialog">
@@ -145,7 +145,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div></td>
 						<!-- 쪽지 모달 끝 -->
 						<td style="width: 70%; word-break: break-all;"
 							id="freeBoardComm_cont${status.count}"
@@ -187,7 +187,6 @@
 			<input type="button" value="댓글등록"
 				onclick="freeWriteComm_go($('#mem_nick').val(),$('#freeboard_posting_no').val(),$('#freeboard_comm_contt').val(),'${indexTd}','${indexTdd}',event)">
 		</c:if>
-		</div>
 		<!-- result div  -->
 	</form>
 

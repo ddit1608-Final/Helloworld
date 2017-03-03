@@ -251,9 +251,10 @@ background-color: #006f00;
 				<tr id="hrt3">
 					<td rowspan="2" style="width:25%; font-weight:bold; font-family:나눔고뒥;">경력사항</td>
 					<td style="background-color: white; text-align:left;">
-						  &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="gyung" value="new">신입
-					&nbsp;<input type="radio" name="gyung" value="senior">경력
-					<input type="radio" name="gyung" value="oper">간부</td>
+						  &nbsp;&nbsp;&nbsp;&nbsp;
+						  <input type="radio" name="gyung" id="sin" value="new"><label for="sin">신입</label>
+					&nbsp;<input type="radio" name="gyung" id="kyung" value="senior"><label for="kyung">경력</label>
+							<input type="radio" name="gyung" id="gan" value="oper"><label for="gan">간부</label></td>
 				</tr>
 				
 				<tr>
@@ -292,16 +293,16 @@ background-color: #006f00;
 		<div>
 			<table style="border:1px solid #b7cbd9; background-color:#f5f9ed; border-top:2px solid #376045; margin:0 auto; width:60%; height:120px;">
 				<tr style="text-align:left;" id="hrt4">
-					<td style="width:25%;"><input type="checkbox" value="Java"><label>Java</label></td>
-					<td style="width:25%;"><input type="checkbox" value="Jsp"><label>Jsp</label></td>
-					<td style="width:25%;"><input type="checkbox" value="HTML"><label>HTML</label></td>
-					<td style="width:25%;"><input type="checkbox" value="CSS"><label>CSS</label></td>
+					<td style="width:25%;"><input type="checkbox" id="java" value="Java"><label for="java">Java</label></td>
+					<td style="width:25%;"><input type="checkbox" id="jsp" value="Jsp"><label for="jsp">Jsp</label></td>
+					<td style="width:25%;"><input type="checkbox" id="html" value="HTML"><label for="html">HTML</label></td>
+					<td style="width:25%;"><input type="checkbox" id="css" value="CSS"><label for="css">CSS</label></td>
 				</tr>
 				<tr style="text-align:left;" id="hrt4">
-					<td><input type="checkbox" value="JavaScript"><label>JavaScript</label></td>
-					<td><input type="checkbox" value="ASP"><label>ASP</label></td>
-					<td><input type="checkbox" value=".NET"><label>.NET</label></td>
-					<td><input type="checkbox" value="C#"><label>C#</label></td>
+					<td><input type="checkbox" id="script" value="JavaScript"><label for="script">JavaScript</label></td>
+					<td><input type="checkbox" id="asp" value="ASP"><label for="asp">ASP</label></td>
+					<td><input type="checkbox" id="net" value=".NET"><label for="net">.NET</label></td>
+					<td><input type="checkbox" id="c" value="C#"><label for="c">C#</label></td>
 				</tr>
 			</table>
 		</div><br>

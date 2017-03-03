@@ -15,6 +15,7 @@
         <th style="width:20%;">SUBJECT</th>
         <td style="width:60%;">${ifShrBoardVO.ifshrboard_title }</td>
         <th style="width:20%;"><a href="#">추천</a>(#)/ <a href="#">비추천</a>(#)조회수(${ ifShrBoardVO.ifshrboard_hits})</th>
+        <td></td>
        
       </tr>
     </thead>
@@ -26,11 +27,7 @@
 	    		${ifShrBoardVO.mem_nick}</button>
 	    </td>
 	    <td><b>DATE</b> &nbsp;${ifShrBoardVO.ifshrboard_wridate }</td>
-  	 </tr>
   	 
-  	 
-  	 
-  	 <tr>
       	<td>
       	
 		  <!-- Modal -->

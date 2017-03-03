@@ -19,7 +19,7 @@
 			</tr>
   			<tr> 
 			    <th>작성날짜</th>
-   				<td>${meetBoardVO.meet_board_wri_date }</td>
+   				<td>${meetBoardVO.meet_board_wridate }</td>
    				</tr>
    				<tr>
    				<th>작성자</th>

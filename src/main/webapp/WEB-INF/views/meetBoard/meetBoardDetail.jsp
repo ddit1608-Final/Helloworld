@@ -18,19 +18,19 @@
         <th style="width:20%;">SUBJECT</th>
         <td style="width:60%;">${meetBoardVO.meet_board_title }</td>
         <th style="width:20%;"><a href="#">추천</a>(#)/ <a href="#">비추천</a>(#)조회수(${ meetBoardVO.meet_board_hits})</th>
+        <td></td>
        
       </tr>
     </thead>
   
   	 <tr>
-  	 	<th>NAME</th> 
+  	 	<td>NAME</td> 
 	    <td>
 	    	<button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal">
 	    	${meetBoardVO.mem_nick}</button>
 	    </td>
 	    <td><b>DATE</b> &nbsp;${meetBoardVO.meet_board_wridate }</td>
-  	 </tr>
-     <tr>
+  	 
      	<td>	
 		  <!-- Modal -->
 		  <div class="modal fade" id="myModal" role="dialog">
@@ -109,7 +109,7 @@
 					<tr id="meet_board_ans_code${status.count}" class="meetcoment">
 						<td style="width:100px;text-align:center;">
 						<button type="button" class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal2">
-	    					${ meetBoardComm.meet_board_comm_wri}</button></td>
+	    					${ meetBoardComm.meet_board_comm_wri}</button>
 	    					
 	    				<!-- 일단 댓글에서는 쪽지 기능  -->
 	    				 <div class="modal fade" id="myModal2" role="dialog">
@@ -131,7 +131,7 @@
 						        </div>
 						      </div>
 						    </div>
-						    </div>
+						    </div></td>
 						    <!-- 쪽지 모달 끝 -->
 						    <td style="width:70%;  word-break:break-all;" id="meet_BoardComm_cont${status.count}" name="meetBoardComm_cont${status.count}">
 						    	${ meetBoardComm.meet_board_comm_cont}
@@ -163,7 +163,7 @@
 		<input type="hidden" id="mem_nick" name="mem_nick" value="${loginUser.mem_nick}">
 		<input type="button" value="댓글등록" onclick="meetWriteComm_go($('#mem_nick').val(),$('#meet_board_posting_no').val(),$('#meet_board_comm_contt').val(),'${indexTd}','${indexTdd}',event)">
 		</c:if>
-		</div> <!-- result div  -->
+		 <!-- result div  -->
 	</form>
 	
 	
