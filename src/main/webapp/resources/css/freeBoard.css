@@ -9,6 +9,11 @@
 	border:1px solid #5d5d5d;
 	width:100%;
 }
+#newsLogo{
+	margin: 1% auto 1% auto;
+    border: 1px solid #5d5d5d;
+    width: 65%;	
+}
   /* .table-hover{
   background-color:gray; 
   width:50%; margin:0 auto; 
@@ -24,7 +29,7 @@
 	
 }
 #blt tr:hover{
-	background-color: #8bdb69;
+	background-color: #d5f2c8;
 }
 /* #nohover:hover{
 	background-color: white;

@@ -78,7 +78,7 @@ public class EchoHandler extends TextWebSocketHandler {
 			for (String commUser : users.keySet()) {
 				if (!session.getId().equals(users.get(commUser).getId())) {
 					users.get(commUser).sendMessage(
-							new TextMessage(member.getMem_nick() + " ▶ "
+							new TextMessage("　"+member.getMem_nick() + "▶ "
 									+ messageVO.getMessage()));
 				}
 			}

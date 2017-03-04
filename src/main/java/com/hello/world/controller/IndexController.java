@@ -205,6 +205,8 @@ public class IndexController {
 		String total = "";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
+		String type = request.getParameter("typ");
+		
 		
 		if (key == null) {
 			key = "";
@@ -240,7 +242,29 @@ public class IndexController {
 		int n = allBoardList.size();
 		model.addAttribute("searchCnt",total);
 		model.addAttribute("paging", paging);
-
+		
+	/*	switch (type) {
+		case "정보공유게시판":
+			testVO.setType("정보공유게시판");
+			
+		break;
+		case "모임게시판":
+			testVO.setType("모임게시판");
+			
+			break;
+		case "질문게시판":
+			testVO.setType("질문게시판");
+			
+			break;
+		case "개발소리게시판":
+			testVO.setType("개발소리게시판");
+			
+			break;
+			
+			default:
+				break;
+		}*/
+		
 		return url;
 	}
 	// 달력

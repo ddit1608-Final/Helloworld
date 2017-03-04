@@ -17,10 +17,10 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"
 	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
 	crossorigin="anonymous"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/member.js"></script>
 <script type="text/javascript"
@@ -178,7 +178,6 @@ footer {
 
 .nav-pills {
 	width: 100%;
-	margin-left:7%;
 }
 
 .nav-pills li a {
@@ -188,6 +187,7 @@ footer {
 }
 
 .nav-pills li {
+	margin: auto auto auto 13%;
 }
 
 .nav-pills li a:HOVER {
@@ -269,9 +269,6 @@ footer {
 	font-size: 12pt;
 	color: #a31313;
 }
-div.invisibleClass{
-	display : none;
-}
 </style>
 
 <script>
@@ -288,7 +285,7 @@ div.invisibleClass{
 							if ($("#message").val() != "") {
 								wsocket.send(JSON.stringify(message));
 								$("#chatMessage").append(
-										"<font color='red'>　나 ▶ "
+										"<font color='red'>나 ▶ "
 												+ $("#message").val()
 												+ "</font><br/>");
 								$("#message").val("");
@@ -311,7 +308,7 @@ div.invisibleClass{
                         if ($("#message").val() != "") {
                            wsocket.send(JSON.stringify(message));
                            $("#chatMessage").append(
-                               "<font color='red'>　나 ▶ "
+                               "<font color='red'>나 ▶ "
 													+ $("#message").val()
 													+ "</font><br/>");
 									$("#message").val("");
@@ -347,10 +344,7 @@ div.invisibleClass{
 				+ ":8181/world/chat.sockjs");
 		wsocket.onopen;
 	}
-	function chat_detail(){
-		$('.invisibleClass').toggle();
-		$('#detailBtn').toggle();
-	}	
+	
 </script>
 
 <body>
@@ -431,10 +425,8 @@ div.invisibleClass{
 							href="<%=request.getContextPath()%>/is/ifShrBoardList.do">정보공유</a></li>
 						<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
 						<li><a href="<%=request.getContextPath()%>/dog/dogBoardList">개발소리</a></li>
-						<li><a
-							href="<%=request.getContextPath()%>/worknet/worknet.do">워크넷바로가기</a></li>
+						<li><a href="#"></a></li>
 					</ul>
-					
 				</div>
 
 			</div>
@@ -496,6 +488,7 @@ div.invisibleClass{
 						</c:choose>
 						<li><a href="<%=request.getContextPath()%>/member/find"
 							id="aa">아이디/비밀번호 찾기</a></li>
+						<li><a href="#" id="aa">접속자수</a></li>
 					</ul>
 				</form>
 
@@ -516,18 +509,27 @@ div.invisibleClass{
 	<div class="container-fluid text-center">
 		<div class="row content">
 			<!--  채팅 -->
-			<div class="col-sm-2 sidenav"
-				style="background-color: white; border-left: 14px solid white; position: fixed; margin-left:-5%; top:0px;">
-				<c:if test="${loginUser.mem_nick != null}">
-					<input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="채팅OPEN▼" />
-					<div id="chatDetailBtn" class="invisibleClass" style="margin-left:31%; border:1px solid black; width:100%;">
-					 <jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
-					</div>
-				</c:if>
+			<div style="position: relative; float: left; width: 80px;">
+				<div id="right_section"	style="position: absolute; top: 0px; left: 0px;">
+					<table style="border: 1px solid black;width:100px;height:300px;">
+						<tr>
+						<th style="text-align: center">리모콘</th>
+						<td></td>
+						</tr>
+						<tr>
+						<th style="text-align: center">
+						<button class="btn btn-success btn-xs" style="font-size:15px;" onclick="chk_chk()">스크랩 <i class="fa fa-cart-plus"></i></button>
+						<button class="btn btn-success btn-xs" style="font-size:15px;" onclick="list_go()">내역확인 <i class="fa fa-cart-plus"></i></button>
+						 <a href="<%=request.getContextPath()%>/index"><i class="fa fa-home"></i></a>
+						</th>
+						<td></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 			<!--  채팅 END-->
 			<!-- 컨텐트내용 -->
-			<div class="col-sm-8 text-left" style="margin-left:16.6666%;">
+			<div class="col-sm-8 text-left">
 
 				<decorator:body />
 			</div>
