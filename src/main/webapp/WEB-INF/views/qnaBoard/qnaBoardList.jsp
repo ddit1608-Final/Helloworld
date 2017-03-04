@@ -19,12 +19,15 @@
 				<td style="text-align: center;">SUBJECT</td>
 				<!-- <th>내용</th> -->
 				<td style="text-align: center;">NAME</td>
+				
 				<!-- <th>작성자</th> -->
 				<td style="text-align: center;">DATE</td>
 				<td style="text-align: center;">추천</td>
 				<td style="text-align: center;">비추천</td>
 				<td style="text-align: center;">조회수</td>
 			</tr>
+			
+			
 			<c:choose>
 				<c:when test="${qnaBoardListSize<=0}">
 					<tr>

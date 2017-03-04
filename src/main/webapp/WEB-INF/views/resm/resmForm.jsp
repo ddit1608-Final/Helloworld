@@ -308,7 +308,7 @@ background-color: #006f00;
 		</div><br>
 		<!-- 사용가능언어END -->
 		<div style="margin-left:72.5%;">
-		<input type="button" value="완료" id="sc">
+		<input type="submit" value="완료" id="sc">
 		<input type="button" value="취소" id="sc">
 		</div>
 		<br><br><br>
