@@ -40,6 +40,9 @@ function login_go() {
 	if (index != -1) {
 		var paramStr = str.substring(index + 1);
 	}
+	alert(str); // localhost:8181/world/index
+	alert(index); // -1
+	alert(paramStr); // undifined
 	$('#param').val(paramStr);
 
 	$('#login').submit();

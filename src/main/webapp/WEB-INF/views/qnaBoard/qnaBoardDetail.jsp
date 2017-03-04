@@ -107,7 +107,8 @@
 
 					</tr>
 					<tr>
-						<td>${ qnaBoardComm.qnaboard_comm_wri}</td>
+						<td>${ qnaBoardComm.qnaboard_comm_wri}
+						<input type="hidden" id="qnaboard_mail${status.count }" value="${ qnaBoardComm.qnaboard_comm_wri}"></td>
 						<td>${ qnaBoardComm.qnaboard_comm_cont}</td>
 						<c:forEach items="${ qnaBoardChuList }" var="qnaBoardChuList">
 							<c:if
@@ -158,7 +159,7 @@
 			name="qnaboard_posting_no" value="${qnaBoardVO.qnaboard_posting_no }">
 		<input type="hidden" id="mem_mail" name="mem_mail"
 			value="${loginUser.mem_mail}">
-		<input type="hidden" id="qnaboard_mail2" name="qnaboard_mail2" value="${qnaBoardVO.mem_mail}">
+		
 	    <input type="submit" value="댓글등록">
 		</c:if>
 	</form>
@@ -196,13 +197,14 @@
 	}
 
 	function choose_go(index) {
+		alert($('#qnaboard_mail' + index).val());
 		$.ajax({
 			url : "choose",
 			type : "post",
 			data : {
 				choose : $('#cchoo' + index).val(),
 				qnaboard_ans_code : $('#qnaboard_ans_code' + index).val(),
-				mem_mail : $('#qnaboard_mail2').val()
+				mem_mail : $('#qnaboard_mail' + index).val()
 			},
 			success : function(data) {
 				alert(data);

@@ -465,7 +465,7 @@ div.invisibleClass{
 								<li id="check" style="margin: 13px auto; width: 5%;"><label
 									style="vertical-align: text-botom;" for="check2" id="auto">
 										<input id="check2" type="checkbox"
-										style="vertical-align: text-top;"> 자동
+										style="vertical-align: text-top;" id="comp" value=""> 기업
 								</label></li>
 								<li><a href="<%=request.getContextPath()%>/member/joinMenu"
 									id="aa">회원가입</a></li>
