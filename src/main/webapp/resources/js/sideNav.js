@@ -8,45 +8,40 @@ $("document").ready(function() {
 				"top" : position + currentPosition + "px"
 			}, 500);
 		});
+	
 
-	});
-    $(window).scroll(function()  
-    {  
-        $('#scroll').animate({top:$(window).scrollTop()+"px" },{queue: false, duration: 350});    
-    });  
-    $('#scroll').click(function()  
-    {  
-     $('#scroll').animate({ top:"+=15px",opacity:0 }, "slow");  
-    });
-    
-// 워크넷 api checkbox 속성 가져와보기
-/* $($('#pageFrame').contents().find(".chkbox:checked")).each(function(){
-	 var a =$('#pageFrame').contents().find(".chkbox:checked").size();
-	 if(a!=0){
-	 		alert('성공');
-	 	}
- })   */
+});
+$(window).scroll(function()  
+{  
+    $('#scroll').animate({top:$(window).scrollTop()+"px" },{queue: false, duration: 350});    
+});  
+$('#scroll').click(function() {  
+	$('#scroll').animate({ top:"+=15px",opacity:0 }, "slow");  
+});
+  
    function chk_chk(){
-	   //var chk = $('#pageFrame').$("input[type='checkbox']").val();
-	 	var a = $('#pageFrame').contents().find(".chkbox:checked").size()
-	 	if(chk==true){
-	 		alert('123');
-	 		alert(chk);
-	 	}
-	 	if(a!=0){
-	 		alert('성공');
-	 	}
+	 	var eachCompanies = $('.cpyCheck:checked').closest("tr");
+ 	var array = [];
+ 	
+ 	$.each(eachCompanies, function(){
+ 		array.push($(this).data("currentData"));
+ 	});
+ 	//$('#myModal .modal-body').append(JSON.stringify(array));
+ 	/*$('#myModal .modal-body').html(eachCompanies);*/
+ 	$('#myModal .modal-body').append(eachCompanies.clone());
    }
-	 	
-    
- /*$(function chk_chk(){
-	 	var chk = $('#pageFrame').$("input[type='checkbox']").val();
-	 	var a = $('#pageFrame').contents().find(".chkbox:checked").size()
-	 	if(chk==true){
-	 		alert('123');
-	 		alert(chk);
-	 	}
-	 	if(a!=0){
-	 		alert('성공');
-	 	}
-});*/
+   // 무조건 close버튼만 눌러야됨
+   function close_go(){
+	   $('.modal-body').empty();
+   }
+   function scrap_go(){
+	   var eachCompanies = $('.cpyCheck:checked').closest("tr");
+	   var array = [];
+	   $.each(eachCompanies, function(){
+	 		array.push($(this).data("currentData"));
+	 	});
+	   alert(JSON.stringify(array));
+	   //form.action="./addScrap";
+   }
+  
+   

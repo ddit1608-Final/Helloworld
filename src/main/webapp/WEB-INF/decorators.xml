@@ -16,12 +16,17 @@
 <decorator name="admin2" page="admin2_decorator.jsp">
 	<pattern>/admin/enter</pattern>
 </decorator>
+<!-- <decorator name="work" page="work_decorator.jsp">
+	<pattern>/worknet/*</pattern>
+</decorator> -->
 	
 	<!-- 제외할 페이지는 아래에 추가 -->
 	<excludes>
 	<!--아래 findZipNum.did*는 임의로 넣어놓은 코드 이므로 필 수정 해야함.  -->
 		<pattern>/member/findZipNum</pattern>
 		<pattern>/mypage/findZipNum</pattern>
+		<pattern>/worknet/workNetList</pattern>
+		
 <!-- 		<pattern>/admin/enter</pattern> -->	
 </excludes>
 	
