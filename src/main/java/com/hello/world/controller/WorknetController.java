@@ -48,6 +48,7 @@ public class WorknetController {
 		
 		RestTemplate template = new RestTemplate(); 
 		Map<String, String> paramMap = new HashMap<String, String>();
+		String paging = req.getParameter("paging");
 		// 인증키
 		paramMap.put("authKey", "WNIY9NMDKR331VMNQ8IZS2VR1HK");
 		// 호출할 페이지 타입 		L목록,D 상세
@@ -55,7 +56,7 @@ public class WorknetController {
 		// 리턴타입은 반드시 XML
 		paramMap.put("returnType", "XML");
 		// 기본값 1 최대 1000까지 가능함
-		paramMap.put("startPage", "1");
+		paramMap.put("startPage", paging);
 		// 출력 건수 기본값: 10 , 최대: 100
 		paramMap.put("display", "10");
 		// 직종 코드 (액셀 파일 참고 -직종코드.xls)

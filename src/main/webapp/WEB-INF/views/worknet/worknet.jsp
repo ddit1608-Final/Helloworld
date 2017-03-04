@@ -55,6 +55,9 @@
 			onclick="list_go()">내역확인 <i class="fa fa-cart-plus"></i></button>
 		</td>
 	</tr>
+	<tr>
+<!-- 		<td><a href="#" onclick="getWorkNetList(2); return false;">2</a></td>
+ -->	</tr>
 	</table>			
 		
 		
@@ -115,41 +118,45 @@
 					});
 				}
 			}); */
-			var data = $("#test").serialize();
-			$.ajax({
-				url:"./workNetList",
-				data:data,
-				dataType:"xml",
-				success:function(xmlBody){
-					var wanted = $(xmlBody).find("wanted");
-					$.each(wanted, function(idx, each){
-						var eachCompany = {
-							id:$(each).find("wantedAuthNo").text(),
-							name:$(each).find("company").text(),
-							title:$(each).find("title").text(),
-							sal:$(each).find("sal").text(),
-							region:$(each).find("region").text(),
-							minEdubg:$(each).find("minEdubg").text(),
-							career:$(each).find("career").text(),
-							start:$(each).find("regDt").text(),
-							end:$(each).find("closeDt").text(),
-							salTpNm:$(each).find("salTpNm").text()
-							/* infoSvc:$(each).find("infoSvc").text() */
-						};
-						var ptag = 
-								$("<tr><td class='yn'>"+
-								"<input type='checkbox'class='cpyCheck' value="+eachCompany.id+">"+eachCompany.name+"</td>"+
-								"<td class='title'><a>"+eachCompany.title+"</a><br>("+eachCompany.salTpNm+")"+eachCompany.sal+
-								"<br>"+eachCompany.region+"</td>"+
-								"<td class='start'>"+eachCompany.minEdubg+
-								"<br>"+eachCompany.career+"</td>"+
-								"<td class='start'>"+eachCompany.start+"</td>"+
-								"<td class='end'>"+eachCompany.end+"</td>");
-						$(ptag).data("currentData", eachCompany);
-						$("#table").append(ptag);
-					});
-				}
-			});	
+// 			var data = $("#test").serialize();
+			getWorkNetList(1);
+			function getWorkNetList(pageNum) {
+				$("#table").html("<tr><th>(체크박스)회사명</th><th>제목/임금/근무지역</th><th>학력/경력</th><th>등록일자</th><th>마감일자</th></tr>");
+				$.ajax({
+					url:"./workNetList",
+					data:"paging="+pageNum,
+					dataType:"xml",
+					success:function(xmlBody){
+						var wanted = $(xmlBody).find("wanted");
+						$.each(wanted, function(idx, each){
+							var eachCompany = {
+								id:$(each).find("wantedAuthNo").text(),
+								name:$(each).find("company").text(),
+								title:$(each).find("title").text(),
+								sal:$(each).find("sal").text(),
+								region:$(each).find("region").text(),
+								minEdubg:$(each).find("minEdubg").text(),
+								career:$(each).find("career").text(),
+								start:$(each).find("regDt").text(),
+								end:$(each).find("closeDt").text(),
+								salTpNm:$(each).find("salTpNm").text()
+								/* infoSvc:$(each).find("infoSvc").text() */
+							};
+							var ptag = 
+									$("<tr><td class='yn'>"+
+									"<input type='checkbox'class='cpyCheck' value="+eachCompany.id+">"+eachCompany.name+"</td>"+
+									"<td class='title'><a>"+eachCompany.title+"</a><br>("+eachCompany.salTpNm+")"+eachCompany.sal+
+									"<br>"+eachCompany.region+"</td>"+
+									"<td class='start'>"+eachCompany.minEdubg+
+									"<br>"+eachCompany.career+"</td>"+
+									"<td class='start'>"+eachCompany.start+"</td>"+
+									"<td class='end'>"+eachCompany.end+"</td>");
+							$(ptag).data("currentData", eachCompany);
+							$("#table").append(ptag);
+						});
+					}
+				});	
+			}
 	</script>
 	<!--						워크넷에서 가져온 데이타 스크립트출력문 종료									  -->
 	
