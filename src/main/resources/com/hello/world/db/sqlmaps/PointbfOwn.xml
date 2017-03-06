@@ -2,43 +2,55 @@
  
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 
-<sqlMap namespace="PointbfOwn">	
+<sqlMap namespace="PointbfOwn">
 
 	<update id="insertPoint" parameterClass="point">
-		insert into pointbfown(point_code, point, mem_mail)
-		values(point_seq.nextval, #point#, #mem_mail#)
+		insert into
+		pointbfown(point_code, point, mem_mail, point_cont)
+		values(point_seq.nextval, #point#, #mem_mail#, 0)
 	</update>
-	
+
 	<select id="sumPoint" parameterClass="str" resultClass="int">
-		select sum(point) from pointbfown where mem_mail = #mem_mail#
+		select
+		sum(point) from pointbfown where mem_mail = #mem_mail#
 	</select>
-	
+
 	<select id="selectPoint" parameterClass="str" resultClass="point">
-		select * from pointbfown where mem_mail = #mem_mail#
+		select * from pointsave where mem_mail = #mem_mail#
 	</select>
-	
+
 	<select id="totalMyPoint" parameterClass="str" resultClass="int">
 		select count(*) from pointbfown where mem_mail = #mem_mail#
 	</select>
-	
+
 	<select id="totalMyPoint2" parameterClass="str" resultClass="int">
 		select point from pointbfown where mem_mail = #mem_mail#
 	</select>
-	
+
 	<update id="ChoosePoint" parameterClass="point">
 		UPDATE pointbfown
 		SET
-			point = #point#+10,
-			point_save_date = sysdate
+		point = #point#+10,
+		point_save_date = sysdate,
+		point_cont = 2
 		WHERE mem_mail=#mem_mail#
 	</update>
-	
+
 	<update id="LoginPoint" parameterClass="point">
 		UPDATE pointbfown
 		SET
-			point = #point#+10,
-			point_save_date = sysdate
+		point = #point#+10,
+		point_save_date = sysdate,
+		point_cont = 1
 		WHERE mem_mail=#mem_mail#
 	</update>
-	
+
+	<select id="allPoint" parameterClass="point">
+		select * from pointsave
+		where mem_mail = #mem_mail#
+	</select>
+
+	<select id="selectPoint2" parameterClass="str" resultClass="point">
+		select * from pointbfown where mem_mail = #mem_mail#
+	</select>
 </sqlMap>

@@ -34,7 +34,7 @@
 	</table>
  --%>
 	<table class="table table-striped">
-		<th colspan="3">
+		<th colspan="4">
 			<h1 class="text-center">포인트적립내역</h1>
 		</th>
 		<tr class="text-center" style="font-size:16pt;">
@@ -45,7 +45,7 @@
 		<c:choose>
 			<c:when test="${myPointListSize<=0 || myPointListSize == null}">
 				<tr>
-					<td width="100%" colspan="3" align="center" height="23">포인트
+					<td width="100%" colspan="4" align="center" height="23">포인트
 						내역이 없습니다.</td>
 				</tr>
 			</c:when>
@@ -54,7 +54,15 @@
 					<tr id="pointhover">
 						<td style="text-align: center;"><fmt:formatDate
 								value="${pointVo.point_save_date}" /></td>
-						<td style="text-align: center;">${pointVo.point_cont}</td>
+						<c:if test="${pointVo.point_cont == 0 }">
+						<td style="text-align: center;">회원가입</td>
+						</c:if>
+						<c:if test="${pointVo.point_cont == 1 }">
+						<td style="text-align: center;">로그인</td>
+						</c:if>		
+						<c:if test="${pointVo.point_cont == 2 }">
+						<td style="text-align: center;">글 채택</td>
+						</c:if>					
 						<td style="text-align: center;">${pointVo.point}</td>
 					</tr>
 				</c:forEach>

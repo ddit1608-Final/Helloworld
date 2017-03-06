@@ -352,7 +352,7 @@ public class MemberController implements ServletContextAware {
 				try {
 					sum = poingService.sumPoint(mem.getMem_mail());
 					session.setAttribute("myPoint", sum);
-					Timestamp start = poingService.selectPoint(login_mem_mail).getPoint_save_date();
+					Timestamp start = poingService.selectPoint2(login_mem_mail).getPoint_save_date();
 					Timestamp today = new Timestamp(System.currentTimeMillis());
 					long plus = ((today.getTime() - start.getTime())/8640000);
 					if(plus > 1){

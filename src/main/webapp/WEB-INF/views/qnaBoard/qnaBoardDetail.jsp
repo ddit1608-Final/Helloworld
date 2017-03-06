@@ -113,13 +113,22 @@
 						<c:forEach items="${ qnaBoardChuList }" var="qnaBoardChuList">
 							<c:if
 								test="${qnaBoardComm.qnaboard_ans_code == qnaBoardChuList.qnaboard_ans_code }">
+							<c:if test="${loginUser != null }">
 								<td onclick="chu_go('${status.count }');">추천<input
 									type="button" id="chu${status.count }"
 									value="${ qnaBoardChuList.qnaboard_chu }"></td>
 								<td onclick="bchu_go('${status.count }');">비추천<input
 									type="button" id="bchu${status.count }"
 									value="${ qnaBoardChuList.qnaboard_bchu }"></td>
-								
+							</c:if>
+							<c:if test="${loginUser == null }">
+								<td onclick="chu_go('${status.count }');">추천<input
+									type="button" id="chu${status.count }"
+									value="${ qnaBoardChuList.qnaboard_chu }" disabled="disabled"></td>
+								<td onclick="bchu_go('${status.count }');">비추천<input
+									type="button" id="bchu${status.count }"
+									value="${ qnaBoardChuList.qnaboard_bchu }" disabled="disabled"></td>
+							</c:if>
 
 								<c:if test="${empty qnaBoardChooseList.qnaboard_comm_choose }">
 								<c:if test="${loginUser.mem_mail == qnaBoardVO.mem_mail }">

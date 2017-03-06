@@ -38,7 +38,8 @@ public class PointDAO_ibatis implements PointDAO {
 	}
 
 	@Override
-	public ArrayList<PointVO> listMyPoint(int startRow, String mem_mail, int counts) throws SQLException {
+	public ArrayList<PointVO> listMyPoint(int startRow, String mem_mail,
+			int counts) throws SQLException {
 		ArrayList<PointVO> listMyPoint = new ArrayList<PointVO>();
 		listMyPoint = (ArrayList<PointVO>) client.queryForList("selectPoint",
 				mem_mail, startRow, counts);
@@ -49,8 +50,8 @@ public class PointDAO_ibatis implements PointDAO {
 	@Override
 	public int totalMyPoint2(String mem_mail) throws SQLException {
 		int total_pages = 0;
-		total_pages = (Integer) client.queryForObject("totalMyPoint2",
-				mem_mail);
+		total_pages = (Integer) client
+				.queryForObject("totalMyPoint2", mem_mail);
 		return total_pages;
 	}
 
@@ -64,7 +65,7 @@ public class PointDAO_ibatis implements PointDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
 	@Override
 	public void LoginPoint(PointVO pointVO) throws SQLException {
 		client.update("LoginPoint", pointVO);
@@ -72,8 +73,17 @@ public class PointDAO_ibatis implements PointDAO {
 
 	@Override
 	public PointVO selectPoint(String mem_mail) throws SQLException {
-		PointVO pointVO = (PointVO) client.queryForObject("selectPoint", mem_mail);
-		
+		PointVO pointVO = (PointVO) client.queryForObject("selectPoint",
+				mem_mail);
+
+		return pointVO;
+	}
+
+	@Override
+	public PointVO selectPoint2(String mem_mail) throws SQLException {
+		PointVO pointVO = (PointVO) client.queryForObject("selectPoint2",
+				mem_mail);
+
 		return pointVO;
 	}
 }

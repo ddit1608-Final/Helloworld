@@ -38,7 +38,7 @@ public class PointService {
 
 		return sum;
 	}
-	
+
 	public void ChoosePoint(PointVO pointVO) {
 		try {
 			this.pointDAO.ChoosePoint(pointVO);
@@ -46,7 +46,7 @@ public class PointService {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void LoginPoint(PointVO pointVO) {
 		try {
 			this.pointDAO.LoginPoint(pointVO);
@@ -73,21 +73,28 @@ public class PointService {
 
 		return listMyPoint;
 	}
-	
+
 	public int totalMyPoint2(String mem_mail) throws SQLException {
-		
+
 		int totalMyPoint = pointDAO.totalMyPoint2(mem_mail);
-		
+
 		return totalMyPoint;
 	}
-	
+
 	public PointVO selectPoint(String mem_mail) throws SQLException {
-		
+
 		PointVO pointVO = pointDAO.selectPoint(mem_mail);
-		
+
 		return pointVO;
 	}
-	
+
+	public PointVO selectPoint2(String mem_mail) throws SQLException {
+
+		PointVO pointVO = pointDAO.selectPoint2(mem_mail);
+
+		return pointVO;
+	}
+
 	public String pageNumber(int tpage, String mem_mail) throws SQLException {
 		String str = "";
 
@@ -118,16 +125,16 @@ public class PointService {
 			if (i == tpage) {
 				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
 			} else {
-				str += "<a href='main?tpage=" + i + "&key=" + mem_mail
-						+ "'>[" + i + "]</a>&nbsp;&nbsp;";
+				str += "<a href='main?tpage=" + i + "&key=" + mem_mail + "'>["
+						+ i + "]</a>&nbsp;&nbsp;";
 			}
 		}
 
 		if (page_count > end_page) {
-			str += "<a href='main?tpage=" + (end_page + 1)
-					+ "&key=" + mem_mail + "'> &gt; </a>&nbsp;&nbsp;";
-			str += "<a href='main?tpage=" + page_count + "&key="
-					+ mem_mail + "'> &gt; &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='main?tpage=" + (end_page + 1) + "&key=" + mem_mail
+					+ "'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='main?tpage=" + page_count + "&key=" + mem_mail
+					+ "'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 		return str;
 	}
