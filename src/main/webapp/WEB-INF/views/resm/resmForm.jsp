@@ -69,6 +69,7 @@ color:white;
 #sc:hover{
 background-color: #006f00;
 }
+
 </style>
 
 <script language="javascript"> 
@@ -109,38 +110,43 @@ background-color: #006f00;
 				</div>
 				
 				<td style="background-color: #f5f9ed; color:#466d53; border:1px solid #b7cbd9; text-align:center; width:20%; font-weight:bold;"><font color="red">＊</font>이름</td>
-				<td style="border:1px solid #b7cbd9; width:55%;"><input type="text" style="border:none; width:100%;"></td>
+				<td style="border:1px solid #b7cbd9; width:55%;"><input type="text" style="border:none; width:100%;" value="${loginUser.mem_nm }" readonly></td>
 			</tr>	
 			
 			<tr>
 				<td style="background-color: #f5f9ed; color:#466d53; border:1px solid #b7cbd9; text-align:center; font-weight:bold;"><font color="red">＊</font>주민등록번호</td>
-				<td style="border:1px solid #b7cbd9; width:55%;"><input type="text" style="border:none; width:100%;"></td>
+				<td style="border:1px solid #b7cbd9; width:55%;"><input type="text" id="resm_regno" name="resm_regno" style="border:none; width:100%;"></td>
 			</tr>
 			
 			
 			<tr>
 				<td style="background-color: #f5f9ed; color:#466d53; border:1px solid #b7cbd9; text-align:center; font-weight:bold;"><font color="red">＊</font>주소</td>
-				<td><!-- <label class="control-label col-sm-2" for="addr_zipnum" hidden="hidden"></label> --> 
-					<input class="form-control" type="text"	id="addr_zipnum" name="addr_zipnum" style="width:50%; display: inline-block;">
-					<input type="button" value="주소 찾기" class="btn btn-success" onclick="post_zip()">
-					<input class="form-control" type="text" id="mem_addr" name="mem_addr" style="width:70.5%; margin-top:2%;">
-					<!-- <label class="cec" for="addr_zipnum"	id="addrCheck"></label> --></td>
+				<td> 
+					<input class="form-control" type="text"	id="addr_zipnum" name="addr_zipnum" style="width:50%; display: inline-block;" value="${loginUser.addr_zipnum }">
+					<input class="form-control" type="text" id="mem_addr" name="mem_addr" style="width:70.5%; margin-top:2%;" value="${loginUser.mem_addr }">
+				</td>
 			</tr>
 			
 			<tr>
 				<td style="background-color: #f5f9ed; color:#466d53; border:1px solid #b7cbd9; text-align:center; font-weight:bold;"><font color="red">＊</font>연락처</td>
-				<td style="border:1px solid #b7cbd9"><input type="text" style="border:none; width:100%;"></td>
+				<td style="border:1px solid #b7cbd9"><input type="text" style="border:none; width:100%;" value="${loginUser.mem_phn }"></td>
 			</tr>
 		
 			<tr>
 				<td style="background-color: #f5f9ed; color:#466d53; border:1px solid #b7cbd9; text-align:center; font-weight:bold;"><font color="red">＊</font>이메일</td>
-				<td style="border:1px solid #b7cbd9"><input type="text" style="border:none; width:100%;"></td>
+				<td style="border:1px solid #b7cbd9"><input type="text" style="border:none; width:100%;" value="${loginUser.mem_mail }"></td>
 			</tr>
 			<tr>
 				<td style="background-color: #f5f9ed; color:#466d53; border:1px solid #b7cbd9; text-align:center; font-weight:bold;"><font color="red">＊</font>성별</td>
 				<td style="border:1px solid #b7cbd9">
-					&nbsp;<input type="radio" name="sex" value="male">남
+					<c:if test="${loginUser.mem_sex == 1}">
+					&nbsp;<input type="radio" name="sex" value="male" checked>남
 					&nbsp;<input type="radio" name="sex" value="female">여
+					</c:if>
+					<c:if test="${loginUser.mem_sex == 2}">
+					&nbsp;<input type="radio" name="sex" value="male" >남
+					&nbsp;<input type="radio" name="sex" value="female" checked>여
+					</c:if>
 				</td>
 			</tr>
 			
@@ -241,7 +247,7 @@ background-color: #006f00;
 		<!-- 학력테이블END -->
 		<!-- 경력테이블 -->
 		<div>
-		<h2 style="font-family:나눔고뒥; margin-left:20%; font-weight:bold;">경력사항</h2>
+		<h2 style="font-family:나눔고뒥; margin-left:20%; font-weight:bold;">자격증</h2>
 			</div>
 			<hr style="margin-top:0; width:60%;">
 		
@@ -249,19 +255,10 @@ background-color: #006f00;
 		<div>
 			<table style="border:1px solid #b7cbd9; background-color:#f5f9ed; border-top:2px solid #376045; margin:0 auto; width:60%; height:80px;">
 				<tr id="hrt3">
-					<td rowspan="2" style="width:25%; font-weight:bold; font-family:나눔고뒥;">경력사항</td>
-					<td style="background-color: white; text-align:left;">
+					<td style="width:25%; font-weight:bold; font-family:나눔고뒥;">자격증</td>
+					<td style="background-color: white; text-align:left;" id="crr">
 						  &nbsp;&nbsp;&nbsp;&nbsp;
-						  <input type="radio" name="gyung" id="sin" value="new"><label for="sin">신입</label>
-					&nbsp;<input type="radio" name="gyung" id="kyung" value="senior"><label for="kyung">경력</label>
-							<input type="radio" name="gyung" id="gan" value="oper"><label for="gan">간부</label></td>
-				</tr>
-				
-				<tr>
-					<td style="background-color: white;"> &nbsp;&nbsp;&nbsp;&nbsp;총 경력
-					<select>
-						<option>1년</option>
-					</select></td>
+						  <input type="text" name="lcse_code" id="lcse_code" placeholder="ex)정보처리기사"> <input type="button" value="+" onclick="plus()">
 				</tr>
 			</table>
 		</div><Br>
@@ -276,10 +273,9 @@ background-color: #006f00;
 				<tr id="hrt3">
 					<td style="width:25%; font-weight:bold; font-family:나눔고뒥;">병역사항</td>	
 					<td style="background-color: white; text-align:left;">
-					&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="mili" value="milno">미필
-					&nbsp;<input type="radio" name="mili" value="milok">군필
-					&nbsp;<input type="radio" name="mili" value="milnot">면제</td>
-					</td>
+					&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="resm_milt" value="0">미필
+					&nbsp;<input type="radio" name="resm_milt" value="1">군필
+					&nbsp;<input type="radio" name="resm_milt" value="2">면제</td>
 				</tr>
 			</table>
 		</div><br>
@@ -314,5 +310,13 @@ background-color: #006f00;
 		<br><br><br>
 </form>
 </article>
+<script type="text/javascript">
+	function plus(){
+		$('#crr').append('<div id="nnn">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="pplus" name="lcse_code"><input type="button" id="bb" value="-" onclick="minu()"></div>');		
+	}
+	function minu(){
+		$('#nnn').remove();
+	}
+</script>
 
 
