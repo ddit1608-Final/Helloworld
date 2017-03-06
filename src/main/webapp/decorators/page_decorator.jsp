@@ -522,6 +522,7 @@ background-color: #006f00;
 			<div class="col-sm-2 sidenav"
 				style="background-color: white; border-left: 14px solid white; position: fixed; margin-left:-5%; top:0px;">
 					<i class="fa fa-mail-reply-all" style="font-size:36px" onclick="history.back()"></i>
+
 				<i class="fa fa-home" style="font-size:36px" onclick="location.href='<%=request.getContextPath()%>/index'"></i>|
 				<c:if test="${loginUser.mem_nick != null}">
 					<i class="fa fa-commenting" style="font-size:36px" id="detailBtn" onclick="chat_detail()"></i>

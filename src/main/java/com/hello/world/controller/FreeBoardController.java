@@ -20,10 +20,12 @@ import com.hello.world.dto.FreeBoardCommVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.NoticeVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.FreeBoardCommService;
 import com.hello.world.service.FreeBoardService;
 import com.hello.world.service.MemberService;
+import com.hello.world.service.NoticeService;
 
 //import com.nonage.dto.MemVO;
 
@@ -39,6 +41,9 @@ public class FreeBoardController {
 
 	@Autowired
 	FreeBoardCommService freeBoardCommService;
+	
+	@Autowired
+	NoticeService notiSvc;
 
 	@RequestMapping("/freeBoardList.do")
 	public String freeBoardList(HttpSession session, Model model,
@@ -85,12 +90,21 @@ public class FreeBoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		ArrayList<NoticeVO> notiList = new ArrayList<NoticeVO>();
+		
+		try {
+			notiList=notiSvc.listAllNotice();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 
 		model.addAttribute("freeBoardList", freeBoardList);
-		//int n = freeBoardList.size();
-		//model.addAttribute("freeBoardListSize", n);
 		model.addAttribute("paging", paging);
 		model.addAttribute("searchCnt", total);
+		model.addAttribute("notiList",notiList);
 
 		return url;
 	}

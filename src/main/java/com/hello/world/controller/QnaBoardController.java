@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.NoticeVO;
 import com.hello.world.dto.PointVO;
 import com.hello.world.dto.QnaBoardBChuVO;
 import com.hello.world.dto.QnaBoardCheckChuVO;
@@ -27,6 +27,7 @@ import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.QnaboardBCheckChuVO;
 import com.hello.world.dto.testVO;
+import com.hello.world.service.NoticeService;
 import com.hello.world.service.PointService;
 import com.hello.world.service.QnaBoardBChuService;
 import com.hello.world.service.QnaBoardChooseService;
@@ -57,6 +58,8 @@ public class QnaBoardController {
 	@Autowired
 	PointService pointService;
 	
+	@Autowired
+	NoticeService notiSvc;
 	
 	@RequestMapping("/qnaBoardWriteForm.do")
 	public String freeBoardWriteForm(HttpSession session)
@@ -104,6 +107,19 @@ public class QnaBoardController {
 		if(type == null) {
 			type = "qnaboard_title";
 		}
+		ArrayList<NoticeVO> notiList = new ArrayList<NoticeVO>();
+		
+		try {
+			notiList=notiSvc.listAllNotice();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		model.addAttribute("notiList",notiList);
+		
 
 		model.addAttribute("key", key);
 		model.addAttribute("tpage", tpage);

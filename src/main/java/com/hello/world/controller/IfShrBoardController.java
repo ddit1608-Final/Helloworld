@@ -21,10 +21,12 @@ import com.hello.world.dto.IfShrBoardVO;
 import com.hello.world.dto.IsBoardCommVO;
 import com.hello.world.dto.IsBoardLevelVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.NoticeVO;
 import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.IfShrBoardService;
 import com.hello.world.service.IsBoardCommService;
+import com.hello.world.service.NoticeService;
 import com.hello.world.service.PostingService;
 
 @Controller
@@ -39,6 +41,8 @@ public class IfShrBoardController {
 	IsBoardCommService isBoardCommService;
 	@Autowired
 	PostingService postingService;
+	@Autowired
+	NoticeService notiSvc;
 	
 	@RequestMapping("/ifShrBoardList.do")
 	public String ifShareBoardList(HttpSession session, Model model,
@@ -103,6 +107,20 @@ public class IfShrBoardController {
 			e.printStackTrace();
 		}
 
+		ArrayList<NoticeVO> notiList = new ArrayList<NoticeVO>();
+		
+		try {
+			notiList=notiSvc.listAllNotice();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		model.addAttribute("notiList",notiList);
+		
+		
 		model.addAttribute("ifShrBoardList", ifShrBoardList);
 		//int n = ifShrBoardList.size();
 		//model.addAttribute("ifShrBoardListSize", n);

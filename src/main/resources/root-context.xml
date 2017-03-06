@@ -88,6 +88,9 @@
 		p:client-ref="sqlMapClient"/>
 
 	<bean id="workDAO" class="com.hello.world.dao.iBatis.WorkNetDAO_iBatis"	
+		p:client-ref="sqlMapClient"/>
+		
+	<bean id="noticeDAO" class="com.hello.world.dao.iBatis.NoticeDAO_iBatis"
 		p:client-ref="sqlMapClient"/>	
 		
 	
@@ -179,6 +182,9 @@
 		p:indexQnaDAO-ref="indexQnaDAO"/>
 
 	<bean id="workService" class="com.hello.world.service.WorkNetService"
-		p:workNetDAO-ref="workDAO"/>	
+		p:workNetDAO-ref="workDAO"/>
+		
+	<bean id="noticeService" class="com.hello.world.service.NoticeService"
+		p:noticeDAO-ref="noticeDAO" />		
 		
 </beans>
