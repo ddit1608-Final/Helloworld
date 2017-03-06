@@ -13,6 +13,7 @@
 	</div>
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
+		
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
 				<td style="text-align: center;">NO</td>
@@ -23,6 +24,48 @@
 				<td style="text-align: center;">DATE</td>
 				<td style="text-align: center;">HITS</td>
 			</tr>
+				<c:forEach items="${notiList}" var="notice" varStatus="status">
+					<tr style="text-align: center; border-bottom:2px solid gray; font-size:15pt;">
+						<td>${notice.notice_id } 
+						</td>
+						<td colspan="2"><a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
+											<span class="label label-danger">필독</span></a></td>
+						<td colspan="2">${notice.mem_nick }</td>
+					</tr>
+		
+			
+			<!-- modal 영역 -->
+			<div class="modal fade" id="myModal${status.count}" role="dialog">
+						<div class="modal-dialog">
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title" style="text-align: center; font-size: 20pt;font-weight: bold;">
+									[필독]${notice.notice_id}. ${notice.notice_title }
+									</h4>
+								</div>
+								<div class="modal-body">
+									<span style="font-family: 한나; font-size: 15pt;">
+										<hr style="border:none;border:5px double gray;"/>
+										${notice.notice_cont }
+										<br/>
+										<hr style="border:none;border:5px double gray;"/>
+										<i class="fa fa-user-circle" style="font-size:36px"></i>${notice.mem_nick } 올림
+									</span>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default btn-xs"
+										data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+			</c:forEach>
+
+
+
+			<!-- modal 영역 -->
 			<c:choose>
 				<c:when test="${freeBoardListSize<=0}">
 					<tr>
@@ -32,7 +75,7 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${freeBoardList}" var="freeBoardVO">
-						<tr>
+					<tr>
 							<td style="text-align: center;">${freeBoardVO.freeboard_posting_no}</td>
 							<td style="text-align: center;">
 							<a href="/world/free/freeBoardDetail.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}"
@@ -48,7 +91,7 @@
 							<td style="text-align: center;"><fmt:formatDate
 									value="${freeBoardVO.freeboard_wridate}"  /></td>
 							<td style="text-align: center;">${ freeBoardVO.freeboard_hits}</td>
-						</tr>
+					</tr>
 					</c:forEach>
 					<tr>
 						<td colspan="5" style="text-align: center;">${paging}</td>
