@@ -83,6 +83,8 @@
 		p:client-ref="sqlMapClient"/>	
 	<bean id="scrapDAO" class="com.hello.world.dao.iBatis.ScrapDAO_iBatis"	
 		p:client-ref="sqlMapClient"/>	
+	<bean id="workDAO" class="com.hello.world.dao.iBatis.WorkNetDAO_iBatis"	
+		p:client-ref="sqlMapClient"/>	
 		
 	
 	<!-- Service -->
@@ -168,5 +170,8 @@
 		p:allBoardDAO-ref="allBoardDAO" />	
 	<bean id="scrapService" class="com.hello.world.service.ScrapService"
 		p:scrapDAO-ref="scrapDAO" />	
+
+	<bean id="workService" class="com.hello.world.service.WorkNetService"
+		p:workNetDAO-ref="workDAO"/>	
 		
 </beans>

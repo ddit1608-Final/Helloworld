@@ -280,7 +280,7 @@ function checkDepulicateId() {
 				data : $("#joinForm input").serialize(),
 				success : function(data) {
 					if (data == "Exit") {
-						document.getElementById("mailCheck").innerHTML = "이미 해당 아이디로 가입된 회원가 있습니다.";
+						document.getElementById("mailCheck").innerHTML = "이미 해당 아이디로 가입된 회원이 있습니다.";
 					} else {
 						if ($("#mem_mail").val().length < 5) {
 							document.getElementById("mailCheck").innerHTML = "아이디를 5자 이상 입력해주세요.";
