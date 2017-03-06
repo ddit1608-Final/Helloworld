@@ -82,7 +82,10 @@
 	<bean id="allBoardDAO" class="com.hello.world.dao.iBatis.AllBoardDAO_iBatis"	
 		p:client-ref="sqlMapClient"/>	
 	<bean id="scrapDAO" class="com.hello.world.dao.iBatis.ScrapDAO_iBatis"	
-		p:client-ref="sqlMapClient"/>	
+		p:client-ref="sqlMapClient"/>
+	
+	<bean id="indexQnaDAO" class="com.hello.world.dao.iBatis.IndexQnaDAO_iBatis"
+		p:client-ref="sqlMapClient"/>
 		
 	
 	<!-- Service -->
@@ -167,6 +170,9 @@
 	<bean id="allBoardService" class="com.hello.world.service.AllBoardService"
 		p:allBoardDAO-ref="allBoardDAO" />	
 	<bean id="scrapService" class="com.hello.world.service.ScrapService"
-		p:scrapDAO-ref="scrapDAO" />	
+		p:scrapDAO-ref="scrapDAO" />
+		
+	<bean id="indeQnaService" class="com.hello.world.service.IndexQnaService"
+		p:indexQnaDAO-ref="indexQnaDAO"/>
 		
 </beans>

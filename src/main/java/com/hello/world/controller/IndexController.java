@@ -19,6 +19,7 @@ import com.hello.world.dto.AllBoardVO;
 import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.IfShrBoardVO;
+import com.hello.world.dto.IndexQnaVO;
 import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.QnaBoardBChuVO;
 import com.hello.world.dto.QnaBoardVO;
@@ -27,6 +28,7 @@ import com.hello.world.service.AllBoardService;
 import com.hello.world.service.DogBoardService;
 import com.hello.world.service.FreeBoardService;
 import com.hello.world.service.IfShrBoardService;
+import com.hello.world.service.IndexQnaService;
 import com.hello.world.service.NaverNewsService;
 import com.hello.world.service.PostingService;
 import com.hello.world.service.QnaBoardService;
@@ -57,6 +59,9 @@ public class IndexController {
 
 	@Autowired
 	private NaverNewsService service;
+	
+	@Autowired
+	IndexQnaService indexQnaService;
 	
 	
 	@RequestMapping(value="index",method=RequestMethod.GET)
@@ -172,10 +177,11 @@ public class IndexController {
 
 			/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
 
-			ArrayList<QnaBoardVO> qnaBoardList = null;
+			ArrayList<IndexQnaVO> qnaBoardList = null;
 			try {
-				qnaBoardList = qnaBoardService.listAllQnaBoard(
-						Integer.parseInt(tpage), testVO);
+				qnaBoardList = indexQnaService.IndexQna();
+//				qnaBoardList = qnaBoardService.listAllQnaBoard(
+//						Integer.parseInt(tpage), testVO);
 				paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

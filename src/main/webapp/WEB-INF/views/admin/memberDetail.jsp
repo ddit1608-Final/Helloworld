@@ -41,6 +41,9 @@
 			<input class="form-control" type="text" id="addr_zipnum" name="addr_zipnum" value="${memVO.addr_zipnum }" readonly="readonly"> 
 			<input class="form-control" type="text" id="mem_addr" name="mem_addr" value="${memVO.mem_addr }" readonly="readonly">
 			<br />
+			<label class="control-label col-sm-2" for="addr_zipnum">포인트</label>
+			<input class="form-control" type="text" id="addr_zipnum" name="addr_zipnum" value="${point.point }" readonly="readonly">
+			<br />
 			
 			<input type="button" value="수정하기" onclick="memberUpdate();">
 			<input type="button" value="뒤로" onclick="history.back()">

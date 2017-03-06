@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.hello.world.dto.CstBoardCounselVO;
 import com.hello.world.dto.FlowVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.PointVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.service.AddressService;
 import com.hello.world.service.CompMemberService;
@@ -30,12 +31,12 @@ import com.hello.world.service.PointService;
 @Controller
 @RequestMapping("admin")
 public class AdminController {
-	
+
 	final static String ADMIN_PW = "admin!1";
-	
+
 	@Autowired
 	FlowService flowService;
-	
+
 	@Autowired
 	private CompMemberService compMemService;
 
@@ -53,22 +54,31 @@ public class AdminController {
 
 	@Autowired
 	private PointService poingService;
-	
+
 	@Autowired
 	private CstBoardService cstBoardService;
-	
-	
+
 	@RequestMapping(value = "/memberDetail", method = RequestMethod.GET)
 	public String memberDetail(String mem_mail, Model model) {
-		
+
 		MemVO memVO = new MemVO();
 		memVO = memService.getMember(mem_mail);
-		
+
+		PointVO pointVO = new PointVO();
+
+		try {
+			pointVO = poingService.selectPoint2(mem_mail);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		model.addAttribute("memVO", memVO);
-		
+		model.addAttribute("point", pointVO);
+
 		return "admin/memberDetail";
 	}
-	
+
 	@RequestMapping(value = "/CstBoardDetail", method = RequestMethod.GET)
 	public String freeBoardDetail(
 			@RequestParam String cstboard_counsel_posting_no, Model model)
@@ -98,11 +108,11 @@ public class AdminController {
 		model.addAttribute("cstBoardVO", cstBoardVO);
 		return url;
 	}
-	
+
 	@RequestMapping(value = "/cstManage", method = RequestMethod.GET)
 	public String cstManageList(String key, String tpage, Model model) {
-		String url= "admin/cstManageList";
-		
+		String url = "admin/cstManageList";
+
 		if (key == null) {
 			key = "";
 		}
@@ -111,10 +121,10 @@ public class AdminController {
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-		
+
 		model.addAttribute("key", key);
 		model.addAttribute("tpage", tpage);
-		
+
 		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
 
 		try {
@@ -125,13 +135,15 @@ public class AdminController {
 		}
 
 		model.addAttribute("flowList", flowList);
-		
+
 		ArrayList<CstBoardCounselVO> cstList = null;
 		String paging = null;
-		
+
 		try {
-			cstList = cstBoardService.listCstBoardAdmin(Integer.parseInt(tpage), key);
-			paging = cstBoardService.cstPageNumberAdmin(Integer.parseInt(tpage));
+			cstList = cstBoardService.listCstBoardAdmin(
+					Integer.parseInt(tpage), key);
+			paging = cstBoardService
+					.cstPageNumberAdmin(Integer.parseInt(tpage));
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -139,19 +151,19 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		model.addAttribute("cstList", cstList);
 		int n = cstList.size();
 		model.addAttribute("cstListSize", n);
 		model.addAttribute("paging", paging);
-		
+
 		return url;
 	}
 
 	@RequestMapping(value = "/memberManage", method = RequestMethod.GET)
 	public String memberManageList(String key, String tpage, Model model) {
-		String url= "admin/memberManageList";
-		
+		String url = "admin/memberManageList";
+
 		if (key == null) {
 			key = "";
 		}
@@ -160,15 +172,15 @@ public class AdminController {
 		} else if (tpage.equals("")) {
 			tpage = "1";
 		}
-		
+
 		model.addAttribute("key", key);
 		model.addAttribute("tpage", tpage);
-		
+
 		ArrayList<MemVO> memberList = null;
 		String paging = null;
-		
+
 		try {
-			memberList = memService.getMemberList(Integer.parseInt(tpage),key);
+			memberList = memService.getMemberList(Integer.parseInt(tpage), key);
 			paging = memService.pageNumber(Integer.parseInt(tpage), key);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
@@ -177,37 +189,37 @@ public class AdminController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		model.addAttribute("memberList", memberList);
 		int n = memberList.size();
 		model.addAttribute("memberListSize", n);
 		model.addAttribute("paging", paging);
-		
+
 		return url;
 	}
-	
+
 	@RequestMapping(value = "/enter", method = RequestMethod.GET)
 	public String enterAdmin() {
 		return "admin/adminEnter";
 	}
-	
+
 	@RequestMapping(value = "/main", method = RequestMethod.POST)
 	public String mainAdmin(String admin_pw) {
 		String url = "";
-		if(admin_pw.equals(ADMIN_PW))
+		if (admin_pw.equals(ADMIN_PW))
 			url = "admin/adminMain";
-		else 
+		else
 			url = "redirect:enter?result=pwMismatch";
 		return url;
 	}
-	
+
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String mainAdminGet() {
 		String url = "";
-			url = "admin/adminMain";
+		url = "admin/adminMain";
 		return url;
 	}
-	
+
 	/**
 	 * @return
 	 */
@@ -215,17 +227,17 @@ public class AdminController {
 	@ResponseBody
 	public String cstStart(String cstboard_counsel_posting_no) {
 		String url = "redirect:cstManage";
-		
-		
+
 		try {
-			CstBoardCounselVO vo = cstBoardService.getCstBoard(cstboard_counsel_posting_no);
+			CstBoardCounselVO vo = cstBoardService
+					.getCstBoard(cstboard_counsel_posting_no);
 			vo.setFlow_code("2");
 			cstBoardService.updateCstBoard(vo);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return url;
 	}
 
