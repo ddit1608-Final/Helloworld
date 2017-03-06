@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -313,7 +315,7 @@ public class MemberController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String login_mem_mail, String login_mem_pw,
+	public String login(String login_mem_mail, String login_mem_pw, PointVO pointVO, MemVO memVO,
 			String prePage, String param, Model model, HttpSession session) {
 		String url = "redirect:" + prePage;
 		// +"?"+param;
@@ -350,6 +352,17 @@ public class MemberController implements ServletContextAware {
 				try {
 					sum = poingService.sumPoint(mem.getMem_mail());
 					session.setAttribute("myPoint", sum);
+					Timestamp start = poingService.selectPoint(login_mem_mail).getPoint_save_date();
+					Timestamp today = new Timestamp(System.currentTimeMillis());
+					long plus = ((today.getTime() - start.getTime())/8640000);
+					if(plus > 1){
+					int point = poingService.totalMyPoint2(login_mem_mail);
+					String point2 = String.valueOf(point);
+					pointVO.setMem_mail(login_mem_mail);
+					pointVO.setPoint(point2);
+					poingService.LoginPoint(pointVO);
+					}
+					
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -64,4 +64,16 @@ public class PointDAO_ibatis implements PointDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	@Override
+	public void LoginPoint(PointVO pointVO) throws SQLException {
+		client.update("LoginPoint", pointVO);
+	}
+
+	@Override
+	public PointVO selectPoint(String mem_mail) throws SQLException {
+		PointVO pointVO = (PointVO) client.queryForObject("selectPoint", mem_mail);
+		
+		return pointVO;
+	}
 }

@@ -46,6 +46,14 @@ public class PointService {
 			e.printStackTrace();
 		}
 	}
+	
+	public void LoginPoint(PointVO pointVO) {
+		try {
+			this.pointDAO.LoginPoint(pointVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<PointVO> listMyPoint(String mem_mail, int tpage)
 			throws SQLException {
@@ -71,6 +79,13 @@ public class PointService {
 		int totalMyPoint = pointDAO.totalMyPoint2(mem_mail);
 		
 		return totalMyPoint;
+	}
+	
+	public PointVO selectPoint(String mem_mail) throws SQLException {
+		
+		PointVO pointVO = pointDAO.selectPoint(mem_mail);
+		
+		return pointVO;
 	}
 	
 	public String pageNumber(int tpage, String mem_mail) throws SQLException {

@@ -14,4 +14,6 @@ public interface PointDAO {
 	public int totalMyPoint(String mem_mail)throws SQLException;
 	public void ChoosePoint(PointVO pointVO) throws SQLException;
 	public int totalMyPoint2(String mem_mail)throws SQLException;
+	public void LoginPoint(PointVO pointVO)throws SQLException;
+	public PointVO selectPoint(String mem_mail) throws SQLException; 
 }

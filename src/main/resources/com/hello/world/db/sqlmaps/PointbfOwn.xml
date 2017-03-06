@@ -28,7 +28,17 @@
 	<update id="ChoosePoint" parameterClass="point">
 		UPDATE pointbfown
 		SET
-			point = #point#+10
+			point = #point#+10,
+			point_save_date = sysdate
 		WHERE mem_mail=#mem_mail#
 	</update>
+	
+	<update id="LoginPoint" parameterClass="point">
+		UPDATE pointbfown
+		SET
+			point = #point#+10,
+			point_save_date = sysdate
+		WHERE mem_mail=#mem_mail#
+	</update>
+	
 </sqlMap>
