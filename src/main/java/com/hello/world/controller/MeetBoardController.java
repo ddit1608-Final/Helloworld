@@ -19,10 +19,12 @@ import com.hello.world.dto.FlowVO;
 import com.hello.world.dto.MeetBoardCommVO;
 import com.hello.world.dto.MeetBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.NoticeVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.FlowService;
 import com.hello.world.service.MeetBoardCommService;
 import com.hello.world.service.MeetBoardService;
+import com.hello.world.service.NoticeService;
 
 @Controller
 @RequestMapping("/meet")
@@ -36,6 +38,8 @@ public class MeetBoardController {
 	
 	@Autowired
 	MeetBoardCommService meetBoardCommService;
+	@Autowired
+	NoticeService notiSvc;
 
 	@RequestMapping("/meetBoardList.do")
 	public String MeetBoardList(HttpSession session, Model model,
@@ -94,6 +98,20 @@ public class MeetBoardController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		ArrayList<NoticeVO> notiList = new ArrayList<NoticeVO>();
+		
+		try {
+			notiList=notiSvc.listAllNotice();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+
+		model.addAttribute("notiList",notiList);
+		
+		
 		model.addAttribute("meetBoardList", meetBoardList);
 		int n = meetBoardList.size();
 		model.addAttribute("meetBoardListSize", n);

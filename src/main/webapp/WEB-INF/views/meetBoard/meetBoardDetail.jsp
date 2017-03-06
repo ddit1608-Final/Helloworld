@@ -30,7 +30,7 @@
 	    	${meetBoardVO.mem_nick}</button>
 	    </td>
 	    <td><b>DATE</b> &nbsp;${meetBoardVO.meet_board_wridate }</td>
-  	 
+	    
      	<td>	
 		  <!-- Modal -->
 		  <div class="modal fade" id="myModal" role="dialog">
@@ -52,7 +52,6 @@
 		    </div>
 		  </div>
    		</td>
-      </tr>  	  
   	 
   	 
   	 

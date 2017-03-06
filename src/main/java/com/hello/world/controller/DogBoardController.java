@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -19,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hello.world.dto.DogBoardCommVO;
 import com.hello.world.dto.DogBoardVO;
 import com.hello.world.dto.MemVO;
+import com.hello.world.dto.NoticeVO;
 import com.hello.world.dto.PostingTypeVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.DogBoardCommService;
 import com.hello.world.service.DogBoardService;
+import com.hello.world.service.NoticeService;
 import com.hello.world.service.PostingService;
 
 @Controller
@@ -38,9 +39,12 @@ public class DogBoardController {
 	@Autowired
 	PostingService postingService;
 	
+	@Autowired
+	NoticeService notiSvc;
+	
 	@RequestMapping("/dogBoardList")
 	public String dsBoardList(HttpSession session, Model model,
-			HttpServletRequest request) throws ServletException, IOException {
+			HttpServletRequest request ) throws ServletException, IOException {
 		String total="";
 		String url = "dogBoard/dogBoardList";
 		String key = request.getParameter("key");
@@ -100,6 +104,22 @@ public class DogBoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		ArrayList<NoticeVO> notiList = new ArrayList<NoticeVO>();
+		
+		try {
+			notiList=notiSvc.listAllNotice();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		// modal 창에 바로 뛰어버리자 귀찮다
+		String notice_id = request.getParameter("notice_id");
+		NoticeVO noticeVO = notiSvc.getNoticeDetail(notice_id);
+
+		model.addAttribute("noticeVO", noticeVO);
+		model.addAttribute("notiList",notiList);
+		
 
 		model.addAttribute("dogBoardList", dogBoardList);
 		model.addAttribute("paging", paging);
@@ -148,8 +168,7 @@ public class DogBoardController {
 	}
 	
 	@RequestMapping(value="/dogBoardDetail",method=RequestMethod.GET)
-	public String dsBoardDetail(@RequestParam String dsboard_posting_no,HttpSession session,Model model
-			,HttpServletRequest request)
+	public String dsBoardDetail(@RequestParam String dsboard_posting_no,HttpSession session,Model model,HttpServletRequest request)
 		throws ServletException,IOException{
 			
 		String url = "dogBoard/dogBoardDetail";
@@ -171,6 +190,7 @@ public class DogBoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		model.addAttribute("dogBoardVO",dogBoardVO);
 		model.addAttribute("dogBoardCommList",dogBoardCommList);
 		model.addAttribute("dogBoardCommListCnt", dogBoardCommList.size());

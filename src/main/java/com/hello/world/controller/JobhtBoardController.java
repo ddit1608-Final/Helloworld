@@ -42,7 +42,7 @@ public class JobhtBoardController {
 	@RequestMapping("/jobhtWrite.do")
 	public String ResmWriteForm(JobhtBoardVO jobhtBoardVO, HttpSession session)
 			throws ServletException, IOException {
-		String url = "/index2";
+		String url = "/index";
 
 		// MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 

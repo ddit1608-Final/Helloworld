@@ -11,22 +11,24 @@
 			<!-- freeboard_posting_no,mem_mail,freeboard_title,freeboard_cont -->
 		<table class="table .table-condensed" id="bwt">
 		
-		<input type="hidden" name="mem_mail" value="${loginUser.mem_mail}">
+		<input hidden="hidden" name="mem_mail" value="${loginUser.mem_mail}">
 <thead>
       <tr style="border-bottom:1px solid #c9c9c9;">
-        <td style="width:20%;">작성자 ${loginUser.mem_nick}</td>
-        <td style="width:60%; float:left;">비밀번호
-        <input type="password" name="meet_board_pwd"></td>       
-        <td style="width:10%;"></td>
-        <td style="width:10%;"></td>
-        <td style="width:10%;"></td>
+        <td>작성자</td>
+        <td>${loginUser.mem_nick}</td>
       </tr>
+      <tr>
+      	<td>비밀번호</td>
+        	<td><input type="password" name="meet_board_pwd"></td>
+        </tr>       
       
       <tr>
-      	<td style="text-align: center;">제목
-      	<input type="text" name="meet_board_title"></td>
-      	<td>지역
-      		<select name="flow_code">
+      	<td>제목</td>
+      	<td><input type="text" name="meet_board_title"></td>
+      </tr>
+      <tr>	
+      	<td>지역</td>
+      		<td><select name="flow_code">
       			<c:forEach items="${flowList }" var="flow" varStatus="status">
       				<c:if test="${status.count >= '6'}">
       					<option value="${flow.flow_code}">${flow.flow_cont}</option>	
@@ -35,10 +37,11 @@
       			</c:forEach>
       			
       		</select>
+      		</td>
       	</td>
       </tr>
       <tr>
-      	<td style="text-align: left;">&nbsp;&nbsp;&nbsp;내용</td>
+      	<td>내용</td>
       	
         	<td>
       		<textarea rows="8" cols="65" name="meet_board_cont"></textarea>

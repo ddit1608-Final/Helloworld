@@ -13,12 +13,11 @@
 	<form id="fdf" name="form" method="post">
 		<table class="table .table-condensed">
 			<thead>
-				<tr
-					style="background-color: #8bdb69; border-bottom: 2px solid #c9c9c9;">
-					<th style="width: 20%;">SUBJECT</th>
-					<td style="width: 60%;">${freeBoardVO.freeboard_title }</td>
-					<th style="width: 20%;"><a href="#">추천</a>(#)/ <a href="#">비추천</a>(#)조회수(${ freeBoardVO.freeboard_hits})</th>
-
+				<tr style="background-color: #8bdb69; border-bottom: 2px solid #c9c9c9;">
+					<th style="width:20%;">SUBJECT</th>
+					<td style="width:60%;">${freeBoardVO.freeboard_title }</td>
+					<th style="width:20%;"><a href="#">추천</a>(#)/ <a href="#">비추천</a>(#)조회수(${ freeBoardVO.freeboard_hits})</th>
+					<td></td>
 				</tr>
 			</thead>
 
@@ -30,8 +29,7 @@
 						${freeBoardVO.mem_nick}</button>
 				</td>
 				<td><b>DATE</b> &nbsp;${freeBoardVO.freeboard_wridate }</td>
-			</tr>
-			<tr>
+				
 				<td>
 					<!-- Modal -->
 					<div class="modal fade" id="myModal" role="dialog">

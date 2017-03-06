@@ -38,9 +38,9 @@
 						${qnaBoardVO.mem_nick }</button>
 				</td>
 				<td colspan="2"><b>DATE</b> &nbsp;${qnaBoardVO.qnaboard_wridate }</td>
-			</tr>
+			
 			 
-		  	 <tr>
+		  	 
 		      	<td>
 		      	
 				  <!-- Modal -->

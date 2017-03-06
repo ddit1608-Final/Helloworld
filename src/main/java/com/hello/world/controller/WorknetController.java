@@ -28,31 +28,33 @@ import com.hello.world.dto.WorkVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.WorkNetService;
 
-
 @Controller
 @RequestMapping("/worknet")
 public class WorknetController {
 	@Autowired
 	WorkNetService workNetService;
-	
-//	@Inject
-//	RestTemplate template; 
-	@RequestMapping("/worknet.do")
-	   public String worknet(HttpSession session) throws ServletException, IOException {
-	      String url = "worknet/worknet";
 
-	      return url;
+	// @Inject
+	// RestTemplate template;
+	@RequestMapping("/worknet.do")
+	public String worknet(HttpSession session) throws ServletException,
+			IOException {
+		String url = "worknet/worknet";
+
+		return url;
 	}
-	// 서버로 workNetAPI 접근하여  IP관련 직종의 전체 List
-	@RequestMapping(value="/workNetList")
+
+	// 서버로 workNetAPI 접근하여 IP관련 직종의 전체 List
+	@RequestMapping(value = "/workNetList")
 	@ResponseBody
-	public Source worknet2(HttpSession session,HttpServletRequest req) throws RestClientException, URISyntaxException {
-		
-		RestTemplate template = new RestTemplate(); 
+	public Source worknet2(HttpSession session, HttpServletRequest req)
+			throws RestClientException, URISyntaxException {
+
+		RestTemplate template = new RestTemplate();
 		Map<String, String> paramMap = new HashMap<String, String>();
 		// 인증키
 		paramMap.put("authKey", "WNIY9NMDKR331VMNQ8IZS2VR1HK");
-		// 호출할 페이지 타입 		L목록,D 상세
+		// 호출할 페이지 타입 L목록,D 상세
 		paramMap.put("callTp", "L");
 		// 리턴타입은 반드시 XML
 		paramMap.put("returnType", "XML");
@@ -61,116 +63,131 @@ public class WorknetController {
 		// 출력 건수 기본값: 10 , 최대: 100
 		paramMap.put("display", "10");
 		// 직종 코드 (액셀 파일 참고 -직종코드.xls)
-		paramMap.put("occupation", "203100|203101|203102|203200|203201|203202|203203|203204|203205|203206|"
-				+ "085500|085501|085502|085503|085504|203206|204100|204101|204102|204200|204201|204202|204203"
-				+ "|205100|205200|205201|205202|205203");
-		//paramMap.put("firstIndex","1");
-		//paramMap.put("pageSize","10");
-		//paramMap.put("recordCountPerPage","10");
-		
+		paramMap.put(
+				"occupation",
+				"203100|203101|203102|203200|203201|203202|203203|203204|203205|203206|"
+						+ "085500|085501|085502|085503|085504|203206|204100|204101|204102|204200|204201|204202|204203"
+						+ "|205100|205200|205201|205202|205203");
+		// paramMap.put("firstIndex","1");
+		// paramMap.put("pageSize","10");
+		// paramMap.put("recordCountPerPage","10");
+
 		// api url이며 parameter값들은 {}로 구분하여 맵에 입력한 값들로 대입하여 사용한다.
-		ResponseEntity<Source> re = template.getForEntity(
-				"http://openapi.work.go.kr/opi/opi/opia/wantedApi.do?authKey={authKey}&callTp={callTp}&"
-				+ "returnType={returnType}&startPage={startPage}&"
-				+ "&display={display}&occupation={occupation}", 
-				//+ "firstIndex={firstIndex}&pageSize={pageSize}&recordCountPerPage={recordCountPerPage}" // 추가
-				Source.class, paramMap);
+		ResponseEntity<Source> re = template
+				.getForEntity(
+						"http://openapi.work.go.kr/opi/opi/opia/wantedApi.do?authKey={authKey}&callTp={callTp}&"
+								+ "returnType={returnType}&startPage={startPage}&"
+								+ "&display={display}&occupation={occupation}",
+						// +
+						// "firstIndex={firstIndex}&pageSize={pageSize}&recordCountPerPage={recordCountPerPage}"
+						// // 추가
+						Source.class, paramMap);
 		return re.getBody();
 	}
-	
-	
-	
+
 	// 게시물 디테일
-	@RequestMapping(value="/workNetDetail")
+	@RequestMapping(value = "/workNetDetail")
 	@ResponseBody
-	public Source worknetDetail(HttpSession session,HttpServletRequest req) throws RestClientException, URISyntaxException {
-		
-		RestTemplate template = new RestTemplate(); 
+	public Source worknetDetail(HttpSession session, HttpServletRequest req)
+			throws RestClientException, URISyntaxException {
+
+		RestTemplate template = new RestTemplate();
 		Map<String, String> paramMap = new HashMap<String, String>();
 		// 인증키
 		paramMap.put("authKey", "WNIY9NMDKR331VMNQ8IZS2VR1HK");
-		// 호출할 페이지 타입 		L목록,D 상세
+		// 호출할 페이지 타입 L목록,D 상세
 		paramMap.put("callTp", "D");
 		// 리턴타입은 반드시 XML
 		paramMap.put("returnType", "XML");
 		paramMap.put("wantedAuthNo", "wantedAuthNo");
 		paramMap.put("infoSvc", "infoSvc");
 		paramMap.put("callPage", "detail");
-		
+
 		// api url이며 parameter값들은 {}로 구분하여 맵에 입력한 값들로 대입하여 사용한다.
-		ResponseEntity<Source> re = template.getForEntity(
+		ResponseEntity<Source> re = template
+				.getForEntity(
 						"http://www.work.go.kr/empInfo/empInfoSrch/detail/empDetailAuthView.do?authKey={authKey}&callPage={detail}&"
-						+ "wantedAuthNo={wantedAuthNo}&returnType={returnType}&infoSvc={infoSvc}", 
+								+ "wantedAuthNo={wantedAuthNo}&returnType={returnType}&infoSvc={infoSvc}",
 						Source.class, paramMap);
 		return re.getBody();
 	}
+
 	// 스크랩하기
-	@RequestMapping(value="/addScrap", produces="application/json")
+	@RequestMapping(value = "/addScrap", produces = "application/json")
 	@ResponseBody
-	public Map<String, Object> ScrapWorkNet(@RequestBody WorkVO[] wanted, HttpServletRequest req) throws ServletException, IOException {
+	public Map<String, Object> ScrapWorkNet(@RequestBody WorkVO[] wanted,
+			HttpServletRequest req) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		Map<String, Object> jsonBody=null;
+		Map<String, Object> jsonBody = null;
 		WorkVO workVO = new WorkVO();
 		MemVO member = (MemVO) session.getAttribute("loginUser");
-		String login =member.getMem_mail();
+		String login = member.getMem_mail();
 		workVO.setMem_mail(login);
-		
-		if(login==null){
+
+		if (login == null) {
 			System.err.println("로그인후 이용하시길 바랍니다.");
 		}
-		if(login!=null){
+		if (login != null) {
 			int sum = 0;
-			jsonBody = workNetService.insertScrap(wanted,login);
-		if(sum == wanted.length){
-			jsonBody.put("result", true);
-		}else{
-			jsonBody.put("result", false);
-		}
+			jsonBody = workNetService.insertScrap(wanted, login);
+			if (sum == wanted.length) {
+				jsonBody.put("result", true);
+			} else {
+				jsonBody.put("result", false);
+			}
 		}
 		return jsonBody;
+
+	}
+
+	// 스크랩 리스트 확인하기
+	@RequestMapping(value = "/myScrapList")
+	public String scrapAllList(HttpSession session, Model model,
+			HttpServletRequest req) throws ServletException, IOException {
+		String url = "worknet/myScrapList";
+		String total = "";
+		String key = req.getParameter("key");
+		String type = req.getParameter("type");
+		String tpage = req.getParameter("tpage");
+
+		if (key == null) {
+			key = "";
+		}
+		if (tpage == null) {
+			tpage = "1"; // 현재 페이지 (default 1)
+		} else if (tpage.equals("")) {
+			tpage = "1";
+		}
+
+		testVO testVO = new testVO();
+		testVO.setKey(key);
+		testVO.setType("wantedAuthNo");
+		try {
+			total = workNetService.getTotal(testVO) + "";
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		ArrayList<WorkVO> scrapList = null;
+		String paging = null;
+		try {
+			scrapList = workNetService.getScrapList(Integer.parseInt(tpage),
+					testVO);
+			paging = workNetService.pageNumber(Integer.parseInt(tpage), testVO);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("scrapList", scrapList);
+		model.addAttribute("paging", paging);
+		model.addAttribute("searchCnt", total);
+		return url;
+	}
+	@RequestMapping(value="/deleteScrap",produces = "application/json" )
+	@ResponseBody
+	public String deleteScrap(@RequestBody String wantedAuthNo,HttpServletRequest req) 
+			throws ServletException, IOException {
+		
+		return wantedAuthNo;
 		
 	}
-	// 스크랩 리스트 확인하기
-	@RequestMapping(value="/myScrapList")
-	public String scrapAllList(HttpSession session,Model model, HttpServletRequest req)throws ServletException,IOException{
-	String url="worknet/myScrapList";
-	String total = "";
-	String key = req.getParameter("key");
-	String type= req.getParameter("type");
-	String tpage = req.getParameter("tpage");
-	
-	if (key == null) {
-		key = "";
-	}
-	if (tpage == null) {
-		tpage = "1"; // 현재 페이지 (default 1)
-	} else if (tpage.equals("")) {
-		tpage = "1";
-	}
-	
-	testVO testVO = new testVO();
-	testVO.setKey(key);
-	testVO.setType("wantedAuthNo");
-	try {
-		total = workNetService.getTotal(testVO) + "";
-	} catch (SQLException e1) {
-		e1.printStackTrace();
-	}
-
-	ArrayList<WorkVO> scrapList = null;
-	String paging = null;
-	try {
-		scrapList = workNetService.getScrapList(Integer.parseInt(tpage), testVO);
-		paging = workNetService.pageNumber(Integer.parseInt(tpage),testVO);
-	} catch (SQLException e) {
-		e.printStackTrace();
-	}
-	model.addAttribute("scrapList", scrapList);
-	model.addAttribute("paging", paging);
-	model.addAttribute("searchCnt", total);
-	return url;
-	}
-	
-	
-
 }
