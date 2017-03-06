@@ -3,24 +3,16 @@
 
 <sqlMap namespace="Scrap">
 	
-	<select id="listAllScrap" parameterClass="testVO" resultClass="Scrap" >
+<!-- 	<select id="listAllScrap" parameterClass="testVO" resultClass="work" >
 		select *
-		from memscrap 
-		where $type$ like '%'||#key#||'%'  order by TO_NUMBER(scrap_no) desc
+		from wanted 
+		where $type$ like '%'||#key#||'%'  order by TO_NUMBER(wantedAuthNo) desc
 	</select>
 	
 	<select id="totalScrap" parameterClass="testVO" resultClass="int">
-		select count(*) from memscrap where $type$ like '%'||#key#||'%'
-	</select>
+		select count(*) from wanted where $type$ like '%'||#key#||'%'
+	</select> -->
 	
-	<!-- 스크랩 -->
-	<update id="insertScrap" parameterClass="Scrap">
-		insert into scrap(scrap_no,scrap_cont,mem_mail) values(scrap_no.nextval,scrap_cont##,#mem_mail#)
-	</update>
-	
-
-	
-
 	
 	
 </sqlMap>

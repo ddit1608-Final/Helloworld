@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="workNet">
+	
+	<!-- 스크랩 -->
+	<update id="insertScrap" parameterClass="work" >
+		insert into wanted(wantedAuthNo,company,title,salTpNm,sal,region,holidayTpNm,minEdubg,maxEdubg,career,regDt,
+			closeDt,infoSvc,wantedInfoUrl,zipCd,strtnmCd,basicAddr,detailAddr,mem_mail) 
+		values(#wantedAuthNo#,#company#,#title#,#salTpNm#,#sal#,#region#,#holidayTpNm#,#minEdubg#,#maxEdubg#,#career#,#regDt#,
+			#closeDt#,#infoSvc#,#wantedInfoUrl#,#zipCd#,#strtnmCd#,#basicAddr#,#detailAddr#,#mem_mail#)
+	</update>
+	
+	<select id="listAllScrap" parameterClass="testVO" resultClass="work" >
+		select *
+		from wanted 
+		order by wantedAuthNo desc
+	</select>
+	
+	<select id="totalScrap" parameterClass="testVO" resultClass="int">
+		select count(*) from wanted where $type$ like '%''%'
+	</select>
+	
+	
+</sqlMap>

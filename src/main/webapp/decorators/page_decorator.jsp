@@ -517,10 +517,13 @@ div.invisibleClass{
 		<div class="row content">
 			<!--  채팅 -->
 			<div class="col-sm-2 sidenav"
-				style="background-color: white; border-left: 14px solid white; position: fixed; margin-left:-5%; top:0px;">
+				style="background-color: white; border-left: 14px solid white; position: fixed;">
+					<i class="fa fa-mail-reply-all" style="font-size:36px" onclick="history.back()"></i>
+				<i class="fa fa-home" style="font-size:36px" onclick="location.href='<%=request.getContextPath()%>/index'"></i>|
 				<c:if test="${loginUser.mem_nick != null}">
-					<input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="채팅OPEN▼" />
-					<div id="chatDetailBtn" class="invisibleClass" style="margin-left:31%; border:1px solid black; width:100%;">
+					<i class="fa fa-commenting" style="font-size:36px" id="detailBtn" onclick="chat_detail()"></i>
+					<!-- <input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="▼" /> -->
+					<div id="chatDetailBtn" class="invisibleClass">
 					 <jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
 					</div>
 				</c:if>
