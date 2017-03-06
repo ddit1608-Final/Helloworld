@@ -272,6 +272,9 @@ footer {
 div.invisibleClass{
 	display : none;
 }
+.btn btn-success btn-sm:hover{
+background-color: #006f00;
+}
 </style>
 
 <script>
@@ -383,11 +386,11 @@ div.invisibleClass{
 							<img id="" src="<%=request.getContextPath() %>/images/cal.png" onclick="mycalendar_go()">
 						</td>
 						<td>
-							<input type="text" name="key" id="key">
+							<input type="text" name="key" id="key" style="border:2px solid #3EAF0E; height:34px;">
 						</td>
 						<td>
 							<!-- <a href="all_src()"><button class="glyphicon glyphicon-search"></button></a> -->
-							<input type="button" class="btn btn-success btn-sm" value="검색"	onclick="all_src()">
+							<input type="button" class="btn btn-success btn-sm" style="font-size:12pt; border-radius:0px;" value="검색"	onclick="all_src()">
 						</td>
 					</tr>
 				</table>
@@ -517,13 +520,13 @@ div.invisibleClass{
 		<div class="row content">
 			<!--  채팅 -->
 			<div class="col-sm-2 sidenav"
-				style="background-color: white; border-left: 14px solid white; position: fixed;">
+				style="background-color: white; border-left: 14px solid white; position: fixed; margin-left:-5%; top:0px;">
 					<i class="fa fa-mail-reply-all" style="font-size:36px" onclick="history.back()"></i>
 				<i class="fa fa-home" style="font-size:36px" onclick="location.href='<%=request.getContextPath()%>/index'"></i>|
 				<c:if test="${loginUser.mem_nick != null}">
 					<i class="fa fa-commenting" style="font-size:36px" id="detailBtn" onclick="chat_detail()"></i>
-					<!-- <input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="▼" /> -->
-					<div id="chatDetailBtn" class="invisibleClass">
+					<!-- <input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="채팅OPEN▼" /> -->
+					<div id="chatDetailBtn" class="invisibleClass" style="margin-left:31%; border:1px solid black; width:100%;">
 					 <jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
 					</div>
 				</c:if>
