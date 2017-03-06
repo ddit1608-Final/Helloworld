@@ -56,7 +56,7 @@ public class ScrapController {
 
 		testVO testVO = new testVO();
 		testVO.setKey(key);
-		testVO.setType("scrap_no");
+		testVO.setType("wantedAuthNo");
 		try {
 			total = scrapService.getTotal(testVO) + "";
 		} catch (SQLException e1) {

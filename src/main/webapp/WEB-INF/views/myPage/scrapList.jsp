@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/mypage.css">
 
 <article>
-	
 	<table class="table table-striped">
 		<th colspan="3">
 			<h1 class="text-center">${loginUser.mem_nick}님의 스크랩 내역</h1>
@@ -26,8 +25,8 @@
 				<c:forEach items="${scrapList}" var="scrap">
 					<c:if test="${loginUser.mem_mail ==scrap.mem_mail}"> 
 					<tr id="pointhover">
-						<td style="text-align: center;">${scrap.scrap_no}</td>
-						<td style="text-align: center;">${scrap.scrap_cont}</td>
+						<td style="text-align: center;">${scrap.title}</td>
+						<td style="text-align: center;">${scrap.company}</td>
 						<td style="text-align: center;">${scrap.mem_mail}</td>
 					</tr>
 					</c:if>
