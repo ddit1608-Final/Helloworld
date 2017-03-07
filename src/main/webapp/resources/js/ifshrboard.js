@@ -266,7 +266,7 @@ function noti_update(notice_cont){
 	var updateNotice = $('#notice_cont').val();
 	alert(updateNotice);
 	$.ajax({
-		url:"noticeUpdate",
+		url:"ifShrBoardList.do",
 		type:'json',
 		data:updateNotice,
 		success : function(data){

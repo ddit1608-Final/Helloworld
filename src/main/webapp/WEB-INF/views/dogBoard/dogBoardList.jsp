@@ -65,6 +65,12 @@
 										<hr style="border:none;border:5px double gray;"/>
 										<i class="fa fa-user-circle" style="font-size:36px"></i>${notice.mem_nick } 올림
 									</span>
+									<span>
+									<c:if test="${loginUser.mem_mail eq 'admin' }">
+										<input type="button" class="btn btn-default btn-xs" value="수정" onclick="noti_update(notice_cont);">
+										<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="noti_del();">
+									</c:if>
+									</span>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default btn-xs"
