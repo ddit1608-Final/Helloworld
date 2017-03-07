@@ -75,23 +75,7 @@ public class ResmController {
 	@RequestMapping("/resmWrite.do")
 	      public String ResmWriteForm(ResmVO resmVO, HttpSession session)
 	  			throws ServletException, IOException {
-	  		String url = "redirect:freeBoardList.do";
-
-	  		//MemVO loginUser = (MemVO) session.getAttribute("loginUser");
-	  		System.out.println("getResm_id"+resmVO.getResm_id());
-	  		System.out.println("getMem_mail"+resmVO.getMem_mail());
-	  		System.out.println("getSidn_code"+resmVO.getSidn_code());
-	  		System.out.println("getLcse_code"+resmVO.getLcse_code());
-	  		System.out.println("getAcdmcr_code"+resmVO.getAcdmcr_code());
-	  		System.out.println("getIdpic_code"+resmVO.getIdpic_code());
-	  		System.out.println("getResm_regno"+resmVO.getResm_regno());
-	  		System.out.println("getMilt_code"+resmVO.getMilt_code());
-	  		System.out.println("getResm_hob"+resmVO.getResm_hob());
-	  		System.out.println("getResm_like"+resmVO.getResm_like());	  		
-	  		resmVO.setResm_wri_date(new Timestamp(System.currentTimeMillis()));
-	  		
-	  		System.out.println(resmVO.getResm_wri_date());
-	  		
+	  		String url = "redirect:resmList.do";
 	  		
 	  		resmService.insertResm(resmVO);	  		
 	  		
@@ -114,8 +98,6 @@ public class ResmController {
 		
 		/*MemVO loginUser = (MemVO) session.getAttribute("loginUser");*/
 		
-		System.out.println(resmVO);
-	
 		resmService.updateResm(resmVO);
 		
 		
