@@ -31,6 +31,15 @@ public class NoticeService {
 
 		return noticeVO;
 	}
+	// 공지수정
+	public void updateNotice(NoticeVO notiVO){
+		try {
+			notiDAO.updateNotice(notiVO);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
 	
 }

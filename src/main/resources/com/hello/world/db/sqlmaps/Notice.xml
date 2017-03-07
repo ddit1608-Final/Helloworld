@@ -11,5 +11,14 @@
 		select * from noticemem where notice_id=#notice_id# 
 	</select>
 	
+	<update id="updateNoti" parameterClass="notice">
+		update 
+			notice
+		set 
+			notice_cont = #notice_cont#
+		where 
+			notice_id=#notice_id#
+	</update>
+	
 	
 </sqlMap>

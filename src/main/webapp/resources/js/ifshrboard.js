@@ -262,25 +262,76 @@ function select_level(value,event){
 			})
 		}
 }
-function noti_update(notice_cont){
+
+
+function update_go(notice_id,idex){
+	alert('sssss');
+	var updateId = $('#notice_id').val();
 	var updateNotice = $('#notice_cont').val();
+	alert(updateId);
 	alert(updateNotice);
+	var arr={
+			'notice_id' : updateId,
+			'notice_cont' : updateNotice
+	}
+	alert(arr);
 	$.ajax({
-		url:"ifShrBoardList.do",
-		type:'json',
-		data:updateNotice,
+		url:"noticeUpdate",
+		type:'post',
+		data:arr,
 		success : function(data){
-			alert('성공');
-			$('input[type="text"],textarea').attr('readonly',false);
-		},
-		error : function(data){
-			alert('ddd');
-			alert(tt)
+				$('#notice_cont').html(data);
+				alert(성공);
+			
+			/*var b = $('input[type="text"],textarea').attr('readonly',false);
+			alert(updateNotice);
+			$('.modal-body #btnArea').html("<input type='button' value='수정완료' onclick='update_go();'>")*/
+			},
+			error : function(data){
+				alert('실패');
 		}
-		
-		
 	});
 }
+/*function update_go(){
+	var ifshrboard_ans_code = $('#ifshrboard_ans_code'+indexTd).val();
+	var ifshrboard_comm_cont = $('#ifshrboard_comm_cont').val();
+	alert(ifshrboard_comm_cont);
+	var arr = {
+			"ifshrboard_ans_code" : ifshrboard_ans_code,
+			"ifshrboard_comm_cont" : ifshrboard_comm_cont
+		};
+	$
+	.ajax({
+		url : "updateIsBoardComm.do",
+		type : "post",
+		data : arr,
+		success : function(data) {
+			$('#isBoardComm_cont' + indexTd)
+			.html(data);
+		},
+		error : function(error) {
+			alert("22");
+		}
+	})
+}*/
+	
+	
+	
+	/*var updateNotice = $('#notice_cont').val();
+	alert(updateNotice);
+	$.ajax({
+		url:"noticeUpdate",
+		type:'json',
+		data:updateNotice,
+		success:function(data){
+			alert('2성공');
+		},
+		error: function(){
+			alert('실패222');
+		}
+}
+	
+	})*/
 
 	
 	
