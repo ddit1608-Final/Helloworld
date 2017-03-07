@@ -118,6 +118,11 @@ public class WorkNetService {
 
 		return list;
 	}
+	public void deleteScrap(String wantedAuthNo)throws SQLException{
+		
+		workNetDAO.deleteScrap(wantedAuthNo);
+		
+	}
 	
 	
 

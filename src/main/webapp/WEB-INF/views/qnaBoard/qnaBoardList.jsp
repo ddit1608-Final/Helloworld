@@ -13,30 +13,18 @@
 	</div>
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
-			<tr
-				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
-				<td style="text-align: center;">NO</td>
-				<td style="text-align: center;">SUBJECT</td>
-				<!-- <th>내용</th> -->
-				<td style="text-align: center;">NAME</td>
-				
-				<!-- <th>작성자</th> -->
-				<td style="text-align: center;">DATE</td>
-				<td style="text-align: center;">추천</td>
-				<td style="text-align: center;">비추천</td>
-				<td style="text-align: center;">조회수</td>
-			</tr>
-			<c:forEach items="${notiList}" var="notice" varStatus="status">
+				<c:forEach items="${notiList}" var="notice" varStatus="status">
 					<tr style="text-align: center; border-bottom:2px solid gray; font-size:15pt;">
 						<td>${notice.notice_id } 
 						</td>
-						<td colspan="4"><a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
-											<span class="label label-danger">필독</span></a></td>
+						<td colspan="2">
+							<a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
+							<span class="label label-danger">필독</span></a></td>
+						<td colspan="2">
+						<fmt:formatDate value="${notice.notice_wridate}" pattern="yyyy-MM-dd"/></td>
 						<td colspan="2">${notice.mem_nick }</td>
 					</tr>
-		
-			
-			<!-- modal 영역 -->
+					<!-- modal 영역 -->
 			<div class="modal fade" id="myModal${status.count}" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
@@ -55,6 +43,12 @@
 										<hr style="border:none;border:5px double gray;"/>
 										<i class="fa fa-user-circle" style="font-size:36px"></i>${notice.mem_nick } 올림
 									</span>
+									<span>
+									<c:if test="${loginUser.mem_mail eq 'admin' }">
+										<input type="button" class="btn btn-default btn-xs" value="수정" onclick="noti_update(notice_cont);">
+										<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="noti_del();">
+									</c:if>
+									</span>
 								</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default btn-xs"
@@ -68,6 +62,23 @@
 
 
 			<!-- modal 영역 -->
+			<tr
+				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
+				<td style="text-align: center;">NO</td>
+				<td style="text-align: center;">SUBJECT</td>
+				<!-- <th>내용</th> -->
+				<td style="text-align: center;">NAME</td>
+				
+				<!-- <th>작성자</th> -->
+				<td style="text-align: center;">DATE</td>
+				<td style="text-align: center;">추천</td>
+				<td style="text-align: center;">비추천</td>
+				<td style="text-align: center;">조회수</td>
+			</tr>
+			
+		
+			
+			
 			<c:choose>
 				<c:when test="${qnaBoardListSize<=0}">
 					<tr>

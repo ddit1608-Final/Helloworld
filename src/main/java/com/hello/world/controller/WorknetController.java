@@ -23,7 +23,6 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.hello.world.dto.MemVO;
-import com.hello.world.dto.ScrapVO;
 import com.hello.world.dto.WorkVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.WorkNetService;
@@ -184,10 +183,18 @@ public class WorknetController {
 	}
 	@RequestMapping(value="/deleteScrap",produces = "application/json" )
 	@ResponseBody
-	public String deleteScrap(@RequestBody String wantedAuthNo,HttpServletRequest req) 
+	public String deleteScrap(@RequestBody Map<String, String> wantedAuthNo,HttpServletRequest req) 
 			throws ServletException, IOException {
+			System.out.println(wantedAuthNo.get("wantedAuthNo"));
+			try {
+				workNetService.deleteScrap(wantedAuthNo.get("wantedAuthNo"));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
-		return wantedAuthNo;
+		
+		return wantedAuthNo.get("wantedAuthNo");
 		
 	}
 }

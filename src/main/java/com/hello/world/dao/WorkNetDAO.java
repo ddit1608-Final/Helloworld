@@ -15,6 +15,9 @@ public interface WorkNetDAO {
 	
 	public List<WorkVO> getScrapList(int startRow,testVO testVO,int counts)throws SQLException;
 	
+	// del
+	public void deleteScrap(String wantedAuthNo)throws SQLException;
+	
 	
 	
 }

@@ -21,5 +21,10 @@
 		select count(*) from wanted where $type$ like '%''%'
 	</select>
 	
+	<delete id="deleteScrap"  parameterClass="str">
+		delete
+		from wanted
+		where wantedAuthNo = #wantedAuthNo#
+	</delete>
 	
 </sqlMap>
