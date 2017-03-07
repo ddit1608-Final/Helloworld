@@ -14,13 +14,13 @@
 	<form name="form" method="post" >
 		<table class="table table-condensed" id="blt">
 			<tr>
-				<td style="text-align:center;">
+				<td style="text-align:center; width:13%;">
 				<input type="button" class="btn btn-default btn-sm" value="전체보기"
 					onclick="location.href='<%=request.getContextPath()%>/dog/dogBoardList'">
 					게시글 분류
 				</td>
 				<td colspan="3">
-					<select class="form-control" id="board_type" name="board_type" onchange="select_board(this.value)">
+					<select style="width:25%;" class="form-control" id="board_type" name="board_type" onchange="select_board(this.value)">
 	        			<c:forEach items="${typeList }" var="posting" varStatus="status">
       						<c:if test="${status.count >= '4'}">
       							<option value="${posting.type_key}"

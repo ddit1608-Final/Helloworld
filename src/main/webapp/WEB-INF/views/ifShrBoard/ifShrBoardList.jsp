@@ -13,13 +13,13 @@
 		<table class="table table-condensed" id="blt">
 			<!-- sort 기능 추가  -->
 				<tr>
-				<td style="text-align:center;">
+				<td style="text-align:center; width:13%;">
 				<input type="button" class="btn btn-default btn-sm" value="전체보기"
 					onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardList.do'">
 					게시글 분류
 				</td>
-				<td colspan="3">
-					<select class="form-control" id="board_type" name="board_type" onchange="select_is(this.value)">
+				<td colspan="3"">
+					<select  style="width:25%; class="form-control" id="board_type" name="board_type" onchange="select_is(this.value)">
 	        			<c:forEach items="${typeList }" var="posting" varStatus="status">
       						<c:if test="${status.count <= '3'}">
       							<option value="${posting.type_key}"
