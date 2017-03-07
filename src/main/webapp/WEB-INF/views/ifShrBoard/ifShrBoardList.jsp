@@ -33,28 +33,18 @@
 				</td>
 			</tr>
 			<!-- sort -->
-		
-			<tr
-				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
-				<td style="text-align: center;">NO</td>
-				<td style="text-align: center;">SUBJECT</td>
-				<!-- <th>내용</th> -->
-				<td style="text-align: center;">NAME</td>
-				<!-- <th>작성자</th> -->
-				<td style="text-align: center;">DATE</td>
-				<td style="text-align: center;">HITS</td>
-			</tr>
-			<c:forEach items="${notiList}" var="notice" varStatus="status">
+				<c:forEach items="${notiList}" var="notice" varStatus="status">
 					<tr style="text-align: center; border-bottom:2px solid gray; font-size:15pt;">
 						<td>${notice.notice_id } 
 						</td>
-						<td colspan="2"><a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
-											<span class="label label-danger">필독</span></a></td>
-						<td colspan="2">${notice.mem_nick }</td>
+						<td colspan="2">
+							<a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
+							<span class="label label-danger">필독</span></a></td>
+						<td>
+						<fmt:formatDate value="${notice.notice_wridate}" pattern="yyyy-MM-dd"/></td>
+						<td>${notice.mem_nick }</td>
 					</tr>
-		
-			
-			<!-- modal 영역 -->
+					<!-- modal 영역 -->
 			<div class="modal fade" id="myModal${status.count}" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
@@ -68,10 +58,17 @@
 								<div class="modal-body">
 									<span style="font-family: 한나; font-size: 15pt;">
 										<hr style="border:none;border:5px double gray;"/>
-										${notice.notice_cont }
+										<textarea id="notice_cont" name="notice_cont" readonly="readonly" rows="13" style="width: 100%;border:0;background:clear;">${notice.notice_cont }</textarea>
+										<c:set value="${notice.notice_cont }" var="notice_cont"/>
 										<br/>
 										<hr style="border:none;border:5px double gray;"/>
 										<i class="fa fa-user-circle" style="font-size:36px"></i>${notice.mem_nick } 올림
+									</span>
+									<span>
+									<c:if test="${loginUser.mem_mail eq 'admin' }">
+										<input type="button" class="btn btn-default btn-xs" value="수정" onclick="noti_update(notice_cont);">
+										<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="noti_del();">
+									</c:if>
 									</span>
 								</div>
 								<div class="modal-footer">
@@ -82,10 +79,23 @@
 						</div>
 					</div>
 			</c:forEach>
+					
+			<tr
+				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
+				<td style="text-align: center;">NO</td>
+				<td style="text-align: center;">SUBJECT</td>
+				<!-- <th>내용</th> -->
+				<td style="text-align: center;">NAME</td>
+				<!-- <th>작성자</th> -->
+				<td style="text-align: center;">DATE</td>
+				<td style="text-align: center;">HITS</td>
+			</tr>
+		
+		
+			
+			
 
 
-
-			<!-- modal 영역 -->
 			<c:choose>
 				<c:when test="${ifShrBoardListSize<=0}">
 					<tr>
@@ -135,6 +145,10 @@
 				<c:if test="${loginUser != null}"> 
 				<input type="button" class="btn btn-success btn-sm" value="글쓰기"
 					onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardWriteForm.do'">
+				</c:if>
+				<c:if test="${loginUser.mem_mail eq 'admin' }">
+					<input type="button" class="btn btn-success btn-sm" value="공지사항"
+					onclick="#">
 				</c:if>
 					<input type="button" class="btn btn-success btn-sm" value="메인"
 					onclick="location.href='<%=request.getContextPath()%>/index'">

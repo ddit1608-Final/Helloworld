@@ -20,26 +20,18 @@ background-color: white !important;
 	<div style="overflow-y:auto; overflow-x:hidden; width:100%; height:700px;">
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
-			<tr
-				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
-				<td style="text-align: center;">NO</td>
-				<td style="text-align: center;">LOCATION</td>
-				<td style="text-align: center;">SUBJECT</td>
-				<td style="text-align: center;">NAME</td>
-				<td style="text-align: center;">DATE</td>
-				<td style="text-align: center;">HITS</td>
-			</tr>
 			<c:forEach items="${notiList}" var="notice" varStatus="status">
 					<tr style="text-align: center; border-bottom:2px solid gray; font-size:15pt;">
 						<td>${notice.notice_id } 
 						</td>
-						<td colspan="3"><a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
-											<span class="label label-danger">필독</span></a></td>
-						<td colspan="2">${notice.mem_nick }</td>
+						<td colspan="3">
+							<a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
+							<span class="label label-danger">필독</span></a></td>
+						<td colspan="2">
+						<fmt:formatDate value="${notice.notice_wridate}" pattern="yyyy-MM-dd"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						${notice.mem_nick }</td>
 					</tr>
-		
-			
-			<!-- modal 영역 -->
+					<!-- modal 영역 -->
 			<div class="modal fade" id="myModal${status.count}" role="dialog">
 						<div class="modal-dialog">
 							<!-- Modal content-->
@@ -67,6 +59,19 @@ background-color: white !important;
 						</div>
 					</div>
 			</c:forEach>
+					<!-- 현민아 여기야  -->
+			<tr
+				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
+				<td style="text-align: center;">NO</td>
+				<td style="text-align: center;">LOCATION</td>
+				<td style="text-align: center;">SUBJECT</td>
+				<td style="text-align: center;">NAME</td>
+				<td style="text-align: center;">DATE</td>
+				<td style="text-align: center;">HITS</td>
+			</tr>
+		
+			
+			
 
 
 

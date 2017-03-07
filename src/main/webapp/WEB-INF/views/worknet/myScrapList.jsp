@@ -4,16 +4,25 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/mypage.css">
 <article>
-출력해줘!!!
+	<div>
+		<a href="<%=request.getContextPath()%>/worknet/worknet.do">
+		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/scrapLogo.png"></a>
+	</div>
 <table class="table table-striped" id="scrpList">
 	<th colspan="4">
-		<h1 class="text-center">회원님의 스크랩 내역입니다</h1>
+		<c:if test="${loginUser!=null }">
+		<h1 class="text-center">"<strong>${loginUser.mem_nick }</strong> "<i>님의 스크랩 내역입니다</i></h1>
+		</c:if>
+		<c:if test="${loginUser==null }">
+			<h1 class="text-center"><strong>로그인후 이용가능한 서비스입니다.</strong></h1>
+		</c:if>
 	</th>
 	<c:if test="${loginUser!=null}">
 	<tr style="font-size:16pt;">
 			<td style="width:20%"><input type='checkbox' id='allCheck'>
 			<label style="font-size:5pt;">
-			<a href="#">전체<br>삭제</a>
+			<c:set var="scrap" value="${scrap.wantedAuthNo }"></c:set>
+			<a onclick="delete_scraps()">(미구현)<br>전체<br>삭제</a>
 			</label>
 			회사명</td>
 			<td style="width:50%; text-align:center;">제목/내용</td>
@@ -21,9 +30,9 @@
 			<td style="width:10%">삭제</td>
 	</tr>
 	<c:forEach items="${scrapList }" var="scrap" varStatus="status">
-	<tr id="pointhover">
+	<tr id="pointhover" class="${ scrap.wantedAuthNo}">
 		<td>
-			<input type="checkbox" value="${scrap.wantedAuthNo }" class="cpyCheck" hidden="hidden">
+			<input type="checkbox" value="${scrap.wantedAuthNo }" class="cpyCheck" >
 			
 			${scrap.company }
 		</td>
@@ -37,10 +46,18 @@
 	</tr>
 	</c:forEach>
 	</c:if>
-	<c:if test="${loginUser==null }">
+	<c:if test="${scrap_title==null}">
 	<tr>
 		<td width="100%" colspan="6" align="center" height="23">
 		There are no registered scraplist</td>
+	</tr>
+	</c:if>
+	<c:if test="${loginUser==null }">
+	<tr>
+		<td width="100%" colspan="6" align="center" height="23">
+		There are no registered scraplist<br>
+		Please Login
+		</td>
 	</tr>
 	</c:if>
 </table>
@@ -60,6 +77,20 @@ $(function(){
 	  } 
 	  })
    })
+   
+ // 전체 삭제 구현하자
+ function delete_scraps(){
+	 var eachCompanies = $('#scrpList .cpyCheck:checked').closest("tr");
+	 $('#scrpList .cpyCheck:checked').closest("tr").each(function(){
+	 		alert(checked);
+	 			if(checked==true){
+	 				alert('삭제?')
+	 			}
+		 alert(JSON.stringify(eachCompanies));
+		 alert(eachCompanies.toString());c
+	 });
+}  
+   
  function delete_scrap(wantedAuthNo){
 	alert('삭제할꺼야? >>>>> '+wantedAuthNo);
 	var del_key={
@@ -71,15 +102,13 @@ $(function(){
 		data:JSON.stringify(del_key),
 		contentType:"application/json",
 		method:"post",
-		dataType:"json",
-		success:function(response){
-			alert(JSON.stringify(response));
-				if(response.success){
-					alert('컨트롤러 goooooo');
-				}else{
-					//메세지 처리
-					alert('오현택');
-				}
+		dataType:"text",
+		success:function(data){
+			alert(data);
+			//alert(JSON.stringify(data));
+			$('.'+data).remove();
+			alert('삭제완료');
+			
 		},
 		error:function(response){
 			// error!!!!!!!!

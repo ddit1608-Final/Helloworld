@@ -306,9 +306,13 @@
 		<table class="table table-striped">
 
 			<tbody>
+				<%-- <c:forEach items="${newsList}" var="b">
+					<tr style="border: 1px solid black;">
+						<td><a href='${b.originallink}'>${b.title}</a></td>
+					</tr>
+				</c:forEach> --%>
 				<tr>
-					<td>123</td>
-
+					<td>1</td>
 				</tr>
 				<tr>
 					<td>z</td>

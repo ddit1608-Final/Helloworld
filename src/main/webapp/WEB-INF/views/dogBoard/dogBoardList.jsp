@@ -33,23 +33,16 @@
       				</select>
 				</td>
 			</tr>
-			<tr
-				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
-				<td style="text-align: center;">NO</td>
-				<td style="text-align: center;">SUBJECT</td>
-				<!-- <th>내용</th> -->
-				<td style="text-align: center;">NAME</td>
-				<!-- <th>작성자</th> -->
-				<td style="text-align: center;">DATE</td>
-				<td style="text-align: center;">HITS</td>
-			</tr>
 			<c:forEach items="${notiList}" var="notice" varStatus="status">
 					<tr style="text-align: center; border-bottom:2px solid gray; font-size:15pt;">
 						<td>${notice.notice_id } 
 						</td>
-						<td colspan="2"><a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
-											<span class="label label-danger">필독</span></a></td>
-						<td colspan="2">${notice.mem_nick }</td>
+						<td colspan="2">
+							<a href="#" data-toggle="modal" data-target="#myModal${status.count}">${notice.notice_title }
+							<span class="label label-danger">필독</span></a></td>
+						<td>
+						<fmt:formatDate value="${notice.notice_wridate}" pattern="yyyy-MM-dd"/></td>
+						<td>${notice.mem_nick }</td>
 					</tr>
 		
 			
@@ -81,6 +74,17 @@
 						</div>
 					</div>
 			</c:forEach>
+			<tr
+				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
+				<td style="text-align: center;">NO</td>
+				<td style="text-align: center;">SUBJECT</td>
+				<!-- <th>내용</th> -->
+				<td style="text-align: center;">NAME</td>
+				<!-- <th>작성자</th> -->
+				<td style="text-align: center;">DATE</td>
+				<td style="text-align: center;">HITS</td>
+			</tr>
+			
 
 
 

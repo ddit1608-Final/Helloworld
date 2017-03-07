@@ -261,28 +261,25 @@ function select_level(value,event){
 				}
 			})
 		}
-	/*else if(tt !='2'){
-			$.ajax({
-				url : "level",
-				type : "post",
-				data : tt,
-				success : function(data) {
-					$('#combo').append(
-							"<div id='comboo'>"+
-							"<input type='radio' id='crr_key' name='crr_key' value='4'>下"+
-							"<input type='radio' id='crr_key' name='crr_key' value='5'>中"+
-							"<input type='radio' id='crr_key' name='crr_key' value='6'>上"+
-							"</div>"
-							);
-							alert('3번째');
-					},
-					error : function(error) {
-						alert("select 메뉴 에러!!");
-					}
-				})
-			
-			}*/
-	
+}
+function noti_update(notice_cont){
+	var updateNotice = $('#notice_cont').val();
+	alert(updateNotice);
+	$.ajax({
+		url:"noticeUpdate",
+		type:'json',
+		data:updateNotice,
+		success : function(data){
+			alert('성공');
+			$('input[type="text"],textarea').attr('readonly',false);
+		},
+		error : function(data){
+			alert('ddd');
+			alert(tt)
+		}
+		
+		
+	});
 }
 
 	

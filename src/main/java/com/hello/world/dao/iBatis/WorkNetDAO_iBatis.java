@@ -55,5 +55,10 @@ public class WorkNetDAO_iBatis implements WorkNetDAO{
 		return scrapList;
 	}
 
+	@Override
+	public void deleteScrap(String wantedAuthNo) throws SQLException {
+		client.delete("deleteScrap",wantedAuthNo);
+	}
+
 	
 }
