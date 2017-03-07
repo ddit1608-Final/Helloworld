@@ -32,4 +32,9 @@ public class NoticeDAO_iBatis implements NoticeDAO{
 		return noticeVO;
 	}
 
+	@Override
+	public void updateNotice(NoticeVO noticeVO) throws SQLException {
+		client.update("updateNoti",noticeVO);
+	}
+
 }

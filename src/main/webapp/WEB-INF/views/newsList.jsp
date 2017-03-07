@@ -30,13 +30,12 @@ color:black;
 <article>
 
 <div style="margin-top:1%;">
-
 <table class="table table-hover">
 	<tbody>
 		<c:forEach items="${newsList}" var="b">
 			<tr style="border: 1px solid black;">
 				<%-- <td>${b.title}</td> --%>
-				<td><a href='${b.originallink}'>${b.title}</a></td>
+				<td><a href='${b.originallink}' target="_blank">${b.title}</a></td>
 				<%-- <td>${b.description}</td> --%>
 			</tr>
 		</c:forEach>

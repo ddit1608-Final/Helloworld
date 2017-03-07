@@ -51,6 +51,7 @@
 <!-- 스크롤링  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="<%=request.getContextPath()%>/js/sideNav.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <style>
 ::selection {
@@ -478,17 +479,23 @@ background-color: #006f00;
 									connect();
 								</script>
 
-								<li class="mem_mail">(Level) ${loginUser.mem_nick } (POINT
-									: ${myPoint })</li>
+								<c:if test="${loginUser.mem_mail eq 'admin' }">								
+								<li class="mem_mail">
+								(<i class="fa fa-angellist"></i>) ${loginUser.mem_nick }</li>
+								</c:if>
+								<c:if test="${loginUser.mem_mail ne 'admin' }">								
+								<li class="mem_mail">
+								${loginUser.mem_nick } (POINT: ${myPoint })</li>
+								</c:if>
 								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 								<li><a href="#" id="aa">반응 ()</a></li>
 								<li><a href="<%=request.getContextPath()%>/mypage/main"
 									id="aa">마이페이지</a></li>
 								<c:if
 									test="${loginUser.mem_mail == 'jihyunkkkk@nate.com' || 
-				loginUser.mem_mail == 'shm9166@gmail.com' ||
-				loginUser.mem_mail == 'a'
-				}">
+											loginUser.mem_mail == 'shm9166@gmail.com' ||
+											loginUser.mem_mail == 'a'
+											}">
 									<li><a href="<%=request.getContextPath()%>/admin/enter"
 										id="aa">관리자 페이지</a></li>
 								</c:if>
