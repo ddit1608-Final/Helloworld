@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/cstBoard.css">
+<style>
+#cstHead td{
+font-size:15pt;
+}
+</style>
 <article>
 	<div>
 		<a href="<%=request.getContextPath()%>/cst/cstBoardList"><img
@@ -10,29 +15,43 @@
 			src="<%=request.getContextPath()%>/resources/images/cstboard.png"></a>
 	</div>
 
-	<form id="cstWriteForm" name="cstWriteForm" method="post"
+	<form id="fdf" name="cstWriteForm" method="post"
 		action="cstBoardWrite">
 		<input id="mem_mail" name="mem_mail" hidden="hidden"
 			value="${loginUser.mem_mail}"> <input id="flow_code"
 			name="flow_code" hidden="hidden" value="1">
 		<table class="table .table-condensed" id="bwt">
-			<thead>
-				<tr style="border-bottom: 1px solid #c9c9c9;">
+			<thead id="cstHead">
+				<tr style="border-bottom:1px solid #c9c9c9;">
+					<td>작성자</td>
+					<td>${loginUser.mem_nm}</td>
+				</tr>
+				
+				<tr>
+					<td>제목</td>
+					<td><input type="text" name="cstboard_counsel_title" id="cstboard_counsel_title"></td>
+				</tr>
+				
+				<tr>
+					<td>내용</td>
+					<td><textarea rows="8" cols="65" name="cstboard_counsel_cont" id="cstboard_counsel_cont"></textarea></td>
+				</tr>
+				<%-- <tr style="border-bottom: 1px solid #c9c9c9;">
 					<td style="width: 20%;">작성자 ${loginUser.mem_nm}</td>
 					<td style="width: 10%;"></td>
 					<td style="width: 10%;"></td>
 					<td style="width: 10%;"></td>
 				</tr>
 				<tr>
-					<td style="text-align: center;">제목 <input type="text"
+					<td style="text-align: left;">제목 <input type="text"
 						name="cstboard_counsel_title" id="cstboard_counsel_title"></td>
 				</tr>
 				<tr>
-					<td style="text-align: left;">&nbsp;&nbsp;&nbsp;내용</td>
+					<td style="text-align: left;">내용
 
-					<td><textarea rows="8" cols="65" name="cstboard_counsel_cont"
+					<textarea rows="8" cols="65" name="cstboard_counsel_cont"
 							id="cstboard_counsel_cont"></textarea></td>
-				</tr>
+				</tr> --%>
 			</thead>
 		</table>
 		<table>

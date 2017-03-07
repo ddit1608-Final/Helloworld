@@ -68,12 +68,12 @@ background-color: white !important;
 					<!-- 현민아 여기야  -->
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
-				<td style="text-align: center;">NO</td>
-				<td style="text-align: center;">LOCATION</td>
-				<td style="text-align: center;">SUBJECT</td>
-				<td style="text-align: center;">NAME</td>
-				<td style="text-align: center;">DATE</td>
-				<td style="text-align: center;">HITS</td>
+				<td style="text-align: center; width:7%;">번호</td>
+				<td style="text-align: center; width:8%;">지역</td>
+				<td style="text-align: center; width:50%;">제목</td>
+				<td style="text-align: center; width:8%;">닉네임</td>
+				<td style="text-align: center; width:8%;">날짜</td>
+				<td style="text-align: center; width:8%;">조회수</td>
 			</tr>
 		
 			

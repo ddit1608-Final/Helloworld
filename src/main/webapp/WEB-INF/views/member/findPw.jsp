@@ -9,9 +9,9 @@
 	href="<%=request.getContextPath()%>/resources/css/signup.css">
 
 
-<div>
-	<h1>Find PW</h1>
-	<form action="findPw" id="findPw" method="post">
+<div style="margin-left:38%; margin-top:5%;">
+	<h1>패스워드 찾기</h1><hr style="width:28%; margin-left:-2%;">
+	<form action="findPw" id="findPw" method="post" style="margin-left:-8%;">
 		<label>이메일(ID) : </label>
 		<input type="email" name="mem_mail" id="mem_mail">
 		<input type="button" onclick="findPw_go();" value="찾기">

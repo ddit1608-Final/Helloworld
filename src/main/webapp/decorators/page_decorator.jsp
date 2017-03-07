@@ -263,11 +263,15 @@ footer {
 	color: #3EAF0E;
 }
 
-.mem_mail {
-	padding-top: 13px;
+.mem_mail a{
+	padding-top: 13px !important;
 	font-family: 한나;
 	font-size: 12pt;
-	color: #a31313;
+	color: #a31313 !important;
+	
+}
+.mem_mail a:hover{
+text-decoration: underline !important;
 }
 div.invisibleClass{
 	display : none;
@@ -275,6 +279,12 @@ div.invisibleClass{
 .btn btn-success btn-sm:hover{
 background-color: #006f00;
 }
+#remote:hover{
+background-color: #006f00;
+color:white;
+cursor: pointer;
+}
+
 </style>
 
 <script>
@@ -419,7 +429,7 @@ background-color: #006f00;
         </a></li><br> -->
 
 						<li><a
-							href="<%=request.getContextPath()%>/worknet/worknet.do">구인</a></li>
+							href="<%=request.getContextPath()%>/rct/rctBoardList.do">구인</a></li>
 						<li><a
 							href="<%=request.getContextPath()%>/jobht/jobhtBoardList.do">구직</a></li>
 						<li><a
@@ -478,12 +488,11 @@ background-color: #006f00;
 									connect();
 								</script>
 
-								<li class="mem_mail">(Level) ${loginUser.mem_nick } (POINT
-									: ${myPoint })</li>
+								<li class="mem_mail"><a style="padding:0px;" href="<%=request.getContextPath()%>/mypage/main">(Level) ${loginUser.mem_nick } (POINT
+									: ${myPoint })</a></li>
 								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 								<li><a href="#" id="aa">반응 ()</a></li>
-								<li><a href="<%=request.getContextPath()%>/mypage/main"
-									id="aa">마이페이지</a></li>
+								<li><a href="<%=request.getContextPath()%>/mypage/main"	id="aa">마이페이지</a></li>
 								<c:if
 									test="${loginUser.mem_mail == 'jihyunkkkk@nate.com' || 
 				loginUser.mem_mail == 'shm9166@gmail.com' ||
@@ -521,13 +530,14 @@ background-color: #006f00;
 			<!--  채팅 -->
 			<div class="col-sm-2 sidenav"
 				style="background-color: white; border-left: 14px solid white; position: fixed; margin-left:-5%; top:0px;">
-					<i class="fa fa-mail-reply-all" style="font-size:36px" onclick="history.back()"></i>
+					<h1>리모컨</h1>
+					<i id="remote" class="fa fa-mail-reply-all" style="font-size:36px; border:1px solid black; margin-left:6%;" onclick="history.back()"></i>
 
-				<i class="fa fa-home" style="font-size:36px" onclick="location.href='<%=request.getContextPath()%>/index'"></i>|
+				<i id="remote" class="fa fa-home" style="font-size:36px; border:1px solid black;" onclick="location.href='<%=request.getContextPath()%>/index'"></i>
 				<c:if test="${loginUser.mem_nick != null}">
-					<i class="fa fa-commenting" style="font-size:36px" id="detailBtn" onclick="chat_detail()"></i>
+					<i id="remote" class="fa fa-commenting" style="font-size:36px; border:1px solid black;" id="detailBtn" onclick="chat_detail()"></i>
 					<!-- <input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="채팅OPEN▼" /> -->
-					<div id="chatDetailBtn" class="invisibleClass" style="margin-left:31%; border:1px solid black; width:100%;">
+					<div id="chatDetailBtn" class="invisibleClass" style="margin-left:31%;margin-top:1%; border:1px solid black; width:100%;">
 					 <jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
 					</div>
 				</c:if>
