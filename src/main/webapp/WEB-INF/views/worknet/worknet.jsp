@@ -4,6 +4,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 <article>
+	<div>
+		<a href="<%=request.getContextPath()%>/worknet/worknet.do">
+		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/scrapLogo.png"></a>
+	</div>
 	<!--						리모콘									  -->
 	<%-- 로그인유저가 있을경우에 스크랩 기능을 해야되기때문에 추후 주석 제거 
 	<c:if test="${loginUser!=null }"> --%>
@@ -45,18 +49,22 @@
 			<th>URL</th>
 		</tr> -->
 	</table>
-	<div>
-		<!-- &lt;(<) &gt;(>) 처리  -->
-		<a href="javascript:init(1)">1</a>
-		<a href="javascript:init(2)">2</a>
-		<a href="javascript:init(3)">3</a>
-		<a href="javascript:init(4)">4</a>
-		<a href="javascript:init(5)">5</a>
-		<a href="javascript:init(6)">6</a>
-		<a href="javascript:init(7)">7</a>
-		<a href="javascript:init(8)">8</a>
-		<a href="javascript:init(9)">9</a>
-	</div>
+	<table style="margin: auto;">
+		<tr>
+			<td>
+			<!-- &lt;(<) &gt;(>) 처리  -->
+			<a href="javascript:init(1)">1</a>
+			<a href="javascript:init(2)">2</a>
+			<a href="javascript:init(3)">3</a>
+			<a href="javascript:init(4)">4</a>
+			<a href="javascript:init(5)">5</a>
+			<a href="javascript:init(6)">6</a>
+			<a href="javascript:init(7)">7</a>
+			<a href="javascript:init(8)">8</a>
+			<a href="javascript:init(9)">9</a>
+			</td>
+		</tr>
+	</table>
 <!-- 	<button class="btn btn-success btn-xs" style="font-size:15px;" 
 		onclick="chk_chk()">스크랩 <i class="fa fa-cart-plus"></i></button> -->
 	<table style="margin: auto;">
@@ -104,7 +112,7 @@
 	
 	<!--						워크넷에서 가져온 데이타 스크립트출력									  -->
 	<script>
- 			init(1);
+			init(1);
  			function init(pageNo){
  				var data = $("#test").serialize();
 				$("#worktable").html("<tr><th><input type='checkbox' id='allCheck'/>"+

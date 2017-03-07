@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hello.world.dto.AllBoardVO;
@@ -58,23 +59,20 @@ public class IndexController {
 	
 
 	@Autowired
-	private NaverNewsService service;
+	NaverNewsService service;
 	
 	@Autowired
 	IndexQnaService indexQnaService;
 	
 	
 	@RequestMapping(value="index",method=RequestMethod.GET)
-	public String index(HttpSession session, Model model,
+	public String index(HttpSession session, Model model,String keyword,
 			HttpServletRequest request) throws ServletException, IOException {
 		String url= "../../index2";
 		FreeBoardVO free = new FreeBoardVO();
 		IfShrBoardVO is = new IfShrBoardVO(); 
 		QnaBoardVO qna = new QnaBoardVO();
 		
-		// 뉴스 영역 구현중
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("newsList");
 		
 		// test
 		String total="";
@@ -118,9 +116,10 @@ public class IndexController {
 		model.addAttribute("freeBoardList", freeBoardList);
 		model.addAttribute("paging", paging);
 		
-		request.setAttribute("mav", mav);
 		request.setAttribute("free",free );
 		request.setAttribute("is",is);
+		
+		
 		// 개소리 게시판 sample
 		testVO testVO1 = new testVO();
 		testVO1.setKey(key);
@@ -180,16 +179,24 @@ public class IndexController {
 			ArrayList<IndexQnaVO> qnaBoardList = null;
 			try {
 				qnaBoardList = indexQnaService.IndexQna();
-//				qnaBoardList = qnaBoardService.listAllQnaBoard(
-//						Integer.parseInt(tpage), testVO);
 				paging = qnaBoardService.pageNumber(Integer.parseInt(tpage), testVO);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 			model.addAttribute("qnaBoardList", qnaBoardList);
 			int n = qnaBoardList.size();
+			
+			
+			// new 영역 석호에 메인에 부탁해
+			ModelAndView mav = new ModelAndView();
+
+			if (keyword != null) {
+				mav.addObject("newsList", service.searchNews(keyword, 10, 1));
+			}
+			mav.setViewName("newsList");
+			
+			
 		
 		return url;
 		
@@ -249,27 +256,11 @@ public class IndexController {
 		model.addAttribute("searchCnt",total);
 		model.addAttribute("paging", paging);
 		
-	/*	switch (type) {
-		case "정보공유게시판":
-			testVO.setType("정보공유게시판");
-			
-		break;
-		case "모임게시판":
-			testVO.setType("모임게시판");
-			
-			break;
-		case "질문게시판":
-			testVO.setType("질문게시판");
-			
-			break;
-		case "개발소리게시판":
-			testVO.setType("개발소리게시판");
-			
-			break;
-			
-			default:
-				break;
-		}*/
+		
+
+	
+		
+	
 		
 		return url;
 	}
