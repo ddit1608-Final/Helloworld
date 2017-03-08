@@ -134,7 +134,7 @@
 		<div class="item active">
 			<h2 id="title">자유게시판 HOT</h2>
 			<table class="table table-striped">
-				<c:forEach items="${freeBoardList}" var="free" begin="1" end="10">
+				<c:forEach items="${freeBoardList}" var="free" begin="1" end="7">
 					<tbody>
 						<tr>
 							<%-- <td>
@@ -168,7 +168,7 @@
         		<div class="item active">
 			<a href="<%=request.getContextPath()%>/dog/dogBoardList"><h2 id="title">개발소리게시판 HOT</h2></a>
 			<table class="table table-striped">
-			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="10">
+			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="7">
 				<tbody>
 					<tr>
 						<td>●<a
@@ -203,7 +203,7 @@
 			<a href="<%=request.getContextPath()%>/qna/qnaBoardList.do">
 			<h2 id="title">QnA게시판 HOT</h2></a>
 			<table class="table table-striped">
-			<c:forEach items="${qnaBoardList}" var="qna" begin="1" end="10">
+			<c:forEach items="${qnaBoardList}" var="qna" begin="1" end="7">
 				<tbody>
 					<tr>
 						<td>●<a href="/world/qna/qnaBoardDetail.do?qnaboard_posting_no=${qna.qnaboard_posting_no}">
@@ -250,7 +250,7 @@
 		style="width: 33%; border: 1px solid #9d9d9d; margin: 5px 0 auto 5px; float: left;">
 		<h2 id="title">HIT CONTENTS</h2>
 		<table class="table table-striped" id="maint">
-			<c:forEach items="${freeBoardList}" var="free" begin="1" end="10">
+			<c:forEach items="${freeBoardList}" var="free" begin="1" end="7">
 				<tbody>
 					<tr>
 						<%-- <td>
@@ -281,7 +281,7 @@
 		<h2 id="title">NEW CONTENTS</h2>
 
 		<table class="table table-striped">
-			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="10">
+			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="7">
 				<tbody>
 					<tr>
 						<td>●<a
