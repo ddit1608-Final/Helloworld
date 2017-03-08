@@ -28,5 +28,15 @@ public class CompMemberService {
 
 		return result;
 	}
+	
+	public CompanyMemberVO getCompanyMember(String id){
+		CompanyMemberVO companyMember = null;
+		try {
+			companyMember = compMemDao.getCompanyMember(id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return companyMember;
+	}
 
 }

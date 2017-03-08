@@ -11,5 +11,10 @@
 		#compmem_bsnss_lcse_no#, #compmem_ceo#, #compmem_comp_nm#,
 		#compmem_phn#)
 	</update>
+	
+	<select id="getCompanyMember" parameterClass="str" resultClass="compMem">
+		select *
+		from compmem where compmem_mail = #compmem_mail#
+	</select>
 
 </sqlMap>

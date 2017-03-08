@@ -28,4 +28,10 @@ public class CompMemberDAO_iBatis implements CompMemberDAO {
 		return result;
 	}
 
+	@Override
+	public CompanyMemberVO getCompanyMember(String id) throws SQLException {
+		CompanyMemberVO companyMember = (CompanyMemberVO) client.queryForObject("getCompanyMember", id);
+		return companyMember;
+	}
+
 }

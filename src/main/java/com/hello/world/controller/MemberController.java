@@ -25,6 +25,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.mortbay.jetty.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -110,27 +111,27 @@ public class MemberController implements ServletContextAware {
 	public String findForm() {
 		return "member/findIdPw";
 	}
-	
+
 	@RequestMapping(value = "/changePw", method = RequestMethod.GET)
 	public String changePwForm() {
 		return "member/changePw";
 	}
-	
+
 	@RequestMapping(value = "/changePw", method = RequestMethod.POST)
 	public String changePw(String mem_mail, String mem_pw) {
 		String url = "redirect:/index";
-		
+
 		MemVO memVO = new MemVO();
 		memVO.setMem_mail(mem_mail);
 		memVO.setMem_pw(mem_pw);
-		
+
 		try {
 			memService.changePw(memVO);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return url;
 	}
 
@@ -151,7 +152,8 @@ public class MemberController implements ServletContextAware {
 
 		// SimpleMailMessage message = new SimpleMailMessage();
 		String htmlContent = "<a href=\"http://" + ip.getHostAddress()
-				+ ":8181/world/member/changePw?mem_mail="+mem_mail+"\">패스워드 초기화</a>";
+				+ ":8181/world/member/changePw?mem_mail=" + mem_mail
+				+ "\">패스워드 초기화</a>";
 
 		try {
 			message.setSubject("패스워드 초기화");
@@ -315,112 +317,202 @@ public class MemberController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(String login_mem_mail, String login_mem_pw, PointVO pointVO, MemVO memVO,
-			String prePage, String param, Model model, HttpSession session) {
+	public String login(String login_mem_mail, String login_mem_pw,
+			PointVO pointVO, MemVO memVO, String prePage, String param,
+			Model model, HttpSession session, HttpServletRequest request) {
 		String url = "redirect:" + prePage;
 		// +"?"+param;
 		if (param != "") {
 			url = url + "?" + param;
 		}
 
+		String com2 = request.getParameter("check2");
 		String sessionId = "";
 		System.err.println(prePage);
 
 		MemVO mem = new MemVO();
+		CompanyMemberVO com = new CompanyMemberVO();
 		int sum = 0;
 
-		mem = memService.getMember(login_mem_mail);
+		if (com2 == null) {
+			mem = memService.getMember(login_mem_mail);
 
-		if (mem == null) {
+			if (mem == null) {
 
-			if (url.indexOf("?") != -1) {
-				if(url.contains("loginResult=pwdMismatch") == true)
-					url = url.replace("pwdMismatch", "notexist");
-				else if(url.contains("loginResult=notexist") == true)
-					url = url.replace("notexist", "notexist");
-				else 
-					url = url + "&loginResult=notexist";
+				if (url.indexOf("?") != -1) {
+					if (url.contains("loginResult=pwdMismatch") == true)
+						url = url.replace("pwdMismatch", "notexist");
+					else if (url.contains("loginResult=notexist") == true)
+						url = url.replace("notexist", "notexist");
+					else
+						url = url + "&loginResult=notexist";
+				} else {
+					url = url + "?loginResult=notexist";
+				}
+
+				// url = url + "&loginResult:notexist";
 			} else {
-				url = url + "?loginResult=notexist";
-			}
 
-			// url = url + "&loginResult:notexist";
-		} else {
+				// 로그인 성공시.
+				if (login_mem_pw.equals(mem.getMem_pw())) {
+					try {
+						sum = poingService.sumPoint(mem.getMem_mail());
+						session.setAttribute("myPoint", sum);
+						Timestamp start = poingService.selectPoint2(
+								login_mem_mail).getPoint_save_date();
+						Timestamp today = new Timestamp(
+								System.currentTimeMillis());
+						long plus = ((today.getTime() - start.getTime()) / 8640000);
+						if (plus > 1) {
+							int point = poingService
+									.totalMyPoint2(login_mem_mail);
+							String point2 = String.valueOf(point);
+							pointVO.setMem_mail(login_mem_mail);
+							pointVO.setPoint(point2);
+							poingService.LoginPoint(pointVO);
+						}
 
-			// 로그인 성공시.
-			if (login_mem_pw.equals(mem.getMem_pw())) {
-				try {
-					sum = poingService.sumPoint(mem.getMem_mail());
-					session.setAttribute("myPoint", sum);
-					Timestamp start = poingService.selectPoint2(login_mem_mail).getPoint_save_date();
-					Timestamp today = new Timestamp(System.currentTimeMillis());
-					long plus = ((today.getTime() - start.getTime())/8640000);
-					if(plus > 1){
-					int point = poingService.totalMyPoint2(login_mem_mail);
-					String point2 = String.valueOf(point);
-					pointVO.setMem_mail(login_mem_mail);
-					pointVO.setPoint(point2);
-					poingService.LoginPoint(pointVO);
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
-					
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					session.setAttribute("loginUser", mem);
+					sessionId = RequestContextHolder.currentRequestAttributes()
+							.getSessionId();
+					setSessionMap(mem.getMem_mail(), sessionId);
+					// model.addAttribute("loginUserCnt", sessionMap.size());
+					// session.setAttribute("loginUserCnt", sessionMap.size());
+
+					// 처리 하는 부분 수정해야함....
+					// 2017-01-26 jihyun.Park
+					servletContext.setAttribute("loginUserCnt",
+							sessionMap.size());
+
+					if (url.indexOf("?") != -1) {
+						if (url.contains("loginResult=notexist") == true)
+							url = url.replace("notexist", RequestContextHolder
+									.currentRequestAttributes().getSessionId());
+						else if (url.contains("loginResult=pwdMismatch") == true)
+							url = url.replace("pwdMismatch",
+									RequestContextHolder
+											.currentRequestAttributes()
+											.getSessionId());
+						else
+
+							url = url
+									+ "&loginResult="
+									+ RequestContextHolder
+											.currentRequestAttributes()
+											.getSessionId();
+					} else {
+						url = url
+								+ "?loginResult="
+								+ RequestContextHolder
+										.currentRequestAttributes()
+										.getSessionId();
+					}
+
+					// url = url +
+					// "&loginResult:"+RequestContextHolder.currentRequestAttributes().getSessionId();
+					System.out.println(RequestContextHolder
+							.currentRequestAttributes().getSessionId());
 				}
-				session.setAttribute("loginUser", mem);
-				sessionId = RequestContextHolder.currentRequestAttributes()
-						.getSessionId();
-				setSessionMap(mem.getMem_mail(), sessionId);
-				// model.addAttribute("loginUserCnt", sessionMap.size());
-				// session.setAttribute("loginUserCnt", sessionMap.size());
+				// 로그인 실패(패스워드 불일치)
+				else {
+					if (url.indexOf("?") != -1) {
+						if (url.contains("loginResult=notexist") == true)
+							url = url.replace("notexist", "pwdMismatch");
+						else if (url.contains("loginResult=pwdMismatch") == true)
+							url = url.replace("pwdMismatch", "pwdMismatch");
+						else
+							url = url + "&loginResult=pwdMismatch";
+					} else {
+						url = url + "?loginResult=pwdMismatch";
+					}
 
-				// 처리 하는 부분 수정해야함....
-				// 2017-01-26 jihyun.Park
-				servletContext.setAttribute("loginUserCnt", sessionMap.size());
-
-				if (url.indexOf("?") != -1) {
-					if(url.contains("loginResult=notexist") == true)
-						url = url.replace("notexist", RequestContextHolder.currentRequestAttributes()
-								.getSessionId());
-					else if(url.contains("loginResult=pwdMismatch") == true)
-						url = url.replace("pwdMismatch", RequestContextHolder.currentRequestAttributes()
-								.getSessionId());
-					else 
-						
-					
-					
-					url = url
-							+ "&loginResult="
-							+ RequestContextHolder.currentRequestAttributes()
-									.getSessionId();
-				} else {
-					url = url
-							+ "?loginResult="
-							+ RequestContextHolder.currentRequestAttributes()
-									.getSessionId();
 				}
-
-				// url = url +
-				// "&loginResult:"+RequestContextHolder.currentRequestAttributes().getSessionId();
-				System.out.println(RequestContextHolder
-						.currentRequestAttributes().getSessionId());
-			}
-			// 로그인 실패(패스워드 불일치)
-			else {
-				if (url.indexOf("?") != -1) {
-					if(url.contains("loginResult=notexist") == true)
-						url = url.replace("notexist", "pwdMismatch");
-					else if(url.contains("loginResult=pwdMismatch") == true)
-						url = url.replace("pwdMismatch", "pwdMismatch");
-					else 
-						url = url + "&loginResult=pwdMismatch";
-				} else {
-					url = url + "?loginResult=pwdMismatch";
-				}
-
 			}
 		}
+		else {
+			com = compMemService.getCompanyMember(login_mem_mail);
+					//memService.getMember(login_mem_mail);
 
+			if (com == null) {
+
+				if (url.indexOf("?") != -1) {
+					if (url.contains("loginResult=pwdMismatch") == true)
+						url = url.replace("pwdMismatch", "notexist");
+					else if (url.contains("loginResult=notexist") == true)
+						url = url.replace("notexist", "notexist");
+					else
+						url = url + "&loginResult=notexist";
+				} else {
+					url = url + "?loginResult=notexist";
+				}
+
+				// url = url + "&loginResult:notexist";
+			} else {
+
+				// 로그인 성공시.
+				if (login_mem_pw.equals(com.getCompmem_pwd())) {
+					
+					session.setAttribute("loginUser", com);
+					sessionId = RequestContextHolder.currentRequestAttributes()
+							.getSessionId();
+					setSessionMap(com.getCompmem_mail(), sessionId);
+					// model.addAttribute("loginUserCnt", sessionMap.size());
+					// session.setAttribute("loginUserCnt", sessionMap.size());
+
+					// 처리 하는 부분 수정해야함....
+					// 2017-01-26 jihyun.Park
+					servletContext.setAttribute("loginUserCnt",
+							sessionMap.size());
+
+					if (url.indexOf("?") != -1) {
+						if (url.contains("loginResult=notexist") == true)
+							url = url.replace("notexist", RequestContextHolder
+									.currentRequestAttributes().getSessionId());
+						else if (url.contains("loginResult=pwdMismatch") == true)
+							url = url.replace("pwdMismatch",
+									RequestContextHolder
+											.currentRequestAttributes()
+											.getSessionId());
+						else
+
+							url = url
+									+ "&loginResult="
+									+ RequestContextHolder
+											.currentRequestAttributes()
+											.getSessionId();
+					} else {
+						url = url
+								+ "?loginResult="
+								+ RequestContextHolder
+										.currentRequestAttributes()
+										.getSessionId();
+					}
+
+					// url = url +
+					// "&loginResult:"+RequestContextHolder.currentRequestAttributes().getSessionId();
+					System.out.println(RequestContextHolder
+							.currentRequestAttributes().getSessionId());
+				}
+				// 로그인 실패(패스워드 불일치)
+				else {
+					if (url.indexOf("?") != -1) {
+						if (url.contains("loginResult=notexist") == true)
+							url = url.replace("notexist", "pwdMismatch");
+						else if (url.contains("loginResult=pwdMismatch") == true)
+							url = url.replace("pwdMismatch", "pwdMismatch");
+						else
+							url = url + "&loginResult=pwdMismatch";
+					} else {
+						url = url + "?loginResult=pwdMismatch";
+					}
+
+				}
+			}
+		}
 		return url;
 	}
 

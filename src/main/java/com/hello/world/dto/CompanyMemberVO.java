@@ -13,6 +13,25 @@ public class CompanyMemberVO {
 	private String compmem_ceo; // 대표자
 	private String compmem_comp_nm; // 회사명
 	private String compmem_phn; // 연락처
+	private String mem_mail; // 회원메일
+	private String mem_nick; // 회원 닉네임
+		
+	
+	public String getMem_nick() {
+		return mem_nick;
+	}
+
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
+	}
+
+	public String getMem_mail() {
+		return mem_mail;
+	}
+
+	public void setMem_mail(String mem_mail) {
+		this.mem_mail = mem_mail;
+	}
 
 	public String getCompmem_bsnss_lcse_no() {
 		return compmem_bsnss_lcse_no;

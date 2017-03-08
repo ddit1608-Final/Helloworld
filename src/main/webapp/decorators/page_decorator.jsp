@@ -479,16 +479,19 @@ cursor: pointer;
 								<li id="check" style="margin: 13px auto; width: 5%;"><label
 									style="vertical-align: text-botom;" for="check2" id="auto">
 										<input id="check2" type="checkbox"
-										style="vertical-align: text-top;" id="comp" value=""> 기업
+										style="vertical-align: text-top;" name="check2" value="1"> 기업
 								</label></li>
 								<li><a href="<%=request.getContextPath()%>/member/joinMenu"
 									id="aa">회원가입</a></li>
 							</c:when>
+							
 							<c:otherwise>
 								<script>
 									connect();
 								</script>
-								<c:if test="${loginUser.mem_mail eq 'admin' }">								
+								<c:choose>
+								<c:when test="${null ne loginUser.mem_mail }">
+								<c:if test="${loginUser.mem_mail eq 'admin'}">								
 								<li class="mem_mail">
 								(<i class="fa fa-angellist"></i>) ${loginUser.mem_nick }</li>
 								</c:if>
@@ -496,6 +499,22 @@ cursor: pointer;
 								<li class="mem_mail">
 								${loginUser.mem_nick } (POINT: ${myPoint })</li>
 								</c:if>
+								</c:when>
+							<c:otherwise>
+							<c:choose>
+							<c:when test="${null ne loginUser.compmem_mail }">
+								<c:if test="${null ne loginUser.compmem_mail}">								
+								<li class="mem_mail">
+								(<i class="fa fa-angellist"></i>) ${loginUser.compmem_nm }</li>
+								</c:if>
+								<%-- <c:if test="${loginUser.mem_mail ne 'admin' }">								
+								<li class="mem_mail">
+								${loginUser.mem_nick } (POINT: ${myPoint })</li>
+								</c:if> --%>
+								</c:when>
+								</c:choose>
+							</c:otherwise>
+							</c:choose>
 								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
 								<li><a href="#" id="aa">반응 ()</a></li>
 								<li><a href="<%=request.getContextPath()%>/mypage/main"	id="aa">마이페이지</a></li>
@@ -508,8 +527,7 @@ cursor: pointer;
 										id="aa">관리자 페이지</a></li>
 								</c:if>
 								<%-- <li><a href="<%=request.getContextPath()%>/resm/resmList.do" id="aa">마이페이지</a></li> --%>
-								<li><a href="<%=request.getContextPath()%>/member/logout?"
-									+${loginUser.mem_mail } id="aa">로그아웃</a></li>
+								<li><a href="<%=request.getContextPath()%>/member/logout?"+${loginUser.mem_mail } id="aa">로그아웃</a></li>
 							</c:otherwise>
 						</c:choose>
 						<li><a href="<%=request.getContextPath()%>/member/find"
