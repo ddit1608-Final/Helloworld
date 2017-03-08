@@ -95,7 +95,7 @@
   
    </tr>
 		</table>
-	<div id="divdiv">
+	<div id="divdiv"style="margin-left:83%;">
 		<c:if test="${loginUser.mem_mail ==ifShrBoardVO.mem_mail }">
 			<input class="btn" type="button" value="수정"
 				onClick="location.href='/world/is/ifShrBoardUpdateForm.do?ifshrboard_posting_no=${ifShrBoardVO.ifshrboard_posting_no}'">

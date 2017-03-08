@@ -71,7 +71,7 @@
    		<td colspan="3">${meetBoardVO.meet_board_cont }</td>
    	</tr>
 </table>
-	<div id="divdiv">
+	<div id="divdiv" style="margin-left:83%;">
 		<c:if test="${loginUser.mem_mail ==meetBoardVO.mem_mail }">
 			<input class="btn" type="button" value="수정"
 				onClick="location.href='/world/meet/meetBoardUpdateForm.do?meet_board_posting_no=${meetBoardVO.meet_board_posting_no}'">

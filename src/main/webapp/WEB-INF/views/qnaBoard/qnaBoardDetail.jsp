@@ -79,7 +79,7 @@
 			</tr>
 		</table>
 		<!--[8] 수정 버튼이 눌리면 상품 수정 페이지로 이동하되 현재 페이지와 상품 일련번호 값을 전달해 준다. -->
-		<div id="divdiv">
+		<div id="divdiv" style=" margin-left:83%;">
 			<c:if test="${loginUser.mem_mail ==qnaBoardVO.mem_mail }">
 				<input class="btn" type="button" value="수정"
 					onClick="location.href='/world/qna/qnaBoardUpdateForm.do?qnaboard_posting_no=${qnaBoardVO.qnaboard_posting_no}'">

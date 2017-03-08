@@ -76,7 +76,7 @@
 				<td colspan="3">${freeBoardVO.freeboard_cont }</td>
 			</tr>
 		</table>
-		<div id="divdiv">
+		<div id="divdiv" style="margin-left:83%;">
 			<c:if test="${loginUser.mem_mail ==freeBoardVO.mem_mail }">
 				<input class="btn" type="button" value="수정"
 					onClick="location.href='/world/free/freeBoardUpdateForm.do?freeboard_posting_no=${freeBoardVO.freeboard_posting_no}'">

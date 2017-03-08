@@ -6,7 +6,7 @@
 <article>
 	<div>
 		<a href="<%=request.getContextPath()%>/worknet/worknet.do">
-		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/scrapLogo.png"></a>
+		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/scrapLogo2.png"></a>
 	</div>
 	<!--						리모콘									  -->
 	<%-- 로그인유저가 있을경우에 스크랩 기능을 해야되기때문에 추후 주석 제거 

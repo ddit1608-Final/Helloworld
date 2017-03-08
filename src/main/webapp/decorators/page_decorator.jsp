@@ -536,7 +536,7 @@ cursor: pointer;
 			<!--  채팅 -->
 			<div class="col-sm-2 sidenav"
 				style="background-color: white; border-left: 14px solid white; position: fixed; margin-left:-5%; top:0px;">
-					<h1>리모컨</h1>
+					<h1 style="font-family:한나;">리모컨</h1>
 					<i id="remote" class="fa fa-mail-reply-all" style="font-size:36px; border:1px solid black; margin-left:6%;" onclick="history.back()"></i>
 
 				<i id="remote" class="fa fa-home" style="font-size:36px; border:1px solid black;" onclick="location.href='<%=request.getContextPath()%>/index'"></i>

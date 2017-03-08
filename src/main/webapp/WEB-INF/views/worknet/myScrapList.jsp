@@ -6,7 +6,7 @@
 <article>
 	<div>
 		<a href="<%=request.getContextPath()%>/worknet/worknet.do">
-		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/scrapLogo.png"></a>
+		<img id="freeLogo"src="<%=request.getContextPath()%>/resources/images/scrapLogo2.png"></a>
 	</div>
 <table class="table table-striped" id="scrpList">
 	<th colspan="4">
