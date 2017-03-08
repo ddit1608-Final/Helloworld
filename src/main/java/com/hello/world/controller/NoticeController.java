@@ -58,6 +58,7 @@ public class NoticeController {
 	@ResponseBody
 	public String updateNotice(HttpServletRequest req)throws ServletException,IOException{
 		String notice_id = req.getParameter("notice_id");
+		System.out.println("zzzzzzzzzzzzzzzzzzzzz>>>>"+notice_id);
 		String notice_cont = req.getParameter("notice_cont");
 		NoticeVO notiVO = new NoticeVO();
 		notiVO.setNotice_cont(notice_cont.trim());

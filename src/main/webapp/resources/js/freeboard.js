@@ -159,7 +159,7 @@ function updateFreeComm(indexTd,indexTdd , event) {
 			
 		},
 		error : function(error) {
-			alert("22");z	
+			alert("22");	
 		}
 	})
 }

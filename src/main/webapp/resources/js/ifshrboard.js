@@ -262,11 +262,60 @@ function select_level(value,event){
 			})
 		}
 }
+function update_go(idea, event) {
+	event.preventDefault();
+	var notice_cont = $('#notice_cont'+idea).text();
+	var arr = {
+		"notice_cont" : notice_cont,
+	};
+	$.ajax({
+			url : "ifShrBoardList.do",
+			type : "post",
+			data : arr,
+			success : function(data) {
+				$('#notice_cont'+ idea).html(
+						'<textarea id="notice_cont" name="notice_cont" rows="13" style="width: 100%;border:0;background:clear;">'
+						+ notice_cont
+						+ '</textarea>'
+						+ '<input type="button" value="완료" onclick="update_noti('+idea+',event)" id="remo">');
+				},
+				error : function(error) {
 
+				}
+			})
+}
+function update_noti(idea,event){
+	alert("두번째 수정 입성")
+	alert(JSON.stringify(idea));
+	event.preventDefault();
+	var notice_id = JSON.stringify(idea);
+	var notice_cont = $('#notice_cont').val();
+	
+	alert("수정될 공지사항 넘버"+notice_id);
+	alert("수정될 공지사항 내용"+notice_cont);
+	var arr = {
+			"notice_id" : notice_id,
+			"notice_cont" : notice_cont
+		};
+	$.ajax({
+		url : "noticeUpdate",
+		type : "post",
+		data : arr,
+		success : function(data) {
+			$('#remo').remove();
+			$('#notice_cont'+idea).html(data);
+		},
+		error : function(error) {
 
-function update_go(notice_id,idex){
-	alert('sssss');
-	var updateId = $('#notice_id').val();
+		}
+	})
+	}
+	
+	
+	
+	
+	/*alert('sssss');
+	var updateId = $('#notice_id'+idea).val();
 	var updateNotice = $('#notice_cont').val();
 	alert(updateId);
 	alert(updateNotice);
@@ -283,15 +332,15 @@ function update_go(notice_id,idex){
 				$('#notice_cont').html(data);
 				alert(성공);
 			
-			/*var b = $('input[type="text"],textarea').attr('readonly',false);
+			var b = $('input[type="text"],textarea').attr('readonly',false);
 			alert(updateNotice);
-			$('.modal-body #btnArea').html("<input type='button' value='수정완료' onclick='update_go();'>")*/
+			$('.modal-body #btnArea').html("<input type='button' value='수정완료' onclick='update_go();'>")
 			},
 			error : function(data){
 				alert('실패');
 		}
-	});
-}
+	});*/
+
 /*function update_go(){
 	var ifshrboard_ans_code = $('#ifshrboard_ans_code'+indexTd).val();
 	var ifshrboard_comm_cont = $('#ifshrboard_comm_cont').val();
