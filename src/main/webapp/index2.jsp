@@ -119,6 +119,47 @@
 			<div class="col-sm-8 text-left"> -->
 
 	<!-- hot -->
+	<div>
+		<a href="http://tryhelloworld.co.kr/">
+		<h2 id="textt" style="position: absolute; margin-left:14%; margin-top:30%; font-family:한나; color:#d2d2d2;">동영상강의 바로가기</h2>
+		<img id="textimg" src="<%=request.getContextPath() %>/resources/images/learn.jpg" style="width:413px;height:394px; float:left; margin-top:20px;">
+		</a>
+	</div>
+<div class="container" style="margin-left:32.2%; margin-bottom:5px;">
+  <br>
+  <div id="myCarousel3" class="carousel slide" data-ride="carousel" style="width:823px;">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel3" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel3" data-slide-to="1"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox" style="width:100%;">
+      <div class="item active">
+        <img src="<%=request.getContextPath()%>/resources/images/main01.jpg" alt="Chania" width="852" height="408">
+      </div>
+
+      <div class="item">
+        <img src="<%=request.getContextPath()%>/resources/images/main02.jpg" alt="Chania" width="852" height="408">
+      </div>
+    
+
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel3" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel3" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+	
+	
  <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -134,7 +175,7 @@
 		<div class="item active">
 			<h2 id="title">자유게시판 HOT</h2>
 			<table class="table table-striped">
-				<c:forEach items="${freeBoardList}" var="free" begin="1" end="10">
+				<c:forEach items="${freeBoardList}" var="free" begin="1" end="7">
 					<tbody>
 						<tr>
 							<%-- <td>
@@ -168,7 +209,7 @@
         		<div class="item active">
 			<a href="<%=request.getContextPath()%>/dog/dogBoardList"><h2 id="title">개발소리게시판 HOT</h2></a>
 			<table class="table table-striped">
-			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="10">
+			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="7">
 				<tbody>
 					<tr>
 						<td>●<a
@@ -203,7 +244,7 @@
 			<a href="<%=request.getContextPath()%>/qna/qnaBoardList.do">
 			<h2 id="title">QnA게시판 HOT</h2></a>
 			<table class="table table-striped">
-			<c:forEach items="${qnaBoardList}" var="qna" begin="1" end="10">
+			<c:forEach items="${qnaBoardList}" var="qna" begin="1" end="7">
 				<tbody>
 					<tr>
 						<td>●<a href="/world/qna/qnaBoardDetail.do?qnaboard_posting_no=${qna.qnaboard_posting_no}">
@@ -250,7 +291,7 @@
 		style="width: 33%; border: 1px solid #9d9d9d; margin: 5px 0 auto 5px; float: left;">
 		<h2 id="title">HIT CONTENTS</h2>
 		<table class="table table-striped" id="maint">
-			<c:forEach items="${freeBoardList}" var="free" begin="1" end="10">
+			<c:forEach items="${freeBoardList}" var="free" begin="1" end="7">
 				<tbody>
 					<tr>
 						<%-- <td>
@@ -281,7 +322,7 @@
 		<h2 id="title">NEW CONTENTS</h2>
 
 		<table class="table table-striped">
-			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="10">
+			<c:forEach items="${dogBoardList}" var="dog" begin="1" end="7">
 				<tbody>
 					<tr>
 						<td>●<a

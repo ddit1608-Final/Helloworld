@@ -56,7 +56,15 @@ input[type=text] {
 	text-align: center;
 	color: #466d53;
 }
-
+#hrt3 label{
+font-weight:100;
+}
+#hrt3 input[type=radio]{
+margin-left:8%;
+}
+#hrt2 input[type=radio]{
+margin-left:8%;
+}
 input[type=checkbox] {
 	margin-left: 10%;
 }
@@ -120,7 +128,7 @@ input[type=checkbox] {
 
 
 		<div>
-			<table
+			<table id="resmDe"
 				style="border: 1px solid #b7cbd9; border-top: 2px solid #376045; margin: 0 auto; width: 60%; height: 276px;">
 				<tr>
 					<td rowspan="6"
@@ -155,10 +163,10 @@ input[type=checkbox] {
 						color="red">＊</font>주소</td>
 					<td><input class="form-control" type="text" id="addr_zipnum"
 						name="addr_zipnum" style="width: 50%; display: inline-block;"
-						value="${loginUser.addr_zipnum }"> <input
+						value="${loginUser.addr_zipnum }" readonly="readonly"> <input
 						class="form-control" type="text" id="mem_addr" name="mem_addr"
 						style="width: 70.5%; margin-top: 2%;"
-						value="${loginUser.mem_addr }"></td>
+						value="${loginUser.mem_addr }" readonly="readonly"></td>
 				</tr>
 
 				<tr>
@@ -166,7 +174,7 @@ input[type=checkbox] {
 						style="background-color: #f5f9ed; color: #466d53; border: 1px solid #b7cbd9; text-align: center; font-weight: bold;"><font
 						color="red">＊</font>연락처</td>
 					<td style="border: 1px solid #b7cbd9"><input type="text"
-						style="border: none; width: 100%;" value="${loginUser.mem_phn }"></td>
+						style="border: none; width: 100%;" value="${loginUser.mem_phn }"readonly="readonly"></td>
 				</tr>
 
 				<tr>
@@ -175,7 +183,7 @@ input[type=checkbox] {
 						color="red">＊</font>이메일</td>
 					<td style="border: 1px solid #b7cbd9"><input type="text"
 						style="border: none; width: 100%;" name="mem_mail"
-						value="${loginUser.mem_mail }"></td>
+						value="${loginUser.mem_mail }" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td
@@ -228,7 +236,7 @@ input[type=checkbox] {
 			</table>
 			<br />
 			<div>
-				<h2 style="font-family: 나눔고뒥; margin-left: 20%; font-weight: bold;">취미</h2>
+				<h2 style="font-family: 나눔고뒥; margin-left: 20%; font-weight: bold;">취미 및 특기</h2>
 			</div>
 			<hr style="margin-top: 0; width: 60%;">
 			<table
@@ -236,12 +244,12 @@ input[type=checkbox] {
 				<tr id="hrt3">
 					<td style="width: 25%; font-weight: bold; font-family: 나눔고뒥;">취미</td>
 					<td style="background-color: white; text-align: left;">
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="ppp"
+						&nbsp;&nbsp;&nbsp;&nbsp; <input style="border:none;"type="text" id="ppp"
 						name="resm_hob" value="${resmVO.resm_hob }" readonly>
 					</td>
 					<td style="width: 25%; font-weight: bold; font-family: 나눔고뒥;">특기</td>
 					<td style="background-color: white; text-align: left;">
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="ppp"
+						&nbsp;&nbsp;&nbsp;&nbsp; <input style="border:none;"type="text" id="ppp"
 						name="resm_like" value="${resmVO.resm_like }" readonly>
 					</td>
 				</tr>
@@ -319,7 +327,7 @@ input[type=checkbox] {
 					<td style="width: 25%; font-weight: bold; font-family: 나눔고뒥;">병역사항</td>
 					<td style="background-color: white; text-align: left;"><c:if
 							test="${resmVO.milt_code == 0 }">
-						&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="milt_code"
+						&nbsp;&nbsp;&nbsp;&nbsp;<input  style="margin-left:8%;"type="radio" name="milt_code"
 								value="0" checked>미필 &nbsp;<input type="radio"
 								name="milt_code" value="1">군필 &nbsp;<input type="radio"
 								name="milt_code" value="2">면제

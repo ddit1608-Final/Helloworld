@@ -156,37 +156,41 @@ Sunday Monday Tuesday Wednesday Thursday Friday Saturday
 
        	<div id="datee">
 	   <ul class="days">
-	      <li><div class="activee">1:신정<hr></div></li>
+	      <li><div class="activee"><font style="color:gray; font-size:11pt;">26</font><hr></div></li>
+	      <li><font style="color:gray; font-size:11pt;">27</font><hr></li>
+	      <li><font style="color:gray; font-size:11pt;">28</font><hr></li>
+	      <li><div class="activee">1:삼일절<hr></div></li>
 	      <li>2<hr></li>
 	      <li>3<hr></li>
-	      <li>4<hr></li>
-	      <li>5<hr></li>
+	      <li><div class="activee">4<hr></div></li>
+	      <li><div class="activee">5<hr></div></li>
 	      <li>6<hr></li>
-	      <li><div class="activee">7<hr></div></li>
-	      <li><div class="activee">8<hr></div></li>
+	      <li>7<hr></li>
+	      <li>8<hr></li>
 	      <li>9<hr></li>
-	      <li>10<hr></li>
-	      <li>11<hr></li>
-	      <li>12<hr></li>
+	      <li style="background-color: skyblue;">10(TODAY)<hr></li>
+	      <li><div class="activee">11<hr></div></li>
+	      <li><div class="activee">12<hr></div></li>
 	      <li>13<hr></li>
-	      <li><div class="activee">14<hr></div></li>
-	      <li><div class="activee">15<hr></div></li>
+	      <li>14<hr></li>
+	      <li>15<hr></li>
 	      <li>16<hr></li>
 	      <li>17<hr></li>
-	      <li style="background-color: skyblue;">18(today)<hr></li>
-	      <li>19<hr></li>
+	      <li><div class="activee">18<hr></div></li>
+	      <li><div class="activee">19<hr></div></li>
 	      <li>20<hr></li>
-	      <li><div class="activee">21<hr></div></li>
-	      <li><div class="activee">22<hr></div></li>
+	      <li>21<hr></li>
+	      <li>22<hr></li>
 	      <li>23<hr></li>
 	      <li>24<hr></li>
-	      <li>25<hr></li>
-	      <li>26<hr></li>
-	      <li><div class="activee">27<hr></div></li>
-	      <li><div class="activee">28:설날<hr></div></li>
-	      <li><div class="activee">29<hr></div></li>
-	      <li><div class="activee">30:대체 휴일<hr></div></li>
+	      <li><div class="activee">25<hr></div></li>
+	      <li><div class="activee">26<hr></div></li>
+	      <li>27<hr></li>
+	      <li>28<hr></li>
+	      <li>29<hr></li>
+	      <li>30<hr></li>
 	      <li>31<hr></li>
+	      
 	   </ul>
 	</div>
 	

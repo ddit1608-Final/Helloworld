@@ -56,6 +56,9 @@ input[type=text] {
 	text-align: center;
 	color: #466d53;
 }
+#hrt3 label{
+font-weight:100;
+}
 
 input[type=checkbox] {
 	margin-left: 10%;
@@ -207,7 +210,7 @@ input[type=checkbox] {
 				<tr id="hrt2">
 					<td style="width: 25%; background-color: #f5f9ed; font-weight: bold; font-family: 나눔고뒥;">학력</td>
 					<td style="background-color: white; text-align: left;">
-					&nbsp;<input type="radio" name="acdmcr_code"
+					&nbsp;<input style="margin-left:8%;"type="radio" name="acdmcr_code"
 						value="1">고졸 &nbsp;<input type="radio" name="acdmcr_code"
 						value="2">전문대졸 &nbsp;<input type="radio" name="acdmcr_code"
 						value="3">대졸</td>
@@ -216,7 +219,7 @@ input[type=checkbox] {
 			</table>
 			<br />
 			<div>
-				<h2 style="font-family: 나눔고뒥; margin-left: 20%; font-weight: bold;">취미</h2>
+				<h2 style="font-family: 나눔고뒥; margin-left: 20%; font-weight: bold;">취미 및 특기</h2>
 			</div>
 			<hr style="margin-top: 0; width: 60%;">
 			<table
@@ -224,10 +227,10 @@ input[type=checkbox] {
 				<tr id="hrt3">
 					<td style="width: 25%; font-weight: bold; font-family: 나눔고뒥;">취미</td>
 					<td style="background-color: white; text-align: left;">
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="ppp" name="resm_hob"></td>
+						&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="ppp" name="resm_hob" style="border:none; height:92%; width:90%; margin-bottom:12%;"></td>
 					<td style="width: 25%; font-weight: bold; font-family: 나눔고뒥;">특기</td>
 					<td style="background-color: white; text-align: left;">
-						&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="ppp" name="resm_like"></td>
+						&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="ppp" name="resm_like" style="border:none; height:92%; width:90%; margin-bottom:12%;"></td>
 				</tr>
 			</table>
 
@@ -272,7 +275,7 @@ input[type=checkbox] {
 				<tr id="hrt3">
 					<td style="width: 25%; font-weight: bold; font-family: 나눔고뒥;">병역사항</td>
 					<td style="background-color: white; text-align: left;">
-						&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="milt_code"
+						&nbsp;&nbsp;&nbsp;&nbsp;<input  style="margin-left:8%;"type="radio" name="milt_code"
 						value="0">미필 &nbsp;<input type="radio" name="milt_code"
 						value="1">군필 &nbsp;<input type="radio" name="milt_code"
 						value="2">면제

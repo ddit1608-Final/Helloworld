@@ -263,6 +263,12 @@ footer {
 #loginbtn:hover {
 	color: #3EAF0E;
 }
+.mem_mail{
+color:#a31313 !important;
+padding-top:13px;
+font-family:한나;
+font-size:12pt;
+}
 
 .mem_mail a{
 	padding-top: 13px !important;
