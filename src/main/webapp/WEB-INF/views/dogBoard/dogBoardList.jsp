@@ -34,7 +34,7 @@
 				</td>
 			</tr>
 			<c:forEach items="${notiList}" var="notice" varStatus="status">
-					<tr style="text-align: center; border-bottom:2px solid gray; font-size:15pt;">
+					<tr style="text-align: center; border-bottom:2px solid gray; font-size:13pt;">
 						<td>${notice.notice_id } 
 						</td>
 						<td colspan="2">
