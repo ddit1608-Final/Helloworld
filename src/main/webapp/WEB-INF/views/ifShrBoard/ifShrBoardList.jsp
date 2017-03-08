@@ -62,10 +62,15 @@
 										<textarea id="notice_cont${status.count }" name="notice_cont${status.count }" readonly="readonly" rows="13" style="width: 100%;border:0;background:clear;">${notice.notice_cont }</textarea>
 										</c:if>
 										<c:if test="${loginUser.mem_mail eq 'admin' }">
-										<textarea id="notice_cont${status.count }" name="notice_cont${status.count }" rows="13" style="width: 100%;border:0;background:clear;">${notice.notice_cont }</textarea>
-										</c:if>
-										<c:set value="notice_cont${status.count }" var="notice_cont"/>
+										<%-- <textarea id="notice_cont${status.count }" name="notice_cont${status.count }" rows="13" style="width: 100%;border:0;background:clear;">${notice.notice_cont }</textarea> --%>
+										<div id="notice_cont${status.count }">
+										${notice.notice_cont }									
+										</div>
 										
+										</c:if>
+										<c:set value="${notice.notice_cont}" var="notice_cont"/>
+										<c:set value="${notice.notice_id}" var="notice_id"/>
+										<c:set value="${status.count }" var="idea"/>
 										<c:set value="notice_id${status.count }" var="idex"/>
 										
 										<br/>
@@ -74,7 +79,7 @@
 									</span>
 									<span id="btnArea">
 									<c:if test="${loginUser.mem_mail eq 'admin' }">
-										<input type="button" class="btn btn-default btn-xs" value="수정" onclick="update_go(notice_id,${ idex});">
+										<input type="button" class="btn btn-default btn-xs" value="수정" onclick="update_go('${idea}',event);">
 										<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="noti_del();">
 									</c:if>
 									</span>
@@ -117,8 +122,7 @@
 							<td style="text-align: center;">${ifShrBoardVO.ifshrboard_posting_no}</td>
 							<td style="text-align: center; font-family:한나;">
 							<a href="/world/is/ifShrBoardDetail.do?ifshrboard_posting_no=
-								${ifShrBoardVO.ifshrboard_posting_no}"data-toggle="tooltip" data-placement="right"
-									title="${ifShrBoardVO.ifshrboard_cont}">
+								${ifShrBoardVO.ifshrboard_posting_no}">
 								${ifShrBoardVO.ifshrboard_title}
 								<c:forEach items="${typeList }" var="type" varStatus="status">
 									<c:if test="${type.type_key==ifShrBoardVO.type_key }">
