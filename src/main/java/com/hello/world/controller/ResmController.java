@@ -1,11 +1,11 @@
 package com.hello.world.controller;
 
+import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.hello.world.dto.FreeBoardVO;
 import com.hello.world.dto.MemVO;
 import com.hello.world.dto.ResmVO;
 import com.hello.world.service.ResmService;
@@ -60,7 +60,7 @@ public class ResmController {
 
 
 
-	@RequestMapping("/resmWriteForm.do")
+	@RequestMapping(value="/resmWriteForm.do", method=RequestMethod.GET)
 	   public String ResmWriteForm(HttpSession session) throws ServletException,
 	         IOException {
 	      String url = "resm/resmForm";
@@ -72,11 +72,29 @@ public class ResmController {
 	
 	
 	
-	@RequestMapping("/resmWrite.do")
-	      public String ResmWriteForm(ResmVO resmVO, HttpSession session)
+	@RequestMapping(value="/resmWriteForm.do", method=RequestMethod.POST)
+	      public String ResmWriteForm(ResmVO resmVO, HttpSession session,HttpServletRequest request,
+	    		  @RequestParam("uploadfile")MultipartFile uploadfile)
 	  			throws ServletException, IOException {
 	  		String url = "redirect:resmList.do";
-	  		
+	        
+	        String uploadFilePath ="D:/HelloWorld/Helloworld/src/main/resources/file";
+	     
+	        if(!uploadfile.isEmpty()){
+	           File file = new File(uploadFilePath, "$$"+System.currentTimeMillis()+uploadfile.getOriginalFilename());
+	           String fileName = file.getName();
+	           int pos = fileName.lastIndexOf(".");
+	           try{
+	           uploadfile.transferTo(file);
+	           } catch (IllegalStateException e) {
+	              e.printStackTrace();
+	           } catch (IOException e) {
+	              e.printStackTrace();
+	           }
+	           
+	           resmVO.setIdpic_code(fileName);
+	        }
+	        
 	  		resmService.insertResm(resmVO);	  		
 	  		
 	  		return url;
@@ -92,11 +110,29 @@ public class ResmController {
 	      model.addAttribute("resmVO", resmVO);
 	      return url;
 	   }
-	@RequestMapping(value="/resmUpdate.do",method=RequestMethod.POST)
-	public String ResmUpate(ResmVO resmVO, HttpSession session)	throws ServletException, IOException {
+	@RequestMapping(value="/resmUpdateForm.do",method=RequestMethod.POST)
+	public String ResmUpate(ResmVO resmVO, HttpSession session,HttpServletRequest request,
+  		  @RequestParam("uploadfile")MultipartFile uploadfile)	throws ServletException, IOException {
 		String url = "redirect:resmList.do";
 		
 		/*MemVO loginUser = (MemVO) session.getAttribute("loginUser");*/
+		
+		String uploadFilePath ="C:/Users/PC02/git/Helloworld4/src/main/resources/file";
+	     
+        if(!uploadfile.isEmpty()){
+           File file = new File(uploadFilePath, "$$"+System.currentTimeMillis()+uploadfile.getOriginalFilename());
+           String fileName = file.getName();
+           int pos = fileName.lastIndexOf(".");
+           try{
+           uploadfile.transferTo(file);
+           } catch (IllegalStateException e) {
+              e.printStackTrace();
+           } catch (IOException e) {
+              e.printStackTrace();
+           }
+           
+           resmVO.setIdpic_code(fileName);
+        }
 		
 		resmService.updateResm(resmVO);
 		

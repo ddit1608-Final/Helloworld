@@ -88,7 +88,7 @@ background-color: #006f00;
 </form> -->
 
 <article>
-<form name="form" method="post" action="resmUpdate.do">
+<form name="form" method="post" enctype="multipart/form-data">
 <!-- 헤더테이블 -->
 	<input type="hidden" name="resm_id" value="${resmVO.resm_id }">
 	<div>
@@ -109,8 +109,7 @@ background-color: #006f00;
 						<img style="width: 90%; margin-left: 5%;"
 						src="<%=request.getContextPath()%>/images/jeung.jpg"> <br>
 						<div style="margin-left: 13%; margin-top: 3%;">
-							<input type="button" value="등록/수정" class="btn"> <input
-								type="button" value="삭제" class="btn">
+							<input type="file" name="uploadfile">
 						</div>
 					<td
 						style="background-color: #f5f9ed; color: #466d53; border: 1px solid #b7cbd9; text-align: center; width: 20%; font-weight: bold;"><font

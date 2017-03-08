@@ -108,7 +108,7 @@ input[type=checkbox] {
 </form> -->
 
 <article>
-	<form name="formm" method="post">
+	<form name="formm" method="post" enctype="multipart/form-data">
 		<!-- 헤더테이블 -->
 		<div>
 			<h2 style="font-family: 나눔고뒥; margin-left: 20%; font-weight: bold;">
@@ -128,8 +128,7 @@ input[type=checkbox] {
 						<img style="width: 90%; margin-left: 5%;"
 						src="<%=request.getContextPath()%>/images/jeung.jpg"> <br>
 						<div style="margin-left: 13%; margin-top: 3%;">
-							<input type="button" value="등록/수정" class="btn"> <input
-								type="button" value="삭제" class="btn">
+						 <input type="file" name="uploadfile">
 						</div>
 					<td
 						style="background-color: #f5f9ed; color: #466d53; border: 1px solid #b7cbd9; text-align: center; width: 20%; font-weight: bold;"><font
@@ -271,7 +270,8 @@ input[type=checkbox] {
 							<label for="0">정보처리기사</label>
 							<input type="checkbox" name="lcse_code" id="4" value="4">
 							<label for="4">운전면허증</label>
-						</c:if> <c:if test="${resmVO.lcse_code == 1}">
+						</c:if> 
+						<c:if test="${resmVO.lcse_code == 1}">
 							<input type="checkbox" name="lcse_code" id="2" value="2">
 							<label for="2">정보처리기능사</label>
 							<input type="checkbox" name="lcse_code" id="1" value="1" checked>
@@ -280,7 +280,8 @@ input[type=checkbox] {
 							<label for="0">정보처리기사</label>
 							<input type="checkbox" name="lcse_code" id="4" value="4">
 							<label for="4">운전면허증</label>
-						</c:if> <c:if test="${resmVO.lcse_code == 0}">
+						</c:if> 
+						<c:if test="${resmVO.lcse_code == 0}">
 							<input type="checkbox" name="lcse_code" id="2" value="2">
 							<label for="2">정보처리기능사</label>
 							<input type="checkbox" name="lcse_code" id="1" value="1">
@@ -289,7 +290,8 @@ input[type=checkbox] {
 							<label for="0">정보처리기사</label>
 							<input type="checkbox" name="lcse_code" id="4" value="4">
 							<label for="4">운전면허증</label>
-						</c:if> <c:if test="${resmVO.lcse_code == 4}">
+						</c:if> 
+						<c:if test="${resmVO.lcse_code == 4}">
 							<input type="checkbox" name="lcse_code" id="2" value="2">
 							<label for="2">정보처리기능사</label>
 							<input type="checkbox" name="lcse_code" id="1" value="1">

@@ -58,6 +58,10 @@
 	<beans:bean id="HandshakeInterceptor" class="com.hello.world.websocket.HandshakeInterceptor" />
 	<beans:bean id="echoHanler1" class="com.hello.world.controller.EchoHandler" />
 	<beans:bean id="socketController" class="com.hello.world.controller.SocketController" />
+	<beans:bean id="multipartResolver"      
+      class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 
+      p:defaultEncoding="utf-8"
+   />
 		
 	<websocket:handlers>
 		<websocket:mapping handler="echoHanler1" path="/echo-ws"/>
