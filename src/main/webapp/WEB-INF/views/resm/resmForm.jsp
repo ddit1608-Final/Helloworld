@@ -124,8 +124,8 @@ input[type=checkbox] {
 				<tr>
 					<td rowspan="6"
 						style="width: 152px; border: 1px solid #b7cbd9; font-weight: bold;">
-						<img style="width: 90%; margin-left: 5%;"
-						src="<%=request.getContextPath()%>/images/jeung.jpg"> <br>
+						<%-- <img style="width: 90%; margin-left: 5%;"
+						src="<%=request.getContextPath()%>/images/jeung.jpg"> <br> --%>
 						<div style="margin-left: 13%; margin-top: 3%;">
 							<input type="file" name="uploadfile">
 						</div>

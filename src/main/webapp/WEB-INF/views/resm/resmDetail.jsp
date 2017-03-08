@@ -126,9 +126,9 @@ input[type=checkbox] {
 					<td rowspan="6"
 						style="width: 152px; border: 1px solid #b7cbd9; font-weight: bold;">
 						<img style="width: 90%; margin-left: 5%;"
-						src="<%=request.getContextPath()%>/images/jeung.jpg"> <br>
+						src="<%=request.getContextPath()%>/resources/file/${resmVO.idpic_code }"> <br>
 						<div style="margin-left: 13%; margin-top: 3%;">
-						 <input type="file" name="uploadfile">
+						 <!-- <input type="file" name="uploadfile"> -->
 						</div>
 					<td
 						style="background-color: #f5f9ed; color: #466d53; border: 1px solid #b7cbd9; text-align: center; width: 20%; font-weight: bold;"><font

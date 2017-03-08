@@ -91,6 +91,7 @@ background-color: #006f00;
 <form name="form" method="post" enctype="multipart/form-data">
 <!-- 헤더테이블 -->
 	<input type="hidden" name="resm_id" value="${resmVO.resm_id }">
+	<input type="hidden" name="nn" value="${resmVO.idpic_code }">
 	<div>
 			<h2 style="font-family: 나눔고뒥; margin-left: 20%; font-weight: bold;">
 				기본정보<font style="font-size: 10pt; color: gray;">ㅣ한문명,영문명,홈페이지는
@@ -107,7 +108,7 @@ background-color: #006f00;
 					<td rowspan="6"
 						style="width: 152px; border: 1px solid #b7cbd9; font-weight: bold;">
 						<img style="width: 90%; margin-left: 5%;"
-						src="<%=request.getContextPath()%>/images/jeung.jpg"> <br>
+						src="<%=request.getContextPath()%>/resources/file/${resmVO.idpic_code }"> <br>
 						<div style="margin-left: 13%; margin-top: 3%;">
 							<input type="file" name="uploadfile">
 						</div>

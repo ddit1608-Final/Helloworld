@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hello.world.dto.MemVO;
@@ -24,6 +26,8 @@ import com.hello.world.service.ResmService;
 @Controller
 @RequestMapping("/resm")
 public class ResmController {
+	@Autowired
+	WebApplicationContext ctx;
 	
 	@Autowired
 	ResmService resmService;
@@ -78,7 +82,9 @@ public class ResmController {
 	  			throws ServletException, IOException {
 	  		String url = "redirect:resmList.do";
 	        
-	        String uploadFilePath ="D:/HelloWorld/Helloworld/src/main/resources/file";
+	  		ServletContext context = ctx.getServletContext();
+			String uploadFilePath ="/resources/file";
+			uploadFilePath = context.getRealPath(uploadFilePath);
 	     
 	        if(!uploadfile.isEmpty()){
 	           File file = new File(uploadFilePath, "$$"+System.currentTimeMillis()+uploadfile.getOriginalFilename());
@@ -112,12 +118,15 @@ public class ResmController {
 	   }
 	@RequestMapping(value="/resmUpdateForm.do",method=RequestMethod.POST)
 	public String ResmUpate(ResmVO resmVO, HttpSession session,HttpServletRequest request,
-  		  @RequestParam("uploadfile")MultipartFile uploadfile)	throws ServletException, IOException {
+  		  @RequestParam("uploadfile")MultipartFile uploadfile, Model model)
+  				  throws ServletException, IOException {
+		
 		String url = "redirect:resmList.do";
 		
 		/*MemVO loginUser = (MemVO) session.getAttribute("loginUser");*/
-		
-		String uploadFilePath ="C:/Users/PC02/git/Helloworld4/src/main/resources/file";
+		ServletContext context = ctx.getServletContext();
+		String uploadFilePath ="/resources/file";
+		uploadFilePath = context.getRealPath(uploadFilePath);
 	     
         if(!uploadfile.isEmpty()){
            File file = new File(uploadFilePath, "$$"+System.currentTimeMillis()+uploadfile.getOriginalFilename());
@@ -132,6 +141,9 @@ public class ResmController {
            }
            
            resmVO.setIdpic_code(fileName);
+        }
+        else{
+        	resmVO.setIdpic_code(request.getParameter("nn"));
         }
 		
 		resmService.updateResm(resmVO);
