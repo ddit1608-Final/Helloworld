@@ -52,6 +52,11 @@ border:1px solid #b7cbd9 !important;
 		    <td style="border:1px solid #b7cbd9"><input type="text" class="form-control" id="rctboard_title" name="rctboard_title" placeholder="ex) 유능한 인재를 찾습니다."></td> 
 		    
 		</tr>
+			<tr>
+	      		<th style="width:30%;">&nbsp;&nbsp;&nbsp;회사이름</th>
+	      		<td><input type="text" class="form-control" id="compmem_comp_nm" name="compmem_comp_nm" placeholder="ex) 대전, 서울, 내근"
+	      		value="${loginUser.compmem_comp_nm }" readonly></td>
+		    </tr>
 	      <tr>
 	      		<th style="width:30%;"><font style="color:red;">＊</font>경력</th>
 		        <td><input type="text" class="form-control" id="rctboard_crr" name="rctboard_crr" placeholder="ex) 경력 1년 이상 or 경력무관"></td>
@@ -62,7 +67,7 @@ border:1px solid #b7cbd9 !important;
 		    </tr>
 		    <tr>
 	      		<th style="width:30%;"><font style="color:red;">＊</font>연봉</th>
-	      		<td><input type="text" class="form-control" id="rctboard_yeard_sal" name="rctboard_yeard_sal" placeholder="ex) 2500이상, 협의 후 결정"></td>
+	      		<td><input type="text" class="form-control" id="rctboard_year_sal" name="rctboard_year_sal" placeholder="ex) 2500이상, 협의 후 결정"></td>
 		    </tr>
 		    <tr>
 	      		<th style="width:30%;"><font style="color:red;">＊</font>고용형태</th>
@@ -74,7 +79,8 @@ border:1px solid #b7cbd9 !important;
 		    </tr>
 		    <tr>
 	      		<th style="width:30%;">&nbsp;&nbsp;&nbsp;근무지</th>
-	      		<td><input type="text" class="form-control" id="rctboard_workp" name="rctboard_workp" placeholder="ex) 대전, 서울, 내근"></td>
+	      		<td><input type="text" class="form-control" id="rctboard_workp" name="rctboard_workp" placeholder="ex) 대전, 서울, 내근"
+	      		value="${loginUser.compmem_workp }" readonly></td>
 		    </tr>
 		    <tr>
 	      		<th style="width:30%;">&nbsp;&nbsp;&nbsp;근무시간</th>
@@ -90,11 +96,13 @@ border:1px solid #b7cbd9 !important;
 		    </tr>
 		    <tr>
 	      		<th style="width:30%;"><font style="color:red;">＊</font>연락처</th>
-	      		<td><input type="text" class="form-control" id="rctboard_phn" name="rctboard_phn" placeholder="ex) 010-XXXX-XXXX"></td>
+	      		<td><input type="text" class="form-control" id="rctboard_phn" name="rctboard_phn" placeholder="ex) 010-XXXX-XXXX"
+	      		value="${loginUser.compmem_phn }" readonly></td>
 		    </tr>
 		    <tr>
 	      		<th style="width:30%;"><font style="color:red;">＊</font>담당자명</th>
-	      		<td><input type="text" class="form-control" id="rctboard_respsbt" name="rctboard_respsbt" placeholder="ex) 홍길동"></td>
+	      		<td><input type="text" class="form-control" id="rctboard_respsbt" name="rctboard_respsbt" placeholder="ex) 홍길동"
+	      		value="${loginUser.compmem_nm }" readonly></td>
 		    </tr>
 		    <tr>
 	      		<th style="width:30%;">&nbsp;&nbsp;&nbsp;회사홈페이지</th>
@@ -106,7 +114,8 @@ border:1px solid #b7cbd9 !important;
 		    </tr>
 		    <tr>
 		      	<th style="width:30%;"><font style="color:red;">＊</font>사업자등록정보</th>
-	      		<td><input type="text" class="form-control" id="compmem_bsnss_lcse_no" name="compmem_bsnss_lcse_no" placeholder="ex) 145871-01-1547857"></td>
+	      		<td><input type="text" class="form-control" id="compmem_bsnss_lcse_no" name="compmem_bsnss_lcse_no" placeholder="ex) 145871-01-1547857"
+	      		value="${loginUser.compmem_bsnss_lcse_no }" readonly></td>
 		    </tr>
      </thead>
 	</table>

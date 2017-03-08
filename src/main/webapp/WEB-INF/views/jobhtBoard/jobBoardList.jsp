@@ -77,47 +77,17 @@ background-color: #006f00;
 				<span>경력 72년</span>
 				<font>asdasdsd</font>	
 			</li>
-			
-			
-			
-			
-			
-			
 		</ul> --%>
 		 <table class="table table-condensed" id="blt">
 			<tr>
 				<td style="width:150px;"><img src="<%=request.getContextPath()%>/resources/images/jeung.jpg"></td>
 				<td style="font-size:20pt; padding-left:2%; padding-top:2%;">[영어가능] Java전문가 입니다. 연락주세요.
 				<h5 style="color:gray;">할줄아는게 Java밖에 없습니다..연락주세요^^</h5>
-				<h4>★★★★★</h4></td>
-				<td><input type="button" value="쪽지보내기"></td>
-			</tr>
-			<tr>
-				<td style="width:150px;"><img src="<%=request.getContextPath()%>/resources/images/jeung2.jpg"></td>
-				<td style="font-size:20pt; padding-left:2%; padding-top:2%;">[영어가능] ㅍㅍㅍㅍㅍㅍㅍ
-				<h5 style="color:gray;">ㅍㅍㅍㅍㅍㅍㅍㅍㅍ</h5>
-				<h4>★★★★★</h4></td>
-				<td><input type="button" value="쪽지보내기"></td>
-			</tr>
-			<tr>
-				<td style="width:150px;"><img src="<%=request.getContextPath()%>/resources/images/jeung3.jpg"></td>
-				<td style="font-size:20pt; padding-left:2%; padding-top:2%;">[영어가능] ㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂㅂ
-				<h5 style="color:gray;">ㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷㄷ</h5>
-				<h4>★★★★★</h4></td>
-				<td><input type="button" value="쪽지보내기"></td>
-			</tr>
-			<tr>
-				<td style="width:150px;"><img src="<%=request.getContextPath()%>/resources/images/jeung.jpg"></td>
-				<td style="font-size:20pt; padding-left:2%; padding-top:2%;">[영어가능] Java전문가 입니다. 연락주세요.
-				<h5 style="color:gray;">할줄아는게 Java밖에 없습니다..연락주세요^^</h5>
-				<h4>★★★★★</h4></td>
-				<td><input type="button" value="쪽지보내기"></td>
 			</tr>
 			<c:forEach items="${JobhtBoardList}" var="jobhtBoardVO">
 				<tr>
 					<td style="text-align: center;">${jobhtBoardVO.jobhtboard_posting_no }</td>
-					<td>${jobhtBoardVO.jobhtboard_title }</td>
-					<td style="text-align: center;" >${loginUser.mem_nm }</td>				
+					<td style="text-align: center;">${jobhtBoardVO.jobhtboard_title }</td>		
 					<%-- <td style="text-align: center;"><fmt:formatDate value="${jobhtBoardVO.jobhtboard_wri_date}" type="date" /></td> --%>
 				</tr>
 			</c:forEach>

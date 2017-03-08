@@ -46,14 +46,17 @@ font-weight:bold;
         		<td style="width:10%;"></td>
 		</table> --%>
 	
-		
+		<tr>
+			<td><font style="color:red;">＊</font>제목&nbsp;&nbsp;&nbsp;</td>
+			<td><input type="text" name="jobhtboard_title" ></td>
+		</tr>
 		<tr>
 			<td><font style="color:red;">＊</font>이메일&nbsp;&nbsp;&nbsp;</td>
-			<td><input type="text" name="mem_mail"></td>
+			<td><input type="text" name="mem_mail" value="${loginUser.mem_mail }" readonly></td>
 		</tr>
 		
 		<tr>
-			<td><font style="color:red;">＊</font>홈페이지&nbsp;&nbsp;&nbsp;</td>
+			<td><font style="color:red;">＊</font>개인 홈페이지&nbsp;&nbsp;&nbsp;</td>
 			<td><input type="text" name="jobhtboard_homep"></td>
 		</tr>
 		

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.hello.world.dao.RctBoardDAO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.RctBoardVO;
+import com.hello.world.dto.SearchVO;
 import com.hello.world.dto.rctSearchVO;
 import com.hello.world.dto.testVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
@@ -25,65 +26,38 @@ public class RctBoardDAO_iBatis implements RctBoardDAO {
 	}
 
 	@Override
-	public ArrayList<RctBoardVO> getRctBoardList(int startRow, rctSearchVO rctSearchVO,
+	public ArrayList<RctBoardVO> getRctBoardList(int startRow, SearchVO searchVO,
 			int counts) throws SQLException {
 		ArrayList<RctBoardVO> rctBoardList = new ArrayList<RctBoardVO>();
 
 		rctBoardList = (ArrayList<RctBoardVO>) client.queryForList(
-				"getRctBoardList", rctSearchVO, startRow, counts);
+				"getRctBoardList", searchVO, startRow, counts);
 
 		return rctBoardList;
 	}
 
 	@Override
-	public ArrayList<RctBoardVO> listAllRctBoard(int startRow, rctSearchVO rctSearchVO,
+	public ArrayList<RctBoardVO> listAllRctBoard(int startRow, SearchVO searchVO,
 			int counts) throws SQLException {
 		ArrayList<RctBoardVO> rctBoardList = new ArrayList<RctBoardVO>();
 
 		rctBoardList = (ArrayList<RctBoardVO>) client.queryForList(
-				"listAllRctBoard", rctSearchVO, startRow, counts);
+				"listAllRctBoard", searchVO, startRow, counts);
 
 		return rctBoardList;
 	}
 
 	@Override
-	public int getTotal(rctSearchVO rctSearchVO) throws SQLException {
+	public int getTotal(SearchVO searchVO) throws SQLException {
 
-		return (int) client.queryForObject("totalRctBoard", rctSearchVO);
+		return (int) client.queryForObject("totalRctBoard", searchVO);
 	}
 
 	@Override
-	public int totalRecord(rctSearchVO rctSearchVO) throws SQLException {
+	public int totalRecord(SearchVO searchVO) throws SQLException {
 		int total_pages = 0;
-		String comp_name = rctSearchVO.getComp_name();  
-		if (comp_name.equals("")) {
-			comp_name = "%";
-		}
-		String area = rctSearchVO.getArea();
-		if (area.equals("")){
-			area = "%";
-		}
-		String lan = rctSearchVO.getLan();
-		if (lan.equals("")){
-			lan = "%";
-		}
-		String comg = rctSearchVO.getComg();
-		if (comg.equals("")){
-			comg = "%";
-		}
-		String grade = rctSearchVO.getGrade();
-		if (grade.equals("")){
-			grade = "%";
-		}
-		String sal = rctSearchVO.getSal();
-		if (sal.equals("")){
-			sal = "%";
-		}
-		String title = rctSearchVO.getTitle();
-		if (title.equals("")){
-			title = "%";
-		}
-		total_pages = (Integer) client.queryForObject("totalRctBoard", rctSearchVO);
+		
+		total_pages = (Integer) client.queryForObject("totalRctBoard", searchVO);
 		return total_pages;
 	}
 

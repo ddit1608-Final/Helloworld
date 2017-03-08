@@ -5,7 +5,7 @@
 	
 	<insert id="insertJobthBoard" parameterClass="jobhtBoard">
 		insert into jobhtboard(mem_mail, jobhtboard_homep, jobhtboard_hope_sal, jobhtboard_hope_workp, jobhtboard_vltr_kind, jobhtboard_posting_no, resm_id, com_use_abil_code, lang_abil_code)
-		values(#mem_mail#, #jobhtboard_homep#, #jobhtboard_hope_sal#, #jobhtboard_hope_workp#, #jobhtboard_vltr_kind#, #jobhtboard_posting_no#, #resm_id#, #com_use_abil_code#, #lang_abil_code#) 
+		values(#mem_mail#, #jobhtboard_homep#, #jobhtboard_hope_sal#, #jobhtboard_hope_workp#, #jobhtboard_vltr_kind#, jobhtboard_posting_no.nextval, #resm_id#, #com_use_abil_code#, #lang_abil_code#) 
 	</insert>
 	
 	<select id="listAllJobhtBoard" parameterClass="testVO" resultClass="jobhtBoard" >

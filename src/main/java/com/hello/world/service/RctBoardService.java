@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import com.hello.world.dao.RctBoardDAO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.RctBoardVO;
+import com.hello.world.dto.SearchVO;
 import com.hello.world.dto.rctSearchVO;
 import com.hello.world.dto.testVO;
 
@@ -29,57 +30,28 @@ public class RctBoardService {
 	}
 
 	public ArrayList<RctBoardVO> listAllRctBoard(int tpage,
-			rctSearchVO rctSearchVO) throws SQLException {
+			SearchVO searchVO) throws SQLException {
 		ArrayList<RctBoardVO> list = new ArrayList<RctBoardVO>();
 		int startRow = -1;
 		int endRow = -1;
 
-		String area = rctSearchVO.getArea();
-		if (area.equals("")) {
-			area = "%";
-		}
-		String comp_name = rctSearchVO.getComp_name();
-		if (comp_name.equals("")) {
-			comp_name = "%";
-		}
-		String Comg = rctSearchVO.getComg();
-		if (Comg.equals("")) {
-			Comg = "%";
-		}
-		String grade = rctSearchVO.getGrade();
-		if (grade.equals("")) {
-			grade = "%";
-		}
-		String lan = rctSearchVO.getLan();
-		if (lan.equals("")) {
-			lan = "%";
-		}
-		String sal = rctSearchVO.getSal();
-		if (sal.equals("")) {
-			sal = "%";
-		}
-		String title = rctSearchVO.getTitle();
-		if (title.equals("")) {
-			title = "%";
-		}
-
-		int totalRecord = rctBoardDAO.getTotal(rctSearchVO);
+		int totalRecord = rctBoardDAO.getTotal(searchVO);
 
 		startRow = (tpage - 1) * counts;
 		endRow = startRow + counts - 1;
 		if (endRow > totalRecord)
 			endRow = totalRecord;
 
-		list = rctBoardDAO.listAllRctBoard(startRow, rctSearchVO, counts);
+		list = rctBoardDAO.listAllRctBoard(startRow, searchVO, counts);
 
 		return list;
 	}
 
-	public String pageNumber(int tpage, rctSearchVO rctSearchVO)
+	public String pageNumber(int tpage, SearchVO SearchVO)
 			throws SQLException {
 		String str = "";
 
-		int total_pages = rctBoardDAO.totalRecord(rctSearchVO);
+		int total_pages = rctBoardDAO.totalRecord(SearchVO);
 		int page_count = total_pages / counts + 1;
 
 		if (total_pages % counts == 0) {
@@ -96,29 +68,38 @@ public class RctBoardService {
 			end_page = page_count;
 		}
 		if (start_page > view_rows) {
-			str += "<a href='rctBoardList.do?tpage=1&key="
-			// + testVO.getKey()
-					+ rctSearchVO.getTitle() + "'>&lt;&lt;</a>&nbsp;&nbsp;";
+			str += "<a href='rctBoardList.do?tpage=1&rctboard_acdmcr="+SearchVO.getRctboard_acdmcr()
+					+"&rctboard_emp_kind="+SearchVO.getRctboard_emp_kind()+"&rctboard_title="+SearchVO.getRctboard_title()
+					+"&rctboard_work_time="+SearchVO.getRctboard_work_time()+"&rctboard_workp="+SearchVO.getRctboard_workp()
+					+"&rctboard_year_sal="+SearchVO.getRctboard_year_sal()+"'>&lt;&lt;</a>&nbsp;&nbsp;";
 			str += "<a href='rctBoardList.do?tpage=" + (start_page - 1);
-			str += "&key=<%=" + rctSearchVO.getTitle()
-					+ "%>'>&lt;</a>&nbsp;&nbsp;";
+			str += "&rctboard_acdmcr="+SearchVO.getRctboard_acdmcr()
+					+"&rctboard_emp_kind="+SearchVO.getRctboard_emp_kind()+"&rctboard_title="+SearchVO.getRctboard_title()
+					+"&rctboard_work_time="+SearchVO.getRctboard_work_time()+"&rctboard_workp="+SearchVO.getRctboard_workp()
+					+"&rctboard_year_sal="+SearchVO.getRctboard_year_sal()+"'>&lt;</a>&nbsp;&nbsp;";
 		}
 
 		for (int i = start_page; i <= end_page; i++) {
 			if (i == tpage) {
 				str += "<font color=red>[" + i + "]&nbsp;&nbsp;</font>";
 			} else {
-				str += "<a href='rctBoardList.do?tpage=" + i + "&key="
-						+ rctSearchVO.getTitle() + "'>[" + i
+				str += "<a href='rctBoardList.do?tpage=" + i + "&rctboard_acdmcr="+SearchVO.getRctboard_acdmcr()
+						+"&rctboard_emp_kind="+SearchVO.getRctboard_emp_kind()+"&rctboard_title="+SearchVO.getRctboard_title()
+						+"&rctboard_work_time="+SearchVO.getRctboard_work_time()+"&rctboard_workp="+SearchVO.getRctboard_workp()
+						+"&rctboard_year_sal="+SearchVO.getRctboard_year_sal()+"'>[" + i
 						+ "]</a>&nbsp;&nbsp;";
 			}
 		}
 
 		if (page_count > end_page) {
-			str += "<a href='rctBoardList.do?tpage=" + (end_page + 1) + "&key="
-					+ rctSearchVO.getTitle() + "'> &gt; </a>&nbsp;&nbsp;";
-			str += "<a href='rctBoardList.do?tpage=" + page_count + "&key="
-					+ rctSearchVO.getTitle() + "'> &gt; &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='rctBoardList.do?tpage=" + (end_page + 1) + "&rctboard_acdmcr="+SearchVO.getRctboard_acdmcr()
+					+"&rctboard_emp_kind="+SearchVO.getRctboard_emp_kind()+"&rctboard_title="+SearchVO.getRctboard_title()
+					+"&rctboard_work_time="+SearchVO.getRctboard_work_time()+"&rctboard_workp="+SearchVO.getRctboard_workp()
+					+"&rctboard_year_sal="+SearchVO.getRctboard_year_sal()+"'> &gt; </a>&nbsp;&nbsp;";
+			str += "<a href='rctBoardList.do?tpage=" + page_count + "&rctboard_acdmcr="+SearchVO.getRctboard_acdmcr()
+					+"&rctboard_emp_kind="+SearchVO.getRctboard_emp_kind()+"&rctboard_title="+SearchVO.getRctboard_title()
+					+"&rctboard_work_time="+SearchVO.getRctboard_work_time()+"&rctboard_workp="+SearchVO.getRctboard_workp()
+					+"&rctboard_year_sal="+SearchVO.getRctboard_year_sal()+"'> &gt; &gt; </a>&nbsp;&nbsp;";
 		}
 		return str;
 	}
@@ -129,61 +110,25 @@ public class RctBoardService {
 		try {
 			rctBoardVO = rctBoardDAO.getRctDetail(rctboard_posting_no);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		return rctBoardVO;
 	}
-
-	public int getTotal(rctSearchVO rctSearchVO) throws SQLException {
-
-		return rctBoardDAO.getTotal(rctSearchVO);
-
-	}
 	
-	public ArrayList<RctBoardVO> getRctBoardList(int tpage, rctSearchVO rctSearchVO )throws SQLException{
+	public ArrayList<RctBoardVO> getRctBoardList(int tpage, SearchVO searchVO )throws SQLException{
 		ArrayList<RctBoardVO> list = new ArrayList<RctBoardVO>();
 		int startRow = -1;
 		int endRow = -1;
-		
-		String area = rctSearchVO.getArea();
-		if (area.equals("")) {
-			area = "%";
-		}
-		String comp_name = rctSearchVO.getComp_name();
-		if (comp_name.equals("")) {
-			comp_name = "%";
-		}
-		String Comg = rctSearchVO.getComg();
-		if (Comg.equals("")) {
-			Comg = "%";
-		}
-		String grade = rctSearchVO.getGrade();
-		if (grade.equals("")) {
-			grade = "%";
-		}
-		String lan = rctSearchVO.getLan();
-		if (lan.equals("")) {
-			lan = "%";
-		}
-		String sal = rctSearchVO.getSal();
-		if (sal.equals("")) {
-			sal = "%";
-		}
-		String title = rctSearchVO.getTitle();
-		if (title.equals("")) {
-			title = "%";
-		}
 
-		int totalRecord = rctBoardDAO.totalRecord(rctSearchVO); 
+		int totalRecord = rctBoardDAO.totalRecord(searchVO); 
 
 		startRow = (tpage - 1) * counts;
 		endRow = startRow + counts - 1;
 		if (endRow > totalRecord)
 			endRow = totalRecord;
 
-		list = (ArrayList<RctBoardVO>) rctBoardDAO.getRctBoardList(startRow, rctSearchVO, counts); 
+		list = (ArrayList<RctBoardVO>) rctBoardDAO.getRctBoardList(startRow, searchVO, counts); 
 
 		return list;
 	}

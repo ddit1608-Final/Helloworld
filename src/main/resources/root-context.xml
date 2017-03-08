@@ -92,6 +92,9 @@
 		
 	<bean id="noticeDAO" class="com.hello.world.dao.iBatis.NoticeDAO_iBatis"
 		p:client-ref="sqlMapClient"/>	
+	
+	<bean id="searchDAO" class="com.hello.world.dao.iBatis.SearchDAO_iBatis"
+		p:client-ref="sqlMapClient"/>
 		
 	
 	<!-- Service -->
@@ -185,6 +188,8 @@
 		p:workNetDAO-ref="workDAO"/>
 		
 	<bean id="noticeService" class="com.hello.world.service.NoticeService"
-		p:noticeDAO-ref="noticeDAO" />		
-		
+		p:noticeDAO-ref="noticeDAO" />	
+	
+	<bean id="searchService" class="com.hello.world.service.SearchService"
+		p:searchDAO-ref="searchDAO" />
 </beans>

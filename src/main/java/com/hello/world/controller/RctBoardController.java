@@ -22,16 +22,21 @@ import com.hello.world.dto.QnaBoardChuVO;
 import com.hello.world.dto.QnaBoardCommVO;
 import com.hello.world.dto.QnaBoardVO;
 import com.hello.world.dto.RctBoardVO;
+import com.hello.world.dto.SearchVO;
 import com.hello.world.dto.rctSearchVO;
 import com.hello.world.dto.testVO;
 import com.hello.world.service.RctBoardService;
+import com.hello.world.service.SearchService;
 
 @Controller
 @RequestMapping("/rct")
 public class RctBoardController {
 
 	@Autowired
-	RctBoardService rctBoardService;
+	private RctBoardService rctBoardService;
+	
+	@Autowired
+	private SearchService SearchService;
 
 	@RequestMapping("/rctBoardWriteForm.do")
 	public String rctBoardWriteForm(HttpSession session)
@@ -46,11 +51,10 @@ public class RctBoardController {
 	@RequestMapping("/rctBoardWrite.do")
 	public String rctBoardWrite(RctBoardVO rctBoardVO, HttpSession session)
 			throws ServletException, IOException {
-		String url = "../../index2";
+		String url = "redirect:rctBoardList.do";
 
 		// MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 
-		System.out.println(rctBoardVO);
 		rctBoardService.insertRctBoard(rctBoardVO);
 
 		return url;
@@ -58,46 +62,34 @@ public class RctBoardController {
 
 	@RequestMapping("/rctBoardList.do")
 	public String rctBoardList(HttpSession session, Model model,
-			HttpServletRequest request) throws ServletException, IOException {
+			HttpServletRequest request,SearchVO searchVO) throws ServletException, IOException {
 
 		String url = "rctBoard/rctBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
 		String type = request.getParameter("type");
-
-		String area = request.getParameter("area");
-		String lan = request.getParameter("lan");
-		String comg = request.getParameter("comg");
-		String grade = request.getParameter("grade");
-		String sal = request.getParameter("sal");
-		String comp_name = request.getParameter("comp_name");
-		String title = request.getParameter("title");
-
-		if (area == null) {
-			area = "";
+		
+		int total = 0;
+		
+		if(searchVO.getRctboard_title() == null){
+			searchVO.setRctboard_title("");
 		}
-		if (lan == null) {
-			lan = "";
+		if(searchVO.getRctboard_acdmcr() == null){
+			searchVO.setRctboard_acdmcr("");
 		}
-		if (comg == null) {
-			comg = "";
+		if(searchVO.getRctboard_emp_kind() == null){
+			searchVO.setRctboard_emp_kind("");
 		}
-		if (grade == null) {
-			grade = "";
+		if(searchVO.getRctboard_work_time() == null){
+			searchVO.setRctboard_work_time("");
 		}
-		if (sal == null) {
-			sal = "";
+		if(searchVO.getRctboard_workp() == null){
+			searchVO.setRctboard_workp("");
 		}
-		if (comp_name == null) {
-			comp_name = "";
+		if(searchVO.getRctboard_year_sal() == null){
+			searchVO.setRctboard_year_sal("");
 		}
-		if (title == null) {
-			title = "";
-		}
-
-		if (key == null) {
-			key = "";
-		}
+		
 		if (tpage == null) {
 			tpage = "1"; // 현재 페이지 (default 1)
 		} else if (tpage.equals("")) {
@@ -107,21 +99,8 @@ public class RctBoardController {
 			type = "rctboard_title";
 		}
 
-		rctSearchVO rctSearchVO = new rctSearchVO();
-		rctSearchVO.setArea(area);
-		rctSearchVO.setComg(comg);
-		rctSearchVO.setComp_name(comp_name);
-		rctSearchVO.setGrade(grade);
-		rctSearchVO.setLan(lan);
-		rctSearchVO.setSal(sal);
-		rctSearchVO.setTitle(title);
-
 		model.addAttribute("key", key);
 		model.addAttribute("tpage", tpage);
-
-		// testVO testVO = new testVO();
-		// testVO.setKey(key);
-		// testVO.setType(type);
 
 		/* MemVO loginUser = (MemVO) session.getAttribute("loginUser"); */
 
@@ -129,20 +108,17 @@ public class RctBoardController {
 		String paging = null;
 
 		try {
+			total = SearchService.getTotal(searchVO);
 			rctBoardList = rctBoardService.listAllRctBoard(
-					Integer.parseInt(tpage), rctSearchVO);
+					Integer.parseInt(tpage), searchVO);
 			paging = rctBoardService.pageNumber(Integer.parseInt(tpage),
-					rctSearchVO);
+					searchVO);
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		model.addAttribute("rctBoardList", rctBoardList);
-		int n = rctBoardList.size();
-		System.out.println(n);
-		model.addAttribute("rctBoardListSize", n);
 		model.addAttribute("paging", paging);
 
 		return url;
@@ -153,7 +129,7 @@ public class RctBoardController {
 			HttpSession session, Model model) throws ServletException,
 			IOException {
 		String url = "rctBoard/rctBoardDetail";
-		MemVO loginUser = (MemVO) session.getAttribute("loginUser");
+		/*MemVO loginUser = (C) session.getAttribute("loginUser");*/
 
 		// ArrayList<QnaBoardCommVO> qnaBoardCommList = new
 		// ArrayList<QnaBoardCommVO>();
@@ -165,43 +141,35 @@ public class RctBoardController {
 		return url;
 	}
 
-	@RequestMapping(value="/rctBoardSearch.do",method=RequestMethod.POST)
-	public String getQnaBoardList(HttpServletRequest request,Model model)
+	@RequestMapping(value="/rctBoardSearch.do",method=RequestMethod.GET)
+	public String getQnaBoardList(HttpServletRequest request,Model model, SearchVO searchVO)
 		throws ServletException,IOException{
-		String total = "";
+		int total = 0;
 		String url = "rctBoard/rctBoardList";
 		String key = request.getParameter("key");
 		String tpage = request.getParameter("tpage");
 		String type= request.getParameter("type");
-		String area = request.getParameter("area");
-		String lan = request.getParameter("lan");
-		String comg = request.getParameter("comg");
-		String grade = request.getParameter("grade");
-		String sal = request.getParameter("sal");
-		String comp_name = request.getParameter("comp_name");
-		String title = request.getParameter("title");
 		
-		if(area == null){
-			area = "";
+		if(searchVO.getRctboard_title() == null){
+			searchVO.setRctboard_title("");
 		}
-		if(lan == null){
-			lan = "";
+		if(searchVO.getRctboard_acdmcr() == null){
+			searchVO.setRctboard_acdmcr("");
 		}
-		if(comg == null){
-			comg = "";
+		if(searchVO.getRctboard_emp_kind() == null){
+			searchVO.setRctboard_emp_kind("");
 		}
-		if(grade == null){
-			grade = "";
+		if(searchVO.getRctboard_work_time() == null){
+			searchVO.setRctboard_work_time("");
 		}
-		if(sal == null){
-			sal = "";
+		if(searchVO.getRctboard_workp() == null){
+			searchVO.setRctboard_workp("");
 		}
-		if(comp_name == null){
-			comp_name = "";
+		if(searchVO.getRctboard_year_sal() == null){
+			searchVO.setRctboard_year_sal("");
 		}
-		if(title == null){
-			title = "";
-		}		
+		
+			
 		if (key == null) {
 			key = "";
 		}
@@ -218,14 +186,14 @@ public class RctBoardController {
 		String paging = null;
 		
 //		testVO testVO = new testVO();
-		rctSearchVO rctSearchVO = new rctSearchVO(); 
+		SearchVO rctSearchVO = new SearchVO(); 
 //		ArrayList<QnaBoardBChuVO> qnaBChuList = null;
 		
 //		testVO.setKey(key);
 //		testVO.setType(type);
 		
 		try {
-			total= rctBoardService.getTotal(rctSearchVO)+"";
+			total = SearchService.getTotal(searchVO);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -42,7 +42,7 @@ public class JobhtBoardController {
 	@RequestMapping("/jobhtWrite.do")
 	public String ResmWriteForm(JobhtBoardVO jobhtBoardVO, HttpSession session)
 			throws ServletException, IOException {
-		String url = "/index";
+		String url = "redirect:jobhtBoardList.do";
 
 		// MemVO loginUser = (MemVO) session.getAttribute("loginUser");
 
