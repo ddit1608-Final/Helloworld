@@ -29,11 +29,12 @@
 					<h2>지역</h2>
 				</td>
 				<td><input type="checkbox" name="rctboard_workp" value="서울">서울
-					<input type="checkbox" name="rctboard_workp" value="대전">대전 <input
-					type="checkbox" name="rctboard_workp" value="인천">인천 <input
-					type="checkbox" name="rctboard_workp" value="대구">대구 <input
-					type="checkbox" name="rctboard_workp" value="부산">부산 <input
-					type="checkbox" name="rctboard_workp" value="광주">광주</td>
+					<input type="checkbox" name="rctboard_workp" value="대전">대전
+					<input type="checkbox" name="rctboard_workp" value="인천">인천 
+					<input type="checkbox" name="rctboard_workp" value="대구">대구 
+					<input type="checkbox" name="rctboard_workp" value="부산">부산 
+					<input type="checkbox" name="rctboard_workp" value="광주">광주
+				</td>
 				</tr>
 			<tr id="titlehover" style="background-color: #e5e5e5;">
 			<td>
@@ -77,7 +78,7 @@
 				<h2>글제목</h2>
 			</td>
 			<td>
-				<input type="text" name="rctboard_work_time">
+				<input type="text" name="rctboard_title">
  			</td>
 			</tr>
 			<tr>

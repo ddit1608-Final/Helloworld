@@ -9,7 +9,7 @@
 	</insert>
 	
 	<select id="listAllQnaBoard" parameterClass="testVO" resultClass="qnaboard" >
-		select * from memqna where $type$ like '%'||#key#||'%' order by qnaboard_posting_no desc
+		select * from memqna where $type$ like '%'||#key#||'%' order by TO_NUMBER(qnaboard_posting_no) desc
 	</select>
 	
 	<select id="qnaDetail" parameterClass="str" resultClass="qnaboard">

@@ -522,7 +522,6 @@ cursor: pointer;
 							</c:otherwise>
 							</c:choose>
 								<li><a href="#" id="aa">회원 접속자수 : ${loginUserCnt }</a></li>
-								<li><a href="#" id="aa">반응 ()</a></li>
 								<li><a href="<%=request.getContextPath()%>/mypage/main"	id="aa">마이페이지</a></li>
 								<c:if
 									test="${loginUser.mem_mail == 'jihyunkkkk@nate.com' || 

@@ -129,10 +129,7 @@ public class RctBoardController {
 			HttpSession session, Model model) throws ServletException,
 			IOException {
 		String url = "rctBoard/rctBoardDetail";
-		/*MemVO loginUser = (C) session.getAttribute("loginUser");*/
 
-		// ArrayList<QnaBoardCommVO> qnaBoardCommList = new
-		// ArrayList<QnaBoardCommVO>();
 		RctBoardVO rctBoardVO = rctBoardService
 				.getRctDetail(rctboard_posting_no);
 
@@ -185,12 +182,7 @@ public class RctBoardController {
 		ArrayList<RctBoardVO> rctBoardList = null;
 		String paging = null;
 		
-//		testVO testVO = new testVO();
 		SearchVO rctSearchVO = new SearchVO(); 
-//		ArrayList<QnaBoardBChuVO> qnaBChuList = null;
-		
-//		testVO.setKey(key);
-//		testVO.setType(type);
 		
 		try {
 			total = SearchService.getTotal(searchVO);

@@ -22,7 +22,7 @@
 			<td style="width:20%"><input type='checkbox' id='allCheck'>
 			<label style="font-size:5pt;">
 			<c:set var="scrap" value="${scrap.wantedAuthNo }"></c:set>
-			<a onclick="delete_scraps()">(미구현)<br>전체<br>삭제</a>
+			<a onclick="delete_scraps()"><br>전체<br>삭제</a>
 			</label>
 			회사명</td>
 			<td style="width:50%; text-align:center;">제목/내용</td>

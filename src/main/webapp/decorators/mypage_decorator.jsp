@@ -439,7 +439,6 @@ border-radius:5px;
 			<td><button onclick="location.href='<%=request.getContextPath()%>/worknet/myScrapList'">스크랩게시물 조회</button></td>
 			<td><button
 					onclick="location.href='<%=request.getContextPath()%>/mypage/myBoard'">작성한게시물 조회</button></td>
-			<td><button>구직입찰조회</buttodn></td>
 		</tr>
 	</table>
 		

@@ -50,12 +50,12 @@
 		    </tr>
 		    <tr>
 		    	<td></td>
-		    	<td>
+		    	<%-- <td>
 		    	<a data-toggle="modal" data-target="#myModal">
 		    	<img id="file" src="<%=request.getContextPath()%>/resources/images/file.png">
 		    	</a>
 		    	<input type="text" readonly="readonly" value="추가될 파일 경로명.jsp">
-		    	</td>
+		    	</td> --%>
       			<td></td>
       			<td></td>
       			<td></td>
