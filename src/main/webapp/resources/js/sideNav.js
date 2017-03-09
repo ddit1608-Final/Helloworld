@@ -43,7 +43,6 @@ $('#scroll').click(function() {
 	   $.each(eachCompanies, function(){
 	 		array.push($(this).data("currentData"));
 	 	});
-	   alert(JSON.stringify(array));
 	   $.ajax({
 		   url:"addScrap",
 		   data:JSON.stringify(array),
@@ -55,10 +54,8 @@ $('#scroll').click(function() {
 			   if(response.success){
 				   // 모달창의 스크랩 회사의 정보를 클린.
 				   // 모달창 close
-				   alert('성공');
 			   }else{
 				   // 메시지 처리
-				   alert('실패');
 				   
 			   }
 		   },

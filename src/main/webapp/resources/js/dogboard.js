@@ -56,7 +56,6 @@ function dswriteComm_go(mem_nick,dsboard_posting_no,dsboard_comm_contt,event) {
 		"dsboard_posting_no":dsboard_posting_no
 	};
 	if (document.formm.dsboard_comm_cont.value == "") {
-		alert("댓글을 입력해주세요");
 		document.formm.dsboard_comm_cont.focus();
 		return false;
 	}else{
@@ -118,7 +117,6 @@ function updateDsComm(indexTd, event) {
 	event.preventDefault();
 	var dsboard_ans_code = $('#dsboard_ans_code'+indexTd).val();
 	var dsboard_comm_cont = $('#dsboard_comm_cont').val();
-	alert(dsboard_comm_cont);
 	var arr = {
 			"dsboard_ans_code" : dsboard_ans_code,
 			"dsboard_comm_cont" : dsboard_comm_cont

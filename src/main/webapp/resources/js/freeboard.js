@@ -91,7 +91,6 @@ function freeWriteComm_go(mem_nick,freeboard_posting_no,freeboard_comm_contt,ind
 		}
 	}
 function deleteFreeComm(freeboard_ans_code, indexTdd, event){
-	alert("code값 test >>"+freeboard_ans_code);
 	event.preventDefault();
 	var code ={
 		"freeboard_ans_code" : freeboard_ans_code	

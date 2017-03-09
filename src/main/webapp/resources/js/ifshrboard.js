@@ -48,14 +48,10 @@ function is_level(){
 	var b = document.form.crr_key.value;
 	if(a=='2'){
 		if(b == '7'){
-			alert('하이');
-			alert(b);
 			document.getElementById("check_radio").innerHTML = "<font color='red'>난이도를 선택해주세요</font>";
 			return false;
 		}
 		else{
-			alert('바이');
-			alert(b);
 			document.getElementById("check_radio").innerHTML = "";
 			return true;
 	}
@@ -136,7 +132,6 @@ function updateIsComm(indexTd, event) {
 	event.preventDefault();
 	var ifshrboard_ans_code = $('#ifshrboard_ans_code'+indexTd).val();
 	var ifshrboard_comm_cont = $('#ifshrboard_comm_cont').val();
-	alert(ifshrboard_comm_cont);
 	var arr = {
 			"ifshrboard_ans_code" : ifshrboard_ans_code,
 			"ifshrboard_comm_cont" : ifshrboard_comm_cont
@@ -225,7 +220,6 @@ function select_level(value,event){
 					);
 					
 					$('#comboo').remove();
-					alert('1번째');
 				},
 				error : function(error) {
 					alert("메뉴에러!!!!!!!!");
@@ -254,7 +248,6 @@ function select_level(value,event){
 					"<input type='radio' id='crr_key' name='crr_key' value='6'>上"+
 					"</div>"
 					);
-					alert('2번째');
 				},
 				error : function(error) {
 					alert("메뉴에러!!!!!!!!");
@@ -285,8 +278,6 @@ function update_go(idea, event) {
 			})
 }
 function update_noti(idea,event){
-	alert("두번째 수정 입성")
-	alert(JSON.stringify(idea));
 	event.preventDefault();
 	var notice_id = JSON.stringify(idea);
 	var notice_cont = $('#notice_cont').val();
