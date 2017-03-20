@@ -28,12 +28,12 @@
 		<level value="info" />
 	</logger>
 
-	<logger name="org.springframework.web">
+	<!-- <logger name="org.springframework.web">
 		<level value="debug" />
 	</logger>
-	
+	 -->
 	<!-- debug 병현추가-->
-	<logger name="org.springframework.jdbc">
+	<!-- <logger name="org.springframework.jdbc">
 		<level value="debug" />
 	</logger>
 	<logger name="java.sql.Connection">
@@ -47,12 +47,12 @@
 	</logger>
 	<logger name="java.sql.ResultSet">
 		<level value="debug"></level>
-	</logger> 
+	</logger>  -->
 	<!-- debug 추가 끝-->
 	
-	<logger name="jdbc.sqltiming">
+	<!-- <logger name="jdbc.sqltiming">
 		<level value="debug"></level>
-	</logger> 
+	</logger> --> 
 
 	<!-- Root Logger -->
 	<root>

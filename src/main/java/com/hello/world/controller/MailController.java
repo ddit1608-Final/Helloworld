@@ -96,7 +96,7 @@ public class MailController {
 		}
 
 		// SimpleMailMessage message = new SimpleMailMessage();
-		String htmlContent = "<a href=\"http://"+ip.getHostAddress()+":8181/world/mail/certification?certifi="
+		String htmlContent = "<a href=\"http://"+ip.getHostAddress()+":80/world/mail/certification?certifi="
 				+ token + "&mem_mail=" + mem_mail + "\">인증페이지 이동</a>";
 
 		try {

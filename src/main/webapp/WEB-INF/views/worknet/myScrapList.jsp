@@ -87,7 +87,7 @@ $(function(){
 	 				alert('삭제?')
 	 			}
 		 alert(JSON.stringify(eachCompanies));
-		 alert(eachCompanies.toString());c
+		 alert(eachCompanies.toString());
 	 });
 }  
    

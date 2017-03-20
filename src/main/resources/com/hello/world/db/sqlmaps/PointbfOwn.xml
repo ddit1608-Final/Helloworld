@@ -20,11 +20,11 @@
 	</select>
 
 	<select id="totalMyPoint" parameterClass="str" resultClass="int">
-		select count(*) from pointbfown where mem_mail = #mem_mail#
+		select count(*) from pointbfown where mem_mail = #mem_mail# 
 	</select>
 
 	<select id="totalMyPoint2" parameterClass="str" resultClass="int">
-		select point from pointbfown where mem_mail = #mem_mail#
+		select point from pointbfown where mem_mail = #mem_mail# 
 	</select>
 
 	<update id="ChoosePoint" parameterClass="point">
@@ -47,10 +47,10 @@
 
 	<select id="allPoint" parameterClass="point">
 		select * from pointsave
-		where mem_mail = #mem_mail#
+		where mem_mail = #mem_mail# order by point_save_date desc
 	</select>
 
 	<select id="selectPoint2" parameterClass="str" resultClass="point">
-		select * from pointbfown where mem_mail = #mem_mail#
+		select * from pointbfown where mem_mail = #mem_mail# order by point_save_date desc
 	</select>
 </sqlMap>

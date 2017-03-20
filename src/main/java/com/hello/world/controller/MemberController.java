@@ -152,7 +152,7 @@ public class MemberController implements ServletContextAware {
 
 		// SimpleMailMessage message = new SimpleMailMessage();
 		String htmlContent = "<a href=\"http://" + ip.getHostAddress()
-				+ ":8181/world/member/changePw?mem_mail=" + mem_mail
+				+ ":80/world/member/changePw?mem_mail=" + mem_mail
 				+ "\">패스워드 초기화</a>";
 
 		try {
