@@ -1,7 +1,6 @@
 package com.hello.world.controller;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -15,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hello.world.dto.DogBoardCommVO;
 import com.hello.world.dto.DogBoardVO;
@@ -343,6 +343,20 @@ public class DogBoardController {
 		model.addAttribute("paging", paging);
 
 		return url;
+		
+	}
+	@RequestMapping(value="/noticeUpdate",method = RequestMethod.POST, produces = "application/text; charset=utf8")
+	@ResponseBody
+	public String updateNotice(HttpServletRequest req)throws ServletException,IOException{
+		String notice_id = req.getParameter("notice_id");
+		System.out.println("zzzzzzzzzzzzzzzzzzzzz>>>>"+notice_id);
+		String notice_cont = req.getParameter("notice_cont");
+		NoticeVO notiVO = new NoticeVO();
+		notiVO.setNotice_cont(notice_cont.trim());
+		notiVO.setNotice_id(notice_id);
+		notiSvc.updateNotice(notiVO);
+		
+		return notice_cont;
 		
 	}
 	

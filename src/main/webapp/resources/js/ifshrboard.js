@@ -189,7 +189,7 @@ function isTextCounter(field,countfield,maxlimit){
 		field.value=field.value.substring(0,maxlimit);
 	}else if(field.value.length<1){
 		countfield.value=maxlimit-field.value.length;
-		document.getElementById("ifshrboard_cont").innerHTML = "<font color='red'>내용을 입력해dsd주세요</font>";
+		document.getElementById("ifshrboard_cont").innerHTML = "<font color='red'>내용을 입력해주세요</font>";
 	}
 }
 
@@ -199,7 +199,7 @@ function select_level(value,event){
 	event.preventDefault();
 
 	var tt = $("#sel1 option:selected").val();
-	//alert(tt); //==> 2
+	alert(tt); //==> 2
 	
 	if(tt == '1'||tt=='3'){
 		$.ajax({

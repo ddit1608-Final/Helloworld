@@ -164,12 +164,58 @@ function updateFreeComm(indexTd,indexTdd , event) {
 }
 
 
-
-
-
 function free_src(){
 	formm.action =  "freeBoardSearch.do";
 	formm.submit();
 }
+
+
+function update_go_free(idea,event){
+	event.preventDefault();
+	var notice_cont = $('#notice_cont'+idea).text();
+	var arr = {
+		"notice_cont" : notice_cont,
+	};
+	$.ajax({
+			url : "freeBoardList.do",
+			type : "post",
+			data : arr,
+			success : function(data) {
+						$('#notice_cont'+ idea).html(
+						'<textarea id="notice_cont" name="notice_cont" rows="13" style="width: 100%;border:0;background:clear;">'
+						+ notice_cont
+						+ '</textarea>'
+						+ '<input type="button" value="완료" onclick="update_noti_meet('+idea+',event)" id="remo">');
+				},
+				error : function(error) {
+
+				}
+			})
+}
+
+function update_noti_free(idea,event){
+	event.preventDefault();
+	var notice_id = JSON.stringify(idea);
+	var notice_cont = $('#notice_cont').val();
+	
+	alert("수정될 공지사항 넘버"+notice_id);
+	alert("수정될 공지사항 내용"+notice_cont);
+	var arr = {
+			"notice_id" : notice_id,
+			"notice_cont" : notice_cont
+		};
+	$.ajax({
+		url : "noticeUpdate",
+		type : "post",
+		data : arr,
+		success : function(data) {
+			$('#remo').remove();
+			$('#notice_cont'+idea).html(data);
+		},
+		error : function(error) {
+			alert('실패');
+		}
+	})
+	}
 
 

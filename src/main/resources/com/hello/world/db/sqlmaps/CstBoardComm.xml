@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"  "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="CstBoardComm">
+
+	<select id="listCstBoardComm" parameterClass="str" resultClass="cstcomm">
+		select
+		* from cstboardans where cstboard_counsel_POSTING_NO =
+		#cstboard_counsel_POSTING_NO# order by cstboard_ans_WRIDATE asc
+	</select>
+	<update id="insertCstBoardComm" parameterClass="cstcomm">
+		insert into
+		cstboardans
+		(CSTBOARD_ANS_CODE,CSTBOARD_ANS_CONT,cstboard_ans_wri,cstboard_counsel_posting_no)
+		values(cstboard_ans_code.nextval,#cstboard_ans_cont#,#cstboard_ans_wri#,#cstboard_counsel_posting_no#)
+	</update>
+	
+	<select id="getCstBoardComm" parameterClass="str" resultClass="cstcomm">
+		select *
+		from cstboardans
+		where cstboard_ans_code=#cstboard_ans_code#
+	</select>
+	<select id="getCstMaxAnxCode" resultClass="int">
+		select max(to_number(cstboard_ans_code)) from cstboardans
+	</select>
+	
+	<delete id="deleteCstBoardComm" parameterClass="str">
+		delete
+		from cstboardans
+		where cstboard_ans_code=#cstboard_ans_code#
+	</delete>
+	
+	
+	
+
+</sqlMap>

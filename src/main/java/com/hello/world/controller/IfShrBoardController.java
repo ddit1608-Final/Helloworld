@@ -77,6 +77,15 @@ public class IfShrBoardController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		ArrayList<IsBoardLevelVO> levelList = new ArrayList<IsBoardLevelVO>();
+		try {
+			levelList=ifShrBoardService.getLevel();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		model.addAttribute("levelList",levelList);
+		
 		model.addAttribute("typeList",typeList);
 		
 		model.addAttribute("key", key);

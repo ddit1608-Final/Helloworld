@@ -311,7 +311,6 @@ function free_go_detail(freeboard_posting_no) {
 }
 
 function login() {
-	alert("66");
 	var form = $('#login');
 	alert(form);
 	form.method = "post";

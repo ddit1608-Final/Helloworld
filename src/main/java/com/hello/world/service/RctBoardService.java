@@ -133,4 +133,13 @@ public class RctBoardService {
 		return list;
 	}
 
+	public void deleteRctBoard(String rctboard_posting_no) {
+		try {
+			rctBoardDAO.deleteRctBoard(rctboard_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

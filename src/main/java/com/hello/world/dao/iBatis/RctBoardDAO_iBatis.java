@@ -71,4 +71,9 @@ public class RctBoardDAO_iBatis implements RctBoardDAO {
 		return rctBoardVO;
 	}
 
+	@Override
+	public void deleteRctBoard(String rctboard_posting_no) throws SQLException{
+		client.delete("deleteRctBoard",rctboard_posting_no);
+	}
+
 }

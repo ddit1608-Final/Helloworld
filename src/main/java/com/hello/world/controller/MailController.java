@@ -100,7 +100,7 @@ public class MailController {
 				+ token + "&mem_mail=" + mem_mail + "\">인증페이지 이동</a>";
 
 		try {
-			message.setSubject("가입인증 테스트");
+			message.setSubject("가입인증 메일입니다");
 			message.setText(htmlContent, "UTF-8", "html");
 			message.setFrom(new InternetAddress("jihyunkkkkk@daum.net"));
 			message.addRecipient(RecipientType.TO,

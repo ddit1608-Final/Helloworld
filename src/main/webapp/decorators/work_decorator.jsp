@@ -341,7 +341,7 @@ footer {
 
 	function connect() {
 		wsocket = new SockJS("http://" + document.domain
-				+ ":8181/world/chat.sockjs");
+				+ "/world/chat.sockjs");
 		wsocket.onopen;
 	}
 	

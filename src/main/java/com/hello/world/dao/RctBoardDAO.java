@@ -15,5 +15,6 @@ public interface RctBoardDAO {
 	public int getTotal(SearchVO searchVO)throws SQLException;
 	public int totalRecord(SearchVO searchVO) throws SQLException;
 	public RctBoardVO getRctDetail(String rctboard_posting_no)throws SQLException;
+	public void deleteRctBoard(String rctboard_posting_no)throws SQLException;
 }
 

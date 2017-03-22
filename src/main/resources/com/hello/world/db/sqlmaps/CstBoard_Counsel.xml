@@ -12,27 +12,27 @@
 	</update>
 	
 	<select id="selectCstBoard" parameterClass="str" resultClass="cstBoard_Counsel">
-		select * from cstboardcounsel where mem_mail =#mem_mail# order by cstboard_counsel_posting_no desc
+		select * from memcst where mem_mail =#mem_mail# order by cstboard_counsel_posting_no desc
 	</select>
 	
 	<select id="selectCstBoardAdmin" parameterClass="str" resultClass="cstBoard_Counsel">
-		select * from cstboardcounsel order by cstboard_counsel_posting_no desc
+		select * from memcst order by cstboard_counsel_posting_no desc
 	</select>
 	
 	<select id="getCstBoard" parameterClass="str" resultClass="cstBoard_Counsel">
-		select * from cstboardcounsel where cstboard_counsel_posting_no=#cstboard_counsel_posting_no#
+		select * from memcst where cstboard_counsel_posting_no=#cstboard_counsel_posting_no#
 	</select>
 	
 	<select id="totalCstBoard" parameterClass="str" resultClass="int">
-		select count(*) from cstboardcounsel where mem_mail =#mem_mail#
+		select count(*) from memcst where mem_mail =#mem_mail#
 	</select>
 	
 	<select id="totalCstBoardAdmin" resultClass="int">
-		select count(*) from cstboardcounsel
+		select count(*) from memcst
 	</select>
 	
 	<update id="updateCstBoard" parameterClass="cstBoard_Counsel">
-		UPDATE cstboardcounsel
+		UPDATE memcst
 		SET
 			cstboard_counsel_title = #cstboard_counsel_title#,
 			flow_code = #flow_code#,

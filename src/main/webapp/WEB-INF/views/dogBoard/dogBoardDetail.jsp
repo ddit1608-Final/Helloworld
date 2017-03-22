@@ -103,7 +103,7 @@
 				<tr>
 					<td style="width: 100px; text-align: center;">작성자</td>
 					<td style="width: 1000px;">내용</td>
-					<td style="width: 200px;">작성날짜</td>
+					<td style="w	idth: 200px;">작성날짜</td>
 					<td style="width: 90px;">비고</td>
 					<td></td>
 				</tr>

@@ -8,8 +8,6 @@ $("document").ready(function() {
 				"top" : position + currentPosition + "px"
 			}, 500);
 		});
-	
-
 });
 $(window).scroll(function()  
 {  
@@ -18,8 +16,32 @@ $(window).scroll(function()
 $('#scroll').click(function() {  
 	$('#scroll').animate({ top:"+=15px",opacity:0 }, "slow");  
 });
-  
-   function chk_chk(){
+
+//////////////////////////////////////////////////////////
+$(document).ready(function() {
+    $(document).bind("contextmenu", function(e){
+        alert("우클릭은 불가");
+        return false;
+    });
+ 
+    $('img').bind("contextmenu",function(e){ 
+        alert("우클릭은 불가"); 
+        return false; 
+    }); 
+ 
+}); 
+
+//우클릭 방지 
+document.oncontextmenu=function(){
+	return false;
+} 
+//드래그 방지
+/*document.onselectstart=function(){
+	return false;
+}*/
+
+//////////////////////////////////////////////////////////////////////////
+function chk_chk(){
 	 	var eachCompanies = $('#worktable .cpyCheck:checked').closest("tr");
 	var newTable = $("<table></table>"); 	
  	$.each(eachCompanies, function(idx,temp){
@@ -50,13 +72,20 @@ $('#scroll').click(function() {
 		   method:"post",
 		   dataType:"json",
 		   success:function(response){
-			   alert(JSON.stringify(response));
+			   //alert(JSON.stringify(response));
 			   if(response.success){
 				   // 모달창의 스크랩 회사의 정보를 클린.
-				   // 모달창 close
+				   // 모달창 close 
+				   // modal창 close 버튼을 클릭 이벤트 처리를 통해 remove와 모달창 닫기를 한꺼번에 함
+				   $("#myModal #exit_go").click();
 			   }else{
 				   // 메시지 처리
-				   
+				   $('#myModal .modal-body').append("<span id='del_msg'style='color:red;font-size:30pt;font-family:한나'>"+response.failMessage+"</style>");
+				   var delMsg = setTimeout(function(){
+					   var dd = document.getElementById('del_msg');
+					   $(dd).remove();
+				   },1000);
+				   /*.setTimeOut(remove(),1000*3);*/
 			   }
 		   },
 		   error:function(response){
@@ -65,6 +94,7 @@ $('#scroll').click(function() {
 		   }
 	   })
    }
+   
    // 체크박스 전체 선택
    $(function(){
 	//전체선택 체크박스 클릭 

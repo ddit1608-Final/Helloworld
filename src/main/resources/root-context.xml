@@ -96,6 +96,9 @@
 	<bean id="searchDAO" class="com.hello.world.dao.iBatis.SearchDAO_iBatis"
 		p:client-ref="sqlMapClient"/>
 		
+	<bean id="cstCommDAO" class="com.hello.world.dao.iBatis.CstBoardCommDAO_iBatis"
+		p:client-ref="sqlMapClient"/>
+		
 	
 	<!-- Service -->
 	<bean id="ResmService" class="com.hello.world.service.ResmService">
@@ -192,4 +195,9 @@
 	
 	<bean id="searchService" class="com.hello.world.service.SearchService"
 		p:searchDAO-ref="searchDAO" />
+		
+	<bean id="cstBoardCommService" class="com.hello.world.service.CstBoardCommService"
+		p:cstBoardCommDAO-ref="cstCommDAO"/>	
+		
+		
 </beans>

@@ -12,11 +12,11 @@
 	<update id="insertMem" parameterClass="mem">
 		insert into mem(mem_mail,
 		mem_nm, mem_pw, mem_phn, mem_addr, mem_sex, mem_lang, mem_nick,
-		mem_grade_code, crr_code, workex_code, addr_zipnum)
+		mem_grade_code, crr_code, workex_code, addr_zipnum,mem_addr_detail)
 		values(#mem_mail#,
 		#mem_nm#, #mem_pw#, #mem_phn#, #mem_addr#, #mem_sex#, #mem_lang#,
 		#mem_nick#, #mem_grade_code#, #crr_code#, #workex_code#,
-		#addr_zipnum#)
+		#addr_zipnum#,#mem_addr_detail#)
 	</update>
 
 	<select id="listMem" parameterClass="str" resultClass="mem">

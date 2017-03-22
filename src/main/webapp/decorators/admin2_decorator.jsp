@@ -30,6 +30,8 @@
 	src="<%=request.getContextPath()%>/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/push.min.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/cstboard.js"></script>
 
 <link href="<%=request.getContextPath()%>/resources/css/hw.css"
 	rel="stylesheet">
@@ -231,11 +233,11 @@ footer {
 </style>
 
 <script>
-	var wsocket;
+	/* var wsocket;
 
 	function connect() {
 		
-		wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
+		wsocket = new SockJS("http://localhost/world/chat.sockjs");
 		wsocket.onopen;
 		
 		wsocket.onmessage = onMessage("${loginUser.mem_mail }");
@@ -271,7 +273,85 @@ footer {
 			});
 		}
 		;
+	} */
+	var wsocket;
+	var sock = null;
+	$(document).ready(
+			function() {
+				$("#sendMessage").click(
+						function() {
+							var message = {};
+							message.to = "";
+							message.message = $("#message").val();
+
+							if ($("#message").val() != "") {
+								wsocket.send(JSON.stringify(message));
+								$("#chatMessage").append(
+										"<font color='red'>　나 ▶ "
+												+ $("#message").val()
+												+ "</font><br/>");
+								$("#message").val("");
+								$("#message").focus();
+								$('#chatMessage').animate(
+										{
+											scrollTop : $('#chatMessage').prop(
+													"scrollHeight")
+										}, 1);
+							}
+						})
+						$("#message").keydown(
+                  function(key) {
+
+                     if (key.keyCode == 13) {//키가 13이면 실행 (엔터는 13)
+                        var message = {};
+                        message.to = "";
+                        message.message = $("#message").val();
+
+                        if ($("#message").val() != "") {
+                           wsocket.send(JSON.stringify(message));
+                           $("#chatMessage").append(
+                               "<font color='red'>　나 ▶ "
+													+ $("#message").val()
+													+ "</font><br/>");
+									$("#message").val("");
+									$("#message").focus();
+									$('#chatMessage').animate(
+											{
+												scrollTop : $('#chatMessage')
+														.prop("scrollHeight")
+											}, 1);
+								}
+							}
+
+                  });
+				wsocket.onmessage = function appendMessage(msg) {
+					if (msg.data.indexOf("알림") == "0") {
+						alert(msg.data);
+						Push.create('알림', {
+							body : msg.data,
+							timeout : 5000
+						});
+					} else {
+						$("#chatMessage").append(msg.data + "<br/>");
+						$('#chatMessage').animate({
+							scrollTop : $('#chatMessage').prop("scrollHeight")
+						}, 1);
+					}
+
+				}
+			});
+
+	function connect() {
+		wsocket = new SockJS("http://" + document.domain
+				+ "/world/chat.sockjs");
+		wsocket.onopen;
 	}
+	function chat_detail(){
+		$('.invisibleClass').toggle();
+		$('#detailBtn').toggle();
+	}	
+	
+	
 </script>
 
 <body>

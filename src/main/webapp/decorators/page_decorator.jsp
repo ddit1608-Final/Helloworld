@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="decorator"
 	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,10 +45,9 @@
 <link href="<%=request.getContextPath()%>/resources/css/calendar.css" rel="stylesheet">
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/meetboard.js"></script>
+<script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/cstboard.js"></script>
 <!-- 캘린더  -->
-<link href="<%=request.getContextPath()%>/resources/css/cal/fullcalendar.min.css" rel="stylesheet" />
-<link href="<%=request.getContextPath()%>/resources/css/cal/fullcalendar.css" rel="stylesheet" />
-<script src="<%=request.getContextPath()%>/js/cal/fullcalendar.min.js"></script>
 <!-- 스크롤링  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="<%=request.getContextPath()%>/js/sideNav.js"></script>
@@ -364,7 +364,7 @@ cursor: pointer;
 
 	function connect() {
 		wsocket = new SockJS("http://" + document.domain
-				+ ":8181/world/chat.sockjs");
+				+ "/world/chat.sockjs");
 		wsocket.onopen;
 	}
 	function chat_detail(){
@@ -449,7 +449,24 @@ cursor: pointer;
 							href="<%=request.getContextPath()%>/meet/meetBoardList.do">모임게시판</a></li>
 						<li><a
 							href="<%=request.getContextPath()%>/is/ifShrBoardList.do">정보공유</a></li>
-						<li><a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a></li>
+						<li>
+						<c:if test="${loginUser !=null }">
+						<a href="<%=request.getContextPath()%>/cst/cstBoardList">컨설팅게시판</a>
+						</c:if>
+						
+						
+						<%-- <c:if test="${loginUser ==null }">
+						<input type="button" disabled="disabled" value="컨설팅게시판" />
+						</c:if> --%>
+												
+						
+						
+						
+						
+						
+						
+						
+						</li>
 						<li><a href="<%=request.getContextPath()%>/dog/dogBoardList">개발소리</a></li>
 						<li><a
 							href="<%=request.getContextPath()%>/worknet/worknet.do">워크넷바로가기</a></li>
@@ -559,17 +576,25 @@ cursor: pointer;
 			<!--  채팅 -->
 			<div class="col-sm-2 sidenav"
 				style="background-color: white; border-left: 14px solid white; position: fixed; margin-left:-5%; top:0px;">
+					
 					<h1 style="font-family:한나;">리모컨</h1>
 					<i id="remote" class="fa fa-mail-reply-all" style="font-size:36px; border:1px solid black; margin-left:6%;" onclick="history.back()"></i>
-
-				<i id="remote" class="fa fa-home" style="font-size:36px; border:1px solid black;" onclick="location.href='<%=request.getContextPath()%>/index'"></i>
+					<i id="remote" class="fa fa-home" style="font-size:36px; border:1px solid black;" onclick="location.href='<%=request.getContextPath()%>/index'"></i>
+          		
 				<c:if test="${loginUser.mem_nick != null}">
 					<i id="remote" class="fa fa-commenting" style="font-size:36px; border:1px solid black;" id="detailBtn" onclick="chat_detail()"></i>
 					<!-- <input class="btn" type="button" id="detailBtn" onclick="chat_detail()" value="채팅OPEN▼" /> -->
+					
+					<%-- <c:if test="${loginUser.mem_mail eq 'admin'}">
+          				<i id="remote" class="glyphicon glyphicon-user" style="font-size:36px; border:1px solid black;" onclick="location.href='<%=request.getContextPath()%>/notice/noticeWrite'"></i>
+					</c:if> --%>
+					
+					
 					<div id="chatDetailBtn" class="invisibleClass" style="margin-left:31%;margin-top:1%; border:1px solid black; width:100%;">
 					 <jsp:include page="../WEB-INF/views/chatting/chat.jsp"></jsp:include>
 					</div>
 				</c:if>
+				
 			</div>
 			<!--  채팅 END-->
 			<!-- 컨텐트내용 -->
@@ -634,6 +659,11 @@ cursor: pointer;
 	</footer>
 	<!-- 풋터 END-->
 </body>
+<script type="text/javascript">
+	function ful(){
+	alert('로그인 유저만 이용가능합니다.');
+	}
 
+</script>
 
 </html>

@@ -91,17 +91,16 @@ background-color: #006f00;
 					<%-- <td style="text-align: center;"><fmt:formatDate value="${jobhtBoardVO.jobhtboard_wri_date}" type="date" /></td> --%>
 				</tr>
 			</c:forEach>
-			<tr>
-						<td colspan="5" style="text-align: center;">${paging}</td>
-					</tr>
 			</table >
 			<table style="margin:0 auto;">
 			<tr>
-			<td><input type="button" class="btn btn-success btn-sm" value="글쓰기"
-				  	onclick="location.href='<%=request.getContextPath()%>/jobht/jobhtForm.do'">
+			<td>
+				<c:if test="${loginUser != null }">
+					<input type="button" class="btn btn-success btn-sm" value="글쓰기"
+					  	onclick="location.href='<%=request.getContextPath()%>/jobht/jobhtForm.do'">
+				</c:if>
 				<input type="button" class="btn btn-success btn-sm" value="메인"
 				  	onclick="location.href='<%=request.getContextPath()%>/index'">
-			
 			</td>
 			</tr>
 		</table>

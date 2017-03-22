@@ -11,7 +11,28 @@ public class CstBoardCounselVO {
 	private String cstboard_counsel_cont;
 	private Timestamp cstboard_counsel_wridate;
 	private String mem_mail;
+	private String mem_nick;
+	private String mem_phn;
 	private String flow_code;
+
+	
+	
+	
+	public String getMem_nick() {
+		return mem_nick;
+	}
+
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
+	}
+
+	public String getMem_phn() {
+		return mem_phn;
+	}
+
+	public void setMem_phn(String mem_phn) {
+		this.mem_phn = mem_phn;
+	}
 
 	public String getCstboard_counsel_posting_no() {
 		return cstboard_counsel_posting_no;

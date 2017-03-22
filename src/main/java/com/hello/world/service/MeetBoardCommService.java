@@ -50,6 +50,7 @@ public class MeetBoardCommService {
 	public MeetBoardCommVO getMeetBoardComm(String meet_board_ans_code)throws SQLException{
 		return meetBoardCommDAO.getMeetBoardComm(meet_board_ans_code);
 	}
+	
 	public int getMaxSeq() throws SQLException{
 		return meetBoardCommDAO.getMaxSeq();
 	}

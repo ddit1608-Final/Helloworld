@@ -206,4 +206,21 @@ public class RctBoardController {
 
 		return url;
 	}
+	
+	// 삭제 기능 추가
+	@RequestMapping(value = "/deleteRctBoard")
+	public String deleteRctBoard(@RequestParam String rctboard_posting_no,
+			HttpSession session) throws ServletException, IOException {
+		String url = "redirect:rctBoardList.do";
+
+
+		System.out.println("컨트롤러 ==> 게시글삭제 실행");
+
+		rctBoardService.deleteRctBoard(rctboard_posting_no);
+
+		return url;
+	}
+	
+	
+	
 }

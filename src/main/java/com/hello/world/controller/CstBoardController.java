@@ -14,13 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hello.world.dto.CstBoardCommVO;
 import com.hello.world.dto.CstBoardCounselVO;
 import com.hello.world.dto.FlowVO;
-import com.hello.world.dto.FreeBoardCommVO;
-import com.hello.world.dto.FreeBoardVO;
-import com.hello.world.dto.MemVO;
+import com.hello.world.service.CstBoardCommService;
 import com.hello.world.service.CstBoardService;
 import com.hello.world.service.FlowService;
 
@@ -34,6 +32,9 @@ public class CstBoardController {
 	@Autowired
 	FlowService flowService;
 	
+	@Autowired
+	CstBoardCommService cstBoardCommService;
+	
 	@RequestMapping("/cstBoardList")
 	public String freeBoardList(HttpSession session,
 			HttpServletRequest request, Model model) {
@@ -44,11 +45,11 @@ public class CstBoardController {
 	}
 
 	@RequestMapping(value = "/CstBoardDetail", method = RequestMethod.GET)
-	public String freeBoardDetail(
+	public String cstBoardDetail(
 			@RequestParam String cstboard_counsel_posting_no, Model model)
 			throws ServletException, IOException {
 		String url = "cstBoard/cstBoardDetail";
-
+		ArrayList<CstBoardCommVO> cstBoardCommList = new ArrayList<CstBoardCommVO>();
 		ArrayList<FlowVO> flowList = new ArrayList<FlowVO>();
 
 		try {
@@ -68,7 +69,16 @@ public class CstBoardController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		try {
+			cstBoardCommList = cstBoardCommService.listCstBoardComm(cstboard_counsel_posting_no);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		model.addAttribute("cstBoardCommList",cstBoardCommList);
+		model.addAttribute("cstBoardCommListCnt", cstBoardCommList.size());
 		model.addAttribute("cstBoardVO", cstBoardVO);
 		return url;
 	}

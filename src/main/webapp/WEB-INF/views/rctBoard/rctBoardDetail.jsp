@@ -132,7 +132,7 @@ border:1px solid #b7cbd9 !important;
 				<div id="divdiv" style="text-align:center; margin-top:1%; margin-left:26%;">
 				<%-- <input type="hidden" id="mem_mail" name="mem_mail" value="${loginUser.mem_mail}"> --%>
 				<input class="btn" type="submit" value="글쓰기"> 
-				<input class="btn" type="reset" value="지우기"> 
+				<input class="btn" type="button" value="삭제" onclick="location.href='<%=request.getContextPath()%>/rct/deleteRctBoard'"> 
 				<%-- <input class="btn" type="button" value="뒤로가기" onclick="location.href='<%=request.getContextPath()%>/free/freeBoardList.do'"> --%>
 				</div>
 </form>

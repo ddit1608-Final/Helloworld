@@ -503,6 +503,20 @@ public class QnaBoardController {
 			return url;
 			
 		}
+		@RequestMapping(value="/noticeUpdate",method = RequestMethod.POST, produces = "application/text; charset=utf8")
+		@ResponseBody
+		public String updateNotice(HttpServletRequest req)throws ServletException,IOException{
+			String notice_id = req.getParameter("notice_id");
+			System.out.println("zzzzzzzzzzzzzzzzzzzzz>>>>"+notice_id);
+			String notice_cont = req.getParameter("notice_cont");
+			NoticeVO notiVO = new NoticeVO();
+			notiVO.setNotice_cont(notice_cont.trim());
+			notiVO.setNotice_id(notice_id);
+			notiSvc.updateNotice(notiVO);
+			
+			return notice_cont;
+			
+		}
 	
 	
 	

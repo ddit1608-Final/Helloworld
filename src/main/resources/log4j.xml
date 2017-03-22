@@ -11,11 +11,11 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.hello.world">
+<!-- 	<logger name="com.hello.world">
 		<level value="info" />
 	</logger>
 	
-	<!-- 3rdparty Loggers -->
+	3rdparty Loggers
 	<logger name="org.springframework.core">
 		<level value="info" />
 	</logger>
@@ -26,14 +26,14 @@
 	
 	<logger name="org.springframework.context">
 		<level value="info" />
-	</logger>
+	</logger> -->
 
-	<!-- <logger name="org.springframework.web">
+	<logger name="org.springframework.web">
 		<level value="debug" />
 	</logger>
-	 -->
+	
 	<!-- debug 병현추가-->
-	<!-- <logger name="org.springframework.jdbc">
+	<logger name="org.springframework.jdbc">
 		<level value="debug" />
 	</logger>
 	<logger name="java.sql.Connection">
@@ -47,12 +47,11 @@
 	</logger>
 	<logger name="java.sql.ResultSet">
 		<level value="debug"></level>
-	</logger>  -->
-	<!-- debug 추가 끝-->
+	</logger> 
 	
-	<!-- <logger name="jdbc.sqltiming">
+	<logger name="jdbc.sqltiming">
 		<level value="debug"></level>
-	</logger> --> 
+	</logger> 
 
 	<!-- Root Logger -->
 	<root>

@@ -348,7 +348,7 @@ h1 {
 		</div>
 		<div id="bottomArea">
 			Copyright <a href="https://www.facebook.com/HelloWorldCommunity-1873957972876556/" target="_top">ⓒ 2017
-				Blackstreet Boyz:BB</a><i class="fa fa-child" style="font-size:36px;color:lime"></i> BH | SH | HM | JH | SY
+				Blackstreet Boyz:BB</a><i class="fa fa-child" style="font-size:36px;color:lime"></i> BH | SH | HM | JH 
 		</div> 
 </body>
 </html>

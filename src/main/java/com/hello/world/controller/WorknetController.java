@@ -16,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -43,7 +45,7 @@ public class WorknetController {
 		return url;
 	}
 
-	// 서버로 workNetAPI 접근하여 IP관련 직종의 전체 List
+	// 서버로 workNetAPI 접근하여 IT관련 직종의 전체 List
 	@RequestMapping(value = "/workNetList")
 	@ResponseBody
 	public Source worknet2(HttpSession session, HttpServletRequest req)
@@ -61,6 +63,8 @@ public class WorknetController {
 		paramMap.put("startPage", req.getParameter("pageNo"));
 		// 출력 건수 기본값: 10 , 최대: 100
 		paramMap.put("display", "10");
+		// 대전 지역 region = 30000
+		paramMap.put("region", "30000");
 		// 직종 코드 (액셀 파일 참고 -직종코드.xls)
 		paramMap.put(
 				"occupation",
@@ -76,7 +80,7 @@ public class WorknetController {
 				.getForEntity(
 						"http://openapi.work.go.kr/opi/opi/opia/wantedApi.do?authKey={authKey}&callTp={callTp}&"
 								+ "returnType={returnType}&startPage={startPage}&"
-								+ "&display={display}&occupation={occupation}",
+								+ "&display={display}&occupation={occupation}&region={region}",
 						// +
 						// "firstIndex={firstIndex}&pageSize={pageSize}&recordCountPerPage={recordCountPerPage}"
 						// // 추가
@@ -87,9 +91,8 @@ public class WorknetController {
 	// 게시물 디테일
 	@RequestMapping(value = "/workNetDetail")
 	@ResponseBody
-	public Source worknetDetail(HttpSession session, HttpServletRequest req)
+	public Source worknetDetail(HttpSession session, HttpServletRequest req,@RequestParam String wantedAuthNo)
 			throws RestClientException, URISyntaxException {
-
 		RestTemplate template = new RestTemplate();
 		Map<String, String> paramMap = new HashMap<String, String>();
 		// 인증키
@@ -98,16 +101,19 @@ public class WorknetController {
 		paramMap.put("callTp", "D");
 		// 리턴타입은 반드시 XML
 		paramMap.put("returnType", "XML");
-		paramMap.put("wantedAuthNo", "wantedAuthNo");
-		paramMap.put("infoSvc", "infoSvc");
-		paramMap.put("callPage", "detail");
-
+		paramMap.put("wantedAuthNo", wantedAuthNo);
+		paramMap.put("infoSvc", "VALIDATION");
+		
 		// api url이며 parameter값들은 {}로 구분하여 맵에 입력한 값들로 대입하여 사용한다.
 		ResponseEntity<Source> re = template
 				.getForEntity(
-						"http://www.work.go.kr/empInfo/empInfoSrch/detail/empDetailAuthView.do?authKey={authKey}&callPage={detail}&"
-								+ "wantedAuthNo={wantedAuthNo}&returnType={returnType}&infoSvc={infoSvc}",
+						"http://openapi.work.go.kr/opi/opi/opia/wantedApi.do?authKey={authKey}&callTp={callTp}&returnType={returnType}"+
+						"&wantedAuthNo={wantedAutoNO}&infoSvc={infoSvc}",Source.class, paramMap);
+/*		ResponseEntity<Source> re = template
+				.getForEntity(
+						"http://www.work.go.kr/empInfo/empInfoSrch/detail/empDetailAuthView.do?callTp={callTp}&wantedAuthNo{wantedAuthNo}",
 						Source.class, paramMap);
+*/		
 		return re.getBody();
 	}
 

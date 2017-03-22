@@ -59,9 +59,9 @@
 			<a href="javascript:init(4)">4</a>
 			<a href="javascript:init(5)">5</a>
 			<a href="javascript:init(6)">6</a>
-			<a href="javascript:init(7)">7</a>
+			<!-- <a href="javascript:init(7)">7</a>
 			<a href="javascript:init(8)">8</a>
-			<a href="javascript:init(9)">9</a>
+			<a href="javascript:init(9)">9</a> -->
 			</td>
 		</tr>
 	</table>
@@ -77,6 +77,14 @@
 			onclick="location.href='<%=request.getContextPath()%>/worknet/myScrapList'">내역확인 <i class="fa fa-cart-plus"></i></button>
 			</c:if>
 		</td>
+	</tr>
+	</table>
+	
+	<!-- worknet watermark  -->
+	<table style="margin: auto;">
+	<tr>
+	<td colspan="2">
+	<img src="<%=request.getContextPath()%>/resources/images/info_source.gif"></td>
 	</tr>
 	</table>			
 		
@@ -102,7 +110,7 @@
 								<div class="modal-footer">
 									<input type="button" class="btn btn-default btn-xs" value="스크랩" onclick="scrap_go();" >
 									<button type="button" class="btn btn-default btn-xs"
-										data-dismiss="modal" onclick="close_go();">Close</button>
+										data-dismiss="modal" id="exit_go" onclick="close_go();">Close</button>
 								</div>
 							</div>
 						</div>
@@ -136,12 +144,14 @@
 								career:$(each).find("career").text(),
 								regDt:$(each).find("regDt").text(),
 								closeDt:$(each).find("closeDt").text(),
-								salTpNm:$(each).find("salTpNm").text()
+								salTpNm:$(each).find("salTpNm").text(),
+								wantedInfoUrl:$(each).find("wantedInfoUrl").text()
 							};
 							var ptag = 
 									$("<tr><td class='yn'>"+
 									"<input type='checkbox'class='cpyCheck' value="+eachCompany.id+">"+eachCompany.name+"</td>"+
-									"<td class='title'><a href='workNetDetail?wantedAuthNo='"+eachCompany.id+">"+eachCompany.title+"</a><br>("+eachCompany.salTpNm+")"+eachCompany.sal+
+									"<td class='title'><a href='workNetDetail'>"+eachCompany.title+"</a>"+
+									"<br>("+eachCompany.salTpNm+")"+eachCompany.sal+
 									"<br>"+eachCompany.region+"</td>"+
 									"<td class='start'>"+eachCompany.minEdubg+
 									"<br>"+eachCompany.career+"</td>"+

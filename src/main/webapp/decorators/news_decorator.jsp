@@ -309,7 +309,7 @@ font-weight:normal;
 
 	function connect() {
 		
-		wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
+		wsocket = new SockJS("http://localhost/world/chat.sockjs");
 		wsocket.onopen;
 		
 		wsocket.onmessage = onMessage("${loginUser.mem_mail }");
@@ -445,7 +445,7 @@ font-weight:normal;
 
 	function connect() {
 		wsocket = new SockJS("http://" + document.domain
-				+ ":8181/world/chat.sockjs");
+				+ "/world/chat.sockjs");
 		wsocket.onopen;
 	}
 	function chat_detail(){

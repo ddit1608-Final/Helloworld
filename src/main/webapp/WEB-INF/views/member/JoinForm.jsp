@@ -59,7 +59,7 @@ background-color: #006f00;
 	href="<%=request.getContextPath()%>/resources/css/signup.css">
 
 <div>
-		<a href="#"></a><img id="joinLogo" src="<%= request.getContextPath() %>/resources/images/joinlogo.png"></a>
+		<a href="#"><img id="joinLogo" src="<%= request.getContextPath() %>/resources/images/joinlogo.png"></a>
 	</div> 
 <article>
 <h2 style="text-align:center; font-size:36px; font-family:한나;">회원가입 (개인회원)</h2>
@@ -70,15 +70,15 @@ background-color: #006f00;
 		<div style="margin:3% auto auto 18%;" class="form-group">
 			<label class="control-label col-sm-2" for="mem_mail"><font color=red>* </font>이메일</label> <input
 				class="form-control" type="email" id="mem_mail" name="mem_mail"
-				value="${param.mem_mail }" onkeyup="checkDepulicateId()"> 
+				value="${param.mem_mail }" onkeyup="checkDepulicateId()"/> 
 				
-				
-			<label id="mailCheck" class="cec" ></label>
+					
+			<label id ="mailCheck" class="cec" ></label>
 			<c:choose>
 				<c:when test="${param.cetifi eq null}">
-					<input type="button" onclick="go_certification()" id="checkbtn" value="인증" class="btn">
+					<input type="button" onclick="go_certification()" id="checkbtn" value="인증" class="btn" >
 					<br /><br/>
-				</c:when>
+				</c:when> 
 				<c:otherwise>
 					<c:choose>
 						<c:when test="${param.cetifi == 'success'}">
@@ -122,8 +122,10 @@ background-color: #006f00;
 			<label class="control-label col-sm-2" for="addr_zipnum"><font color=red>* </font>주소</label>
 			<input class="form-control" type="text"	id="addr_zipnum" name="addr_zipnum"  style="display: inline-block;"> 
 			<input type="button" value="주소 찾기" class="btn btn-success" onclick="post_zip()" style="display: inline-block;"> <br />
-			<input class="form-control" type="text" id="mem_addr" name="mem_addr">
-			<label class="cec" for="addr_zipnum"	id="addrCheck"></label> 
+			<input class="form-control" type="text" id="mem_addr" name="mem_addr" style="width:300px;">
+			<label class="control-label col-sm-2" for="addr_zipnum">상세주소</label>
+			<input class="form-control" type="text" id="mem_addr_detail" name="mem_addr_detail" style="width:300px;">
+			<label class="cec" for="addr_zipnum" id="addrCheck"></label> 
 
 
 			

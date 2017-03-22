@@ -12,7 +12,7 @@
 	<form name="form" method="post">
 		<table class="table table-condensed" id="blt">
 			<!-- sort 기능 추가  -->
-				<tr>
+				<%-- <tr>
 				<td style="text-align:center; width:13%;">
 				<input type="button" class="btn btn-default btn-sm" value="전체보기"
 					onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardList.do'">
@@ -31,7 +31,7 @@
       					</c:forEach>
       				</select>
 				</td>
-			</tr>
+			</tr> --%>
 			<!-- sort -->
 				<c:forEach items="${notiList}" var="notice" varStatus="status">
 					<tr style="text-align: center; border-bottom:2px solid gray; font-size:13pt;">
@@ -80,7 +80,7 @@
 									<span id="btnArea">
 									<c:if test="${loginUser.mem_mail eq 'admin' }">
 										<input type="button" class="btn btn-default btn-xs" value="수정" onclick="update_go('${idea}',event);">
-										<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="noti_del();">
+										<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="del_notice();">
 									</c:if>
 									</span>
 								</div>
@@ -126,13 +126,16 @@
 								${ifShrBoardVO.ifshrboard_title}
 								<c:forEach items="${typeList }" var="type" varStatus="status">
 									<c:if test="${type.type_key==ifShrBoardVO.type_key }">
-										<span class="label label-default">${type.type_value}</span>
+										<span class="label label-default">${type.type_value}&nbsp;:
+											<c:forEach var="levelList" items="${levelList }" varStatus="status">
+												<c:if test="${ifShrBoardVO.crr_key == levelList.crr_key}">${levelList.crr_value}</c:if>
+											</c:forEach>
+										</span>
 									</c:if> 
 								</c:forEach>
 									<%-- 댓글 수 하고 싶음
 								
 									<span class="badge">${isBoardCommListCnt}</span> --%>
-									<span class="label label-default">new</span>
 								</a>
 								
 							</td>
@@ -157,10 +160,6 @@
 				<c:if test="${loginUser != null}"> 
 				<input type="button" class="btn btn-success btn-sm" value="글쓰기"
 					onclick="location.href='<%=request.getContextPath()%>/is/ifShrBoardWriteForm.do'">
-				</c:if>
-				<c:if test="${loginUser.mem_mail eq 'admin' }">
-					<input type="button" class="btn btn-success btn-sm" value="공지사항"
-					onclick="#">
 				</c:if>
 					<input type="button" class="btn btn-success btn-sm" value="메인"
 					onclick="location.href='<%=request.getContextPath()%>/index'">

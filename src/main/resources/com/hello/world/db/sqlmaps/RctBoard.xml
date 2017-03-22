@@ -39,6 +39,7 @@
 		and rctboard_emp_kind like '%'||#rctboard_emp_kind#||'%'
 		and rctboard_year_sal like '%'||#rctboard_year_sal#||'%'
 		and rctboard_acdmcr like '%'||#rctboard_acdmcr#||'%'
+		order by TO_NUMBER(rctboard_posting_no) desc
 	</select>
 
 	<select id="rctDetail" parameterClass="str" resultClass="RctBoard">
@@ -67,5 +68,11 @@
 		and rctboard_year_sal like '%'||#rctboard_year_sal#||'%'
 		and rctboard_acdmcr like '%'||#rctboard_acdmcr#||'%'
 	</select>
+	
+	<delete id="deleteRctBoard" parameterClass="str">
+		delete
+		from rctboard
+		where rctboard_posting_no=#rctboard_posting_no#
+	</delete>
 
 </sqlMap>

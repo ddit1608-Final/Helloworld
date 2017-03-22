@@ -70,7 +70,7 @@ public class EchoHandler extends TextWebSocketHandler {
 		if (users.get(user) != null) {
 			users.get(user).sendMessage(
 					new TextMessage("알림 : 회원 " + fromUser
-							+ "가 회원님이 작성하신 게시물에 댓글을 작성했습니다." + "\n"
+							+ "님이 회원님이 작성하신 게시물에 댓글을 작성했습니다." + "\n"
 							+ messageVO.getMessage()));
 		}
 		/* 다중 채팅. */

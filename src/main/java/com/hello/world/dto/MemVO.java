@@ -11,6 +11,7 @@ public class MemVO {
 	private String mem_pw; // 패스워드
 	private String mem_phn; // 연락처(휴대폰)
 	private String mem_addr; // 주소
+	private String mem_addr_detail; // 주소
 	private int mem_sex; // 성별
 	private int mem_lang; // 사용언어
 	private String mem_nick; // 닉네임
@@ -19,6 +20,15 @@ public class MemVO {
 	private String mem_grade_code; // 회원등급
 	private String crr_code; // 경력코드 몇년차?
 	private String workex_code; //
+	
+	
+	public String getMem_addr_detail() {
+		return mem_addr_detail;
+	}
+
+	public void setMem_addr_detail(String mem_addr_detail) {
+		this.mem_addr_detail = mem_addr_detail;
+	}
 
 	public String getMem_mail() {
 		return mem_mail;

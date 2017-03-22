@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/freeBoard.css">
 <style>
@@ -37,14 +38,14 @@ background-color: white !important;
 		<h1 class="text-center">컨설팅 게시물 관리</h1>
 		<hr>
 
-		<form style="margin-left:70%;" class="form-inline" action="memberManage" id="memberSearch"
+		<!-- <form style="margin-left:70%;" class="form-inline" action="memberManage" id="memberSearch"
 			method="get">
 			<div class="form-group">
-				<label for="pwd">회원 이메일 :</label> <input type="text"
-					class="form-control" id="key" name="key">
+				<label for="pwd">회원 이메일 :</label> 
+				<input type="text" class="form-control" id="key" name="key">
 			</div>
 			<input type="submit" class="btn btn-default" value="검색">
-		</form>
+		</form> -->
 		<hr>
 
 		<table id="memberList" class="table table-striped">
@@ -81,7 +82,7 @@ background-color: white !important;
 								<td class="id">${cstVO.mem_mail}</td>
 								<td class="email"><a
 									href="<%=request.getContextPath()%>/admin/CstBoardDetail?cstboard_counsel_posting_no=${cstVO.cstboard_counsel_posting_no}">${cstVO.cstboard_counsel_title}</a></td>
-								<td class="phone">${cstVO.cstboard_counsel_wridate}</td>
+								<td class="phone"><fmt:formatDate value="${cstVO.cstboard_counsel_wridate}" pattern="yyyy-MM-dd  HH시 mm분"/> </td>
 								
 							</tr>
 						</c:forEach>

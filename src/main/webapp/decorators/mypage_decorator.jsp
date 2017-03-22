@@ -31,6 +31,8 @@
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/mypage.js"></script>
 <script type="text/javascript"
+	src="<%=request.getContextPath()%>/js/cstboard.js"></script>
+<script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/sockjs-0.3.min.js"></script>
 <script type="text/javascript"
 	src="<%=request.getContextPath()%>/js/push.min.js"></script>
@@ -244,7 +246,7 @@ border-radius:5px;
 
 	function connect() {
 		
-		wsocket = new SockJS("http://localhost:8181/world/chat.sockjs");
+		wsocket = new SockJS("http://localhost/world/chat.sockjs");
 		wsocket.onopen;
 		
 		wsocket.onmessage = onMessage("${loginUser.mem_mail }");

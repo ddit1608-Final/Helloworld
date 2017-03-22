@@ -12,7 +12,7 @@ background-color: white !important;
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/meetBoard.css">
 <article>
-	<div>
+	<div>	
 		<a href="<%=request.getContextPath()%>/meet/meetBoardList.do"><img
 			id="meetLogo"
 			src="<%=request.getContextPath()%>/resources/images/meetLogo.png"></a>
@@ -45,14 +45,28 @@ background-color: white !important;
 								<div class="modal-body">
 									<span style="font-family: 한나; font-size: 15pt;">
 										<hr style="border:none;border:5px double gray;"/>
-										${notice.notice_cont }
+										<c:if test="${loginUser.mem_mail ne 'admin' }">
+										<textarea id="notice_cont${status.count }" name="notice_cont${status.count }" readonly="readonly" rows="13" style="width: 100%;border:0;background:clear;">${notice.notice_cont }</textarea>
+										</c:if>
+										<c:if test="${loginUser.mem_mail eq 'admin' }">
+										<%-- <textarea id="notice_cont${status.count }" name="notice_cont${status.count }" rows="13" style="width: 100%;border:0;background:clear;">${notice.notice_cont }</textarea> --%>
+										<div id="notice_cont${status.count }">
+										${notice.notice_cont }									
+										</div>
+										
+										</c:if>
+										<c:set value="${notice.notice_cont}" var="notice_cont"/>
+										<c:set value="${notice.notice_id}" var="notice_id"/>
+										<c:set value="${status.count }" var="idea"/>
+										<c:set value="notice_id${status.count }" var="idex"/>
+										
 										<br/>
 										<hr style="border:none;border:5px double gray;"/>
 										<i class="fa fa-user-circle" style="font-size:36px"></i>${notice.mem_nick } 올림
 									</span>
-									<span>
+									<span id="btnArea">
 									<c:if test="${loginUser.mem_mail eq 'admin' }">
-										<input type="button" class="btn btn-default btn-xs" value="수정" onclick="noti_update(notice_cont);">
+										<input type="button" class="btn btn-default btn-xs" value="수정" onclick="update_go_meet('${idea}',event);">
 										<input type="button" class="btn btn-default btn-xs" value="삭제" onclick="noti_del();">
 									</c:if>
 									</span>
@@ -65,7 +79,6 @@ background-color: white !important;
 						</div>
 					</div>
 			</c:forEach>
-					<!-- 현민아 여기야  -->
 			<tr
 				style="background-color: gray; font-size: 15pt; color: white; font-family:;">
 				<td style="text-align: center; width:7%;">번호</td>

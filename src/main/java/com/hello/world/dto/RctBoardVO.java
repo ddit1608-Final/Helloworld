@@ -27,6 +27,15 @@ public class RctBoardVO {
 	private String compmem_bsnss_lcse_no;
 	private String rctboard_title;
 	private String compmem_comp_nm;
+	private String compmem_mail;
+	
+	
+	public String getCompmem_mail() {
+		return compmem_mail;
+	}
+	public void setCompmem_mail(String compmem_mail) {
+		this.compmem_mail = compmem_mail;
+	}
 	public String getRctboard_posting_no() {
 		return rctboard_posting_no;
 	}
